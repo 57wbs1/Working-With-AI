@@ -1,0 +1,113 @@
+{
+  "entries": {
+    "cmd-1791370974332": {
+      "key": "cmd-1791370974332",
+      "value": "{\"command\":\"cd \\\"/Users/xynkro/Documents/AI Brief Syn1/assets/video\\\" || exit 1\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:02:54.332Z",
+      "lastAccessed": "2026-10-07T11:02:54.332Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:02:54.332Z"
+    },
+    "cmd-1791370975538": {
+      "key": "cmd-1791370975538",
+      "value": "{\"command\":\"B=\\\"https://d8j0ntlcm91z4.cloudfront.net/user_3F26E4kfZ1WdozhW8DAc8Tg3Ea8\\\"\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:02:55.538Z",
+      "lastAccessed": "2026-10-07T11:02:55.538Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:02:55.538Z"
+    },
+    "cmd-1791370976710": {
+      "key": "cmd-1791370976710",
+      "value": "{\"command\":\"curl -sS --max-time 180 -o intro-talkinghead.mp4 \\\"$B/hf_20261007_105038_95f88e2d-c208-41b4-884a-e17f959f2132.mp4\\\"\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:02:56.710Z",
+      "lastAccessed": "2026-10-07T11:02:56.710Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:02:56.710Z"
+    },
+    "cmd-1791370977910": {
+      "key": "cmd-1791370977910",
+      "value": "{\"command\":\"curl -sS --max-time 180 -o stinger-evolution.mp4  \\\"$B/hf_20261007_105038_8f1868b5-4722-4192-85d1-47d3e7dce64c.mp4\\\"\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:02:57.910Z",
+      "lastAccessed": "2026-10-07T11:02:57.910Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:02:57.910Z"
+    },
+    "cmd-1791370979086": {
+      "key": "cmd-1791370979086",
+      "value": "{\"command\":\"curl -sS --max-time 180 -o stinger-connect.mp4    \\\"$B/hf_20261007_105038_ee2d437f-4d5f-4481-a716-60b8d33342f3.mp4\\\"\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:02:59.086Z",
+      "lastAccessed": "2026-10-07T11:02:59.086Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:02:59.086Z"
+    },
+    "cmd-1791370980262": {
+      "key": "cmd-1791370980262",
+      "value": "{\"command\":\"curl -sS --max-time 180 -o stinger-build.mp4      \\\"$B/hf_20261007_105038_aaf66955-2f30-4e2b-a31c-bab2451e04dd.mp4\\\"\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:03:00.262Z",
+      "lastAccessed": "2026-10-07T11:03:00.262Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:03:00.262Z"
+    },
+    "cmd-1791370981464": {
+      "key": "cmd-1791370981464",
+      "value": "{\"command\":\"echo \\\"--- downloaded ---\\\"; ls -lh *.mp4 | awk '{print $9, $5}'\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:03:01.464Z",
+      "lastAccessed": "2026-10-07T11:03:01.464Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:03:01.464Z"
+    },
+    "cmd-1791370982653": {
+      "key": "cmd-1791370982653",
+      "value": "{\"command\":\"echo \\\"--- probe ---\\\"\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:03:02.653Z",
+      "lastAccessed": "2026-10-07T11:03:02.653Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:03:02.653Z"
+    },
+    "cmd-1791370983815": {
+      "key": "cmd-1791370983815",
+      "value": "{\"command\":\"for f in *.mp4; do printf \\\"%-26s %s\\\\n\\\" \\\"$f\\\" \\\"$(ffprobe -v error -show_entries format=duration:stream=width,height -of csv=p=0 \\\"$f\\\" 2>/dev/null | tr '\\\\n' ' ')\\\"; done\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:03:03.815Z",
+      "lastAccessed": "2026-10-07T11:03:03.815Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:03:03.815Z"
+    },
+    "cmd-1791370985008": {
+      "key": "cmd-1791370985008",
+      "value": "{\"command\":\"echo \\\"--- posters ---\\\"\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:03:05.008Z",
+      "lastAccessed": "2026-10-07T11:03:05.008Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:03:05.008Z"
+    },
+    "cmd-1791370986224": {
+      "key": "cmd-1791370986224",
+      "value": "{\"command\":\"for f in *.mp4; do ffmpeg -nostdin -v error -y -ss 0.6 -i \\\"$f\\\" -frames:v 1 -vf \\\"scale=960:-2\\\" \\\"../img/${f%.mp4}.jpg\\\"; done\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:03:06.224Z",
+      "lastAccessed": "2026-10-07T11:03:06.224Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:03:06.224Z"
+    },
+    "cmd-1791370987445": {
+      "key": "cmd-1791370987445",
+      "value": "{\"command\":\"ls -lh ../img/ | awk '{print $9, $5}'\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-07T11:03:07.445Z",
+      "lastAccessed": "2026-10-07T11:03:07.445Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-06T11:03:07.445Z"
+    }
+  },
+  "version": "3.0.0"
+}

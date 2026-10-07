@@ -578,6 +578,57 @@ footer b{color:var(--fg-dim);font-weight:500}
 }
 .portraitframe video{width:100%;height:100%;object-fit:cover}
 @media(max-width:819px){ .portraitframe{max-width:240px} }
+
+/* ---------- build log ---------- */
+.log{border-left:2px solid var(--edge);margin:20px 0 10px}
+.log-i{position:relative;padding:0 0 18px 24px}
+.log-i::before{
+  content:"";position:absolute;left:-6px;top:6px;width:9px;height:9px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--edge-hi);
+}
+.log-i.auto::before{background:var(--amber);border-color:var(--amber)}
+.log-i.human::before{background:var(--cyan);border-color:var(--cyan)}
+.log-w{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--fg-faint)}
+.log-i.auto .log-w{color:var(--amber)}
+.log-i.human .log-w{color:var(--cyan)}
+.log-h{font-family:var(--display);font-weight:600;font-size:15px;margin:1px 0 2px}
+.log-d{font-size:14px;color:var(--fg-dim);margin:0;max-width:64ch;line-height:1.5}
+.log-d code{font-family:var(--mono);font-size:12.5px;color:var(--amber);background:var(--bg-2);
+  padding:1px 5px;border-radius:3px;border:1px solid var(--edge)}
+
+/* ---------- quiz ---------- */
+.quiz{background:var(--panel);border:1px solid var(--edge-hi);border-radius:5px;padding:20px;margin:22px 0}
+.quiz-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:4px;flex-wrap:wrap}
+.quiz-top h4{margin:0;font-family:var(--display);font-weight:700;font-size:17px}
+.quiz-score{font-family:var(--mono);font-size:12px;color:var(--fg-dim);font-variant-numeric:tabular-nums}
+.quiz-score b{color:var(--amber)}
+.qblock{border-top:1px solid var(--edge);padding-top:16px;margin-top:16px}
+.qblock:first-of-type{border-top:0;padding-top:4px;margin-top:8px}
+.qq{font-weight:600;font-size:15.5px;margin:0 0 11px;line-height:1.45}
+.qq span{font-family:var(--mono);font-size:11px;color:var(--amber);margin-right:7px}
+.qopts{display:grid;gap:7px}
+.qopt{
+  text-align:left;background:var(--bg-2);border:1px solid var(--edge);border-radius:4px;
+  padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:14.5px;color:var(--fg);
+  line-height:1.45;
+}
+.qopt:hover:not([disabled]){border-color:var(--edge-hi);background:var(--panel-2)}
+.qopt[disabled]{cursor:default}
+.qopt.right{border-color:var(--ok);background:rgba(134,179,106,.12);color:var(--fg)}
+.qopt.wrong{border-color:var(--crit);background:rgba(212,100,90,.12)}
+.qopt .mark{font-family:var(--mono);font-weight:600;margin-right:8px}
+.qopt.right .mark{color:var(--ok)}
+.qopt.wrong .mark{color:var(--crit)}
+.qwhy{
+  margin-top:10px;padding:11px 14px;background:var(--bg-2);border-left:3px solid var(--amber);
+  border-radius:3px;font-size:14px;line-height:1.55;color:var(--fg-dim);
+}
+.qwhy b{color:var(--amber)}
+.quiz-done{
+  margin-top:18px;padding:14px 16px;border-radius:4px;border-left:3px solid var(--amber);
+  background:var(--amber-wash);font-size:15px;
+}
+.quiz-done b{font-family:var(--display);font-weight:700;color:var(--amber);display:block;margin-bottom:3px}
 </style>
 </head>
 <body>
@@ -798,6 +849,49 @@ footer b{color:var(--fg-dim);font-weight:500}
   room how they would supervise a capable subordinate they could not see. That is the actual skill, and
   nobody in the room is new to it.</div>
 
+
+  <div class="eyebrow">What you actually are now</div>
+  <p class="lede">The most useful way to think about an agent is not as a tool. It is a <b>staff
+  officer</b> &mdash; capable, fast, tireless, well-read, and entirely dependent on you for direction
+  and for judgement about what matters.</p>
+
+  <p>Which makes your job the one you already know how to do. You are not operating a machine. You are
+  <b>commanding</b> one: setting intent, bounding it, and then <b>reviewing the product before it goes
+  anywhere.</b> That review is not a formality you do if there is time. It is now the main thing you are
+  paid for.</p>
+
+  <div class="tscroll">
+    <table>
+      <caption>A good staff officer and a good agent fail in the same ways</caption>
+      <thead><tr><th>A staff officer who&hellip;</th><th>An agent that&hellip;</th><th>The same fix</th></tr></thead>
+      <tbody>
+        <tr><td>Works to the letter of a bad brief</td><td>Optimises exactly what you asked for, not what you wanted</td>
+            <td>State the end state, not the task</td></tr>
+        <tr><td>Will not say they are out of their depth</td><td>Answers confidently with no idea it is wrong</td>
+            <td>Ask what it is unsure about, and what would change its answer</td></tr>
+        <tr><td>Fills a gap with a plausible assumption</td><td>Invents a source, a figure or a file that does not exist</td>
+            <td>Require it to show where every fact came from</td></tr>
+        <tr><td>Gives you polish instead of substance</td><td>Produces fluent text that says nothing</td>
+            <td>Ask for the argument in one sentence; if it cannot, there is not one</td></tr>
+        <tr><td>Needs the same correction every time</td><td>Forgets your standards in a new conversation</td>
+            <td>Write it into a skill &mdash; Lesson 05</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warnbox"><b>The part that should worry you</b>
+  <p>A staff officer who is wrong usually shows it &mdash; they hesitate, they hedge, they come back with
+  questions. An agent that is wrong reads exactly like an agent that is right. Same fluency, same
+  confidence, same speed.</p>
+  <p>So the signals you have spent a career learning to read are not available here. The only reliable
+  check is the one you do on the output itself. <b>Never let anything leave your hands that you have not
+  personally verified.</b></p></div>
+
+  <div class="note">This is the slide that makes the room comfortable, because it tells them their
+  existing skill is the relevant one. Say plainly: &ldquo;You are not becoming a programmer. You are
+  becoming a commander of something that never pushes back.&rdquo; Then sit on the warning box &mdash;
+  the missing hesitation cue is the genuinely new risk.</div>
+
   <div class="warnbox"><b>The honest part</b>
   <p>An agent that loops is an agent that can be confidently wrong for forty minutes instead of thirty
   seconds. It will invent a source, delete the wrong file, or declare success on something it never
@@ -808,11 +902,11 @@ footer b{color:var(--fg-dim);font-weight:500}
 </section>
 
 <!-- ========================= 03 ========================= -->
-<section class="lesson" hidden id="pricing" data-title="What it costs, and what Perplexity is" data-mins="6">
+<section class="lesson" hidden id="pricing" data-title="The toolkit, and what it costs" data-mins="12">
   <div class="lessonhead">
     <p class="lkick">Lesson 04</p>
-    <h2>What it costs, and what Perplexity is</h2>
-    <p class="lsub">Every tier, what is worth paying for, and the discount nobody claims.</p>
+    <h2>The toolkit, and what it costs</h2>
+    <p class="lsub">Seven tools, what each one is actually for, and what you should pay for.</p>
   </div>
 
   <div class="bluf"><b>Bottom line</b>
@@ -897,6 +991,123 @@ footer b{color:var(--fg-dim);font-weight:500}
   <div class="note">Flag the student discount loudly &mdash; everyone in this room qualifies and it is a
   thirty-second verification for half price. Easiest win in the whole brief.</div>
 
+
+  <div class="eyebrow">The other four tools worth knowing</div>
+  <p class="lede">Chat assistants are one category. Four more do jobs the chat window does badly,
+  and three of them have free tiers that are genuinely enough.</p>
+
+  <div class="tscroll">
+    <table>
+      <caption>What each tool is for &middot; verified 7 Oct 2026</caption>
+      <thead><tr><th>Tool</th><th>What it is actually for</th><th>Free tier</th><th>Paid entry</th></tr></thead>
+      <tbody>
+        <tr><th>ChatGPT</th><td>General assistant. The broadest feature set and the biggest ecosystem.</td>
+            <td><span class="pill free">Yes</span> <span class="small muted">with ads</span></td><td class="num">$8 Go / $20 Plus</td></tr>
+        <tr><th>Claude</th><td>Long documents, careful reasoning, and building things. Claude Code is included from $20.</td>
+            <td><span class="pill free">Yes</span></td><td class="num">$20 Pro</td></tr>
+        <tr><th>Perplexity</th><td>Cited web research. Answers with a source on every claim.</td>
+            <td><span class="pill free">Yes</span> <span class="small muted">3 Pro/day</span></td><td class="num">$20 &middot; <span class="pill best">$10 student</span></td></tr>
+        <tr><th>Gemini</th><td>Lives inside Gmail, Docs and Drive. Strong on very long inputs.</td>
+            <td><span class="pill free">Yes</span></td><td class="num">$4.99 Plus / $19.99 Pro</td></tr>
+        <tr class="rowhi"><th>Gemini Notebook<br><span class="small muted">was NotebookLM</span></th>
+            <td>Studying <em>your own</em> sources. It only answers from documents you upload, with citations.</td>
+            <td><span class="pill free">Yes</span> <span class="small muted">100 notebooks</span></td><td class="num">via Google AI Pro $19.99</td></tr>
+        <tr><th>Gamma</th><td>Slides, docs and simple sites from a prompt. Exports to PowerPoint.</td>
+            <td><span class="pill free">400 credits</span> <span class="small muted">one-off</span></td><td class="num">$12/mo &middot; $9 annual</td></tr>
+        <tr><th>Higgsfield</th><td>Generating video and images. The clip in Lesson 01 came from here.</td>
+            <td class="muted small">Trial only</td><td class="num">$26 / 500 credits</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="concepts">
+    <div class="concept">
+      <h4><span>Study tool</span>Gemini Notebook</h4>
+      <p>Renamed from NotebookLM in July 2026; same product, same notebooks. You upload your readings
+      &mdash; PDFs, slides, notes &mdash; and it answers <em>only</em> from those, with a citation you
+      can click back to the page.</p>
+      <p>That restriction is the feature. It cannot wander off into half-remembered training data, so for
+      module reading it is far safer than a chat window. It will also generate an audio discussion of your
+      sources, which is genuinely good for revision on the move.</p>
+      <p class="small"><b>Free:</b> 100 notebooks, 50 sources each, budget resets every 5 hours.
+      <b>Pro:</b> bundled into Google AI Pro at $19.99 &mdash; 500 notebooks, 300 sources each, 4&times; the budget.</p>
+      <div class="sowhat"><b>Use it for</b>Module readings, a dense doctrine publication, or any set of
+      documents you have to actually know rather than just skim.</div>
+    </div>
+
+    <div class="concept">
+      <h4><span>Research</span>Perplexity</h4>
+      <p>An answer engine rather than a chatbot. It searches the live web, reads the results, and writes
+      an answer with numbered citations you can audit. You also pick which model answers &mdash; GPT,
+      Claude, Gemini or Grok &mdash; per query.</p>
+      <p>Use it for the first fifth of a research task: mapping what exists and who says what. Then take
+      the sources somewhere else to think with them.</p>
+      <p class="small"><b>Free:</b> 3 Pro searches a day. <b>Pro:</b> $20.
+      <b>Education Pro:</b> $10 for verified students &mdash; everything in Pro.</p>
+      <div class="sowhat"><b>Use it for</b>Anything you will have to defend in writing, where a cited
+      answer beats a confident one.</div>
+    </div>
+
+    <div class="concept">
+      <h4><span>Slides</span>Gamma</h4>
+      <p>Describe a deck and it builds one &mdash; layout, images and all &mdash; then lets you edit it
+      like a normal document. Exports to PowerPoint and PDF, so it drops into the formats we actually use.</p>
+      <p>It is good at getting you to a complete first draft in two minutes. It is not good at house
+      style, and the default look is recognisably Gamma, so budget time to strip that out.</p>
+      <p class="small"><b>Free:</b> 400 credits once, no refresh &mdash; roughly 10 decks, with a
+      &ldquo;Made with Gamma&rdquo; badge. <b>Plus:</b> $12/mo ($9 annual), 1,000 credits a month,
+      badge removed. <b>Pro:</b> $25/mo ($18 annual), 4,000 credits.</p>
+      <div class="sowhat"><b>Use it for</b>A first draft when you are staring at an empty deck. Not for
+      anything that has to match a house format.</div>
+    </div>
+
+    <div class="concept">
+      <h4><span>Video &amp; images</span>Higgsfield</h4>
+      <p>A front end onto many image and video models at once &mdash; Veo, Kling, Seedance, Nano Banana
+      and others &mdash; billed from one pool of credits rather than a subscription each.</p>
+      <p>Everything is priced in credits, and the price varies enormously by model. The talking head in
+      Lesson 01 was Veo 3.1 Lite: 8 seconds with audio, <b>12 credits</b>, about two minutes of waiting.
+      Silent clips were cheaper.</p>
+      <p class="small"><b>Top-ups:</b> 500 credits $26, 1,000 $49, 2,000 $95 &mdash; these expire after
+      90 days. <b>Plans:</b> PLUS $49/mo ($39 annual) for 1,000 credits a month; ULTRA $129/mo ($99 annual)
+      for 3,000.</p>
+      <div class="sowhat"><b>Watch out</b>Credits drain faster than you expect and the generators stamp a
+      watermark on the output. Check the cost of a model before you run a batch.</div>
+    </div>
+  </div>
+
+  <div class="eyebrow">Which one for which job</div>
+  <div class="tscroll">
+    <table>
+      <caption>If the job is&hellip;</caption>
+      <thead><tr><th>The job</th><th>Reach for</th><th>Why not the obvious one</th></tr></thead>
+      <tbody>
+        <tr><td>Understand a set of readings you were given</td><th>Gemini Notebook</th>
+            <td>A chat window will answer from training data and quietly blend it with your sources.</td></tr>
+        <tr><td>Find out what the literature says on a topic</td><th>Perplexity</th>
+            <td>Chat assistants only search if you push them, and cite less reliably.</td></tr>
+        <tr><td>Write, argue, or think something through</td><th>Claude or ChatGPT</th>
+            <td>Perplexity is built to retrieve, not to reason at length.</td></tr>
+        <tr><td>Build a tool, script or app</td><th>Claude</th>
+            <td>Claude Code is included at $20, which is the cheapest serious build setup going.</td></tr>
+        <tr><td>Get to a first-draft deck fast</td><th>Gamma</th>
+            <td>Asking a chat assistant for slides gets you bullet points, not a deck.</td></tr>
+        <tr><td>Make a video or an image</td><th>Higgsfield</th>
+            <td>The chat assistants generate images but not controllable video.</td></tr>
+        <tr><td>Summarise a 300-page PDF</td><th>Gemini or Gemini Notebook</th>
+            <td>Both handle very long inputs without losing the middle.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bluf" style="margin-top:26px"><b>If you only pay for one thing</b>
+  Perplexity Education Pro at $10 if you mostly research and write; Claude Pro at $20 if you want to
+  build things. Everything else here has a free tier that will carry you for months. Total spend to do
+  everything in this brief: nothing, if you are patient.</div>
+
+  <div class="note">The cost slide is where the room wakes up. Be blunt that you do not pay for all seven
+  and nor should they. Name the two you would actually buy and why, then move on.</div>
+
   <div class="ask" id="priceAsk">
     <p class="ask-q">What should <em>you</em> actually pay? Pick the one that sounds most like you.</p>
     <div class="opts" id="priceOpts">
@@ -910,11 +1121,11 @@ footer b{color:var(--fg-dim);font-weight:500}
 </section>
 
 <!-- ========================= 04 ========================= -->
-<section class="lesson" hidden id="plumbing" data-title="The plumbing nobody explains" data-mins="9">
+<section class="lesson" hidden id="skills" data-title="Skills — teaching it your standards" data-mins="9">
   <div class="lessonhead">
     <p class="lkick">Lesson 05</p>
-    <h2>The plumbing nobody explains</h2>
-    <p class="lsub">Skills, MCP, connectors, and where your work actually happens.</p>
+    <h2>Skills — teaching it your standards</h2>
+    <p class="lsub">How to stop re-explaining your house style every single time.</p>
   </div>
 
   <div class="stinger">
@@ -926,11 +1137,11 @@ footer b{color:var(--fg-dim);font-weight:500}
   <p class="vcap"><b>CLIP 02</b><span>Eight things plugging into one core. That is literally section 04.</span></p>
 
   <div class="bluf"><b>Bottom line</b>
-  Three ideas, and they stack. A <b>skill</b> is knowledge you give the model. <b>MCP</b> is the socket
-  that lets it reach your tools. A <b>connector</b> is that socket with the wiring already done.
-  Together they turn a clever stranger into something that knows your job.</div>
+  A skill is a folder of written instructions the model loads only when the task matches. Write your
+  standard down once and it applies every time, to everyone you share it with. This is the single
+  highest-leverage thing in the whole brief and almost nobody uses it.</div>
 
-  <div class="eyebrow">Skills &mdash; teaching it your way of working</div>
+  <div class="eyebrow">What a skill actually is</div>
   <p>A skill is a folder with a set of written instructions and, optionally, some scripts. It sits there
   doing nothing until a task comes along that matches its description, at which point the model loads it
   and follows it.</p>
@@ -944,6 +1155,220 @@ footer b{color:var(--fg-dim);font-weight:500}
     <li><b>They are plain text.</b> Readable, editable, shareable. Hand your skill to the syndicate and
     everyone works to the same standard. That is the real unlock for a team.</li>
   </ul>
+
+
+
+  <div class="eyebrow">Prompting is dead</div>
+  <p class="lede">The whole industry of &ldquo;prompt engineering&rdquo; &mdash; magic words, elaborate
+  templates, &ldquo;act as a world-class expert&rdquo; &mdash; was a workaround for models that could not
+  follow ordinary instructions. They can now. That skill has largely expired.</p>
+
+  <p>What replaced it is not a better prompt. It is a different job. You stop writing <b>steps</b> and
+  start stating the <b>end state</b>, the constraints, and how you will judge the result &mdash; then let
+  it work out the route.</p>
+
+  <div class="vs">
+    <div class="vs-col cloud">
+      <h4>The old way</h4>
+      <p class="tagline">INSTRUCTING &middot; YOU OWN EVERY STEP</p>
+      <ul>
+        <li class="n">&ldquo;Act as an expert analyst. First, summarise the attached paper in 200 words.
+        Use formal academic English&hellip;&rdquo;</li>
+        <li class="n">You specify the sequence, so the output can only be as good as your plan</li>
+        <li class="n">Every new task needs the whole instruction written out again</li>
+        <li class="n">It stops the moment it finishes your last step, right or wrong</li>
+      </ul>
+    </div>
+    <div class="vs-col local">
+      <h4>The agentic way</h4>
+      <p class="tagline">DELEGATING &middot; YOU OWN THE OUTCOME</p>
+      <ul>
+        <li class="y">&ldquo;I need to know whether this paper undermines my thesis. Tell me what would
+        change my mind.&rdquo;</li>
+        <li class="y">It picks the steps, and will take ones you would not have thought of</li>
+        <li class="y">Your standards live in a skill, so you never restate them</li>
+        <li class="y">It keeps going until the outcome holds, or tells you it is stuck</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Three things to put in every delegation, and they are the same three you would give a capable
+  subordinate:</p>
+  <ol class="steps">
+    <li><b>The end state.</b> What is true when this is done? Not &ldquo;write a summary&rdquo; but
+    &ldquo;I can walk into the tutorial able to defend a position on this.&rdquo;</li>
+    <li><b>The constraints.</b> Word count, sources it may use, house format, what it must not do.
+    These are the bounds, not the route.</li>
+    <li><b>The test.</b> How will you both know it worked? A worked example, a check it must pass, a
+    question it must be able to answer.</li>
+  </ol>
+
+  <div class="bluf"><b>Why this lands in this room</b>
+  You already know how to do this. It is mission command: intent, constraints, freedom of action,
+  back-brief. The only new part is that the subordinate is a machine, is extremely fast, and will not
+  tell you when it is out of its depth unless you ask.</div>
+
+  <div class="note">Spend real time here &mdash; this is the conceptual centre of the whole course. Ask
+  the room how they brief a capable junior they cannot supervise directly. Whatever they answer is the
+  right answer for this too. Then make the point that a <em>skill</em> is simply how you issue standing
+  orders instead of repeating yourself.</div>
+
+  <div class="eyebrow">What one looks like</div>
+  <p>Not code. A folder with a text file in it. The top few lines say what the skill is and when to use
+  it &mdash; that is all the model reads until a matching task comes along. Here is a real one, cut down:</p>
+
+<div class="filesample">---
+<b>name</b>: brief-format
+<b>description</b>: Use when drafting any syndicate brief, deck or slide pack.
+---
+
+Open every section with a one-line bottom line in bold.
+Keep slide text telegraphic &mdash; drop articles and the verb "is".
+<i># "Strike RINGTON", not "The plan is to strike RINGTON"</i>
+Never use "X, not Y" phrasing. State the claim, then the evidence.
+Speaking notes in full sentences; slide text in fragments.
+Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
+
+  <p>That is the whole mechanism. The <code style="font-family:var(--mono);font-size:12.5px;color:var(--amber)">description</code>
+  line is the important part &mdash; it is how the model decides whether this skill is relevant to what
+  you just asked. Vague description, skill never fires.</p>
+
+  <div class="eyebrow">Two worth having on day one</div>
+  <div class="concepts">
+    <div class="concept">
+      <h4><span>Prose</span>humanizer</h4>
+      <p>Strips the tells that make writing read as machine-generated: the puffed-up significance, the
+      rule-of-three everywhere, the &ldquo;it is not just X, it is Y&rdquo; construction, the em-dash
+      habit, the stock closing paragraph about challenges and future prospects.</p>
+      <p>It works off a documented catalogue of these patterns rather than vibes, which is why it is
+      worth more than telling the model &ldquo;write more naturally&rdquo; &mdash; an instruction it
+      cannot actually act on.</p>
+      <div class="sowhat"><b>Use it on</b>Anything with your name on it that a human will read closely.</div>
+    </div>
+    <div class="concept">
+      <h4><span>Prose</span>stop-slop</h4>
+      <p>The lighter cousin. Removes filler, hedging and over-formality &mdash; the &ldquo;it is worth
+      noting that&rdquo;, &ldquo;in today&rsquo;s rapidly evolving landscape&rdquo;, &ldquo;delve
+      into&rdquo; register that creeps into every draft.</p>
+      <p>Where humanizer is a full edit against a catalogue of signs, stop-slop is a quick pass for
+      padding. Run it on a draft that is fine but flabby.</p>
+      <div class="sowhat"><b>Use it on</b>Emails, minutes, anything you want shorter and plainer fast.</div>
+    </div>
+  </div>
+
+  <div class="warnbox" style="border-color:var(--amber-deep);border-left-color:var(--amber);background:var(--amber-wash)">
+    <b style="color:var(--amber)">A warning about both</b>
+    <p>Neither makes AI writing undetectable, and that is not what they are for. They make the prose
+    <em>better</em> &mdash; less padded, less formulaic, more like something a person would actually say.</p>
+    <p>If what you are really asking is &ldquo;can I pass this off as mine&rdquo;, the answer for
+    assessed work is no, and your institution&rsquo;s rules apply regardless of what any tool does.</p></div>
+
+
+  <div class="eyebrow">Skills worth having on a Master&rsquo;s or graduate diploma</div>
+  <p>Most published skills are built for software teams and are useless to you. The ones that pay off on
+  a taught postgraduate course are the ones that encode <em>assessment</em> &mdash; what a marker
+  rewards, and what loses marks.</p>
+
+  <div class="tscroll">
+    <table>
+      <caption>What to build or look for, in rough order of payoff</caption>
+      <thead><tr><th>Skill</th><th>What it holds</th><th>Why it pays</th></tr></thead>
+      <tbody>
+        <tr class="rowhi"><th>Essay audit</th><td>Your module&rsquo;s actual marking rubric, band by band, plus
+            the feedback you have already been given.</td>
+            <td>Turns vague &ldquo;is this good?&rdquo; into a scored check against the thing you are
+            actually marked on. The single highest-value one to build.</td></tr>
+        <tr><th>Citation check</th><td>A rule that every citation must be verified against a real search
+            result, and that each claim must be supported by the specific page cited.</td>
+            <td>Invented and misattributed citations are the fastest way to lose marks and credibility.</td></tr>
+        <tr><th>House format</th><td>Your institution&rsquo;s referencing style, structure conventions,
+            word-count rules, submission format.</td>
+            <td>Stops you re-explaining formatting every single assignment.</td></tr>
+        <tr><th>Reading digest</th><td>How you want a reading summarised &mdash; argument, method,
+            evidence, who it is arguing against, how it is cited since.</td>
+            <td>Makes forty readings tractable and comparable in the same shape.</td></tr>
+        <tr><th>Counter-argument</th><td>An instruction to find the strongest published objection to your
+            position before you defend it.</td>
+            <td>Engaging a real critic rather than a straw man is a band separator in most rubrics.</td></tr>
+        <tr><th>Prose cleanup</th><td>humanizer or stop-slop, above.</td>
+            <td>Readability, not disguise.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="eyebrow">Writing your own &mdash; the fast route</div>
+  <p class="lede">Do not sit down to write a skill. You will produce something generic. Instead, do the
+  task once properly and let the corrections become the skill.</p>
+
+  <ol class="steps">
+    <li><b>Do the job once, out loud.</b> Work through a real essay or deck with the model and correct it
+    as you go. Every &ldquo;no, we always do it this way&rdquo; is a future rule.</li>
+    <li><b>Then say: &ldquo;turn everything you just learnt into a skill.&rdquo;</b> It writes the file,
+    including the description line. This is the whole trick, and almost nobody does it.</li>
+    <li><b>Read what it wrote and cut half of it.</b> It will over-generalise. Keep the rules that are
+    specifically yours and delete the ones that are just good practice &mdash; it already knows those.</li>
+    <li><b>Sharpen the description line.</b> That line alone decides whether the skill ever fires. Name
+    the trigger: &ldquo;Use when drafting or reviewing any assessed essay for the X programme.&rdquo;</li>
+    <li><b>Use it on the next assignment and fix what it misses.</b> A skill is never finished on the
+    first pass; mine took four or five rounds before it was worth keeping.</li>
+  </ol>
+
+  <div class="bluf"><b>The payoff, concretely</b>
+  My essay-audit skill holds a marking rubric and every piece of feedback I have been given. I say
+  &ldquo;audit this&rdquo; and it runs twenty checks I would otherwise forget at midnight the night
+  before submission. I wrote none of those checks in the moment &mdash; they accumulated from
+  corrections I made once.</div>
+
+  <div class="note">If anyone in the room has had written feedback from a tutor, point out that the
+  feedback IS the skill. Most people file it and never read it again.</div>
+
+  <div class="eyebrow">Where to find them</div>
+  <ul class="clean">
+    <li><b>Built in.</b> Claude ships with a set &mdash; document handling, slide building, spreadsheets.
+    Ask &ldquo;what skills do you have?&rdquo; and it will list them.</li>
+    <li><b>Your organisation&rsquo;s catalogue.</b> If your workplace publishes skills, they appear in
+    your settings and install in one click.</li>
+    <li><b>Public repositories.</b> Anthropic publishes a skills repository on GitHub, and there are
+    community collections. Read before you install &mdash; a skill is instructions the model will
+    follow, so treat an unknown one the way you would an unknown script.</li>
+    <li><b>Write your own.</b> The fastest route: do the task once by hand, correcting the model as you
+    go, then say &ldquo;turn everything you just learnt into a skill&rdquo;. It writes the file for you.</li>
+  </ul>
+
+  <div class="note">This is the part that makes people sit up, because it is the first thing all day
+  that is about <em>their</em> standards rather than the tool&rsquo;s. If you have a skill of your own,
+  open it here &mdash; seeing a real one beats any explanation.</div>
+
+  <div class="eyebrow">Skills vs the other two words</div>
+  <div class="tscroll">
+    <table>
+      <caption>Three words people mix up constantly</caption>
+      <thead><tr><th>Term</th><th>What it gives the model</th><th>Everyday analogy</th></tr></thead>
+      <tbody>
+        <tr><th>Skill</th><td>Knowledge. How you want something done.</td>
+            <td>The standing orders you hand a new arrival.</td></tr>
+        <tr><th>MCP</th><td>Reach. A standard way to use a tool or read a source.</td>
+            <td>The socket on the wall.</td></tr>
+        <tr><th>Connector</th><td>A specific tool, already wired up.</td>
+            <td>The appliance you plug into it.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">Next lesson covers the other two.</p>
+</section>
+
+<!-- ========================= MCP / local-cloud ========================= -->
+<section class="lesson" hidden id="plumbing" data-title="MCP, connectors and where work happens" data-mins="9">
+  <div class="lessonhead">
+    <p class="lkick">Lesson 06</p>
+    <h2>MCP, connectors, and where work happens</h2>
+    <p class="lsub">How the model reaches your tools, and the difference between local and cloud.</p>
+  </div>
+
+  <div class="bluf"><b>Bottom line</b>
+  MCP is a standard plug that lets any model use any tool. A connector is one of those plugs with the
+  wiring already done. And &ldquo;local&rdquo; does not mean private &mdash; that distinction is the one
+  that matters most here.</div>
 
   <div class="eyebrow">MCP &mdash; one plug instead of a hundred adapters</div>
   <p class="lede">Model Context Protocol. Anthropic published it in late 2024 and gave it away.

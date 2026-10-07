@@ -4,2067 +4,257 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Working With AI</title>
+<meta name="description" content="An eleven-lesson practical course on actually using AI — tools, costs, skills, research, and building something that runs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout concept: an operations-console briefing display — numbered panels down a single
-   column, each opened by an amber BLUF bar, instrument labels in mono, data in tables. */
 :root{
-  --bg:#100F0D; --bg-2:#171613; --panel:#1C1B17; --panel-2:#232119;
-  --fg:#ECE8DF; --fg-dim:#A39D90; --fg-faint:#6E6A60;
-  --edge:#2E2C25; --edge-hi:#413E34;
-  --amber:#F2A93B; --amber-deep:#C9821F; --amber-wash:rgba(242,169,59,.10);
-  --cyan:#63B8C7; --cyan-wash:rgba(99,184,199,.10);
-  --ok:#86B36A; --warn:#E0A030; --crit:#D4645A;
+  --bg:#0D1021; --bg-2:#151934; --panel:#1A1F3D; --panel-2:#232949;
+  --fg:#F2F4FF; --fg-dim:#A9B0D4; --fg-faint:#7079A3;
+  --edge:#2A3157; --edge-hi:#3C4576;
+  --amber:#FFC247; --amber-deep:#F59E0B; --amber-wash:rgba(255,194,71,.14);
+  --violet:#A78BFA; --mint:#4ADE80; --cyan:#45D6F5; --coral:#FF7A66; --pink:#F472B6;
+  --ok:#4ADE80; --crit:#FF6B6B;
   --display:'Archivo',"Helvetica Neue",Arial,sans-serif;
   --body:'IBM Plex Sans',"Segoe UI",system-ui,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,"SF Mono",Menlo,monospace;
-  --maxw:1080px;
   color-scheme:dark;
 }
-:root[data-theme="light"]{
-  --bg:#F2EFE8; --bg-2:#EAE6DD; --panel:#FFFFFF; --panel-2:#F7F4ED;
-  --fg:#1A1813; --fg-dim:#5C574C; --fg-faint:#8A8478;
-  --edge:#DCD6C9; --edge-hi:#C6BFAE;
-  --amber:#9C6410; --amber-deep:#7D4F08; --amber-wash:rgba(156,100,16,.10);
-  --cyan:#2B6F7D; --cyan-wash:rgba(43,111,125,.10);
-  --ok:#4C7A33; --warn:#8A5E12; --crit:#A43A30;
-  color-scheme:light;
-}
-
 *{box-sizing:border-box}
-html{height:100%;scroll-behavior:smooth;scroll-padding-top:86px}
+html{height:100%}
 body{
   margin:0;min-height:100%;background:var(--bg);color:var(--fg);
-  font-family:var(--body);font-size:16px;line-height:1.62;
-  -webkit-font-smoothing:antialiased;
+  font-family:var(--body);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(900px 500px at 12% -5%, rgba(167,139,250,.16), transparent 60%),
+    radial-gradient(800px 480px at 95% 8%, rgba(69,214,245,.12), transparent 62%),
+    radial-gradient(700px 500px at 50% 108%, rgba(255,194,71,.10), transparent 60%);
+  background-attachment:fixed;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
-@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
-
 img,video{max-width:100%;display:block}
-a{color:var(--amber);text-decoration:none}
-a:hover{text-decoration:underline}
-:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+a{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:3px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 70px}
 
-/* ---------- top bar ---------- */
-.topbar{
-  position:sticky;top:0;z-index:60;background:rgba(16,15,13,.92);
-  backdrop-filter:blur(10px);border-bottom:1px solid var(--edge);
-  padding-top:env(safe-area-inset-top,0px);
-}
-:root[data-theme="light"] .topbar{background:rgba(242,239,232,.93)}
-.topbar-in{
-  max-width:var(--maxw);margin:0 auto;padding:10px 20px;
-  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-}
-.brand{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.02em;white-space:nowrap}
-.brand span{color:var(--amber)}
-.navlinks{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto}
-.navlinks a{
-  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--fg-dim);padding:6px 9px;border-radius:3px;border:1px solid transparent;
-}
-.navlinks a:hover{color:var(--fg);background:var(--panel);text-decoration:none}
-.navlinks a.on{color:var(--amber);border-color:var(--edge-hi);background:var(--amber-wash)}
-.navlinks a b{color:var(--fg-faint);font-weight:600;margin-right:5px}
-.navlinks a.on b{color:var(--amber)}
-.toolbtns{display:flex;gap:6px}
-.tbtn{
-  font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;
-  background:var(--panel);color:var(--fg-dim);border:1px solid var(--edge);
-  padding:6px 10px;border-radius:3px;cursor:pointer;
-}
-.tbtn:hover{color:var(--fg);border-color:var(--edge-hi)}
-.tbtn[aria-pressed="true"]{background:var(--amber-wash);color:var(--amber);border-color:var(--amber-deep)}
-.scanline{height:2px;background:var(--edge);position:relative;overflow:hidden}
-.scanline i{position:absolute;inset:0 100% 0 0;background:var(--amber);transition:right .15s linear}
+/* hero */
+.hero{padding:46px 0 34px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--violet);margin:0 0 15px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,7.6vw,68px);line-height:1;letter-spacing:-.028em;margin:0 0 18px;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(96deg,var(--amber),var(--coral) 48%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stand{font-size:clamp(16px,2.3vw,19.5px);color:var(--fg-dim);max-width:60ch;margin:0 0 26px}
+.herogrid{display:grid;gap:26px;align-items:start}
+@media(min-width:840px){ .herogrid{grid-template-columns:1fr 300px} }
+.pf{border:1px solid var(--edge-hi);border-radius:7px;overflow:hidden;background:#000;aspect-ratio:552/720;max-width:300px}
+.pf video{width:100%;height:100%;object-fit:cover}
+.cap{font-family:var(--mono);font-size:11px;color:var(--fg-faint);margin-top:9px;line-height:1.6}
 
-/* ---------- shell ---------- */
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px 90px}
-
-/* ---------- hero ---------- */
-.hero{padding:44px 0 30px;border-bottom:1px solid var(--edge)}
-.kicker{
-  font-family:var(--mono);font-size:11px;letter-spacing:.17em;text-transform:uppercase;
-  color:var(--amber);margin:0 0 14px;
-}
-.hero h1{
-  font-family:var(--display);font-weight:800;font-size:clamp(34px,7.2vw,64px);
-  line-height:1.02;letter-spacing:-.025em;margin:0 0 16px;text-wrap:balance;
-}
-.hero h1 em{font-style:normal;color:var(--amber)}
-.standfirst{font-size:clamp(16px,2.3vw,19px);color:var(--fg-dim);max-width:62ch;margin:0 0 26px}
-.videoframe{
-  border:1px solid var(--edge-hi);border-radius:5px;overflow:hidden;background:#000;
-  position:relative;aspect-ratio:16/9;
-}
-.videoframe video{width:100%;height:100%;object-fit:cover}
-.vcap{
-  font-family:var(--mono);font-size:11px;color:var(--fg-faint);letter-spacing:.04em;
-  margin-top:9px;display:flex;gap:8px;align-items:flex-start;
-}
-.vcap b{color:var(--amber);font-weight:500;flex:none}
-.novideo{
-  position:absolute;inset:0;display:grid;place-content:center;gap:8px;text-align:center;
-  font-family:var(--mono);font-size:12px;color:var(--fg-faint);padding:20px;
-}
-
-/* ---------- section ---------- */
-.sec{padding:52px 0 8px;border-bottom:1px solid var(--edge)}
-.sec:last-of-type{border-bottom:0}
-.sechead{display:flex;gap:16px;align-items:baseline;margin-bottom:6px}
-.secnum{
-  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--amber);
-  letter-spacing:.1em;flex:none;padding-top:7px;
-}
-.sec h2{
-  font-family:var(--display);font-weight:700;font-size:clamp(25px,4.4vw,38px);
-  letter-spacing:-.018em;line-height:1.1;margin:0;text-wrap:balance;
-}
-.bluf{
-  border-left:4px solid var(--amber);background:var(--amber-wash);
-  padding:13px 17px;margin:18px 0 26px;font-size:16.5px;
-}
-.bluf b{font-family:var(--display);font-weight:700;color:var(--amber);
-  letter-spacing:.05em;font-size:11px;text-transform:uppercase;display:block;margin-bottom:3px}
-.sec p{max-width:68ch}
-.lede{font-size:17px}
-h3{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.008em;margin:34px 0 10px}
-h4{font-family:var(--display);font-weight:600;font-size:15px;margin:22px 0 7px}
-.eyebrow{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--fg-faint);margin:30px 0 10px;display:flex;align-items:center;gap:10px;
-}
+/* lesson list */
+h2{font-family:var(--display);font-weight:700;font-size:clamp(23px,3.9vw,31px);letter-spacing:-.018em;margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--fg-dim);margin:0 0 20px;max-width:62ch}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-faint);margin:46px 0 12px;display:flex;align-items:center;gap:11px}
 .eyebrow::after{content:"";flex:1;height:1px;background:var(--edge)}
+.ll{display:grid;gap:7px;margin:0 0 8px}
+.lrow{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--edge);border-left:3px solid var(--h,var(--amber));border-radius:5px;padding:12px 15px}
+.lrow .n{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--h,var(--amber))}
+.lrow .t{font-family:var(--display);font-weight:600;font-size:15.5px;line-height:1.32}
+.lrow .t small{display:block;font-family:var(--body);font-weight:400;font-size:13.5px;color:var(--fg-dim);margin-top:2px;line-height:1.45}
+.lrow .m{font-family:var(--mono);font-size:10.5px;color:var(--fg-faint);white-space:nowrap}
+@media(max-width:560px){ .lrow{grid-template-columns:28px 1fr;gap:11px} .lrow .m{display:none} }
 
-/* ---------- presenter notes ---------- */
-.note{
-  border:1px dashed var(--cyan);background:var(--cyan-wash);border-radius:4px;
-  padding:12px 15px;margin:16px 0;font-size:14.5px;color:var(--fg);
-}
-.note::before{
-  content:"SAY THIS";font-family:var(--mono);font-size:10px;letter-spacing:.14em;
-  color:var(--cyan);display:block;margin-bottom:5px;
-}
-body:not(.notes-on) .note{display:none}
+/* value grid */
+.vg{display:grid;gap:13px;margin:16px 0 6px}
+@media(min-width:700px){ .vg{grid-template-columns:1fr 1fr} }
+.vc{background:var(--panel);border:1px solid var(--edge);border-radius:6px;padding:16px 18px;border-top:3px solid var(--c,var(--amber))}
+.vc h3{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 6px}
+.vc p{margin:0;font-size:14.5px;color:var(--fg-dim);line-height:1.55}
 
-/* ---------- generic panel + grid ---------- */
-.panel{background:var(--panel);border:1px solid var(--edge);border-radius:5px;padding:18px 20px}
-.grid{display:grid;gap:14px}
-@media(min-width:720px){ .g2{grid-template-columns:1fr 1fr} .g3{grid-template-columns:repeat(3,1fr)} }
-.stinger{
-  border:1px solid var(--edge);border-radius:5px;overflow:hidden;background:#000;
-  aspect-ratio:16/9;margin:26px 0 4px;position:relative;
-}
-.stinger video{width:100%;height:100%;object-fit:cover;opacity:.85}
+/* pay */
+.pay{background:var(--panel);border:1px solid var(--edge-hi);border-radius:8px;padding:24px;margin:20px 0 0}
+.paygrid{display:grid;gap:26px;align-items:start}
+@media(min-width:760px){ .paygrid{grid-template-columns:230px 1fr} }
+.qr{background:#fff;border-radius:7px;padding:12px;width:100%;max-width:230px}
+.qr img{width:100%;height:auto;image-rendering:pixelated}
+.price{font-family:var(--display);font-weight:800;font-size:46px;line-height:1;letter-spacing:-.02em;margin:0 0 4px}
+.price span{font-size:19px;color:var(--fg-dim);font-weight:600;letter-spacing:0}
+.payrow{font-family:var(--mono);font-size:13.5px;margin:14px 0 0;display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}
+.payrow b{color:var(--fg-faint);font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;flex:none;min-width:74px}
+.payrow code{font-family:var(--mono);font-size:15px;color:var(--amber);letter-spacing:.04em}
+.copybtn{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;background:transparent;color:var(--fg-dim);border:1px solid var(--edge-hi);padding:3px 8px;border-radius:3px;cursor:pointer}
+.copybtn:hover{color:var(--amber);border-color:var(--amber-deep)}
+.copybtn.done{color:var(--ok);border-color:var(--ok)}
 
-/* ---------- video cards (section 1) ---------- */
-.filters{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 20px}
-.chip{
-  font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;
-  background:transparent;color:var(--fg-dim);border:1px solid var(--edge);
-  padding:7px 12px;border-radius:999px;cursor:pointer;
+/* code entry */
+.gate{margin-top:24px;padding-top:22px;border-top:1px solid var(--edge)}
+.gate label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.gatein{display:flex;gap:9px;flex-wrap:wrap}
+.gatein input{
+  flex:1;min-width:160px;background:var(--bg-2);color:var(--fg);border:1px solid var(--edge-hi);
+  border-radius:5px;padding:13px 15px;font-family:var(--mono);font-size:17px;letter-spacing:.14em;
 }
-.chip:hover{color:var(--fg);border-color:var(--edge-hi)}
-.chip[aria-pressed="true"]{background:var(--amber);color:#17160f;border-color:var(--amber);font-weight:600}
-.vidlist{display:grid;gap:11px}
-.vid{
-  display:grid;grid-template-columns:62px 1fr auto;gap:15px;align-items:center;
-  background:var(--panel);border:1px solid var(--edge);border-left:3px solid var(--edge-hi);
-  border-radius:4px;padding:13px 16px;transition:border-color .14s,background .14s;
-}
-.vid:hover{border-color:var(--edge-hi);border-left-color:var(--amber);background:var(--panel-2);text-decoration:none}
-.vid-dur{
-  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--amber);
-  text-align:center;line-height:1.25;
-}
-.vid-dur small{display:block;font-size:9.5px;color:var(--fg-faint);font-weight:400;letter-spacing:.08em}
-.vid-body{min-width:0}
-.vid-title{font-weight:600;font-size:15.5px;color:var(--fg);line-height:1.34}
-.vid-meta{font-family:var(--mono);font-size:11px;color:var(--fg-faint);margin-top:3px;letter-spacing:.02em}
-.vid-why{font-size:14px;color:var(--fg-dim);margin-top:5px;line-height:1.5}
-.vid-go{font-family:var(--mono);font-size:16px;color:var(--fg-faint);flex:none}
-.vid:hover .vid-go{color:var(--amber)}
-@media(max-width:600px){
-  .vid{grid-template-columns:52px 1fr;gap:12px;padding:12px 13px}
-  .vid-go{display:none}
-}
-
-/* ---------- ladder (section 2) ---------- */
-.ladder{display:grid;gap:9px;margin:20px 0 6px;counter-reset:rung}
-.rung{
-  background:var(--panel);border:1px solid var(--edge);border-radius:4px;overflow:hidden;
-}
-.rung>summary{
-  cursor:pointer;list-style:none;padding:14px 17px;display:grid;
-  grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
-}
-.rung>summary::-webkit-details-marker{display:none}
-.rung[open]{border-color:var(--amber-deep)}
-.rung-lvl{
-  font-family:var(--mono);font-size:11px;font-weight:600;color:var(--amber);
-  border:1px solid var(--edge-hi);border-radius:3px;padding:3px 7px;flex:none;
-}
-.rung[open] .rung-lvl{background:var(--amber);color:#17160f;border-color:var(--amber)}
-.rung-name{font-family:var(--display);font-weight:700;font-size:16.5px}
-.rung-name small{
-  display:block;font-family:var(--mono);font-weight:400;font-size:11px;
-  color:var(--fg-faint);letter-spacing:.03em;margin-top:2px;
-}
-.rung-tog{font-family:var(--mono);font-size:11px;color:var(--fg-faint);flex:none}
-.rung[open] .rung-tog{color:var(--amber)}
-.rung-body{padding:0 17px 16px;border-top:1px solid var(--edge);margin-top:-1px;padding-top:14px}
-.rung-body p{margin:0 0 10px}
-.rung-body .ex{
-  font-family:var(--mono);font-size:12.5px;background:var(--bg-2);border:1px solid var(--edge);
-  border-radius:3px;padding:9px 12px;color:var(--fg-dim);
-}
-.rung-body .ex b{color:var(--amber);font-weight:500}
-
-/* ---------- timeline ---------- */
-.tl{border-left:2px solid var(--edge);margin:22px 0 10px;padding-left:0}
-.tl-item{position:relative;padding:0 0 22px 24px}
-.tl-item::before{
-  content:"";position:absolute;left:-7px;top:7px;width:11px;height:11px;border-radius:50%;
-  background:var(--bg);border:2px solid var(--edge-hi);
-}
-.tl-item.key::before{background:var(--amber);border-color:var(--amber)}
-.tl-yr{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.09em;color:var(--fg-faint)}
-.tl-item.key .tl-yr{color:var(--amber)}
-.tl-h{font-family:var(--display);font-weight:700;font-size:16px;margin:1px 0 3px}
-.tl-d{font-size:14.5px;color:var(--fg-dim);margin:0;max-width:64ch}
-
-/* ---------- tables ---------- */
-.tscroll{overflow-x:auto;margin:18px 0 8px;border:1px solid var(--edge);border-radius:5px}
-table{border-collapse:collapse;width:100%;min-width:620px;font-size:14.5px;background:var(--panel)}
-caption{
-  caption-side:top;text-align:left;font-family:var(--mono);font-size:10.5px;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--fg-faint);
-  padding:11px 14px;background:var(--bg-2);border-bottom:1px solid var(--edge);
-}
-th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--edge);vertical-align:top}
-thead th{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--fg-dim);font-weight:500;background:var(--bg-2);white-space:nowrap;
-}
-tbody tr:last-child td{border-bottom:0}
-tbody th{font-weight:600;font-size:14.5px;white-space:nowrap}
-td.num,th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
-.pill{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;padding:2px 7px;border-radius:3px;
-  border:1px solid var(--edge-hi);color:var(--fg-dim);white-space:nowrap;
-}
-.pill.free{color:var(--ok);border-color:var(--ok)}
-.pill.best{color:var(--amber);border-color:var(--amber-deep);background:var(--amber-wash)}
-.rowhi{background:var(--amber-wash)}
-
-/* ---------- picker / decision widgets ---------- */
-.ask{background:var(--panel-2);border:1px solid var(--edge-hi);border-radius:5px;padding:18px 20px;margin:24px 0}
-.ask-q{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 12px}
-.opts{display:flex;gap:7px;flex-wrap:wrap}
-.opt{
-  font-size:14px;background:var(--panel);color:var(--fg);border:1px solid var(--edge);
-  padding:9px 14px;border-radius:4px;cursor:pointer;font-family:var(--body);text-align:left;
-}
-.opt:hover{border-color:var(--edge-hi)}
-.opt[aria-pressed="true"]{border-color:var(--amber);background:var(--amber-wash);color:var(--amber);font-weight:600}
-.verdict{
-  margin-top:15px;padding:14px 16px;background:var(--bg-2);border-left:3px solid var(--amber);
-  border-radius:3px;font-size:15px;
-}
-.verdict b{color:var(--amber)}
-.verdict .vhead{font-family:var(--display);font-weight:700;font-size:16px;color:var(--fg);display:block;margin-bottom:4px}
-.muted{color:var(--fg-dim)}
-.small{font-size:13.5px}
-.tiny{font-family:var(--mono);font-size:11px;color:var(--fg-faint);letter-spacing:.03em}
-
-/* ---------- two-column compare ---------- */
-.vs{display:grid;gap:14px;margin:20px 0 6px}
-@media(min-width:760px){ .vs{grid-template-columns:1fr 1fr} }
-.vs-col{background:var(--panel);border:1px solid var(--edge);border-radius:5px;padding:17px 19px}
-.vs-col.local{border-top:3px solid var(--amber)}
-.vs-col.cloud{border-top:3px solid var(--cyan)}
-.vs-col h4{margin:0 0 4px;font-size:17px;font-family:var(--display);font-weight:700}
-.vs-col .tagline{font-family:var(--mono);font-size:11px;letter-spacing:.05em;margin:0 0 13px}
-.vs-col.local .tagline{color:var(--amber)}
-.vs-col.cloud .tagline{color:var(--cyan)}
-.vs-col ul{margin:0;padding-left:0;list-style:none}
-.vs-col li{position:relative;padding-left:19px;margin-bottom:7px;font-size:14.5px;line-height:1.52}
-.vs-col li::before{position:absolute;left:0;top:0;font-family:var(--mono);font-size:12px}
-.vs-col li.y::before{content:"+";color:var(--ok)}
-.vs-col li.n::before{content:"\2212";color:var(--crit)}
-
-/* ---------- lists ---------- */
-ul.clean{list-style:none;padding-left:0;margin:12px 0}
-ul.clean>li{position:relative;padding-left:21px;margin-bottom:9px;max-width:66ch;line-height:1.56}
-ul.clean>li::before{
-  content:"\25B8";position:absolute;left:2px;top:0;color:var(--amber);font-size:12px;
-}
-ol.steps{counter-reset:s;list-style:none;padding-left:0;margin:14px 0}
-ol.steps>li{
-  position:relative;padding-left:38px;margin-bottom:14px;max-width:66ch;line-height:1.56;
-  counter-increment:s;
-}
-ol.steps>li::before{
-  content:counter(s,decimal-leading-zero);position:absolute;left:0;top:1px;
-  font-family:var(--mono);font-size:11px;font-weight:600;color:var(--amber);
-  border:1px solid var(--edge-hi);border-radius:3px;padding:2px 6px;
-}
-ol.steps b{color:var(--fg)}
-
-/* ---------- code / prompt output ---------- */
-.codewrap{position:relative;margin:14px 0}
-pre.code{
-  font-family:var(--mono);font-size:12.5px;line-height:1.62;background:var(--bg-2);
-  border:1px solid var(--edge);border-radius:5px;padding:16px 17px;overflow-x:auto;
-  white-space:pre-wrap;word-break:break-word;color:var(--fg);margin:0;
-}
-.copy{
-  position:absolute;top:9px;right:9px;font-family:var(--mono);font-size:10.5px;
-  letter-spacing:.07em;text-transform:uppercase;background:var(--panel);color:var(--fg-dim);
-  border:1px solid var(--edge-hi);padding:5px 10px;border-radius:3px;cursor:pointer;
-}
-.copy:hover{color:var(--amber);border-color:var(--amber-deep)}
-.copy.done{color:var(--ok);border-color:var(--ok)}
-
-/* ---------- builder form ---------- */
-.builder{background:var(--panel);border:1px solid var(--edge-hi);border-radius:5px;padding:20px;margin:22px 0}
-.fld{margin-bottom:15px}
-.fld label{
-  display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--amber);margin-bottom:6px;
-}
-.fld .hint{font-size:13px;color:var(--fg-faint);margin:0 0 6px;font-family:var(--body);letter-spacing:0;text-transform:none}
-.fld input,.fld textarea,.fld select{
-  width:100%;background:var(--bg-2);color:var(--fg);border:1px solid var(--edge);
-  border-radius:4px;padding:10px 12px;font-family:var(--body);font-size:14.5px;line-height:1.5;
-}
-.fld textarea{min-height:76px;resize:vertical}
-.fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--amber);outline:none}
-.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:4px}
-.btn{
-  font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.01em;
-  background:var(--amber);color:#17160f;border:1px solid var(--amber);
-  padding:11px 18px;border-radius:4px;cursor:pointer;
-}
-.btn:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#fff}
-.btn.ghost{background:transparent;color:var(--fg-dim);border-color:var(--edge-hi);font-weight:600}
-.btn.ghost:hover{color:var(--fg);background:var(--panel-2)}
-
-/* ---------- idea cards ---------- */
-.ideas{display:grid;gap:10px;margin:16px 0 6px}
-@media(min-width:680px){ .ideas{grid-template-columns:1fr 1fr} }
-.idea{
-  text-align:left;background:var(--panel);border:1px solid var(--edge);border-radius:4px;
-  padding:13px 15px;cursor:pointer;font-family:var(--body);color:var(--fg);
-}
-.idea:hover{border-color:var(--amber-deep);background:var(--panel-2)}
-.idea[aria-pressed="true"]{border-color:var(--amber);background:var(--amber-wash)}
-.idea b{display:block;font-family:var(--display);font-weight:700;font-size:15px;margin-bottom:3px}
-.idea span{font-size:13.5px;color:var(--fg-dim);line-height:1.5}
-
-/* ---------- warn box ---------- */
-.warnbox{
-  border:1px solid var(--crit);border-left:4px solid var(--crit);background:rgba(212,100,90,.08);
-  border-radius:4px;padding:14px 17px;margin:22px 0;
-}
-.warnbox b{font-family:var(--display);font-weight:700;color:var(--crit);display:block;margin-bottom:5px;
-  font-size:11px;letter-spacing:.1em;text-transform:uppercase}
-.warnbox p{margin:0 0 8px;max-width:68ch}
-.warnbox p:last-child{margin-bottom:0}
-
-/* ---------- diagram ---------- */
-.diagram{margin:22px 0 8px;overflow-x:auto;border:1px solid var(--edge);border-radius:5px;background:var(--panel);padding:16px}
-.diagram svg{display:block;min-width:520px;width:100%;height:auto}
-
-/* ---------- footer ---------- */
-footer{
-  border-top:1px solid var(--edge);margin-top:40px;padding:26px 0 0;
-  font-family:var(--mono);font-size:11.5px;color:var(--fg-faint);letter-spacing:.03em;line-height:1.8;
-}
-footer b{color:var(--fg-dim);font-weight:500}
-
-/* ---------- concept cards (how it works) ---------- */
-.concepts{display:grid;gap:13px;margin:20px 0 6px}
-@media(min-width:760px){ .concepts{grid-template-columns:1fr 1fr} }
-.concept{
-  background:var(--panel);border:1px solid var(--edge);border-radius:5px;padding:16px 18px;
-  border-top:3px solid var(--amber-deep);
-}
-.concept h4{margin:0 0 7px;font-family:var(--display);font-weight:700;font-size:16.5px}
-.concept h4 span{
-  font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--amber);
-  display:block;font-weight:500;margin-bottom:3px;text-transform:uppercase;
-}
-.concept p{margin:0 0 9px;font-size:14.5px;line-height:1.56;max-width:none}
-.concept p:last-child{margin-bottom:0}
-.concept .sowhat{
-  border-top:1px solid var(--edge);margin-top:11px;padding-top:9px;
-  font-size:13.5px;color:var(--fg-dim);
-}
-.concept .sowhat b{
-  font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);
-  text-transform:uppercase;display:block;margin-bottom:3px;
-}
-
-/* ---------- FAQ ---------- */
-.faq{display:grid;gap:8px;margin:20px 0 6px}
-.faq details{background:var(--panel);border:1px solid var(--edge);border-radius:4px}
-.faq details[open]{border-color:var(--amber-deep)}
-.faq summary{
-  cursor:pointer;list-style:none;padding:14px 17px;display:grid;
-  grid-template-columns:1fr auto;gap:12px;align-items:center;
-  font-family:var(--display);font-weight:600;font-size:15.5px;
-}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{
-  content:"+";font-family:var(--mono);font-size:16px;color:var(--amber);line-height:1;
-}
-.faq details[open] summary::after{content:"\2212"}
-.faq .fbody{padding:0 17px 16px;border-top:1px solid var(--edge);padding-top:13px}
-.faq .fbody p{margin:0 0 10px;font-size:14.5px;line-height:1.58;max-width:68ch}
-.faq .fbody p:last-child{margin-bottom:0}
-.faq .fbody strong{color:var(--amber);font-weight:600}
-
-/* ---------- walkthrough steps ---------- */
-.walk{
-  background:var(--bg-2);border:1px solid var(--edge);border-radius:5px;
-  padding:16px 19px;margin:16px 0;
-}
-.walk h4{margin:0 0 4px;font-size:15.5px}
-.walk .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--fg-faint);
-  text-transform:uppercase;margin:0 0 12px}
-.walk ol{counter-reset:w;list-style:none;padding-left:0;margin:0}
-.walk ol>li{
-  position:relative;padding-left:30px;margin-bottom:10px;font-size:14.5px;line-height:1.55;
-  counter-increment:w;max-width:66ch;
-}
-.walk ol>li:last-child{margin-bottom:0}
-.walk ol>li::before{
-  content:counter(w);position:absolute;left:0;top:2px;font-family:var(--mono);font-size:10.5px;
-  font-weight:600;color:var(--amber);border:1px solid var(--edge-hi);border-radius:50%;
-  width:19px;height:19px;display:grid;place-content:center;
-}
-.filesample{
-  font-family:var(--mono);font-size:12px;line-height:1.6;background:var(--bg-2);
-  border:1px solid var(--edge);border-left:3px solid var(--amber);border-radius:4px;
-  padding:14px 16px;overflow-x:auto;white-space:pre;color:var(--fg-dim);margin:13px 0;
-}
-.filesample b{color:var(--amber);font-weight:500}
-.filesample i{color:var(--fg-faint);font-style:normal}
-
-/* ---------- glossary ---------- */
-.gloss{
-  display:grid;gap:0;margin:20px 0 6px;border:1px solid var(--edge);
-  border-radius:5px;overflow:hidden;
-}
-.gterm{
-  display:grid;grid-template-columns:190px 1fr;gap:18px;padding:12px 17px;
-  border-bottom:1px solid var(--edge);background:var(--panel);align-items:baseline;
-}
-.gterm:last-child{border-bottom:0}
-.gterm dt{
-  font-family:var(--display);font-weight:700;font-size:14.5px;color:var(--fg);margin:0;
-}
-.gterm dt small{
-  display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;
-  color:var(--fg-faint);letter-spacing:.04em;margin-top:2px;
-}
-.gterm dd{margin:0;font-size:14px;color:var(--fg-dim);line-height:1.55}
-@media(max-width:680px){
-  .gterm{grid-template-columns:1fr;gap:4px}
-}
-
-/* ---------- courseware shell ---------- */
-.lessonmeta{
-  font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--fg-dim);
-  white-space:nowrap;
-}
-.lessonmeta b{color:var(--amber);font-weight:600}
-.lessonmeta .ltitle{color:var(--fg);display:none}
-@media(min-width:900px){ .lessonmeta .ltitle{display:inline} }
-
-/* contents drawer */
-.toc{
-  position:fixed;inset:0;z-index:80;background:rgba(10,9,8,.72);
-  backdrop-filter:blur(3px);display:grid;place-items:start center;
-  padding:calc(env(safe-area-inset-top,0px) + 70px) 20px 40px;overflow-y:auto;
-}
-:root[data-theme="light"] .toc{background:rgba(120,112,96,.42)}
-.toc[hidden]{display:none}
-.toc-in{
-  width:100%;max-width:560px;background:var(--panel);border:1px solid var(--edge-hi);
-  border-radius:6px;overflow:hidden;
-}
-.toc-h{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--fg-faint);padding:13px 17px;background:var(--bg-2);border-bottom:1px solid var(--edge);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.toc-h button{background:none;border:0;color:var(--fg-dim);font-family:var(--mono);
-  font-size:15px;cursor:pointer;line-height:1;padding:0 2px}
-.toc-h button:hover{color:var(--amber)}
-.toc a{
-  display:grid;grid-template-columns:34px 1fr auto;gap:13px;align-items:center;
-  padding:12px 17px;border-bottom:1px solid var(--edge);color:var(--fg);
-}
-.toc a:last-child{border-bottom:0}
-.toc a:hover{background:var(--panel-2);text-decoration:none}
-.toc a.cur{background:var(--amber-wash)}
-.toc a .tn{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--fg-faint)}
-.toc a.cur .tn,.toc a.cur .tt{color:var(--amber)}
-.toc a.done .tn{color:var(--ok)}
-.toc a .tt{font-family:var(--display);font-weight:600;font-size:15px;line-height:1.3}
-.toc a .tm{font-family:var(--mono);font-size:10.5px;color:var(--fg-faint);white-space:nowrap}
-
-/* lessons */
-.lesson[hidden]{display:none!important}
-.lesson{animation:lfade .22s ease-out}
-@keyframes lfade{from{opacity:.35}to{opacity:1}}
-@media (prefers-reduced-motion:reduce){ .lesson{animation:none} }
-
-.lessonhead{padding:36px 0 2px}
-.lessonhead .lkick{
-  font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--amber);margin:0 0 10px;
-}
-.lessonhead h2{
-  font-family:var(--display);font-weight:800;font-size:clamp(27px,5.2vw,42px);
-  letter-spacing:-.022em;line-height:1.06;margin:0 0 10px;text-wrap:balance;
-}
-.lessonhead .lsub{font-size:17px;color:var(--fg-dim);max-width:64ch;margin:0}
-
-/* bottom nav */
-.lessonnav{
-  display:flex;align-items:center;gap:12px;margin:46px 0 0;padding:20px 0 0;
-  border-top:1px solid var(--edge);
-}
-.navbtn{
-  font-family:var(--display);font-weight:700;font-size:14.5px;
-  background:var(--amber);color:#17160f;border:1px solid var(--amber);
-  padding:12px 20px;border-radius:4px;cursor:pointer;white-space:nowrap;
-}
-.navbtn:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#fff}
-.navbtn.back{background:transparent;color:var(--fg-dim);border-color:var(--edge-hi);font-weight:600}
-.navbtn.back:hover{color:var(--fg);background:var(--panel)}
-.navbtn[disabled]{opacity:.32;cursor:not-allowed}
-.navbtn[disabled]:hover{background:transparent;color:var(--fg-dim);border-color:var(--edge-hi)}
-.dots{display:flex;gap:5px;flex:1;justify-content:center;flex-wrap:wrap}
-.dot{
-  width:9px;height:9px;border-radius:50%;background:var(--edge-hi);border:0;padding:0;
-  cursor:pointer;flex:none;
-}
-.dot:hover{background:var(--fg-faint)}
-.dot.cur{background:var(--amber);transform:scale(1.25)}
-.dot.seen{background:var(--amber-deep)}
-@media(max-width:620px){ .dots{display:none} .navbtn{flex:1;text-align:center} }
-
-.kbdhint{
-  font-family:var(--mono);font-size:10.5px;color:var(--fg-faint);letter-spacing:.05em;
-  text-align:center;margin:14px 0 0;
-}
-.kbdhint kbd{
-  border:1px solid var(--edge-hi);border-radius:3px;padding:1px 5px;font-family:var(--mono);
-  font-size:10px;color:var(--fg-dim);
-}
-
-/* hero split for the portrait presenter clip */
-.herogrid{display:grid;gap:22px;align-items:start}
-@media(min-width:820px){ .herogrid{grid-template-columns:1fr 310px} }
-.portraitframe{
-  border:1px solid var(--edge-hi);border-radius:5px;overflow:hidden;background:#000;
-  aspect-ratio:552/720;max-width:310px;
-}
-.portraitframe video{width:100%;height:100%;object-fit:cover}
-@media(max-width:819px){ .portraitframe{max-width:240px} }
-
-/* ---------- build log ---------- */
-.log{border-left:2px solid var(--edge);margin:20px 0 10px}
-.log-i{position:relative;padding:0 0 18px 24px}
-.log-i::before{
-  content:"";position:absolute;left:-6px;top:6px;width:9px;height:9px;border-radius:50%;
-  background:var(--bg);border:2px solid var(--edge-hi);
-}
-.log-i.auto::before{background:var(--amber);border-color:var(--amber)}
-.log-i.human::before{background:var(--cyan);border-color:var(--cyan)}
-.log-w{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--fg-faint)}
-.log-i.auto .log-w{color:var(--amber)}
-.log-i.human .log-w{color:var(--cyan)}
-.log-h{font-family:var(--display);font-weight:600;font-size:15px;margin:1px 0 2px}
-.log-d{font-size:14px;color:var(--fg-dim);margin:0;max-width:64ch;line-height:1.5}
-.log-d code{font-family:var(--mono);font-size:12.5px;color:var(--amber);background:var(--bg-2);
-  padding:1px 5px;border-radius:3px;border:1px solid var(--edge)}
-
-/* ---------- quiz ---------- */
-.quiz{background:var(--panel);border:1px solid var(--edge-hi);border-radius:5px;padding:20px;margin:22px 0}
-.quiz-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:4px;flex-wrap:wrap}
-.quiz-top h4{margin:0;font-family:var(--display);font-weight:700;font-size:17px}
-.quiz-score{font-family:var(--mono);font-size:12px;color:var(--fg-dim);font-variant-numeric:tabular-nums}
-.quiz-score b{color:var(--amber)}
-.qblock{border-top:1px solid var(--edge);padding-top:16px;margin-top:16px}
-.qblock:first-of-type{border-top:0;padding-top:4px;margin-top:8px}
-.qq{font-weight:600;font-size:15.5px;margin:0 0 11px;line-height:1.45}
-.qq span{font-family:var(--mono);font-size:11px;color:var(--amber);margin-right:7px}
-.qopts{display:grid;gap:7px}
-.qopt{
-  text-align:left;background:var(--bg-2);border:1px solid var(--edge);border-radius:4px;
-  padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:14.5px;color:var(--fg);
-  line-height:1.45;
-}
-.qopt:hover:not([disabled]){border-color:var(--edge-hi);background:var(--panel-2)}
-.qopt[disabled]{cursor:default}
-.qopt.right{border-color:var(--ok);background:rgba(134,179,106,.12);color:var(--fg)}
-.qopt.wrong{border-color:var(--crit);background:rgba(212,100,90,.12)}
-.qopt .mark{font-family:var(--mono);font-weight:600;margin-right:8px}
-.qopt.right .mark{color:var(--ok)}
-.qopt.wrong .mark{color:var(--crit)}
-.qwhy{
-  margin-top:10px;padding:11px 14px;background:var(--bg-2);border-left:3px solid var(--amber);
-  border-radius:3px;font-size:14px;line-height:1.55;color:var(--fg-dim);
-}
-.qwhy b{color:var(--amber)}
-.quiz-done{
-  margin-top:18px;padding:14px 16px;border-radius:4px;border-left:3px solid var(--amber);
-  background:var(--amber-wash);font-size:15px;
-}
-.quiz-done b{font-family:var(--display);font-weight:700;color:var(--amber);display:block;margin-bottom:3px}
+.gatein input:focus{border-color:var(--amber);outline:none}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;background:var(--amber);color:#17160f;border:1px solid var(--amber);padding:13px 24px;border-radius:5px;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#1a1405}
+.msg{margin-top:11px;font-size:14px;min-height:21px}
+.msg.bad{color:var(--crit)}
+.msg.good{color:var(--ok)}
+.note{font-size:13.5px;color:var(--fg-faint);margin-top:16px;line-height:1.6}
+footer{border-top:1px solid var(--edge);margin-top:46px;padding-top:24px;font-family:var(--mono);font-size:11.5px;color:var(--fg-faint);line-height:1.85}
 </style>
 </head>
 <body>
-
-<header class="topbar">
-  <div class="topbar-in">
-    <div class="brand">WORKING WITH <span>AI</span></div>
-    <button class="tbtn" id="menuBtn" aria-expanded="false">Contents</button>
-    <div class="lessonmeta">Lesson <b id="lnum">1</b>/<span id="ltot">9</span>
-      <span class="ltitle"> &middot; <span id="ltitle"></span></span></div>
-    <div class="toolbtns" style="margin-left:auto">
-      <button class="tbtn" id="notesBtn" aria-pressed="false" title="Show the speaking notes">Notes</button>
-      <button class="tbtn" id="themeBtn" title="Switch light / dark">Light</button>
-    </div>
-  </div>
-  <div class="scanline"><i id="progress"></i></div>
-</header>
-
-<nav class="toc" id="toc" hidden>
-  <div class="toc-in">
-    <div class="toc-h"><span>Contents</span><button id="tocClose" aria-label="Close contents">&#10005;</button></div>
-    <div id="tocList"></div>
-  </div>
-</nav>
-
 <div class="wrap">
-<main id="deck">
 
-<section class="lesson" data-title="Start here" data-mins="3">
-  <div class="lessonhead">
-    <p class="lkick">Syndicate Brief &middot; 57 CSC &middot; 7 October 2026</p>
-    <h2>Everything here was built by <em style="font-style:normal;color:var(--amber)">AI</em>. Including me.</h2>
-  </div>
-
+<section class="hero">
+  <p class="kicker">57 CSC &middot; Syndicate Course &middot; October 2026</p>
   <div class="herogrid">
     <div>
-      <p class="lsub" style="margin-bottom:18px">A working session on how I actually use these tools &mdash; the videos
-      that taught me, what changed when models started doing things instead of saying things, what the
-      subscriptions really cost, the plumbing nobody explains, and twenty minutes at the end where you
-      build something that runs.</p>
-      <p class="tiny" style="margin-bottom:6px">NINE LESSONS &middot; ABOUT 45 MINUTES &middot; LAST ONE IS HANDS-ON</p>
-      <p class="small muted" style="max-width:56ch">Work through it at your own pace with the arrows at the
-      bottom, or jump about using Contents. It remembers where you got to.</p>
+      <h1>Working With <em>AI</em></h1>
+      <p class="stand">Eleven lessons on what these tools actually do, what they actually cost, and how
+      to get real work out of them. Built from a year of using them daily &mdash; including the parts
+      that did not work.</p>
+      <p class="cap" style="margin-bottom:0">ELEVEN LESSONS &middot; ABOUT TWO HOURS &middot; SELF-PACED &middot; LAST ONE IS HANDS-ON</p>
     </div>
     <div>
-      <div class="portraitframe">
-        <video id="heroVid" controls playsinline preload="metadata" poster="assets/img/intro-caspar.jpg">
+      <div class="pf">
+        <video controls playsinline preload="metadata" poster="assets/img/intro-caspar.jpg">
           <source src="assets/video/intro-caspar.mp4" type="video/mp4">
         </video>
       </div>
-      <p class="vcap" style="margin-top:8px"><b>CLIP 00</b><span>Press play &mdash; it has sound.</span></p>
+      <p class="cap">Press play &mdash; it has sound.<br>That is my face. I was never filmed.</p>
     </div>
-  </div>
-
-  <div class="bluf" style="margin-top:26px"><b>What that clip was</b>
-  That is my face, my suit and my tie &mdash; and I was not filmed. One photograph, three sentences of
-  instruction, about forty cents, and roughly two minutes of waiting. The voice is not mine either.</div>
-
-  <div class="note">Play it cold, say nothing, let it finish. Then: &ldquo;That was not filmed. It is one
-  headshot and a paragraph of text. And that is not my voice.&rdquo; Pause there &mdash; let the room sit
-  with it before you start explaining anything.</div>
-
-  <div class="warnbox"><b>Before we go further</b>
-  <p>Everything in this brief is unclassified and built on a personal account, on personal time, with no
-  official material. Keep your own experiments the same way &mdash; Lesson 7 covers exactly where the line is.</p></div>
-</section>
-
-<!-- ========================= 01 ========================= -->
-<section class="lesson" hidden id="edge" data-title="The edge was free and on YouTube" data-mins="8">
-  <div class="lessonhead">
-    <p class="lkick">Lesson 02</p>
-    <h2>The edge was free and on YouTube</h2>
-    <p class="lsub">Where I actually learnt this, and the order to watch it in.</p>
-  </div>
-
-  <div class="bluf"><b>Bottom line</b>
-  I did not take a course or buy a tool. I watched people who use this daily, copied their workflow,
-  and broke things on my own projects until they worked. The whole advantage is about ten hours of
-  video and a willingness to look stupid for a fortnight.</div>
-
-  <p class="lede">The useful channels are not the ones explaining what AI <em>is</em>. They are the ones
-  filming someone building a real thing, including the parts where it fails. Watch the failures &mdash;
-  that is where the technique lives.</p>
-
-  <div class="note">Be honest about the timeline here. Say it took you weeks and that most of the early
-  output was rubbish. If they think you had a shortcut they will not start.</div>
-
-  <div class="eyebrow">Three rules before you press play</div>
-  <ul class="clean">
-    <li><b>Watch with the thing open.</b> Passive viewing teaches nothing. Pause every few minutes and
-    run the same step on something of yours.</li>
-    <li><b>Pick one tool for a month.</b> The channels will push a new product weekly. Ignore them.
-    Depth in one beats a tour of nine.</li>
-    <li><b>Anything over six months old is history, not instruction.</b> Useful for concepts, wrong on
-    the buttons. Check the upload date before you follow along.</li>
-  </ul>
-
-  <div class="eyebrow">The list</div>
-  <div class="filters" id="vidFilters">
-    <button class="chip" data-f="all" aria-pressed="true">All</button>
-    <button class="chip" data-f="start" aria-pressed="false">Start here &middot; under 1 hr</button>
-    <button class="chip" data-f="deep" aria-pressed="false">Go deeper &middot; courses</button>
-    <button class="chip" data-f="current" aria-pressed="false">Stay current &middot; channels</button>
-  </div>
-  <div class="vidlist" id="vidList"></div>
-  <p class="tiny" style="margin-top:14px">Titles, channels and links verified against YouTube on 7 Oct 2026.
-  Links open in a new tab.</p>
-</section>
-
-<!-- ========================= 02 ========================= -->
-<section class="lesson" hidden id="agentic" data-title="From answering to doing" data-mins="8">
-  <div class="lessonhead">
-    <p class="lkick">Lesson 03</p>
-    <h2>From answering to doing</h2>
-    <p class="lsub">How we got here, and what &ldquo;agentic&rdquo; actually means.</p>
-  </div>
-
-  <div class="stinger">
-    <video autoplay muted loop playsinline preload="none"
-           poster="assets/img/stinger-evolution.jpg">
-      <source src="assets/video/stinger-evolution.mp4" type="video/mp4">
-    </video>
-  </div>
-  <p class="vcap"><b>CLIP 01</b><span>Also generated. Six seconds, no audio, about thirty cents.</span></p>
-
-  <div class="bluf"><b>Bottom line</b>
-  The jump that matters was not a cleverer chatbot. It was the day the model stopped handing you an
-  answer and started taking actions in a loop until the job was done. You went from writing tasks to
-  giving intent.</div>
-
-  <div class="eyebrow">How it got here</div>
-  <div class="tl">
-    <div class="tl-item"><div class="tl-yr">BEFORE 2017</div>
-      <div class="tl-h">Narrow models, hand-built</div>
-      <p class="tl-d">One model, one job, trained by specialists on a labelled dataset. Spam filters,
-      image classifiers. Useless outside the task it was cut for.</p></div>
-    <div class="tl-item key"><div class="tl-yr">2017</div>
-      <div class="tl-h">The transformer</div>
-      <p class="tl-d">A Google paper, <em>Attention Is All You Need</em>, proposes an architecture that
-      scales with data and compute instead of plateauing. Everything since is downstream of it.</p></div>
-    <div class="tl-item"><div class="tl-yr">2018&ndash;2021</div>
-      <div class="tl-h">Scale as a strategy</div>
-      <p class="tl-d">Train one large model on most of the internet, then adapt it. GPT-2, GPT-3.
-      Impressive in demos, awkward to use, no interface the public cared about.</p></div>
-    <div class="tl-item key"><div class="tl-yr">NOV 2022</div>
-      <div class="tl-h">ChatGPT &mdash; the interface moment</div>
-      <p class="tl-d">The capability was mostly already there. Putting a chat box on it is what made it
-      a household object. Remember that: interface changes adoption more than capability does.</p></div>
-    <div class="tl-item"><div class="tl-yr">2023&ndash;2024</div>
-      <div class="tl-h">Tools, context, modality</div>
-      <p class="tl-d">Models learn to call functions, read images, and hold a book-length context.
-      Still fundamentally one question in, one answer out.</p></div>
-    <div class="tl-item key"><div class="tl-yr">LATE 2024</div>
-      <div class="tl-h">MCP &mdash; a standard plug</div>
-      <p class="tl-d">Anthropic publishes the Model Context Protocol and opens it. One way to connect any
-      model to any tool or data source, instead of a bespoke integration per pairing. Section 04.</p></div>
-    <div class="tl-item key"><div class="tl-yr">2025&ndash;2026</div>
-      <div class="tl-h">Agents, and the shift in your job</div>
-      <p class="tl-d">Reasoning models that think before answering, coding agents that work unattended for
-      hours, skills, agent teams, cloud runners. Your work moves from writing the steps to writing the
-      intent and checking the result.</p></div>
-  </div>
-
-  <div class="eyebrow">What &ldquo;agentic&rdquo; actually means</div>
-  <p class="lede">The word is doing a lot of marketing work. Here is the honest ladder. Most people are
-  on rung one and assume that is the ceiling. Click each rung.</p>
-
-  <div class="ladder">
-    <details class="rung">
-      <summary><span class="rung-lvl">L1</span>
-        <span class="rung-name">Chatbot<small>You ask &middot; it answers &middot; you do the work</small></span>
-        <span class="rung-tog">OPEN</span></summary>
-      <div class="rung-body">
-        <p>It produces text. Nothing happens in the world. You still open the file, paste the thing,
-        check the maths and send the email. The model is a very fast writer with no hands.</p>
-        <div class="ex"><b>Looks like:</b> &ldquo;Draft me a paragraph on X.&rdquo; You copy it out.</div>
-      </div>
-    </details>
-    <details class="rung">
-      <summary><span class="rung-lvl">L2</span>
-        <span class="rung-name">Copilot<small>It suggests inside your tool &middot; you still drive</small></span>
-        <span class="rung-tog">OPEN</span></summary>
-      <div class="rung-body">
-        <p>Now it sits where you work and completes what you started. Faster, but the loop is unchanged:
-        it proposes, you accept or reject, every single time. You are the bottleneck by design.</p>
-        <div class="ex"><b>Looks like:</b> autocomplete in your editor, Smart Compose in mail.</div>
-      </div>
-    </details>
-    <details class="rung">
-      <summary><span class="rung-lvl">L3</span>
-        <span class="rung-name">Tool use<small>It can reach out &middot; one step at a time</small></span>
-        <span class="rung-tog">OPEN</span></summary>
-      <div class="rung-body">
-        <p>You hand it a set of things it is allowed to call &mdash; search the web, read this file, query
-        that sheet. It picks the right one and uses it. Still one hop: you ask, it fetches, it answers.</p>
-        <div class="ex"><b>Looks like:</b> &ldquo;What is in my calendar on Thursday?&rdquo; and it genuinely looks.</div>
-      </div>
-    </details>
-    <details class="rung" open>
-      <summary><span class="rung-lvl">L4</span>
-        <span class="rung-name">Agentic<small>You give intent &middot; it loops until done</small></span>
-        <span class="rung-tog">OPEN</span></summary>
-      <div class="rung-body">
-        <p>You state an outcome and the constraints. It decides the steps, uses tools, looks at what came
-        back, notices it was wrong, tries again, and keeps going until the outcome holds or it gets stuck.
-        You review the result, not the keystrokes.</p>
-        <p>Four things make it agentic, and all four have to be present:
-        a <b>goal</b> instead of a task, <b>tools</b> it may actually use, a <b>loop</b> where it sees the
-        consequence of its own last move, and <b>memory</b> of what it already tried.</p>
-        <div class="ex"><b>Looks like:</b> &ldquo;Work out why the sync broke last Tuesday and fix it.&rdquo;
-        Forty minutes later: a diagnosis, a patch, and a list of what it could not verify.</div>
-      </div>
-    </details>
-  </div>
-
-  <div class="note">This is the slide to slow down on. The military framing lands hard here: L1 to L3 is
-  giving orders. L4 is mission command &mdash; intent, constraints, freedom of action, back-brief. Ask the
-  room how they would supervise a capable subordinate they could not see. That is the actual skill, and
-  nobody in the room is new to it.</div>
-
-
-  <div class="eyebrow">What you actually are now</div>
-  <p class="lede">The most useful way to think about an agent is not as a tool. It is a <b>staff
-  officer</b> &mdash; capable, fast, tireless, well-read, and entirely dependent on you for direction
-  and for judgement about what matters.</p>
-
-  <p>Which makes your job the one you already know how to do. You are not operating a machine. You are
-  <b>commanding</b> one: setting intent, bounding it, and then <b>reviewing the product before it goes
-  anywhere.</b> That review is not a formality you do if there is time. It is now the main thing you are
-  paid for.</p>
-
-  <div class="tscroll">
-    <table>
-      <caption>A good staff officer and a good agent fail in the same ways</caption>
-      <thead><tr><th>A staff officer who&hellip;</th><th>An agent that&hellip;</th><th>The same fix</th></tr></thead>
-      <tbody>
-        <tr><td>Works to the letter of a bad brief</td><td>Optimises exactly what you asked for, not what you wanted</td>
-            <td>State the end state, not the task</td></tr>
-        <tr><td>Will not say they are out of their depth</td><td>Answers confidently with no idea it is wrong</td>
-            <td>Ask what it is unsure about, and what would change its answer</td></tr>
-        <tr><td>Fills a gap with a plausible assumption</td><td>Invents a source, a figure or a file that does not exist</td>
-            <td>Require it to show where every fact came from</td></tr>
-        <tr><td>Gives you polish instead of substance</td><td>Produces fluent text that says nothing</td>
-            <td>Ask for the argument in one sentence; if it cannot, there is not one</td></tr>
-        <tr><td>Needs the same correction every time</td><td>Forgets your standards in a new conversation</td>
-            <td>Write it into a skill &mdash; Lesson 05</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="warnbox"><b>The part that should worry you</b>
-  <p>A staff officer who is wrong usually shows it &mdash; they hesitate, they hedge, they come back with
-  questions. An agent that is wrong reads exactly like an agent that is right. Same fluency, same
-  confidence, same speed.</p>
-  <p>So the signals you have spent a career learning to read are not available here. The only reliable
-  check is the one you do on the output itself. <b>Never let anything leave your hands that you have not
-  personally verified.</b></p></div>
-
-  <div class="note">This is the slide that makes the room comfortable, because it tells them their
-  existing skill is the relevant one. Say plainly: &ldquo;You are not becoming a programmer. You are
-  becoming a commander of something that never pushes back.&rdquo; Then sit on the warning box &mdash;
-  the missing hesitation cue is the genuinely new risk.</div>
-
-  <div class="warnbox"><b>The honest part</b>
-  <p>An agent that loops is an agent that can be confidently wrong for forty minutes instead of thirty
-  seconds. It will invent a source, delete the wrong file, or declare success on something it never
-  checked.</p>
-  <p>So the discipline is unchanged from any delegation: state the constraints up front, make it show
-  its working, and verify the output yourself before it leaves your hands. Never let an agent be the
-  last pair of eyes on anything that carries your name.</p></div>
-</section>
-
-<!-- ========================= 03 ========================= -->
-<section class="lesson" hidden id="pricing" data-title="The toolkit, and what it costs" data-mins="12">
-  <div class="lessonhead">
-    <p class="lkick">Lesson 04</p>
-    <h2>The toolkit, and what it costs</h2>
-    <p class="lsub">Seven tools, what each one is actually for, and what you should pay for.</p>
-  </div>
-
-  <div class="bluf"><b>Bottom line</b>
-  Everyone converged on twenty dollars a month because that is the number people pay without thinking.
-  The free tiers are genuinely good now. Pay only when you hit a wall you can name &mdash; and if you are
-  a student, Perplexity is half price and almost nobody claims it.</div>
-
-  <div class="tscroll">
-    <table>
-      <caption>Individual plans &middot; US dollars per month &middot; verified 7 Oct 2026</caption>
-      <thead><tr>
-        <th>Tier</th><th>ChatGPT</th><th>Claude</th><th>Perplexity</th>
-      </tr></thead>
-      <tbody>
-        <tr class="rowhi">
-          <th>Free</th>
-          <td><span class="pill free">$0</span><br><span class="small muted">Ad-supported in the US and Europe</span></td>
-          <td><span class="pill free">$0</span><br><span class="small muted">Limits reset every 5 hrs</span></td>
-          <td><span class="pill free">$0</span><br><span class="small muted">3 Pro searches a day</span></td>
-        </tr>
-        <tr>
-          <th>Entry</th>
-          <td class="num">$8 <span class="small muted">Go</span></td>
-          <td class="muted small">&mdash; none &mdash;</td>
-          <td class="num">$10 <span class="pill best">students</span><br><span class="small muted">Education Pro &middot; SheerID</span></td>
-        </tr>
-        <tr>
-          <th>Standard</th>
-          <td class="num">$20 <span class="small muted">Plus</span></td>
-          <td class="num">$20 <span class="small muted">Pro &middot; $17 annual</span></td>
-          <td class="num">$20 <span class="small muted">Pro &middot; $200/yr</span></td>
-        </tr>
-        <tr>
-          <th>Heavy</th>
-          <td class="num">$100 <span class="small muted">Pro &middot; 5&times; Plus</span></td>
-          <td class="num">$100 <span class="small muted">Max &middot; 5&times; Pro</span></td>
-          <td class="muted small">&mdash; none &mdash;</td>
-        </tr>
-        <tr>
-          <th>Heaviest</th>
-          <td class="num">$200 / $500<br><span class="small muted">10&times; and 25&times; Plus</span></td>
-          <td class="num">$200 <span class="small muted">Max &middot; 20&times; Pro</span></td>
-          <td class="num">$200 <span class="small muted">Max &middot; $2,000/yr</span></td>
-        </tr>
-        <tr>
-          <th>Team seat</th>
-          <td class="num">$25 <span class="small muted">$20 annual</span></td>
-          <td class="num">$25 <span class="small muted">$20 annual</span></td>
-          <td class="num">$40 <span class="small muted">Enterprise Pro</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <ul class="clean">
-    <li><b>Nothing is unlimited any more.</b> Both $200 tiers are metered. ChatGPT&rsquo;s $200 tier was
-    ratio was reportedly cut from 20&times; to 10&times; Plus when the $500 tier appeared at the end of
-    September 2026. Treat the multiples as indicative, not contractual.</li>
-    <li><b>Claude sells headroom, not a better model.</b> Max is the same Claude with roughly 5&times; or
-    20&times; the usage. If you are not hitting limits, you are buying nothing.</li>
-    <li><b>Only Claude and Perplexity discount for annual.</b> ChatGPT Plus and Pro are monthly only.</li>
-    <li><b>Prices move monthly.</b> Four changes in the last quarter alone. Check before you quote me.</li>
-  </ul>
-
-  <div class="eyebrow">So what is Perplexity, then</div>
-  <p class="lede">It is not a chatbot and comparing it to one misses the point. It is an <b>answer
-  engine</b>: it runs a live web search, reads the pages, and writes you an answer with a numbered
-  citation on each claim that you can click and check.</p>
-  <ul class="clean">
-    <li><b>It cites, so you can audit.</b> This is the whole product. For anything you have to defend in
-    writing, a cited answer beats a confident one.</li>
-    <li><b>It is model-agnostic.</b> You choose which underlying model answers &mdash; GPT, Claude,
-    Gemini, Grok &mdash; per query. One subscription, several brains.</li>
-    <li><b>It is current.</b> It searches now. A plain chatbot answers from training data unless you
-    explicitly make it look things up.</li>
-    <li><b>Students get it at half price.</b> Education Pro is $10 a month, verified through SheerID with an
-    academic email, and includes everything in Pro. Confirmed on Perplexity&rsquo;s own help centre, 2 Oct 2026.</li>
-    <li><b>Use it for the first 20% of any research task</b> &mdash; mapping what exists and who says what
-    &mdash; then take the sources into Claude or ChatGPT to actually think with them.</li>
-  </ul>
-
-  <div class="note">Flag the student discount loudly &mdash; everyone in this room qualifies and it is a
-  thirty-second verification for half price. Easiest win in the whole brief.</div>
-
-
-  <div class="eyebrow">The other four tools worth knowing</div>
-  <p class="lede">Chat assistants are one category. Four more do jobs the chat window does badly,
-  and three of them have free tiers that are genuinely enough.</p>
-
-  <div class="tscroll">
-    <table>
-      <caption>What each tool is for &middot; verified 7 Oct 2026</caption>
-      <thead><tr><th>Tool</th><th>What it is actually for</th><th>Free tier</th><th>Paid entry</th></tr></thead>
-      <tbody>
-        <tr><th>ChatGPT</th><td>General assistant. The broadest feature set and the biggest ecosystem.</td>
-            <td><span class="pill free">Yes</span> <span class="small muted">with ads</span></td><td class="num">$8 Go / $20 Plus</td></tr>
-        <tr><th>Claude</th><td>Long documents, careful reasoning, and building things. Claude Code is included from $20.</td>
-            <td><span class="pill free">Yes</span></td><td class="num">$20 Pro</td></tr>
-        <tr><th>Perplexity</th><td>Cited web research. Answers with a source on every claim.</td>
-            <td><span class="pill free">Yes</span> <span class="small muted">3 Pro/day</span></td><td class="num">$20 &middot; <span class="pill best">$10 student</span></td></tr>
-        <tr><th>Gemini</th><td>Lives inside Gmail, Docs and Drive. Strong on very long inputs.</td>
-            <td><span class="pill free">Yes</span></td><td class="num">$4.99 Plus / $19.99 Pro</td></tr>
-        <tr class="rowhi"><th>Gemini Notebook<br><span class="small muted">was NotebookLM</span></th>
-            <td>Studying <em>your own</em> sources. It only answers from documents you upload, with citations.</td>
-            <td><span class="pill free">Yes</span> <span class="small muted">100 notebooks</span></td><td class="num">via Google AI Pro $19.99</td></tr>
-        <tr><th>Gamma</th><td>Slides, docs and simple sites from a prompt. Exports to PowerPoint.</td>
-            <td><span class="pill free">400 credits</span> <span class="small muted">one-off</span></td><td class="num">$12/mo &middot; $9 annual</td></tr>
-        <tr><th>Higgsfield</th><td>Generating video and images. The clip in Lesson 01 came from here.</td>
-            <td class="muted small">Trial only</td><td class="num">$26 / 500 credits</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="concepts">
-    <div class="concept">
-      <h4><span>Study tool</span>Gemini Notebook</h4>
-      <p>Renamed from NotebookLM in July 2026; same product, same notebooks. You upload your readings
-      &mdash; PDFs, slides, notes &mdash; and it answers <em>only</em> from those, with a citation you
-      can click back to the page.</p>
-      <p>That restriction is the feature. It cannot wander off into half-remembered training data, so for
-      module reading it is far safer than a chat window. It will also generate an audio discussion of your
-      sources, which is genuinely good for revision on the move.</p>
-      <p class="small"><b>Free:</b> 100 notebooks, 50 sources each, budget resets every 5 hours.
-      <b>Pro:</b> bundled into Google AI Pro at $19.99 &mdash; 500 notebooks, 300 sources each, 4&times; the budget.</p>
-      <div class="sowhat"><b>Use it for</b>Module readings, a dense doctrine publication, or any set of
-      documents you have to actually know rather than just skim.</div>
-    </div>
-
-    <div class="concept">
-      <h4><span>Research</span>Perplexity</h4>
-      <p>An answer engine rather than a chatbot. It searches the live web, reads the results, and writes
-      an answer with numbered citations you can audit. You also pick which model answers &mdash; GPT,
-      Claude, Gemini or Grok &mdash; per query.</p>
-      <p>Use it for the first fifth of a research task: mapping what exists and who says what. Then take
-      the sources somewhere else to think with them.</p>
-      <p class="small"><b>Free:</b> 3 Pro searches a day. <b>Pro:</b> $20.
-      <b>Education Pro:</b> $10 for verified students &mdash; everything in Pro.</p>
-      <div class="sowhat"><b>Use it for</b>Anything you will have to defend in writing, where a cited
-      answer beats a confident one.</div>
-    </div>
-
-    <div class="concept">
-      <h4><span>Slides</span>Gamma</h4>
-      <p>Describe a deck and it builds one &mdash; layout, images and all &mdash; then lets you edit it
-      like a normal document. Exports to PowerPoint and PDF, so it drops into the formats we actually use.</p>
-      <p>It is good at getting you to a complete first draft in two minutes. It is not good at house
-      style, and the default look is recognisably Gamma, so budget time to strip that out.</p>
-      <p class="small"><b>Free:</b> 400 credits once, no refresh &mdash; roughly 10 decks, with a
-      &ldquo;Made with Gamma&rdquo; badge. <b>Plus:</b> $12/mo ($9 annual), 1,000 credits a month,
-      badge removed. <b>Pro:</b> $25/mo ($18 annual), 4,000 credits.</p>
-      <div class="sowhat"><b>Use it for</b>A first draft when you are staring at an empty deck. Not for
-      anything that has to match a house format.</div>
-    </div>
-
-    <div class="concept">
-      <h4><span>Video &amp; images</span>Higgsfield</h4>
-      <p>A front end onto many image and video models at once &mdash; Veo, Kling, Seedance, Nano Banana
-      and others &mdash; billed from one pool of credits rather than a subscription each.</p>
-      <p>Everything is priced in credits, and the price varies enormously by model. The talking head in
-      Lesson 01 was Veo 3.1 Lite: 8 seconds with audio, <b>12 credits</b>, about two minutes of waiting.
-      Silent clips were cheaper.</p>
-      <p class="small"><b>Top-ups:</b> 500 credits $26, 1,000 $49, 2,000 $95 &mdash; these expire after
-      90 days. <b>Plans:</b> PLUS $49/mo ($39 annual) for 1,000 credits a month; ULTRA $129/mo ($99 annual)
-      for 3,000.</p>
-      <div class="sowhat"><b>Watch out</b>Credits drain faster than you expect and the generators stamp a
-      watermark on the output. Check the cost of a model before you run a batch.</div>
-    </div>
-  </div>
-
-  <div class="eyebrow">Which one for which job</div>
-  <div class="tscroll">
-    <table>
-      <caption>If the job is&hellip;</caption>
-      <thead><tr><th>The job</th><th>Reach for</th><th>Why not the obvious one</th></tr></thead>
-      <tbody>
-        <tr><td>Understand a set of readings you were given</td><th>Gemini Notebook</th>
-            <td>A chat window will answer from training data and quietly blend it with your sources.</td></tr>
-        <tr><td>Find out what the literature says on a topic</td><th>Perplexity</th>
-            <td>Chat assistants only search if you push them, and cite less reliably.</td></tr>
-        <tr><td>Write, argue, or think something through</td><th>Claude or ChatGPT</th>
-            <td>Perplexity is built to retrieve, not to reason at length.</td></tr>
-        <tr><td>Build a tool, script or app</td><th>Claude</th>
-            <td>Claude Code is included at $20, which is the cheapest serious build setup going.</td></tr>
-        <tr><td>Get to a first-draft deck fast</td><th>Gamma</th>
-            <td>Asking a chat assistant for slides gets you bullet points, not a deck.</td></tr>
-        <tr><td>Make a video or an image</td><th>Higgsfield</th>
-            <td>The chat assistants generate images but not controllable video.</td></tr>
-        <tr><td>Summarise a 300-page PDF</td><th>Gemini or Gemini Notebook</th>
-            <td>Both handle very long inputs without losing the middle.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="bluf" style="margin-top:26px"><b>If you only pay for one thing</b>
-  Perplexity Education Pro at $10 if you mostly research and write; Claude Pro at $20 if you want to
-  build things. Everything else here has a free tier that will carry you for months. Total spend to do
-  everything in this brief: nothing, if you are patient.</div>
-
-  <div class="note">The cost slide is where the room wakes up. Be blunt that you do not pay for all seven
-  and nor should they. Name the two you would actually buy and why, then move on.</div>
-
-  <div class="ask" id="priceAsk">
-    <p class="ask-q">What should <em>you</em> actually pay? Pick the one that sounds most like you.</p>
-    <div class="opts" id="priceOpts">
-      <button class="opt" data-k="research">I mostly research and write papers</button>
-      <button class="opt" data-k="build">I want to build tools and apps</button>
-      <button class="opt" data-k="admin">I want help with admin, email and slides</button>
-      <button class="opt" data-k="curious">I just want to try it without paying</button>
-    </div>
-    <div class="verdict" id="priceOut" hidden></div>
   </div>
 </section>
 
-<!-- ========================= 04 ========================= -->
-<section class="lesson" hidden id="skills" data-title="Skills — teaching it your standards" data-mins="9">
-  <div class="lessonhead">
-    <p class="lkick">Lesson 05</p>
-    <h2>Skills — teaching it your standards</h2>
-    <p class="lsub">How to stop re-explaining your house style every single time.</p>
-  </div>
-
-  <div class="stinger">
-    <video autoplay muted loop playsinline preload="none"
-           poster="assets/img/stinger-connect.jpg">
-      <source src="assets/video/stinger-connect.mp4" type="video/mp4">
-    </video>
-  </div>
-  <p class="vcap"><b>CLIP 02</b><span>Eight things plugging into one core. That is literally section 04.</span></p>
-
-  <div class="bluf"><b>Bottom line</b>
-  A skill is a folder of written instructions the model loads only when the task matches. Write your
-  standard down once and it applies every time, to everyone you share it with. This is the single
-  highest-leverage thing in the whole brief and almost nobody uses it.</div>
-
-  <div class="eyebrow">What a skill actually is</div>
-  <p>A skill is a folder with a set of written instructions and, optionally, some scripts. It sits there
-  doing nothing until a task comes along that matches its description, at which point the model loads it
-  and follows it.</p>
-  <p>That is the clever bit: it is loaded <em>on demand</em>. You can have two hundred skills and the
-  model only reads the one that applies, so none of them crowd out the conversation.</p>
-  <ul class="clean">
-    <li><b>Why you care:</b> every standard you repeat &mdash; a house format, a checklist, a marking
-    rubric, a brief structure &mdash; becomes something you write once and never explain again.</li>
-    <li><b>Mine:</b> an essay auditor holding the grading criteria and my tutor&rsquo;s past feedback. I
-    say &ldquo;audit this&rdquo; and it runs twenty checks I would otherwise forget.</li>
-    <li><b>They are plain text.</b> Readable, editable, shareable. Hand your skill to the syndicate and
-    everyone works to the same standard. That is the real unlock for a team.</li>
-  </ul>
-
-
-
-  <div class="eyebrow">Prompting is dead</div>
-  <p class="lede">The whole industry of &ldquo;prompt engineering&rdquo; &mdash; magic words, elaborate
-  templates, &ldquo;act as a world-class expert&rdquo; &mdash; was a workaround for models that could not
-  follow ordinary instructions. They can now. That skill has largely expired.</p>
-
-  <p>What replaced it is not a better prompt. It is a different job. You stop writing <b>steps</b> and
-  start stating the <b>end state</b>, the constraints, and how you will judge the result &mdash; then let
-  it work out the route.</p>
-
-  <div class="vs">
-    <div class="vs-col cloud">
-      <h4>The old way</h4>
-      <p class="tagline">INSTRUCTING &middot; YOU OWN EVERY STEP</p>
-      <ul>
-        <li class="n">&ldquo;Act as an expert analyst. First, summarise the attached paper in 200 words.
-        Use formal academic English&hellip;&rdquo;</li>
-        <li class="n">You specify the sequence, so the output can only be as good as your plan</li>
-        <li class="n">Every new task needs the whole instruction written out again</li>
-        <li class="n">It stops the moment it finishes your last step, right or wrong</li>
-      </ul>
-    </div>
-    <div class="vs-col local">
-      <h4>The agentic way</h4>
-      <p class="tagline">DELEGATING &middot; YOU OWN THE OUTCOME</p>
-      <ul>
-        <li class="y">&ldquo;I need to know whether this paper undermines my thesis. Tell me what would
-        change my mind.&rdquo;</li>
-        <li class="y">It picks the steps, and will take ones you would not have thought of</li>
-        <li class="y">Your standards live in a skill, so you never restate them</li>
-        <li class="y">It keeps going until the outcome holds, or tells you it is stuck</li>
-      </ul>
-    </div>
-  </div>
-
-  <p>Three things to put in every delegation, and they are the same three you would give a capable
-  subordinate:</p>
-  <ol class="steps">
-    <li><b>The end state.</b> What is true when this is done? Not &ldquo;write a summary&rdquo; but
-    &ldquo;I can walk into the tutorial able to defend a position on this.&rdquo;</li>
-    <li><b>The constraints.</b> Word count, sources it may use, house format, what it must not do.
-    These are the bounds, not the route.</li>
-    <li><b>The test.</b> How will you both know it worked? A worked example, a check it must pass, a
-    question it must be able to answer.</li>
-  </ol>
-
-  <div class="bluf"><b>Why this lands in this room</b>
-  You already know how to do this. It is mission command: intent, constraints, freedom of action,
-  back-brief. The only new part is that the subordinate is a machine, is extremely fast, and will not
-  tell you when it is out of its depth unless you ask.</div>
-
-  <div class="note">Spend real time here &mdash; this is the conceptual centre of the whole course. Ask
-  the room how they brief a capable junior they cannot supervise directly. Whatever they answer is the
-  right answer for this too. Then make the point that a <em>skill</em> is simply how you issue standing
-  orders instead of repeating yourself.</div>
-
-  <div class="eyebrow">What one looks like</div>
-  <p>Not code. A folder with a text file in it. The top few lines say what the skill is and when to use
-  it &mdash; that is all the model reads until a matching task comes along. Here is a real one, cut down:</p>
-
-<div class="filesample">---
-<b>name</b>: brief-format
-<b>description</b>: Use when drafting any syndicate brief, deck or slide pack.
----
-
-Open every section with a one-line bottom line in bold.
-Keep slide text telegraphic &mdash; drop articles and the verb "is".
-<i># "Strike RINGTON", not "The plan is to strike RINGTON"</i>
-Never use "X, not Y" phrasing. State the claim, then the evidence.
-Speaking notes in full sentences; slide text in fragments.
-Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
-
-  <p>That is the whole mechanism. The <code style="font-family:var(--mono);font-size:12.5px;color:var(--amber)">description</code>
-  line is the important part &mdash; it is how the model decides whether this skill is relevant to what
-  you just asked. Vague description, skill never fires.</p>
-
-  <div class="eyebrow">Two worth having on day one</div>
-  <div class="concepts">
-    <div class="concept">
-      <h4><span>Prose</span>humanizer</h4>
-      <p>Strips the tells that make writing read as machine-generated: the puffed-up significance, the
-      rule-of-three everywhere, the &ldquo;it is not just X, it is Y&rdquo; construction, the em-dash
-      habit, the stock closing paragraph about challenges and future prospects.</p>
-      <p>It works off a documented catalogue of these patterns rather than vibes, which is why it is
-      worth more than telling the model &ldquo;write more naturally&rdquo; &mdash; an instruction it
-      cannot actually act on.</p>
-      <div class="sowhat"><b>Use it on</b>Anything with your name on it that a human will read closely.</div>
-    </div>
-    <div class="concept">
-      <h4><span>Prose</span>stop-slop</h4>
-      <p>The lighter cousin. Removes filler, hedging and over-formality &mdash; the &ldquo;it is worth
-      noting that&rdquo;, &ldquo;in today&rsquo;s rapidly evolving landscape&rdquo;, &ldquo;delve
-      into&rdquo; register that creeps into every draft.</p>
-      <p>Where humanizer is a full edit against a catalogue of signs, stop-slop is a quick pass for
-      padding. Run it on a draft that is fine but flabby.</p>
-      <div class="sowhat"><b>Use it on</b>Emails, minutes, anything you want shorter and plainer fast.</div>
-    </div>
-  </div>
-
-  <div class="warnbox" style="border-color:var(--amber-deep);border-left-color:var(--amber);background:var(--amber-wash)">
-    <b style="color:var(--amber)">A warning about both</b>
-    <p>Neither makes AI writing undetectable, and that is not what they are for. They make the prose
-    <em>better</em> &mdash; less padded, less formulaic, more like something a person would actually say.</p>
-    <p>If what you are really asking is &ldquo;can I pass this off as mine&rdquo;, the answer for
-    assessed work is no, and your institution&rsquo;s rules apply regardless of what any tool does.</p></div>
-
-
-  <div class="eyebrow">Skills worth having on a Master&rsquo;s or graduate diploma</div>
-  <p>Most published skills are built for software teams and are useless to you. The ones that pay off on
-  a taught postgraduate course are the ones that encode <em>assessment</em> &mdash; what a marker
-  rewards, and what loses marks.</p>
-
-  <div class="tscroll">
-    <table>
-      <caption>What to build or look for, in rough order of payoff</caption>
-      <thead><tr><th>Skill</th><th>What it holds</th><th>Why it pays</th></tr></thead>
-      <tbody>
-        <tr class="rowhi"><th>Essay audit</th><td>Your module&rsquo;s actual marking rubric, band by band, plus
-            the feedback you have already been given.</td>
-            <td>Turns vague &ldquo;is this good?&rdquo; into a scored check against the thing you are
-            actually marked on. The single highest-value one to build.</td></tr>
-        <tr><th>Citation check</th><td>A rule that every citation must be verified against a real search
-            result, and that each claim must be supported by the specific page cited.</td>
-            <td>Invented and misattributed citations are the fastest way to lose marks and credibility.</td></tr>
-        <tr><th>House format</th><td>Your institution&rsquo;s referencing style, structure conventions,
-            word-count rules, submission format.</td>
-            <td>Stops you re-explaining formatting every single assignment.</td></tr>
-        <tr><th>Reading digest</th><td>How you want a reading summarised &mdash; argument, method,
-            evidence, who it is arguing against, how it is cited since.</td>
-            <td>Makes forty readings tractable and comparable in the same shape.</td></tr>
-        <tr><th>Counter-argument</th><td>An instruction to find the strongest published objection to your
-            position before you defend it.</td>
-            <td>Engaging a real critic rather than a straw man is a band separator in most rubrics.</td></tr>
-        <tr><th>Prose cleanup</th><td>humanizer or stop-slop, above.</td>
-            <td>Readability, not disguise.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="eyebrow">Writing your own &mdash; the fast route</div>
-  <p class="lede">Do not sit down to write a skill. You will produce something generic. Instead, do the
-  task once properly and let the corrections become the skill.</p>
-
-  <ol class="steps">
-    <li><b>Do the job once, out loud.</b> Work through a real essay or deck with the model and correct it
-    as you go. Every &ldquo;no, we always do it this way&rdquo; is a future rule.</li>
-    <li><b>Then say: &ldquo;turn everything you just learnt into a skill.&rdquo;</b> It writes the file,
-    including the description line. This is the whole trick, and almost nobody does it.</li>
-    <li><b>Read what it wrote and cut half of it.</b> It will over-generalise. Keep the rules that are
-    specifically yours and delete the ones that are just good practice &mdash; it already knows those.</li>
-    <li><b>Sharpen the description line.</b> That line alone decides whether the skill ever fires. Name
-    the trigger: &ldquo;Use when drafting or reviewing any assessed essay for the X programme.&rdquo;</li>
-    <li><b>Use it on the next assignment and fix what it misses.</b> A skill is never finished on the
-    first pass; mine took four or five rounds before it was worth keeping.</li>
-  </ol>
-
-  <div class="bluf"><b>The payoff, concretely</b>
-  My essay-audit skill holds a marking rubric and every piece of feedback I have been given. I say
-  &ldquo;audit this&rdquo; and it runs twenty checks I would otherwise forget at midnight the night
-  before submission. I wrote none of those checks in the moment &mdash; they accumulated from
-  corrections I made once.</div>
-
-  <div class="note">If anyone in the room has had written feedback from a tutor, point out that the
-  feedback IS the skill. Most people file it and never read it again.</div>
-
-  <div class="eyebrow">Where to find them</div>
-  <ul class="clean">
-    <li><b>Built in.</b> Claude ships with a set &mdash; document handling, slide building, spreadsheets.
-    Ask &ldquo;what skills do you have?&rdquo; and it will list them.</li>
-    <li><b>Your organisation&rsquo;s catalogue.</b> If your workplace publishes skills, they appear in
-    your settings and install in one click.</li>
-    <li><b>Public repositories.</b> Anthropic publishes a skills repository on GitHub, and there are
-    community collections. Read before you install &mdash; a skill is instructions the model will
-    follow, so treat an unknown one the way you would an unknown script.</li>
-    <li><b>Write your own.</b> The fastest route: do the task once by hand, correcting the model as you
-    go, then say &ldquo;turn everything you just learnt into a skill&rdquo;. It writes the file for you.</li>
-  </ul>
-
-  <div class="note">This is the part that makes people sit up, because it is the first thing all day
-  that is about <em>their</em> standards rather than the tool&rsquo;s. If you have a skill of your own,
-  open it here &mdash; seeing a real one beats any explanation.</div>
-
-  <div class="eyebrow">Skills vs the other two words</div>
-  <div class="tscroll">
-    <table>
-      <caption>Three words people mix up constantly</caption>
-      <thead><tr><th>Term</th><th>What it gives the model</th><th>Everyday analogy</th></tr></thead>
-      <tbody>
-        <tr><th>Skill</th><td>Knowledge. How you want something done.</td>
-            <td>The standing orders you hand a new arrival.</td></tr>
-        <tr><th>MCP</th><td>Reach. A standard way to use a tool or read a source.</td>
-            <td>The socket on the wall.</td></tr>
-        <tr><th>Connector</th><td>A specific tool, already wired up.</td>
-            <td>The appliance you plug into it.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="small muted">Next lesson covers the other two.</p>
-</section>
-
-<!-- ========================= MCP / local-cloud ========================= -->
-<section class="lesson" hidden id="plumbing" data-title="MCP, connectors and where work happens" data-mins="9">
-  <div class="lessonhead">
-    <p class="lkick">Lesson 06</p>
-    <h2>MCP, connectors, and where work happens</h2>
-    <p class="lsub">How the model reaches your tools, and the difference between local and cloud.</p>
-  </div>
-
-  <div class="bluf"><b>Bottom line</b>
-  MCP is a standard plug that lets any model use any tool. A connector is one of those plugs with the
-  wiring already done. And &ldquo;local&rdquo; does not mean private &mdash; that distinction is the one
-  that matters most here.</div>
-
-  <div class="eyebrow">MCP &mdash; one plug instead of a hundred adapters</div>
-  <p class="lede">Model Context Protocol. Anthropic published it in late 2024 and gave it away.
-  The problem it solves is unglamorous and enormous.</p>
-
-  <div class="diagram">
-    <svg viewBox="0 0 760 250" role="img" aria-label="Before MCP, every model needs a custom integration to every tool. After MCP, each tool exposes one standard interface that every model can use.">
-      <g font-family="IBM Plex Mono, monospace" font-size="11">
-        <text x="12" y="18" fill="var(--crit)" letter-spacing="1.4">BEFORE &#8212; N &times; M CUSTOM BUILDS</text>
-        <g fill="var(--panel-2)" stroke="var(--edge-hi)">
-          <rect x="14" y="36" width="78" height="26" rx="3"/>
-          <rect x="14" y="76" width="78" height="26" rx="3"/>
-          <rect x="14" y="116" width="78" height="26" rx="3"/>
-        </g>
-        <g fill="var(--fg-dim)" text-anchor="middle">
-          <text x="53" y="53">Model A</text><text x="53" y="93">Model B</text><text x="53" y="133">Model C</text>
-        </g>
-        <g fill="var(--panel-2)" stroke="var(--edge-hi)">
-          <rect x="232" y="36" width="78" height="26" rx="3"/>
-          <rect x="232" y="76" width="78" height="26" rx="3"/>
-          <rect x="232" y="116" width="78" height="26" rx="3"/>
-        </g>
-        <g fill="var(--fg-dim)" text-anchor="middle">
-          <text x="271" y="53">Mail</text><text x="271" y="93">Files</text><text x="271" y="133">Sheets</text>
-        </g>
-        <g stroke="var(--crit)" stroke-width="1" opacity=".55" fill="none">
-          <path d="M92 49H232M92 49L232 89M92 49L232 129"/>
-          <path d="M92 89H232M92 89L232 49M92 89L232 129"/>
-          <path d="M92 129H232M92 129L232 49M92 129L232 89"/>
-        </g>
-        <text x="14" y="176" fill="var(--fg-faint)">9 separate integrations.</text>
-        <text x="14" y="192" fill="var(--fg-faint)">Add one model: build 3 more.</text>
-        <text x="14" y="208" fill="var(--fg-faint)">Add one tool: build 3 more.</text>
-
-        <line x1="380" y1="10" x2="380" y2="230" stroke="var(--edge)" stroke-dasharray="3 4"/>
-
-        <text x="408" y="18" fill="var(--ok)" letter-spacing="1.4">AFTER &#8212; N + M, ONE PROTOCOL</text>
-        <g fill="var(--panel-2)" stroke="var(--edge-hi)">
-          <rect x="410" y="36" width="78" height="26" rx="3"/>
-          <rect x="410" y="76" width="78" height="26" rx="3"/>
-          <rect x="410" y="116" width="78" height="26" rx="3"/>
-        </g>
-        <g fill="var(--fg-dim)" text-anchor="middle">
-          <text x="449" y="53">Model A</text><text x="449" y="93">Model B</text><text x="449" y="133">Model C</text>
-        </g>
-        <rect x="552" y="56" width="52" height="86" rx="4" fill="var(--amber-wash)" stroke="var(--amber)"/>
-        <text x="578" y="94" fill="var(--amber)" text-anchor="middle" font-size="10">MCP</text>
-        <text x="578" y="108" fill="var(--amber)" text-anchor="middle" font-size="10">plug</text>
-        <g fill="var(--panel-2)" stroke="var(--edge-hi)">
-          <rect x="664" y="36" width="78" height="26" rx="3"/>
-          <rect x="664" y="76" width="78" height="26" rx="3"/>
-          <rect x="664" y="116" width="78" height="26" rx="3"/>
-        </g>
-        <g fill="var(--fg-dim)" text-anchor="middle">
-          <text x="703" y="53">Mail</text><text x="703" y="93">Files</text><text x="703" y="133">Sheets</text>
-        </g>
-        <g stroke="var(--ok)" stroke-width="1.3" fill="none">
-          <path d="M488 49H530L552 70M488 89H552M488 129H530L552 122"/>
-          <path d="M604 70L626 49H664M604 99H664M604 122L626 129H664"/>
-        </g>
-        <text x="408" y="176" fill="var(--fg-faint)">6 connections, one spec.</text>
-        <text x="408" y="192" fill="var(--fg-faint)">Add one model: it works everywhere.</text>
-        <text x="408" y="208" fill="var(--fg-faint)">Write a tool once, any model uses it.</text>
-      </g>
-    </svg>
-  </div>
-
-  <p>An MCP server offers three kinds of thing: <b>tools</b> it can do, <b>resources</b> it can read, and
-  <b>prompts</b> it can follow. The model is told what is available and decides when to reach for it.
-  The analogy everyone uses is USB-C, and for once the analogy is fair.</p>
-
-  <div class="eyebrow">Connectors &mdash; MCP with the wiring done</div>
-  <p>A connector is a prepackaged MCP server for a service you already use. You click it, sign in once
-  through the normal login screen, and tick what it is allowed to touch. No files, no terminal.</p>
-  <ul class="clean">
-    <li><b>Typical list:</b> Gmail, Google Drive and Calendar, Notion, Slack, GitHub, Figma, Canva.</li>
-    <li><b>Grant narrowly.</b> Read-only beats read-write unless you need it to write. It can do anything
-    you permit, including the things you did not picture it doing.</li>
-    <li><b>Revoke when the job is done.</b> A connector you set up for one afternoon should not still be
-    live next term.</li>
-  </ul>
-
-  <div class="eyebrow">Local vs cloud &mdash; where the work happens</div>
-  <p class="lede">This trips people up constantly, and the distinction is simpler than it sounds: it is
-  about <b>where the hands are</b>, not where the brain is. The model is a remote service either way.
-  What changes is what it can reach.</p>
-
-  <div class="vs">
-    <div class="vs-col local">
-      <h4>Local</h4>
-      <p class="tagline">ON YOUR MACHINE &middot; e.g. Claude Code, Codex CLI</p>
-      <ul>
-        <li class="y">Sees your actual files, folders and version history</li>
-        <li class="y">Runs real commands &mdash; installs, tests, builds, scripts</li>
-        <li class="y">Reaches things only your machine can reach</li>
-        <li class="y">Nothing is uploaded except what it chooses to read</li>
-        <li class="n">It can genuinely break things. Keep backups.</li>
-        <li class="n">Needs installing and a little terminal comfort</li>
-        <li class="n">Dies when your laptop sleeps</li>
-      </ul>
-    </div>
-    <div class="vs-col cloud">
-      <h4>Cloud</h4>
-      <p class="tagline">ON THEIR SERVERS &middot; e.g. claude.ai, chatgpt.com</p>
-      <ul>
-        <li class="y">Nothing to install &mdash; a browser or a phone is enough</li>
-        <li class="y">Sandboxed, so it cannot wreck your machine</li>
-        <li class="y">Keeps running while you are away from the desk</li>
-        <li class="y">Same conversation on every device</li>
-        <li class="n">Sees only what you upload or connect</li>
-        <li class="n">Cannot touch your local files or network</li>
-        <li class="n">Everything you paste leaves your building</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="ask" id="lcAsk">
-    <p class="ask-q">Which one for the job in front of you?</p>
-    <div class="opts" id="lcOpts">
-      <button class="opt" data-k="files">It needs my own files or repo</button>
-      <button class="opt" data-k="phone">I want it on my phone</button>
-      <button class="opt" data-k="think">I just need to think, write or research</button>
-      <button class="opt" data-k="run">It should keep working while I sleep</button>
-      <button class="opt" data-k="sensitive">The material is sensitive</button>
-    </div>
-    <div class="verdict" id="lcOut" hidden></div>
-  </div>
-
-  <div class="warnbox"><b>Say this part out loud</b>
-  <p>Local does not mean private. The model still runs on someone else&rsquo;s servers &mdash; local only
-  means the <em>hands</em> are on your machine. Every file it reads locally is sent off to be processed,
-  same as anything you paste into a browser.</p>
-  <p>So the rule is the boring one and it has not changed: <b>nothing classified, nothing marked, no
-  personal data of other people, into any of these services.</b> Not the free tier, not the paid tier,
-  not the local one. If you would not email it to a vendor, do not prompt it.</p>
-  <p>Everything in this brief is unclassified, open-source and built on my own time and my own account.
-  Keep it that way and you will not have a bad afternoon.</p></div>
-
-  <div class="note">Do not rush this box. It is the question the room is already silently asking, and
-  answering it plainly up front buys you permission for the rest. Name the rule, then move on &mdash; do
-  not lecture.</div>
-</section>
-
-<!-- ========================= 05 ========================= -->
-<section class="lesson" hidden id="build" data-title="Now you build one" data-mins="20">
-  <div class="lessonhead">
-    <p class="lkick">Lesson 06</p>
-    <h2>Now you build one</h2>
-    <p class="lsub">Twenty minutes, a free account, and something that runs at the end.</p>
-  </div>
-
-  <div class="stinger">
-    <video autoplay muted loop playsinline preload="none"
-           poster="assets/img/stinger-build.jpg">
-      <source src="assets/video/stinger-build.mp4" type="video/mp4">
-    </video>
-  </div>
-  <p class="vcap"><b>CLIP 03</b><span>Twenty minutes from here. Laptop or phone, free account, no install.</span></p>
-
-  <div class="bluf"><b>Bottom line</b>
-  You do not need a paid plan, a terminal, or any code. On the free tier of either Claude or ChatGPT you
-  can describe a tool in plain English and get a working app running in the window beside the chat.
-  Everyone leaves today with something that runs.</div>
-
-  <div class="eyebrow">Where to do it &mdash; works on free accounts</div>
-  <div class="grid g2">
-    <div class="panel">
-      <h4 style="margin-top:0">Claude &mdash; Artifacts</h4>
-      <p class="small muted" style="margin-top:0">claude.ai &middot; free account</p>
-      <p class="small">Ask for an app and it builds it in a panel next to the conversation, running and
-      clickable. Say what is wrong, it rebuilds. Best of the two for anything interactive.</p>
-    </div>
-    <div class="panel">
-      <h4 style="margin-top:0">ChatGPT &mdash; Canvas</h4>
-      <p class="small muted" style="margin-top:0">chatgpt.com &middot; free account</p>
-      <p class="small">Opens a side editor you and the model edit together, and will run simple web apps.
-      Good if you already have a ChatGPT habit.</p>
-    </div>
-  </div>
-  <p class="tiny" style="margin-top:12px">Free tiers are rate-limited, not feature-limited, for this
-  purpose. If you run out mid-session, wait or swap to the other one.</p>
-
-  <div class="note">Get them to open the tab <em>now</em>, before you explain anything else. The people
-  who open it build something; the people who plan to open it later never do.</div>
-
-  <div class="eyebrow">The six-line prompt that makes this work</div>
-  <p class="lede">Vague request, vague app. The difference between a toy and something you actually use
-  is about ninety seconds of thinking before you type. Answer six things:</p>
-
-  <ol class="steps">
-    <li><b>What it does</b> &mdash; one sentence, as if describing it to a colleague.</li>
-    <li><b>Who uses it, on what</b> &mdash; phone in a corridor, or laptop at a desk? This changes everything about the layout.</li>
-    <li><b>What goes in and what comes out</b> &mdash; the actual fields and the actual result.</li>
-    <li><b>The rules</b> &mdash; the real logic. Thresholds, formulas, bands, edge cases. Be exact here; this is where people are lazy and then wonder why the output is wrong.</li>
-    <li><b>Constraints</b> &mdash; one page, no login, works offline, remembers my entries.</li>
-    <li><b>Done means</b> &mdash; how you will know it works. Give it a worked example with the answer you expect.</li>
-  </ol>
-
-  <div class="eyebrow">Build your prompt</div>
-  <p>Pick a starting point, fill in what you know, and copy the result straight into Claude or ChatGPT.</p>
-
-  <div class="ideas" id="ideas"></div>
-
-  <div class="builder">
-    <div class="fld">
-      <label for="f-what">1 &middot; What it does</label>
-      <p class="hint">One sentence. No jargon.</p>
-      <input id="f-what" type="text" placeholder="A tool that works out who is on duty each weekend across a term.">
-    </div>
-    <div class="fld">
-      <label for="f-who">2 &middot; Who uses it, on what</label>
-      <input id="f-who" type="text" placeholder="Me and three other officers, mostly on a phone, often with no signal.">
-    </div>
-    <div class="fld">
-      <label for="f-io">3 &middot; In and out</label>
-      <p class="hint">What do you type in, and what does it give back?</p>
-      <textarea id="f-io" placeholder="In: a list of names, dates each person is unavailable, and the term start and end.&#10;Out: a fair roster table I can read on screen and copy out as text."></textarea>
-    </div>
-    <div class="fld">
-      <label for="f-rules">4 &middot; The rules</label>
-      <p class="hint">The exact logic. The more precise this is, the less you fix afterwards.</p>
-      <textarea id="f-rules" placeholder="Nobody does two weekends in a row. Spread the total evenly, within one. Skip anyone marked unavailable. If it cannot be done fairly, say so rather than guessing."></textarea>
-    </div>
-    <div class="fld">
-      <label for="f-cons">5 &middot; Constraints</label>
-      <input id="f-cons" type="text" placeholder="One single page, no login, works offline, remembers what I entered.">
-    </div>
-    <div class="fld">
-      <label for="f-done">6 &middot; Done means</label>
-      <p class="hint">A worked example and the answer you expect back.</p>
-      <textarea id="f-done" placeholder="With 4 names over 8 weekends and one person away in week 3, everyone ends up with exactly 2, and nobody is on twice running."></textarea>
-    </div>
-    <div class="btnrow">
-      <button class="btn" id="genBtn">Build the prompt</button>
-      <button class="btn ghost" id="exBtn">Fill with the example</button>
-      <button class="btn ghost" id="clrBtn">Clear</button>
-    </div>
-  </div>
-
-  <div class="codewrap">
-    <pre class="code" id="promptOut">Fill in the fields above and press "Build the prompt".
-
-Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
-    <button class="copy" id="copyBtn">Copy</button>
-  </div>
-
-  <div class="eyebrow">Then: the loop that actually gets you there</div>
-  <ol class="steps">
-    <li><b>Send it and let it build.</b> Do not interrupt. Wait for something you can click.</li>
-    <li><b>Use it like a real user.</b> Not the happy path &mdash; the awkward one. Empty fields, silly
-    numbers, the thing you know is a corner case.</li>
-    <li><b>Report exactly one problem at a time.</b> &ldquo;When I leave the date blank it shows NaN.&rdquo;
-    Specific and singular. A list of five vague complaints gets you five half-fixes.</li>
-    <li><b>Repeat until boring.</b> Four or five rounds is normal and is not a sign you did it wrong.</li>
-    <li><b>Then ask it to harden the thing.</b> &ldquo;What inputs would break this?&rdquo; It is noticeably
-    better at critiquing its own work than at getting it right first time.</li>
-  </ol>
-
-  <div class="eyebrow">Three habits worth stealing</div>
-  <ul class="clean">
-    <li><b>Make it state its assumptions before it builds.</b> Add &ldquo;list the assumptions you are
-    making, then wait for me to confirm&rdquo; and you will catch the misunderstanding in ten seconds
-    rather than after it has written the whole thing.</li>
-    <li><b>Ask for the version you did not ask for.</b> &ldquo;Show me a simpler approach you considered
-    and rejected.&rdquo; Often the rejected one is the one you wanted.</li>
-    <li><b>Keep the prompt, not just the app.</b> The prompt is the source. If the output is lost, a good
-    prompt rebuilds it in a minute; the app itself rebuilds nothing.</li>
-  </ul>
-
-  <div class="note">Hard stop at twenty minutes, then go round the room: one sentence each on what they
-  built and what broke. The broken ones are the most useful thing in the session &mdash; make sure the
-  room hears them, so nobody leaves thinking theirs was the only one that misbehaved.</div>
-
-  <div class="warnbox" style="border-color:var(--amber-deep);border-left-color:var(--amber);background:var(--amber-wash)">
-    <b style="color:var(--amber)">Keep it unclassified</b>
-    <p>Build with invented names and made-up numbers. The exercise is the technique, not your real duty
-    roster. Anything you type into a free account is on somebody else&rsquo;s server by the time you hit
-    enter.</p>
-  </div>
-</section>
-
-</main>
-
-<div class="lessonnav">
-  <button class="navbtn back" id="prevBtn">&larr; Back</button>
-  <div class="dots" id="dots"></div>
-  <button class="navbtn" id="nextBtn">Next &rarr;</button>
+<div class="eyebrow">What you get</div>
+<div class="vg">
+  <div class="vc" style="--c:var(--violet)"><h3>No theory you cannot use</h3>
+    <p>Every lesson ends in something you can do on Monday. The tools, the prices, the exact prompts,
+    the mistakes to skip.</p></div>
+  <div class="vc" style="--c:var(--mint)"><h3>Costs, stated plainly</h3>
+    <p>Seven tools compared tier by tier, verified against the vendors' own pages &mdash; including the
+    student discount almost nobody claims.</p></div>
+  <div class="vc" style="--c:var(--cyan)"><h3>Built with what it teaches</h3>
+    <p>One lesson is the receipts: every tool that ran to produce this course, and what each one did.</p></div>
+  <div class="vc" style="--c:var(--coral)"><h3>You build something</h3>
+    <p>The last lesson is hands-on and works on a free account. Everyone finishes with a working app.</p></div>
 </div>
-<p class="kbdhint">Use <kbd>&larr;</kbd> <kbd>&rarr;</kbd> to move &middot; <kbd>C</kbd> contents &middot; <kbd>N</kbd> speaking notes</p>
+
+<div class="eyebrow">The eleven lessons</div>
+<div class="ll">
+  <div class="lrow" style="--h:#FF7A66"><span class="n">01</span><span class="t">Start here<small>What this covers, and the clip that explains why it matters.</small></span><span class="m">3 min</span></div>
+  <div class="lrow" style="--h:#FF6B6B"><span class="n">02</span><span class="t">The edge was free and on YouTube<small>Sixteen videos and four channels, ordered, with why each one earns the time.</small></span><span class="m">8 min</span></div>
+  <div class="lrow" style="--h:#A78BFA"><span class="n">03</span><span class="t">From answering to doing<small>How we got here, what "agentic" means, and why it is a staff officer.</small></span><span class="m">8 min</span></div>
+  <div class="lrow" style="--h:#FFC247"><span class="n">04</span><span class="t">The toolkit, and what it costs<small>ChatGPT, Claude, Perplexity, Gemini, Gemini Notebook, Gamma, Higgsfield.</small></span><span class="m">12 min</span></div>
+  <div class="lrow" style="--h:#4ADE80"><span class="n">05</span><span class="t">Skills &mdash; teaching it your standards<small>Why prompting is dead, and how to write a skill that holds your house style.</small></span><span class="m">9 min</span></div>
+  <div class="lrow" style="--h:#45D6F5"><span class="n">06</span><span class="t">MCP, connectors, and where work happens<small>The standard plug, and why "local" does not mean private.</small></span><span class="m">9 min</span></div>
+  <div class="lrow" style="--h:#60A5FA"><span class="n">07</span><span class="t">Research that stands up<small>Real sources, invented citations, and the questions that find the good stuff.</small></span><span class="m">11 min</span></div>
+  <div class="lrow" style="--h:#F472B6"><span class="n">08</span><span class="t">Decks, documents and your own files<small>Give it your format. Point it at a folder. Watch what changes.</small></span><span class="m">10 min</span></div>
+  <div class="lrow" style="--h:#A3E635"><span class="n">09</span><span class="t">How this brief was made<small>The receipts, the permission model, and a quiz to check you were paying attention.</small></span><span class="m">10 min</span></div>
+  <div class="lrow" style="--h:#FB923C"><span class="n">10</span><span class="t">When it goes wrong<small>The first output is never right. Knowing when to push and when to stop.</small></span><span class="m">9 min</span></div>
+  <div class="lrow" style="--h:#FDE047"><span class="n">11</span><span class="t">Vibe coding &mdash; now you build one<small>A real app, 194 commits, and twenty minutes to build your own.</small></span><span class="m">25 min</span></div>
+</div>
+
+<div class="eyebrow">Access</div>
+<div class="pay">
+  <div class="paygrid">
+    <div>
+      <div class="qr"><img src="assets/img/paynow-50.png" alt="PayNow QR code for SGD 50 to 9181 7066" width="460" height="460"></div>
+      <p class="cap" style="text-align:center">Scan with any Singapore banking app</p>
+    </div>
+    <div>
+      <p class="price">$50<span> &nbsp;SGD &middot; one-off</span></p>
+      <p style="color:var(--fg-dim);margin:0;max-width:46ch">Lifetime access. Updates included &mdash;
+      and this material dates fast, so that matters.</p>
+
+      <div class="payrow"><b>PayNow</b><code id="num">9181 7066</code>
+        <button class="copybtn" data-copy="91817066">Copy</button></div>
+      <div class="payrow"><b>Reference</b><code>AIBRIEF</code>
+        <button class="copybtn" data-copy="AIBRIEF">Copy</button></div>
+
+      <div class="gate">
+        <label for="code">Already paid? Enter your access code</label>
+        <div class="gatein">
+          <input id="code" type="text" inputmode="numeric" autocomplete="off" placeholder="6 digits" maxlength="12" aria-describedby="msg">
+          <button class="btn" id="go">Start the course</button>
+        </div>
+        <p class="msg" id="msg" role="status"></p>
+        <p class="note">Paid and no code yet? Message me with your PayNow reference and I will send one.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer>
-  <b>Working With AI</b> &middot; syndicate brief &middot; 57 CSC &middot; 7 October 2026<br>
-  Prices, titles and links verified 7 Oct 2026 &mdash; all of it moves, so re-check before quoting.<br>
-  Video generated with Higgsfield (Veo 3.1 Lite). Page built with Claude Code.<br>
-  <b>Unclassified</b> &middot; built on a personal account, on personal time, with no official material.
+  <b>Working With AI</b> &middot; 57 CSC &middot; October 2026<br>
+  Unclassified. Built on a personal account, on personal time, with no official material.<br>
+  Prices and links verified 7 Oct 2026 &mdash; all of it moves, so re-check before relying on it.
 </footer>
 
-</div><!-- /wrap -->
+</div>
 
 <script>
 (function(){
   "use strict";
-  var $  = function(s,r){ return (r||document).querySelector(s); };
-  var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
-  function store(k,v){ try{ if(arguments.length>1){localStorage.setItem(k,v);return v;} return localStorage.getItem(k); }catch(e){ return null; } }
+  /* SHA-256 of "wwai:"+code, so the codes are not sitting in plain sight in the source. */
+  var HASHES = [
+    "69c315d23e35efacc8d74c68dd309bdef0cc33a46d9b57ef3571b0cbc758a583",
+    "cf79e76e4efdf39778b4ee5bb644bd255186ea554e6f32fe7186b72fc431d732"
+  ];
+  var input = document.getElementById('code'),
+      msg   = document.getElementById('msg'),
+      go    = document.getElementById('go');
 
-  /* ---------------- theme ---------------- */
-  var themeBtn = $('#themeBtn');
-  function applyTheme(t){
-    if(t==='light'){ document.documentElement.setAttribute('data-theme','light'); themeBtn.textContent='Dark'; }
-    else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='Light'; }
+  function already(){
+    try{ return localStorage.getItem('wwai-access') === 'ok'; }catch(e){ return false; }
   }
-  applyTheme(store('wwai-theme')||'dark');
-  themeBtn.addEventListener('click',function(){
-    var next = document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light';
-    applyTheme(next); store('wwai-theme',next);
-  });
-
-  /* ---------------- presenter notes ---------------- */
-  var notesBtn = $('#notesBtn');
-  function applyNotes(on){
-    document.body.classList.toggle('notes-on',on);
-    notesBtn.setAttribute('aria-pressed',on?'true':'false');
-    notesBtn.textContent = on ? 'Notes on' : 'Notes';
+  if(already()){
+    msg.className = 'msg good';
+    msg.textContent = 'You already have access.';
+    go.textContent = 'Resume the course';
   }
-  applyNotes(store('wwai-notes')==='1');
-  notesBtn.addEventListener('click',function(){
-    var on = !document.body.classList.contains('notes-on');
-    applyNotes(on); store('wwai-notes',on?'1':'0');
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='n' && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){ notesBtn.click(); }
-  });
 
-  /* ---------------- courseware navigation ---------------- */
-  var deck   = document.getElementById('deck');
-  var LESSON = Array.prototype.slice.call(deck.querySelectorAll('.lesson'));
-  var TOTAL  = LESSON.length;
-  var cur    = 0;
-  var seen   = {};
-  try{ var sv = JSON.parse(store('wwai-seen')||'{}'); if(sv && typeof sv==='object') seen = sv; }catch(e){}
-
-  document.getElementById('ltot').textContent = TOTAL;
-
-  function slug(i){ return 'lesson' + (i+1); }
-
-  function buildToc(){
-    document.getElementById('tocList').innerHTML = LESSON.map(function(L,i){
-      return '<a href="#'+slug(i)+'" data-i="'+i+'">'+
-               '<span class="tn">'+String(i+1).padStart(2,'0')+'</span>'+
-               '<span class="tt">'+L.dataset.title+'</span>'+
-               '<span class="tm">'+L.dataset.mins+' min</span></a>';
+  async function sha256(str){
+    if(!(window.crypto && window.crypto.subtle)) return null;
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(function(b){
+      return b.toString(16).padStart(2,'0');
     }).join('');
-    Array.prototype.forEach.call(document.querySelectorAll('#tocList a'), function(a){
-      a.addEventListener('click',function(ev){ ev.preventDefault(); go(+a.dataset.i); closeToc(); });
-    });
   }
 
-  function paintToc(){
-    Array.prototype.forEach.call(document.querySelectorAll('#tocList a'), function(a){
-      var i = +a.dataset.i;
-      a.classList.toggle('cur', i===cur);
-      a.classList.toggle('done', !!seen[i] && i!==cur);
-    });
-  }
-
-  function buildDots(){
-    document.getElementById('dots').innerHTML = LESSON.map(function(L,i){
-      return '<button class="dot" data-i="'+i+'" title="'+L.dataset.title.replace(/"/g,'&quot;')+'" aria-label="Lesson '+(i+1)+': '+L.dataset.title.replace(/"/g,'&quot;')+'"></button>';
-    }).join('');
-    Array.prototype.forEach.call(document.querySelectorAll('.dot'), function(d){
-      d.addEventListener('click',function(){ go(+d.dataset.i); });
-    });
-  }
-
-  function paintDots(){
-    Array.prototype.forEach.call(document.querySelectorAll('.dot'), function(d){
-      var i = +d.dataset.i;
-      d.classList.toggle('cur', i===cur);
-      d.classList.toggle('seen', !!seen[i] && i!==cur);
-    });
-  }
-
-  function go(i, noScroll){
-    i = Math.max(0, Math.min(TOTAL-1, i));
-    LESSON.forEach(function(L,k){
-      if(k!==i){ L.hidden = true; return; }
-      L.hidden = false;
-    });
-    // pause any video in a lesson we just left
-    $$('video').forEach(function(v){
-      if(!deck.contains(v)) return;
-      var host = v.closest('.lesson');
-      if(host && host.hidden && !v.paused){ v.pause(); }
-    });
-    cur = i;
-    seen[i] = 1;
-    try{ store('wwai-seen', JSON.stringify(seen)); store('wwai-at', String(i)); }catch(e){}
-
-    document.getElementById('lnum').textContent = i+1;
-    document.getElementById('ltitle').textContent = LESSON[i].dataset.title;
-    var pct = TOTAL>1 ? (i/(TOTAL-1))*100 : 100;
-    bar.style.right = (100-pct).toFixed(2)+'%';
-
-    var prev = document.getElementById('prevBtn'), next = document.getElementById('nextBtn');
-    prev.disabled = (i===0);
-    next.disabled = (i===TOTAL-1);
-    next.textContent = (i===TOTAL-1) ? 'End of brief' : 'Next \u2192';
-
-    paintDots(); paintToc();
-    if(history.replaceState) history.replaceState(null,'','#'+slug(i));
-    if(!noScroll) window.scrollTo({top:0,behavior:'instant'});
-    playVisibleStingers();
-  }
-
-  var bar = document.getElementById('progress');
-  buildToc(); buildDots();
-
-  document.getElementById('prevBtn').addEventListener('click',function(){ go(cur-1); });
-  document.getElementById('nextBtn').addEventListener('click',function(){ go(cur+1); });
-
-  /* contents drawer */
-  var toc = document.getElementById('toc'), menuBtn = document.getElementById('menuBtn');
-  function openToc(){ toc.hidden=false; menuBtn.setAttribute('aria-expanded','true'); }
-  function closeToc(){ toc.hidden=true; menuBtn.setAttribute('aria-expanded','false'); }
-  menuBtn.addEventListener('click',function(){ toc.hidden ? openToc() : closeToc(); });
-  document.getElementById('tocClose').addEventListener('click',closeToc);
-  toc.addEventListener('click',function(e){ if(e.target===toc) closeToc(); });
-
-  /* keyboard */
-  document.addEventListener('keydown',function(e){
-    if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
-    if(e.metaKey||e.ctrlKey||e.altKey) return;
-    if(e.key==='ArrowRight'){ go(cur+1); }
-    else if(e.key==='ArrowLeft'){ go(cur-1); }
-    else if(e.key==='c'||e.key==='C'){ toc.hidden ? openToc() : closeToc(); }
-    else if(e.key==='Escape'){ closeToc(); }
-  });
-
-  /* open at the deep-linked lesson, else where they left off */
-  (function(){
-    var m = /^#lesson(\d+)$/.exec(location.hash||'');
-    var start = 0;
-    if(m){ start = (+m[1])-1; }
-    else { var at = parseInt(store('wwai-at')||'0',10); if(!isNaN(at)) start = at; }
-    go(start, true);
-  })();
-
-  /* ---------------- section 1: videos ---------------- */
-  var VIDS = [
-    {id:'msFxQ7OYPj8', t:"How I'd Learn AI From Scratch in 2026 (skip the useless 80%)", ch:'Jeff Su', dur:'13', g:'start',
-     why:'The one to watch first. A sober map of what is worth your time and what is noise, with no product to sell you.'},
-    {id:'kn6dxL53NkM', t:'MCP vs API Explained: Do You Really Need MCP?', ch:'KodeKloud', dur:'17', g:'start',
-     why:'Section 04 of this brief, done properly and with diagrams. Watch it if the plug analogy did not land.'},
-    {id:'HzGOWq5UyjY', t:'How AI Agents Actually Work (Every Piece Explained & Built)', ch:'Tech With Tim', dur:'19', g:'start',
-     why:'Takes an agent apart piece by piece. The clearest answer to "but what is it actually doing in that loop".'},
-    {id:'kt5a-TXmWew', t:'Claude Code: The Advanced Guide (99% of Devs Skip These Features)', ch:'Tech With Tim', dur:'20', g:'start',
-     why:'Where most of my own workflow came from. Dense, current, no padding.'},
-    {id:'I62CvEwVS58', t:"AI Has Changed Completely: Here's What Matters in 2026", ch:'Futurepedia', dur:'22', g:'start',
-     why:'Good orientation if you stopped paying attention sometime in 2024 and want the delta.'},
-    {id:'3fdb_giOrLo', t:'9 Free AI Agent Skills You NEED to Install Now', ch:'Futurepedia', dur:'16', g:'start',
-     why:'Concrete skills you can install the same evening. Makes the idea stop being abstract.'},
-    {id:'ZvfL4_1172M', t:'Claude Code Projects Just Dropped. Master it in 39 Minutes.', ch:'AI with Avthar', dur:'39', g:'start',
-     why:'How to keep long-running work organised instead of one endless chat. Fixes the mess most people hit in week two.'},
-    {id:'9oJySubZRSA', t:"The Ultimate Beginner's Guide to Claude AI", ch:'Metics Media', dur:'1:00', g:'deep',
-     why:'A patient hour from zero. Send this to anyone who says they have never opened it.'},
-    {id:'vPEqB2Kabns', t:'Claude AI Full Course 2026 | 1 Hour Masterclass', ch:'CodeAlpha', dur:'1:00', g:'deep',
-     why:'Same ground as above, brisker and more structured. Pick whichever voice you prefer.'},
-    {id:'c6Hxnu4JoOw', t:'FULL AI Agents Course for Beginners in 2026! (Become a PRO!)', ch:'AI Master', dur:'30', g:'deep',
-     why:'A tour of the whole current landscape with chapters. Useful for the vocabulary alone.'},
-    {id:'eA9Zf2-qYYM', t:'Building AI Agents that actually work (Full Course)', ch:'Greg Isenberg', dur:'59', g:'deep',
-     why:'The word "actually" is earned. Focused on what survives contact with real use.'},
-    {id:'jdbOVepEtUE', t:'Claude Code for Non-Coders (6 Hour Course)', ch:'Nate Herk | AI Automation', dur:'6 hr', g:'deep',
-     why:'The single best fit for this syndicate. Assumes no programming background and never leaves you behind.'},
-    {id:'-DawhgUKiOg', t:'CLAUDE SKILLS FULL COURSE 2.5 HOURS (Beginner to Expert)', ch:'Eliot Prince', dur:'2.5 hr', g:'deep',
-     why:'Skills end to end. Watch after you have used the tool for a fortnight, not before.'},
-    {id:'u2QqWkMv3Lg', t:'Claude Code Full Course 2026 | How Senior Engineers Actually Build with AI', ch:'JavaScript Mastery', dur:'3 hr', g:'deep',
-     why:'Properly technical. Only if you already write code and want the professional workflow.'},
-    {id:'UPtmKh1vMN8', t:'CLAUDE CODE ADVANCED FULL COURSE (3 HOURS)', ch:'Nick Saraev', dur:'3 hr', g:'deep',
-     why:'Automation-flavoured and opinionated. Strong on turning a one-off into something repeatable.'},
-    {id:'mpALXah_PBg', t:'Build & Sell with Claude Code (10+ Hour Course)', ch:'Nate Herk | AI Automation', dur:'10 hr', g:'deep',
-     why:'The encyclopaedia. Nobody watches it start to finish — treat the chapter list as an index.'}
-  ];
-  var CHANS = [
-    {u:'https://www.youtube.com/@indydevdan', n:'IndyDevDan',
-     why:'Principles over demos — specs first, context discipline, sub-agents. Opinionated and worth arguing with.'},
-    {u:'https://www.youtube.com/@ColeMedin', n:'Cole Medin',
-     why:'Full agent stacks end to end. Go here when one tool is no longer the whole picture.'},
-    {u:'https://www.youtube.com/@matthew_berman', n:'Matthew Berman',
-     why:'Fast coverage of what shipped this week. Your Friday catch-up, not your foundation.'},
-    {u:'https://www.youtube.com/@JeffSu', n:'Jeff Su',
-     why:'Workplace angle, short and practical. The channel to send to colleagues who are not technical.'}
-  ];
-  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-  function renderVids(filter){
-    var out = [];
-    if(filter==='all'||filter==='start'||filter==='deep'){
-      VIDS.filter(function(v){ return filter==='all' || v.g===filter; }).forEach(function(v){
-        out.push(
-          '<a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v='+encodeURIComponent(v.id)+'">'+
-            '<div class="vid-dur">'+esc(v.dur)+'<small>'+(v.dur.indexOf('hr')>-1?'HOURS':'MIN')+'</small></div>'+
-            '<div class="vid-body">'+
-              '<div class="vid-title">'+esc(v.t)+'</div>'+
-              '<div class="vid-meta">'+esc(v.ch)+'</div>'+
-              '<div class="vid-why">'+esc(v.why)+'</div>'+
-            '</div><div class="vid-go">&#8599;</div></a>');
-      });
+  async function submit(){
+    if(already()){ location.href = 'course.html'; return; }
+    var v = (input.value||'').trim().replace(/\s+/g,'');
+    if(!v){ msg.className='msg bad'; msg.textContent='Enter the code you were given.'; input.focus(); return; }
+    var h = await sha256('wwai:' + v);
+    if(h === null){
+      msg.className='msg bad';
+      msg.textContent='This browser cannot check the code. Open the course over https, or use another browser.';
+      return;
     }
-    if(filter==='all'||filter==='current'){
-      CHANS.forEach(function(c){
-        out.push(
-          '<a class="vid" target="_blank" rel="noopener" href="'+esc(c.u)+'">'+
-            '<div class="vid-dur">&#8734;<small>CHANNEL</small></div>'+
-            '<div class="vid-body">'+
-              '<div class="vid-title">'+esc(c.n)+'</div>'+
-              '<div class="vid-meta">Subscribe &middot; ongoing</div>'+
-              '<div class="vid-why">'+esc(c.why)+'</div>'+
-            '</div><div class="vid-go">&#8599;</div></a>');
-      });
+    if(HASHES.indexOf(h) > -1){
+      try{ localStorage.setItem('wwai-access','ok'); }catch(e){}
+      msg.className='msg good'; msg.textContent='Thanks — opening the course.';
+      setTimeout(function(){ location.href = 'course.html'; }, 450);
+    } else {
+      msg.className='msg bad'; msg.textContent='That code is not right. Check it and try again.';
+      input.select();
     }
-    $('#vidList').innerHTML = out.join('');
   }
-  renderVids('all');
-  $$('#vidFilters .chip').forEach(function(b){
-    b.addEventListener('click',function(){
-      $$('#vidFilters .chip').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
-      b.setAttribute('aria-pressed','true');
-      renderVids(b.dataset.f);
+  go.addEventListener('click', submit);
+  input.addEventListener('keydown', function(e){ if(e.key === 'Enter') submit(); });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.copybtn'), function(b){
+    b.addEventListener('click', function(){
+      var t = b.dataset.copy;
+      function done(){ b.textContent='Copied'; b.classList.add('done');
+        setTimeout(function(){ b.textContent='Copy'; b.classList.remove('done'); }, 1500); }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(done).catch(function(){ b.textContent='Copy failed'; });
+      } else { b.textContent='Copy failed'; }
     });
   });
-
-  /* ---------------- details toggle label ---------------- */
-  $$('.rung').forEach(function(d){
-    d.addEventListener('toggle',function(){ $('.rung-tog',d).textContent = d.open ? 'CLOSE' : 'OPEN'; });
-    $('.rung-tog',d).textContent = d.open ? 'CLOSE' : 'OPEN';
-  });
-
-  /* ---------------- pickers ---------------- */
-  function picker(optsSel, outSel, answers){
-    var out = $(outSel);
-    $$(optsSel+' .opt').forEach(function(b){
-      b.addEventListener('click',function(){
-        $$(optsSel+' .opt').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
-        b.setAttribute('aria-pressed','true');
-        out.innerHTML = answers[b.dataset.k];
-        out.hidden = false;
-      });
-    });
-  }
-  picker('#priceOpts','#priceOut',{
-    research:'<span class="vhead">Perplexity Education Pro &mdash; $10</span>You are a student, so take the half price &mdash; '+
-      'it is everything in Pro, verified through SheerID with an academic email. '+
-      'Cited answers are worth more to you than a cleverer chat window, and you can swap the underlying model per question. '+
-      'Add <b>Claude Pro at $20</b> only once you are genuinely hitting the free limits.',
-    build:'<span class="vhead">Claude Pro &mdash; $20</span>Claude Code is included at this tier, which is the whole reason to pay. '+
-      'Do not jump to Max at $100 &mdash; it is the same model with more headroom, so it only makes sense once you are being '+
-      'stopped by limits several times a week.',
-    admin:'<span class="vhead">Start on free, then ChatGPT Go at $8</span>For drafting, summarising and tidying documents the free tiers are '+
-      'already strong. If you hit the ceiling often, $8 is the cheapest real step up. <b>$20 is not obviously better for this work.</b>',
-    curious:'<span class="vhead">Pay nothing for a month</span>Claude free and ChatGPT free both build working apps, and Perplexity free gives you '+
-      'three deep searches a day. Run all three for four weeks. <b>Whichever one you keep reaching for is the one to pay for</b> &mdash; '+
-      'and you will know which by then.'
-  });
-  picker('#lcOpts','#lcOut',{
-    files:'<span class="vhead">Local</span>Nothing else can see your files. A cloud tool only knows what you upload, one file at a time, '+
-      'with no sense of how the pieces fit together.',
-    phone:'<span class="vhead">Cloud</span>There is no local option on a phone. Use the app, and connect whatever services hold the material you need.',
-    think:'<span class="vhead">Cloud</span>Writing, reading, arguing, planning &mdash; no reason to install anything. The browser is the better tool here.',
-    run:'<span class="vhead">Cloud</span>A local session dies when the laptop sleeps. If it has to survive you closing the lid, it has to run on their machines.',
-    sensitive:'<span class="vhead">Neither &mdash; and this is not a trick answer</span>Local does not mean private: your files are still sent off to be '+
-      'processed. <b>Anything classified, marked, or holding other people&rsquo;s personal data stays out of all of it.</b> '+
-      'Work on a sanitised version with invented numbers, or do it by hand.'
-  });
-
-  /* ---------------- section 5: builder ---------------- */
-  var IDEAS = [
-    {k:'roster', n:'Duty roster builder', d:'Spreads weekends fairly across a team, around people who are away.',
-     v:{what:'A tool that works out who is on duty each weekend across a term.',
-        who:'Me and three other officers, mostly on a phone, often with no signal.',
-        io:'In: a list of names, the dates each person is unavailable, and the term start and end.\nOut: a fair roster table I can read on screen and copy out as text.',
-        rules:'Nobody does two weekends in a row. Spread the total evenly, within one. Skip anyone marked unavailable. If it cannot be done fairly, say so rather than guessing.',
-        cons:'One single page, no login, works offline, remembers what I entered.',
-        done:'With 4 names over 8 weekends and one person away in week 3, everyone ends up with exactly 2, and nobody is on twice running.'}},
-    {k:'drill', n:'Exam flashcard drill', d:'Turns your notes into spaced-repetition cards for a module exam.',
-     v:{what:'A flashcard drill that quizzes me on my module notes and comes back more often to the ones I keep getting wrong.',
-        who:'Just me, on a phone, ten minutes at a time on the way in.',
-        io:'In: question-and-answer pairs I paste in or type.\nOut: one card at a time, hidden answer, and a Got it / Missed it button.',
-        rules:'A missed card comes back within the next five. A card I get right three times running drops out of rotation. Show a running score and how many are left.',
-        cons:'One single page, no login, works offline, keeps my cards and my score between sessions.',
-        done:'I paste 20 pairs, deliberately miss the same card three times, and it keeps reappearing while the rest stop.'}},
-    {k:'actions', n:'Meeting notes to actions', d:'Pulls who-does-what-by-when out of messy notes.',
-     v:{what:'A tool that takes my raw meeting notes and pulls out a clean list of actions with an owner and a date.',
-        who:'Me, straight after a meeting, on a laptop.',
-        io:'In: a block of untidy notes pasted in.\nOut: a table of action, owner, due date, with anything missing flagged.',
-        rules:'An action is anything with a verb and a person. If there is no owner, mark it UNASSIGNED rather than guessing. If there is no date, mark it NO DATE. Do not invent either. Keep the original wording.',
-        cons:'One single page, no login, works offline, lets me copy the table out as text.',
-        done:'Given notes where two items have no owner, it shows exactly two UNASSIGNED rows and does not quietly fill them in.'}},
-    {k:'kit', n:'Kit and packing checklist', d:'A reusable checklist that remembers where you got to.',
-     v:{what:'A packing checklist for exercises that I can reuse and that remembers what I have already packed.',
-        who:'Me, on a phone, in a store room, usually in a hurry.',
-        io:'In: items grouped under headings, which I can edit.\nOut: a tickable list with a count of what is still outstanding.',
-        rules:'Ticks are saved as I go and survive closing the page. A Reset button clears all ticks but keeps the list. Groups collapse when fully ticked. Big tap targets.',
-        cons:'One single page, no login, works offline, saves everything in the browser.',
-        done:'I tick six of ten, close the tab, reopen it, and it still shows six ticked and four outstanding.'}},
-    {k:'convert', n:'Unit and fuel calculator', d:'One screen for the conversions you look up every time.',
-     v:{what:'A calculator for the handful of conversions and planning sums I look up every single time.',
-        who:'Me, on a phone, in the field.',
-        io:'In: a number and the unit it is in.\nOut: the converted values, all visible at once with no extra tapping.',
-        rules:'Convert as I type, no Calculate button. Round sensibly and say how much it rounded. If a value is physically impossible, say so instead of showing a number.',
-        cons:'One single page, no login, works offline, remembers the last units I used.',
-        done:'I type one figure and every related value updates immediately, with the rounding stated.'}},
-    {k:'blank', n:'Start from scratch', d:'Clear the fields and describe your own.', v:null}
-  ];
-  var ideaWrap = $('#ideas');
-  ideaWrap.innerHTML = IDEAS.map(function(i){
-    return '<button class="idea" data-k="'+i.k+'" aria-pressed="false"><b>'+esc(i.n)+'</b><span>'+esc(i.d)+'</span></button>';
-  }).join('');
-  var F = {what:$('#f-what'),who:$('#f-who'),io:$('#f-io'),rules:$('#f-rules'),cons:$('#f-cons'),done:$('#f-done')};
-  function setFields(v){
-    Object.keys(F).forEach(function(k){ F[k].value = v ? (v[k]||'') : ''; });
-  }
-  $$('#ideas .idea').forEach(function(b){
-    b.addEventListener('click',function(){
-      $$('#ideas .idea').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
-      b.setAttribute('aria-pressed','true');
-      var idea = IDEAS.filter(function(i){ return i.k===b.dataset.k; })[0];
-      setFields(idea && idea.v);
-      build();
-      F.what.focus({preventScroll:true});
-    });
-  });
-
-  function val(el,fallback){ var v=(el.value||'').trim(); return v || fallback; }
-  function build(){
-    var what  = val(F.what,  '[one sentence: what the app does]');
-    var who   = val(F.who,   '[who uses it, and on what device]');
-    var io    = val(F.io,    '[what goes in, and what comes out]');
-    var rules = val(F.rules, '[the exact logic — thresholds, formulas, edge cases]');
-    var cons  = val(F.cons,  'One single page, no login, works offline, remembers what I entered.');
-    var done  = val(F.done,  '[a worked example and the answer you expect]');
-    var p =
-'Build me a working web app. Show it running so I can click it.\n\n'+
-'WHAT IT DOES\n'+what+'\n\n'+
-'WHO USES IT\n'+who+'\n\n'+
-'INPUTS AND OUTPUTS\n'+io+'\n\n'+
-'RULES\n'+rules+'\n\n'+
-'CONSTRAINTS\n'+cons+'\n\n'+
-'DONE MEANS\n'+done+'\n\n'+
-'HOW TO WORK\n'+
-'1. Before you write anything, list the assumptions you are making and wait for me to confirm them.\n'+
-'2. Then build the simplest version that satisfies DONE MEANS. No extra features.\n'+
-'3. Handle empty and silly inputs gracefully — never show an error code or a blank screen.\n'+
-'4. When it is running, tell me the three inputs most likely to break it.';
-    $('#promptOut').textContent = p;
-  }
-  $('#genBtn').addEventListener('click',build);
-  Object.keys(F).forEach(function(k){ F[k].addEventListener('input',function(){
-    if($('#promptOut').textContent.indexOf('Build me a working web app')===0) build();
-  });});
-  $('#exBtn').addEventListener('click',function(){
-    setFields(IDEAS[0].v);
-    $$('#ideas .idea').forEach(function(x){ x.setAttribute('aria-pressed', x.dataset.k==='roster'?'true':'false'); });
-    build();
-  });
-  $('#clrBtn').addEventListener('click',function(){
-    setFields(null);
-    $$('#ideas .idea').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
-    $('#promptOut').textContent = 'Fill in the fields above and press "Build the prompt".\n\nYour finished prompt appears here, ready to copy into Claude or ChatGPT.';
-  });
-
-  var copyBtn = $('#copyBtn');
-  copyBtn.addEventListener('click',function(){
-    var txt = $('#promptOut').textContent;
-    function ok(){ copyBtn.textContent='Copied'; copyBtn.classList.add('done');
-      setTimeout(function(){ copyBtn.textContent='Copy'; copyBtn.classList.remove('done'); },1600); }
-    function fallback(){
-      var r=document.createRange(); r.selectNodeContents($('#promptOut'));
-      var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      copyBtn.textContent='Selected — press Cmd/Ctrl+C';
-      setTimeout(function(){ copyBtn.textContent='Copy'; },2600);
-    }
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(txt).then(ok).catch(fallback);
-    } else { fallback(); }
-  });
-
-  /* ---------------- stingers ---------------- */
-  function playVisibleStingers(){
-    $$('.stinger video').forEach(function(v){
-      var host = v.closest('.lesson');
-      if(host && !host.hidden){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
-      else { v.pause(); }
-    });
-  }
-  playVisibleStingers();
-
 })();
 </script>
 </body>

@@ -138,16 +138,6 @@ h4{font-family:var(--display);font-weight:600;font-size:15px;margin:22px 0 7px}
 }
 .eyebrow::after{content:"";flex:1;height:1px;background:var(--edge)}
 
-/* ---------- presenter notes ---------- */
-.note{
-  border:1px dashed var(--cyan);background:var(--cyan-wash);border-radius:4px;
-  padding:12px 15px;margin:16px 0;font-size:14.5px;color:var(--fg);
-}
-.note::before{
-  content:"SAY THIS";font-family:var(--mono);font-size:10px;letter-spacing:.14em;
-  color:var(--cyan);display:block;margin-bottom:5px;
-}
-body:not(.notes-on) .note{display:none}
 
 /* ---------- generic panel + grid ---------- */
 .panel{background:var(--panel);border:1px solid var(--edge);border-radius:5px;padding:18px 20px}
@@ -709,7 +699,6 @@ footer b{color:var(--fg-dim);font-weight:500}
     <div class="lessonmeta">Lesson <b id="lnum">1</b>/<span id="ltot">9</span>
       <span class="ltitle"> &middot; <span id="ltitle"></span></span></div>
     <div class="toolbtns" style="margin-left:auto">
-      <button class="tbtn" id="notesBtn" aria-pressed="false" title="Show the speaking notes">Notes</button>
       <button class="tbtn" id="themeBtn" title="Switch light / dark">Light</button>
     </div>
   </div>
@@ -745,7 +734,7 @@ footer b{color:var(--fg-dim);font-weight:500}
 
   <div class="herogrid">
     <div>
-      <p class="lsub" style="margin-bottom:18px">A working session on how I actually use these tools &mdash; the videos
+      <p class="lsub" style="margin-bottom:18px">A working session on how I actually use these tools, the videos
       that taught me, what changed when models started doing things instead of saying things, what the
       subscriptions really cost, the plumbing nobody explains, and twenty minutes at the end where you
       build something that runs.</p>
@@ -759,17 +748,14 @@ footer b{color:var(--fg-dim);font-weight:500}
           <source src="assets/video/intro-caspar.mp4" type="video/mp4">
         </video>
       </div>
-      <p class="vcap" style="margin-top:8px"><b>CLIP 00</b><span>Press play &mdash; it has sound.</span></p>
+      <p class="vcap" style="margin-top:8px"><b>CLIP 00</b><span>Press play. It has sound.</span></p>
     </div>
   </div>
 
   <div class="bluf" style="margin-top:26px"><b>What that clip was</b>
-  That is my face, my suit and my tie &mdash; and I was not filmed. One photograph, three sentences of
+  That is my face, my suit and my tie, and I was not filmed. One photograph, three sentences of
   instruction, about forty cents, and roughly two minutes of waiting. The voice is not mine either.</div>
 
-  <div class="note">Play it cold, say nothing, let it finish. Then: &ldquo;That was not filmed. It is one
-  headshot and a paragraph of text. And that is not my voice.&rdquo; Pause there &mdash; let the room sit
-  with it before you start explaining anything.</div>
 
   <div class="warnbox"><b>Before we go further</b>
   <p>Everything in this brief is unclassified and built on a personal account, on personal time, with no
@@ -797,11 +783,8 @@ footer b{color:var(--fg-dim);font-weight:500}
   video and a willingness to look stupid for a fortnight.</div>
 
   <p class="lede">The useful channels are not the ones explaining what AI <em>is</em>. They are the ones
-  filming someone building a real thing, including the parts where it fails. Watch the failures &mdash;
-  that is where the technique lives.</p>
+  filming someone building a real thing, including the parts where it fails. Watch the failures. That is where the technique lives.</p>
 
-  <div class="note">Be honest about the timeline here. Say it took you weeks and that most of the early
-  output was rubbish. If they think you had a shortcut they will not start.</div>
 
   <div class="eyebrow">Three rules before you press play</div>
   <ul class="clean">
@@ -861,7 +844,7 @@ footer b{color:var(--fg-dim);font-weight:500}
       <p class="tl-d">Train one large model on most of the internet, then adapt it. GPT-2, GPT-3.
       Impressive in demos, awkward to use, no interface the public cared about.</p></div>
     <div class="tl-item key"><div class="tl-yr">NOV 2022</div>
-      <div class="tl-h">ChatGPT &mdash; the interface moment</div>
+      <div class="tl-h">ChatGPT, the interface moment</div>
       <p class="tl-d">The capability was mostly already there. Putting a chat box on it is what made it
       a household object. Remember that: interface changes adoption more than capability does.</p></div>
     <div class="tl-item"><div class="tl-yr">2023&ndash;2024</div>
@@ -869,7 +852,7 @@ footer b{color:var(--fg-dim);font-weight:500}
       <p class="tl-d">Models learn to call functions, read images, and hold a book-length context.
       Still fundamentally one question in, one answer out.</p></div>
     <div class="tl-item key"><div class="tl-yr">LATE 2024</div>
-      <div class="tl-h">MCP &mdash; a standard plug</div>
+      <div class="tl-h">MCP, a standard plug</div>
       <p class="tl-d">Anthropic publishes the Model Context Protocol and opens it. One way to connect any
       model to any tool or data source, instead of a bespoke integration per pairing. Section 04.</p></div>
     <div class="tl-item key"><div class="tl-yr">2025&ndash;2026</div>
@@ -880,8 +863,8 @@ footer b{color:var(--fg-dim);font-weight:500}
   </div>
 
   <div class="eyebrow">What &ldquo;agentic&rdquo; actually means</div>
-  <p class="lede">The word is doing a lot of marketing work. Here is the honest ladder. Most people are
-  on rung one and assume that is the ceiling. Click each rung.</p>
+  <p class="lede">The word does a lot of marketing work. Here is the honest ladder. Most people sit on
+  rung one and assume that is the ceiling. Click each rung.</p>
 
   <div class="ladder">
     <details class="rung">
@@ -889,8 +872,8 @@ footer b{color:var(--fg-dim);font-weight:500}
         <span class="rung-name">Chatbot<small>You ask &middot; it answers &middot; you do the work</small></span>
         <span class="rung-tog">OPEN</span></summary>
       <div class="rung-body">
-        <p>It produces text. Nothing happens in the world. You still open the file, paste the thing,
-        check the maths and send the email. The model is a very fast writer with no hands.</p>
+        <p>It produces text. Nothing happens in the world. You still open the file, check the maths and send
+        the email. A very fast writer with no hands.</p>
         <div class="ex"><b>Looks like:</b> &ldquo;Draft me a paragraph on X.&rdquo; You copy it out.</div>
       </div>
     </details>
@@ -899,8 +882,8 @@ footer b{color:var(--fg-dim);font-weight:500}
         <span class="rung-name">Copilot<small>It suggests inside your tool &middot; you still drive</small></span>
         <span class="rung-tog">OPEN</span></summary>
       <div class="rung-body">
-        <p>Now it sits where you work and completes what you started. Faster, but the loop is unchanged:
-        it proposes, you accept or reject, every single time. You are the bottleneck by design.</p>
+        <p>It sits where you work and completes what you started. Faster, but the loop is unchanged: it
+        proposes, you accept or reject, every time. You are the bottleneck by design.</p>
         <div class="ex"><b>Looks like:</b> autocomplete in your editor, Smart Compose in mail.</div>
       </div>
     </details>
@@ -919,9 +902,9 @@ footer b{color:var(--fg-dim);font-weight:500}
         <span class="rung-name">Agentic<small>You give intent &middot; it loops until done</small></span>
         <span class="rung-tog">OPEN</span></summary>
       <div class="rung-body">
-        <p>You state an outcome and the constraints. It decides the steps, uses tools, looks at what came
-        back, notices it was wrong, tries again, and keeps going until the outcome holds or it gets stuck.
-        You review the result, not the keystrokes.</p>
+        <p>You state an outcome and the constraints. It picks the steps, uses tools, looks at what came back,
+        notices it was wrong, and keeps going until the outcome holds or it gets stuck. You review the
+        result, not the keystrokes.</p>
         <p>Four things make it agentic, and all four have to be present:
         a <b>goal</b> instead of a task, <b>tools</b> it may actually use, a <b>loop</b> where it sees the
         consequence of its own last move, and <b>memory</b> of what it already tried.</p>
@@ -931,21 +914,16 @@ footer b{color:var(--fg-dim);font-weight:500}
     </details>
   </div>
 
-  <div class="note">This is the slide to slow down on. The military framing lands hard here: L1 to L3 is
-  giving orders. L4 is mission command &mdash; intent, constraints, freedom of action, back-brief. Ask the
-  room how they would supervise a capable subordinate they could not see. That is the actual skill, and
-  nobody in the room is new to it.</div>
 
 
   <div class="eyebrow">What you actually are now</div>
-  <p class="lede">The most useful way to think about an agent is not as a tool. It is a <b>staff
-  officer</b> &mdash; capable, fast, tireless, well-read, and entirely dependent on you for direction
-  and for judgement about what matters.</p>
+  <p class="lede">The most useful way to think about an agent is as a <b>staff officer</b>: capable,
+  fast, tireless, well-read, and wholly dependent on you for direction and for judgement about what
+  matters.</p>
 
-  <p>Which makes your job the one you already know how to do. You are not operating a machine. You are
-  <b>commanding</b> one: setting intent, bounding it, and then <b>reviewing the product before it goes
-  anywhere.</b> That review is not a formality you do if there is time. It is now the main thing you are
-  paid for.</p>
+  <p>So your job is the one you already know. You are not operating a machine, you are <b>commanding</b>
+  one: setting intent, bounding it, then <b>reviewing the product before it goes anywhere.</b> That
+  review is now the main thing you are paid for.</p>
 
   <div class="tscroll">
     <table>
@@ -967,25 +945,18 @@ footer b{color:var(--fg-dim);font-weight:500}
   </div>
 
   <div class="warnbox"><b>The part that should worry you</b>
-  <p>A staff officer who is wrong usually shows it &mdash; they hesitate, they hedge, they come back with
-  questions. An agent that is wrong reads exactly like an agent that is right. Same fluency, same
-  confidence, same speed.</p>
-  <p>So the signals you have spent a career learning to read are not available here. The only reliable
-  check is the one you do on the output itself. <b>Never let anything leave your hands that you have not
-  personally verified.</b></p></div>
+  <p>A staff officer who is wrong usually shows it. They hesitate, they hedge, they come back with
+  questions. An agent that is wrong reads exactly like an agent that is right.</p>
+  <p>The signals you spent a career learning to read are not available here. <b>Verify anything before
+  it leaves your hands.</b></p></div>
 
-  <div class="note">This is the slide that makes the room comfortable, because it tells them their
-  existing skill is the relevant one. Say plainly: &ldquo;You are not becoming a programmer. You are
-  becoming a commander of something that never pushes back.&rdquo; Then sit on the warning box &mdash;
-  the missing hesitation cue is the genuinely new risk.</div>
 
   <div class="warnbox"><b>The honest part</b>
-  <p>An agent that loops is an agent that can be confidently wrong for forty minutes instead of thirty
-  seconds. It will invent a source, delete the wrong file, or declare success on something it never
-  checked.</p>
-  <p>So the discipline is unchanged from any delegation: state the constraints up front, make it show
-  its working, and verify the output yourself before it leaves your hands. Never let an agent be the
-  last pair of eyes on anything that carries your name.</p></div>
+  <p>An agent that loops can be confidently wrong for forty minutes instead of thirty seconds. It will
+  invent a source, delete the wrong file, or declare success on something it never checked.</p>
+  <p>The discipline is the same as any delegation: state the constraints, make it show its working, and
+  check the output yourself. Never let an agent be the last pair of eyes on anything carrying your
+  name.</p></div>
 </section>
 
 <!-- ========================= 03 ========================= -->
@@ -1005,7 +976,7 @@ footer b{color:var(--fg-dim);font-weight:500}
 
   <div class="bluf"><b>Bottom line</b>
   Everyone converged on twenty dollars a month because that is the number people pay without thinking.
-  The free tiers are genuinely good now. Pay only when you hit a wall you can name &mdash; and if you are
+  The free tiers are genuinely good now. Pay only when you hit a wall you can name, and if you are
   a student, Perplexity is half price and almost nobody claims it.</div>
 
   <div class="tscroll">
@@ -1024,7 +995,7 @@ footer b{color:var(--fg-dim);font-weight:500}
         <tr>
           <th>Entry</th>
           <td class="num">$8 <span class="small muted">Go</span></td>
-          <td class="muted small">&mdash; none &mdash;</td>
+          <td class="muted small">, none, </td>
           <td class="num">$10 <span class="pill best">students</span><br><span class="small muted">Education Pro &middot; SheerID</span></td>
         </tr>
         <tr>
@@ -1037,7 +1008,7 @@ footer b{color:var(--fg-dim);font-weight:500}
           <th>Heavy</th>
           <td class="num">$100 <span class="small muted">Pro &middot; 5&times; Plus</span></td>
           <td class="num">$100 <span class="small muted">Max &middot; 5&times; Pro</span></td>
-          <td class="muted small">&mdash; none &mdash;</td>
+          <td class="muted small">, none, </td>
         </tr>
         <tr>
           <th>Heaviest</th>
@@ -1072,18 +1043,15 @@ footer b{color:var(--fg-dim);font-weight:500}
   <ul class="clean">
     <li><b>It cites, so you can audit.</b> This is the whole product. For anything you have to defend in
     writing, a cited answer beats a confident one.</li>
-    <li><b>It is model-agnostic.</b> You choose which underlying model answers &mdash; GPT, Claude,
-    Gemini, Grok &mdash; per query. One subscription, several brains.</li>
+    <li><b>It is model-agnostic.</b> You choose which underlying model answers, GPT, Claude,
+    Gemini, Grok, per query. One subscription, several brains.</li>
     <li><b>It is current.</b> It searches now. A plain chatbot answers from training data unless you
     explicitly make it look things up.</li>
     <li><b>Students get it at half price.</b> Education Pro is $10 a month, verified through SheerID with an
     academic email, and includes everything in Pro. Confirmed on Perplexity&rsquo;s own help centre, 2 Oct 2026.</li>
-    <li><b>Use it for the first 20% of any research task</b> &mdash; mapping what exists and who says what
-    &mdash; then take the sources into Claude or ChatGPT to actually think with them.</li>
+    <li><b>Use it for the first 20% of any research task</b>, mapping what exists and who says what, then take the sources into Claude or ChatGPT to actually think with them.</li>
   </ul>
 
-  <div class="note">Flag the student discount loudly &mdash; everyone in this room qualifies and it is a
-  thirty-second verification for half price. Easiest win in the whole brief.</div>
 
 
   <div class="eyebrow">The other four tools worth knowing</div>
@@ -1118,7 +1086,7 @@ footer b{color:var(--fg-dim);font-weight:500}
     <div class="concept">
       <h4><span>Study tool</span>Gemini Notebook</h4>
       <p>Renamed from NotebookLM in July 2026; same product, same notebooks. You upload your readings
-      &mdash; PDFs, slides, notes &mdash; and it answers <em>only</em> from those, with a citation you
+      &mdash; PDFs, slides, notes, and it answers <em>only</em> from those, with a citation you
       can click back to the page.</p>
       <p>That restriction is the feature. It cannot wander off into half-remembered training data, so for
       module reading it is far safer than a chat window. It will also generate an audio discussion of your
@@ -1132,19 +1100,19 @@ footer b{color:var(--fg-dim);font-weight:500}
     <div class="concept">
       <h4><span>Research</span>Perplexity</h4>
       <p>An answer engine rather than a chatbot. It searches the live web, reads the results, and writes
-      an answer with numbered citations you can audit. You also pick which model answers &mdash; GPT,
-      Claude, Gemini or Grok &mdash; per query.</p>
+      an answer with numbered citations you can audit. You also pick which model answers, GPT,
+      Claude, Gemini or Grok, per query.</p>
       <p>Use it for the first fifth of a research task: mapping what exists and who says what. Then take
       the sources somewhere else to think with them.</p>
       <p class="small"><b>Free:</b> 3 Pro searches a day. <b>Pro:</b> $20.
-      <b>Education Pro:</b> $10 for verified students &mdash; everything in Pro.</p>
+      <b>Education Pro:</b> $10 for verified students, everything in Pro.</p>
       <div class="sowhat"><b>Use it for</b>Anything you will have to defend in writing, where a cited
       answer beats a confident one.</div>
     </div>
 
     <div class="concept">
       <h4><span>Slides</span>Gamma</h4>
-      <p>Describe a deck and it builds one &mdash; layout, images and all &mdash; then lets you edit it
+      <p>Describe a deck and it builds one, layout, images and all, then lets you edit it
       like a normal document. Exports to PowerPoint and PDF, so it drops into the formats we actually use.</p>
       <p>It is good at getting you to a complete first draft in two minutes. It is not good at house
       style, and the default look is recognisably Gamma, so budget time to strip that out.</p>
@@ -1157,8 +1125,8 @@ footer b{color:var(--fg-dim);font-weight:500}
 
     <div class="concept">
       <h4><span>Video &amp; images</span>Higgsfield</h4>
-      <p>A front end onto many image and video models at once &mdash; Veo, Kling, Seedance, Nano Banana
-      and others &mdash; billed from one pool of credits rather than a subscription each.</p>
+      <p>A front end onto many image and video models at once, Veo, Kling, Seedance, Nano Banana
+      and others, billed from one pool of credits rather than a subscription each.</p>
       <p>Everything is priced in credits, and the price varies enormously by model. The talking head in
       Lesson 01 was Veo 3.1 Lite: 8 seconds with audio, <b>12 credits</b>, about two minutes of waiting.
       Silent clips were cheaper.</p>
@@ -1170,37 +1138,11 @@ footer b{color:var(--fg-dim);font-weight:500}
     </div>
   </div>
 
-  <div class="eyebrow">Which one for which job</div>
-  <div class="tscroll">
-    <table>
-      <caption>If the job is&hellip;</caption>
-      <thead><tr><th>The job</th><th>Reach for</th><th>Why not the obvious one</th></tr></thead>
-      <tbody>
-        <tr><td>Understand a set of readings you were given</td><th>Gemini Notebook</th>
-            <td>A chat window will answer from training data and quietly blend it with your sources.</td></tr>
-        <tr><td>Find out what the literature says on a topic</td><th>Perplexity</th>
-            <td>Chat assistants only search if you push them, and cite less reliably.</td></tr>
-        <tr><td>Write, argue, or think something through</td><th>Claude or ChatGPT</th>
-            <td>Perplexity is built to retrieve, not to reason at length.</td></tr>
-        <tr><td>Build a tool, script or app</td><th>Claude</th>
-            <td>Claude Code is included at $20, which is the cheapest serious build setup going.</td></tr>
-        <tr><td>Get to a first-draft deck fast</td><th>Gamma</th>
-            <td>Asking a chat assistant for slides gets you bullet points, not a deck.</td></tr>
-        <tr><td>Make a video or an image</td><th>Higgsfield</th>
-            <td>The chat assistants generate images but not controllable video.</td></tr>
-        <tr><td>Summarise a 300-page PDF</td><th>Gemini or Gemini Notebook</th>
-            <td>Both handle very long inputs without losing the middle.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
   <div class="bluf" style="margin-top:26px"><b>If you only pay for one thing</b>
   Perplexity Education Pro at $10 if you mostly research and write; Claude Pro at $20 if you want to
   build things. Everything else here has a free tier that will carry you for months. Total spend to do
   everything in this brief: nothing, if you are patient.</div>
 
-  <div class="note">The cost slide is where the room wakes up. Be blunt that you do not pay for all seven
-  and nor should they. Name the two you would actually buy and why, then move on.</div>
 
   <div class="ask" id="priceAsk">
     <p class="ask-q">What should <em>you</em> actually pay? Pick the one that sounds most like you.</p>
@@ -1236,14 +1178,12 @@ footer b{color:var(--fg-dim);font-weight:500}
   highest-leverage thing in the whole brief and almost nobody uses it.</div>
 
   <div class="eyebrow">What a skill actually is</div>
-  <p>A skill is a folder with a set of written instructions and, optionally, some scripts. It sits there
-  doing nothing until a task comes along that matches its description, at which point the model loads it
-  and follows it.</p>
-  <p>That is the clever bit: it is loaded <em>on demand</em>. You can have two hundred skills and the
-  model only reads the one that applies, so none of them crowd out the conversation.</p>
+  <p>A skill is a folder holding written instructions. It sits dormant until a task matches its
+  description, then the model loads it and follows it. Loading happens <em>on demand</em>, so you can
+  keep two hundred skills and only the relevant one ever enters the conversation.</p>
   <ul class="clean">
-    <li><b>Why you care:</b> every standard you repeat &mdash; a house format, a checklist, a marking
-    rubric, a brief structure &mdash; becomes something you write once and never explain again.</li>
+    <li><b>Why you care:</b> every standard you repeat, a house format, a checklist, a marking
+    rubric, a brief structure, becomes something you write once and never explain again.</li>
     <li><b>Mine:</b> an essay auditor holding the grading criteria and my tutor&rsquo;s past feedback. I
     say &ldquo;audit this&rdquo; and it runs twenty checks I would otherwise forget.</li>
     <li><b>They are plain text.</b> Readable, editable, shareable. Hand your skill to the syndicate and
@@ -1253,13 +1193,11 @@ footer b{color:var(--fg-dim);font-weight:500}
 
 
   <div class="eyebrow">Prompting is dead</div>
-  <p class="lede">The whole industry of &ldquo;prompt engineering&rdquo; &mdash; magic words, elaborate
-  templates, &ldquo;act as a world-class expert&rdquo; &mdash; was a workaround for models that could not
-  follow ordinary instructions. They can now. That skill has largely expired.</p>
+  <p class="lede">&ldquo;Prompt engineering&rdquo; was a workaround for models that could not follow
+  ordinary instructions. They can now, and that skill has largely expired.</p>
 
-  <p>What replaced it is not a better prompt. It is a different job. You stop writing <b>steps</b> and
-  start stating the <b>end state</b>, the constraints, and how you will judge the result &mdash; then let
-  it work out the route.</p>
+  <p>What replaced it is a different job. You stop writing <b>steps</b> and start stating the
+  <b>end state</b>, the constraints, and how you will judge the result. It works out the route.</p>
 
   <div class="vs">
     <div class="vs-col cloud">
@@ -1302,14 +1240,11 @@ footer b{color:var(--fg-dim);font-weight:500}
   back-brief. The only new part is that the subordinate is a machine, is extremely fast, and will not
   tell you when it is out of its depth unless you ask.</div>
 
-  <div class="note">Spend real time here &mdash; this is the conceptual centre of the whole course. Ask
-  the room how they brief a capable junior they cannot supervise directly. Whatever they answer is the
-  right answer for this too. Then make the point that a <em>skill</em> is simply how you issue standing
-  orders instead of repeating yourself.</div>
+  <p class="lede" style="border-left:3px solid var(--amber);padding-left:14px">Before you read on, answer this for yourself: how do you brief a capable junior you cannot supervise directly? Whatever you just thought is the right answer here too.</p>
 
   <div class="eyebrow">What one looks like</div>
-  <p>Not code. A folder with a text file in it. The top few lines say what the skill is and when to use
-  it &mdash; that is all the model reads until a matching task comes along. Here is a real one, cut down:</p>
+  <p>Not code. A text file in a folder. The top lines say what it is and when to use it, and that is all
+  the model reads until a matching task arrives. A real one, cut down:</p>
 
 <div class="filesample">---
 <b>name</b>: brief-format
@@ -1324,44 +1259,42 @@ Speaking notes in full sentences; slide text in fragments.
 Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <p>That is the whole mechanism. The <code style="font-family:var(--mono);font-size:12.5px;color:var(--amber)">description</code>
-  line is the important part &mdash; it is how the model decides whether this skill is relevant to what
+  line is the important part. It is how the model decides whether this skill is relevant to what
   you just asked. Vague description, skill never fires.</p>
 
   <div class="eyebrow">Two worth having on day one</div>
   <div class="concepts">
     <div class="concept">
       <h4><span>Prose</span>humanizer</h4>
-      <p>Strips the tells that make writing read as machine-generated: the puffed-up significance, the
-      rule-of-three everywhere, the &ldquo;it is not just X, it is Y&rdquo; construction, the em-dash
-      habit, the stock closing paragraph about challenges and future prospects.</p>
+      <p>Strips the tells that make writing read as machine-generated: puffed-up significance, triads
+      everywhere, the &ldquo;not X, but Y&rdquo; cadence, the em-dash habit, the stock closing
+      paragraph about challenges and future prospects.</p>
       <p>It works off a documented catalogue of these patterns rather than vibes, which is why it is
-      worth more than telling the model &ldquo;write more naturally&rdquo; &mdash; an instruction it
+      worth more than telling the model &ldquo;write more naturally&rdquo;, an instruction it
       cannot actually act on.</p>
       <div class="sowhat"><b>Use it on</b>Anything with your name on it that a human will read closely.</div>
     </div>
     <div class="concept">
       <h4><span>Prose</span>stop-slop</h4>
-      <p>The lighter cousin. Removes filler, hedging and over-formality &mdash; the &ldquo;it is worth
+      <p>The lighter cousin. Removes filler, hedging and over-formality, the &ldquo;it is worth
       noting that&rdquo;, &ldquo;in today&rsquo;s rapidly evolving landscape&rdquo;, &ldquo;delve
       into&rdquo; register that creeps into every draft.</p>
-      <p>Where humanizer is a full edit against a catalogue of signs, stop-slop is a quick pass for
-      padding. Run it on a draft that is fine but flabby.</p>
+      <p>Run it on a draft that is fine but flabby.</p>
       <div class="sowhat"><b>Use it on</b>Emails, minutes, anything you want shorter and plainer fast.</div>
     </div>
   </div>
 
   <div class="warnbox" style="border-color:var(--amber-deep);border-left-color:var(--amber);background:var(--amber-wash)">
     <b style="color:var(--amber)">A warning about both</b>
-    <p>Neither makes AI writing undetectable, and that is not what they are for. They make the prose
-    <em>better</em> &mdash; less padded, less formulaic, more like something a person would actually say.</p>
-    <p>If what you are really asking is &ldquo;can I pass this off as mine&rdquo;, the answer for
-    assessed work is no, and your institution&rsquo;s rules apply regardless of what any tool does.</p></div>
+    <p>Neither makes AI writing undetectable, and that is not what they are for. They make the prose less
+    padded and less formulaic.</p>
+    <p>If the real question is &ldquo;can I pass this off as mine&rdquo;, the answer for assessed work is
+    no. Your institution&rsquo;s rules apply whatever any tool does.</p></div>
 
 
   <div class="eyebrow">Skills worth having on a Master&rsquo;s or graduate diploma</div>
-  <p>Most published skills are built for software teams and are useless to you. The ones that pay off on
-  a taught postgraduate course are the ones that encode <em>assessment</em> &mdash; what a marker
-  rewards, and what loses marks.</p>
+  <p>Most published skills are built for software teams and will not help you. The ones that pay off on a
+  taught postgraduate course encode <em>assessment</em>: what a marker rewards, and what loses marks.</p>
 
   <div class="tscroll">
     <table>
@@ -1390,7 +1323,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     </table>
   </div>
 
-  <div class="eyebrow">Writing your own &mdash; the fast route</div>
+  <div class="eyebrow">Writing your own, the fast route</div>
   <p class="lede">Do not sit down to write a skill. You will produce something generic. Instead, do the
   task once properly and let the corrections become the skill.</p>
 
@@ -1399,12 +1332,11 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     as you go. Every &ldquo;no, we always do it this way&rdquo; is a future rule.</li>
     <li><b>Then say: &ldquo;turn everything you just learnt into a skill.&rdquo;</b> It writes the file,
     including the description line. This is the whole trick, and almost nobody does it.</li>
-    <li><b>Read what it wrote and cut half of it.</b> It will over-generalise. Keep the rules that are
-    specifically yours and delete the ones that are just good practice &mdash; it already knows those.</li>
+    <li><b>Cut half of what it wrote.</b> It over-generalises. Keep the rules that are specifically yours;
+    delete the ones that are just good practice, which it already knows.</li>
     <li><b>Sharpen the description line.</b> That line alone decides whether the skill ever fires. Name
     the trigger: &ldquo;Use when drafting or reviewing any assessed essay for the X programme.&rdquo;</li>
-    <li><b>Use it on the next assignment and fix what it misses.</b> A skill is never finished on the
-    first pass; mine took four or five rounds before it was worth keeping.</li>
+    <li><b>Use it and fix what it misses.</b> Mine took four or five rounds before it earned its place.</li>
   </ol>
 
   <div class="bluf"><b>The payoff, concretely</b>
@@ -1413,8 +1345,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   before submission. I wrote none of those checks in the moment &mdash; they accumulated from
   corrections I made once.</div>
 
-  <div class="note">If anyone in the room has had written feedback from a tutor, point out that the
-  feedback IS the skill. Most people file it and never read it again.</div>
+  <p><b>If a tutor has ever given you written feedback, that feedback is the skill.</b> Most people file it and never open it again. Put it in a skill file and it works on every assignment from now on.</p>
 
   <div class="eyebrow">Where to find them</div>
   <ul class="clean">
@@ -1423,15 +1354,10 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     <li><b>Your organisation&rsquo;s catalogue.</b> If your workplace publishes skills, they appear in
     your settings and install in one click.</li>
     <li><b>Public repositories.</b> Anthropic publishes a skills repository on GitHub, and there are
-    community collections. Read before you install &mdash; a skill is instructions the model will
+    community collections. Read before you install, a skill is instructions the model will
     follow, so treat an unknown one the way you would an unknown script.</li>
-    <li><b>Write your own.</b> The fastest route: do the task once by hand, correcting the model as you
-    go, then say &ldquo;turn everything you just learnt into a skill&rdquo;. It writes the file for you.</li>
   </ul>
 
-  <div class="note">This is the part that makes people sit up, because it is the first thing all day
-  that is about <em>their</em> standards rather than the tool&rsquo;s. If you have a skill of your own,
-  open it here &mdash; seeing a real one beats any explanation.</div>
 
   <div class="eyebrow">Skills vs the other two words</div>
   <div class="tscroll">
@@ -1471,7 +1397,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   wiring already done. And &ldquo;local&rdquo; does not mean private &mdash; that distinction is the one
   that matters most here.</div>
 
-  <div class="eyebrow">MCP &mdash; one plug instead of a hundred adapters</div>
+  <div class="eyebrow">MCP, one plug instead of a hundred adapters</div>
   <p class="lede">Model Context Protocol. Anthropic published it in late 2024 and gave it away.
   The problem it solves is unglamorous and enormous.</p>
 
@@ -1552,7 +1478,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     live next term.</li>
   </ul>
 
-  <div class="eyebrow">Local vs cloud &mdash; where the work happens</div>
+  <div class="eyebrow">Local vs cloud, where the work happens</div>
   <p class="lede">This trips people up constantly, and the distinction is simpler than it sounds: it is
   about <b>where the hands are</b>, not where the brain is. The model is a remote service either way.
   What changes is what it can reach.</p>
@@ -1575,7 +1501,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
       <h4>Cloud</h4>
       <p class="tagline">ON THEIR SERVERS &middot; e.g. claude.ai, chatgpt.com</p>
       <ul>
-        <li class="y">Nothing to install &mdash; a browser or a phone is enough</li>
+        <li class="y">Nothing to install, a browser or a phone is enough</li>
         <li class="y">Sandboxed, so it cannot wreck your machine</li>
         <li class="y">Keeps running while you are away from the desk</li>
         <li class="y">Same conversation on every device</li>
@@ -1608,9 +1534,6 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <p>Everything in this brief is unclassified, open-source and built on my own time and my own account.
   Keep it that way and you will not have a bad afternoon.</p></div>
 
-  <div class="note">Do not rush this box. It is the question the room is already silently asking, and
-  answering it plainly up front buys you permission for the rest. Name the rule, then move on &mdash; do
-  not lecture.</div>
 </section>
 
 <!-- ========================= 05 ========================= -->
@@ -1636,22 +1559,21 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   from the model. It comes from a search result you can click.</b></div>
 
   <div class="eyebrow">Why invented citations happen</div>
-  <p>It is not lying, and it is not a bug they forgot to fix. The model generates text that is likely to
-  follow what came before. A citation-shaped string is extremely likely to follow a claim. So it produces
-  one &mdash; correctly formatted, confidently placed, and attached to nothing.</p>
+  <p>The model generates text likely to follow what came before, and a citation-shaped string is
+  extremely likely to follow a claim. So it produces one: correctly formatted, confidently placed, and
+  attached to nothing.</p>
   <p>It happens most when you ask for something that <em>ought</em> to exist. Ask for &ldquo;a study
-  showing X&rdquo; and if no such study is in its memory, the next most likely text is still a citation.</p>
+  showing X&rdquo; and if none is in memory, the likeliest next text is still a citation.</p>
 
   <div class="warnbox"><b>What this costs you</b>
-  <p>A fabricated reference in assessed work is the fastest route to an academic-integrity problem, and
-  it is trivially caught &mdash; a marker only has to search the title.</p>
-  <p>The subtler and more common failure is worse: a <em>real</em> paper cited for a claim it does not
-  actually make. That survives a quick check and still collapses under a marker who knows the literature.</p></div>
+  <p>A fabricated reference in assessed work is an academic-integrity problem, and trivially caught: a
+  marker only has to search the title.</p>
+  <p>The commoner failure is worse. A <em>real</em> paper cited for a claim it does not make survives a
+  quick check and still collapses under a marker who knows the literature.</p></div>
 
   <div class="eyebrow">The workflow that holds up</div>
   <ol class="steps">
-    <li><b>Map the ground first, with a tool that searches.</b> Perplexity or a Scholar search &mdash;
-    something that returns real results with real links. Not a chat window working from memory. You are
+    <li><b>Map the ground first, with a tool that searches.</b> Perplexity or a Scholar search, something that returns real results with real links. Not a chat window working from memory. You are
     asking &ldquo;what exists and who is canonical here?&rdquo;, not &ldquo;what do you think?&rdquo;</li>
     <li><b>Go and find who disagrees.</b> Take your position and search for its strongest published
     critic by name. A rubric rewards engaging a real opponent and punishes a straw man, and the model
@@ -1661,25 +1583,23 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     <li><b>Check every citation twice.</b> Once that the paper exists. Again that the specific claim you
     hung on it is the claim it makes. This second check is where the marks actually are.</li>
     <li><b>Track where each source entered.</b> Note what you took from each and why it is in the essay
-    at all. Any source you cannot justify should be cut &mdash; padding the bibliography reads as padding.</li>
+    at all. Any source you cannot justify should be cut, padding the bibliography reads as padding.</li>
   </ol>
 
   <div class="eyebrow">Tools that search the real literature</div>
   <div class="concepts">
     <div class="concept">
       <h4><span>Literature</span>Google Scholar</h4>
-      <p>Returns actual papers with actual citation counts, and &mdash; the useful part &mdash;
-      <em>who has cited this since</em>. That forward link is how you find the rebuttal to a paper you
+      <p>Returns actual papers with actual citation counts, and, the useful part, <em>who has cited this since</em>. That forward link is how you find the rebuttal to a paper you
       were about to lean on.</p>
       <p>Connected as a tool, the model searches it and hands back results you can open, rather than
       recalling titles. The difference between a real and an invented reference is exactly this.</p>
-      <div class="sowhat"><b>Ask it</b>&ldquo;Who has cited this and disagreed with it?&rdquo; &mdash;
-      the single most useful research question there is.</div>
+      <div class="sowhat"><b>Ask it</b>&ldquo;Who has cited this and disagreed with it?&rdquo;, the single most useful research question there is.</div>
     </div>
     <div class="concept">
       <h4><span>Library</span>Zotero</h4>
       <p>Holds your sources, PDFs, notes and annotations, and formats the bibliography. Connected as a
-      tool, the model can search <em>your own</em> library &mdash; so it answers from papers you have
+      tool, the model can search <em>your own</em> library, so it answers from papers you have
       actually collected and read.</p>
       <p>That is a meaningful shift: the answer is grounded in your reading list rather than the open web.</p>
       <div class="sowhat"><b>Ask it</b>&ldquo;Which papers in my library contradict each other?&rdquo;</div>
@@ -1694,14 +1614,14 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     <div class="concept">
       <h4><span>Web</span>Perplexity</h4>
       <p>Fast orientation with citations on every claim. Best for the first hour of a topic you know
-      nothing about &mdash; who the names are, what the debate is, which terms matter.</p>
+      nothing about, who the names are, what the debate is, which terms matter.</p>
       <div class="sowhat"><b>Ask it</b>&ldquo;What is the main line of criticism against this position?&rdquo;</div>
     </div>
   </div>
 
   <div class="eyebrow">Digging for the golden nuggets</div>
-  <p class="lede">Asking for a summary gets you a summary &mdash; competent, accurate and worth nothing,
-  because it is what everyone else gets. The value is in questions that force a judgement.</p>
+  <p class="lede">A summary request gets you a summary: competent, accurate, and worth nothing, because
+  everyone else gets the same one. The value is in questions that force a judgement.</p>
 
   <div class="tscroll">
     <table>
@@ -1710,7 +1630,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
       <tbody>
         <tr><td>&ldquo;Summarise this paper&rdquo;</td>
             <th>&ldquo;What does this claim that I would have to argue against?&rdquo;</th>
-            <td>The friction with your own position &mdash; the only part you actually need.</td></tr>
+            <td>The friction with your own position, the only part you actually need.</td></tr>
         <tr><td>&ldquo;What are the key points?&rdquo;</td>
             <th>&ldquo;What is the weakest link in its argument?&rdquo;</th>
             <td>Where to push, and what a marker will already be sceptical about.</td></tr>
@@ -1725,18 +1645,15 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
             <td>Real edits rather than a light polish of everything.</td></tr>
         <tr><td>&ldquo;Explain this concept&rdquo;</td>
             <th>&ldquo;Where does this concept break down?&rdquo;</th>
-            <td>The scope conditions &mdash; where a distinction class lives.</td></tr>
+            <td>The scope conditions, where a distinction class lives.</td></tr>
       </tbody>
     </table>
   </div>
 
   <p>One more worth memorising: <b>&ldquo;What would change your answer?&rdquo;</b> It forces the model
-  to state what its conclusion depends on, which tells you where it is weak &mdash; and quite often tells
+  to state what its conclusion depends on, which tells you where it is weak, and quite often tells
   you your own argument rests on something you had not noticed.</p>
 
-  <div class="note">Do the fabricated-citation demo live if you have two minutes. Ask a chat window for
-  five sources on something narrow, then search for them. Usually one or two do not exist. Nothing you
-  say will land as hard as watching that happen.</div>
 
   <div class="warnbox" style="border-color:var(--amber-deep);border-left-color:var(--amber);background:var(--amber-wash)">
     <b style="color:var(--amber)">Declare it</b>
@@ -1778,7 +1695,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
 <b>SLIDE TEXT</b>
   Telegraphic. Drop articles and the verb "is".
-  <i># "Strike RINGTON at first light" &mdash; not "The plan is to strike RINGTON"</i>
+  <i># "Strike RINGTON at first light", not "The plan is to strike RINGTON"</i>
   No rhetorical antithesis. Never "X, not Y".
 
 <b>SPEAKING NOTES</b>
@@ -1821,7 +1738,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="eyebrow">Pointing it at your own folders</div>
   <p class="lede">This is the capability people underestimate most. Running locally (Lesson 06), it can
-  read a whole directory &mdash; not one file you uploaded, but everything, with the structure intact.</p>
+  read a whole directory, not one file you uploaded, but everything, with the structure intact.</p>
 
   <p>That changes the kind of question you can ask:</p>
   <ul class="clean">
@@ -1844,9 +1761,6 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   for me to confirm&rdquo;. Reading is safe; renaming and deleting are not, and an agent that
   misunderstands your folder structure is a bad afternoon.</p></div>
 
-  <div class="note">The folder capability is the one that makes people realise this is different from a
-  chat window. If you can, demo it on a real folder &mdash; even just &ldquo;what is in here and what is
-  inconsistent?&rdquo; on a module directory.</div>
 </section>
 
 
@@ -1879,7 +1793,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
       then generated them in parallel. The presenter clips came from a single photograph.</p></div>
     <div class="log-i auto"><div class="log-w">My laptop &middot; ffmpeg</div><div class="log-h">Cut the video</div>
       <p class="log-d">Downloaded the clips, pulled poster frames, detected the real picture area and
-      cropped away the letterboxing &mdash; which also removed the generator&rsquo;s watermark.</p></div>
+      cropped away the letterboxing, which also removed the generator&rsquo;s watermark.</p></div>
     <div class="log-i auto"><div class="log-w">My laptop &middot; files</div><div class="log-h">Wrote the page</div>
       <p class="log-d">Created the project folder and wrote the HTML, CSS and JavaScript directly to
       disk. Not pasted from a chat window &mdash; written, then edited in place as it changed.</p></div>
@@ -1892,7 +1806,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     <div class="log-i human"><div class="log-w">Me</div><div class="log-h">Changed my mind, repeatedly</div>
       <p class="log-d">Asked for my own face instead of a stock presenter, for pages instead of one long
       scroll, and for four more lessons. Each one was a rebuild, not a tweak. <b>That is the normal
-      shape of this work</b> &mdash; see the next lesson.</p></div>
+      shape of this work</b>, see the next lesson.</p></div>
   </div>
 
   <div class="eyebrow">&ldquo;How did it take over your computer?&rdquo;</div>
@@ -1902,11 +1816,10 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     Real folders, real commands, real git.</li>
     <li><b>By default it asks before each action.</b> A box appears naming the command; nothing runs
     until I approve. You can approve once, or for a session, or turn the prompts off entirely.</li>
-    <li><b>I had them off for this build.</b> That is why it moved fast &mdash; and it is a deliberate
+    <li><b>I had them off for this build.</b> That is why it moved fast, and it is a deliberate
     trade I made on a throwaway folder with nothing sensitive in it. It is not what I would do on
     anything that mattered.</li>
-    <li><b>It can also drive the screen.</b> Screenshots, clicks, typing into applications. Not used here
-    &mdash; and the one I would be slowest to enable.</li>
+    <li><b>It can also drive the screen.</b> Screenshots, clicks, typing into applications. Not used here, and the one I would be slowest to enable.</li>
   </ul>
 
   <div class="warnbox"><b>The trade, stated plainly</b>
@@ -1932,8 +1845,6 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     <div class="quiz-done" id="quizDone" hidden></div>
   </div>
 
-  <div class="note">End on the receipts, not the capability. The point is not &ldquo;look what it can
-  do&rdquo; &mdash; it is that every step here is one they can run themselves by Friday.</div>
 </section>
 
 <!-- ========================= When it goes wrong ========================= -->
@@ -1946,7 +1857,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="bluf"><b>Bottom line</b>
   Nobody gets what they wanted on the first try, and the people who conclude &ldquo;AI cannot do
-  this&rdquo; almost always quit at round one. But iteration is not infinite either &mdash; and when you
+  this&rdquo; almost always quit at round one. But iteration is not infinite either, and when you
   start going in circles, the cause is usually the model you are on, not the thing you asked for.</div>
 
   <div class="eyebrow">The first output is never right</div>
@@ -1955,7 +1866,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   turnaround is ninety seconds instead of three days, so you can afford to do it eight times.</p>
 
   <p>And every round is doing real work. When you say &ldquo;no, the roster needs to avoid consecutive
-  weekends&rdquo;, you have not repeated yourself &mdash; you have told it something it could not have
+  weekends&rdquo;, you have not repeated yourself. You have told it something it could not have
   known. Each correction narrows the target.</p>
 
   <p>This is also why it burns through usage so fast. Tearing the work apart and rebuilding costs roughly
@@ -1964,7 +1875,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="bluf"><b>Worth saying out loud</b>
   This brief took four substantial rebuilds. A stock presenter became my face. One long page became ten
-  lessons. Four lessons were added after the structure was finished. None of that was failure &mdash; it
+  lessons. Four lessons were added after the structure was finished. None of that was failure. It
   was the work.</div>
 
   <div class="eyebrow">Converging, or going in circles?</div>
@@ -2001,7 +1912,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="eyebrow">What to do instead</div>
   <ol class="steps">
-    <li><b>Change the model.</b> The single biggest lever, and the one nobody reaches for &mdash; see
+    <li><b>Change the model.</b> The single biggest lever, and the one nobody reaches for, see
     below.</li>
     <li><b>Start a fresh conversation.</b> A long thread full of failed attempts actively pulls it back
     toward those attempts. Restate the problem cleanly in a new one and it often lands first try.</li>
@@ -2011,7 +1922,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     think you are missing?&rdquo; It is markedly better at critiquing its own work than at getting it
     right, and will often name the thing itself.</li>
     <li><b>Do the hard part yourself and hand it back.</b> If one piece is the sticking point, write that
-    piece and let it carry on. Not a defeat &mdash; a division of labour.</li>
+    piece and let it carry on. Not a defeat, a division of labour.</li>
   </ol>
 
   <div class="eyebrow">Usually it is the model</div>
@@ -2054,12 +1965,10 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <p>None of this reasons indefinitely. Every model has a point past which more prompting, more context
   and more patience produce nothing. The frontier ones reach it later, not never.</p>
   <p>Each release pushes that boundary outward, and people reasonably expect it to keep moving. It has
-  not disappeared yet. <b>Knowing roughly where your own ceiling sits &mdash; and doing the work yourself
+  not disappeared yet. <b>Knowing roughly where your own ceiling sits, and doing the work yourself
   when you hit it &mdash; is the actual skill.</b></p></div>
 
-  <div class="note">This is the lesson that stops people giving up in week one. Be specific about your
-  own failures: what you tried, how many rounds, what finally worked. Everyone assumes it worked first
-  time for you and that they are the problem.</div>
+  <p><b>Everyone assumes it worked first time for the other person.</b> It did not. Assume several rounds and you will stop reading normal friction as failure.</p>
 </section>
 
 <section data-hue="gold" class="lesson" hidden id="build" data-title="Vibe coding — now you build one" data-mins="25">
@@ -2084,25 +1993,24 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
 
   <div class="eyebrow">What &ldquo;vibe coding&rdquo; means</div>
-  <p class="lede">You describe what you want in plain English. The model writes the code. You never read
-  it &mdash; you judge the result by whether it does the thing. If it does not, you say what is wrong and
-  it goes again.</p>
+  <p class="lede">You describe what you want in plain English and the model writes the code. You never
+  read it. You judge the result by whether it does the thing, and if it does not, you say what is wrong
+  and it goes again.</p>
 
-  <p>The name is a little mocking and the practice is entirely real. What makes it work now is not that
-  models write perfect code; it is that the <b>feedback loop got fast enough that correctness can be
-  tested rather than reasoned about.</b> You do not need to understand the code if you can tell within
-  five seconds whether it behaved.</p>
+  <p>The name is mocking; the practice is real. What makes it work is not that models write perfect
+  code. It is that the <b>feedback loop got fast enough that correctness can be tested</b>. You do not
+  need to read the code if you can tell in five seconds whether it behaved.</p>
 
   <div class="bluf"><b>The rule that keeps you out of trouble</b>
   Vibe code things where <b>wrong is obvious and cheap</b>. A roster that double-books someone is obvious.
   A calculator that returns nonsense is obvious. Something that quietly mishandles personal data, money or
-  a password is <em>not</em> obvious &mdash; and that is exactly where not reading the code stops being
+  a password is <em>not</em> obvious, and that is exactly where not reading the code stops being
   acceptable.</div>
 
   <div class="eyebrow">A worked example: the trip app</div>
-  <p>Not a toy. A trip-coordination app for a study visit &mdash; itinerary, members, documents, offline
-  access on a phone, backed by a spreadsheet so there was no server to run. Built by someone who does not
-  write software for a living.</p>
+  <p>Not a toy. A trip-coordination app for a study visit: itinerary, members, documents, offline access
+  on a phone, backed by a spreadsheet so there was no server to run. Built by someone who does not write
+  software for a living.</p>
 
   <div class="tscroll">
     <table>
@@ -2124,8 +2032,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   </div>
 
   <p>The lesson is not &ldquo;anyone can build an app&rdquo;. It is that <b>194 rounds</b> is what it
-  looked like. Anyone expecting it in three prompts gives up around round eight and concludes it does not
-  work.</p>
+  looked like. Anyone expecting three prompts gives up around round eight.</p>
 
   <div class="eyebrow">Where it genuinely bites</div>
   <ul class="clean">
@@ -2135,13 +2042,11 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     personal information. Not because the model is bad at it, but because &ldquo;I did not read it&rdquo;
     is not a defensible position when it goes wrong.</li>
     <li><b>It compounds.</b> At 200 lines nobody needs to understand the code. At 5,000 lines, nobody
-    does &mdash; and every change risks something you cannot see.</li>
+    does, and every change risks something you cannot see.</li>
     <li><b>It will confidently claim it is done.</b> Always use the thing yourself. &ldquo;It works
     now&rdquo; is a prediction, not a test result.</li>
   </ul>
 
-  <div class="note">Be straight that the trip app took two months and 194 rounds. The expectation everyone
-  arrives with &mdash; one prompt, finished app &mdash; is the main reason they quit.</div>
 
   <div class="eyebrow">Now your turn</div>
 
@@ -2163,19 +2068,18 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <p class="tiny" style="margin-top:12px">Free tiers are rate-limited, not feature-limited, for this
   purpose. If you run out mid-session, wait or swap to the other one.</p>
 
-  <div class="note">Get them to open the tab <em>now</em>, before you explain anything else. The people
-  who open it build something; the people who plan to open it later never do.</div>
+  <p><b>Open the tab now, before you read any further.</b> People who open it build something. People who plan to open it later do not.</p>
 
   <div class="eyebrow">The six-line prompt that makes this work</div>
   <p class="lede">Vague request, vague app. The difference between a toy and something you actually use
   is about ninety seconds of thinking before you type. Answer six things:</p>
 
   <ol class="steps">
-    <li><b>What it does</b> &mdash; one sentence, as if describing it to a colleague.</li>
+    <li><b>What it does</b>, one sentence, as if describing it to a colleague.</li>
     <li><b>Who uses it, on what</b> &mdash; phone in a corridor, or laptop at a desk? This changes everything about the layout.</li>
-    <li><b>What goes in and what comes out</b> &mdash; the actual fields and the actual result.</li>
-    <li><b>The rules</b> &mdash; the real logic. Thresholds, formulas, bands, edge cases. Be exact here; this is where people are lazy and then wonder why the output is wrong.</li>
-    <li><b>Constraints</b> &mdash; one page, no login, works offline, remembers my entries.</li>
+    <li><b>What goes in and what comes out</b>, the actual fields and the actual result.</li>
+    <li><b>The rules</b>, the real logic. Thresholds, formulas, bands, edge cases. Be exact here; this is where people are lazy and then wonder why the output is wrong.</li>
+    <li><b>Constraints</b>, one page, no login, works offline, remembers my entries.</li>
     <li><b>Done means</b> &mdash; how you will know it works. Give it a worked example with the answer you expect.</li>
   </ol>
 
@@ -2230,7 +2134,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
   <div class="eyebrow">Then: the loop that actually gets you there</div>
   <ol class="steps">
     <li><b>Send it and let it build.</b> Do not interrupt. Wait for something you can click.</li>
-    <li><b>Use it like a real user.</b> Not the happy path &mdash; the awkward one. Empty fields, silly
+    <li><b>Use it like a real user.</b> Not the happy path, the awkward one. Empty fields, silly
     numbers, the thing you know is a corner case.</li>
     <li><b>Report exactly one problem at a time.</b> &ldquo;When I leave the date blank it shows NaN.&rdquo;
     Specific and singular. A list of five vague complaints gets you five half-fixes.</li>
@@ -2250,9 +2154,6 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
     prompt rebuilds it in a minute; the app itself rebuilds nothing.</li>
   </ul>
 
-  <div class="note">Hard stop at twenty minutes, then go round the room: one sentence each on what they
-  built and what broke. The broken ones are the most useful thing in the session &mdash; make sure the
-  room hears them, so nobody leaves thinking theirs was the only one that misbehaved.</div>
 
   <div class="warnbox" style="border-color:var(--amber-deep);border-left-color:var(--amber);background:var(--amber-wash)">
     <b style="color:var(--amber)">Keep it unclassified</b>
@@ -2269,7 +2170,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
   <div class="dots" id="dots"></div>
   <button class="navbtn" id="nextBtn">Next &rarr;</button>
 </div>
-<p class="kbdhint">Use <kbd>&larr;</kbd> <kbd>&rarr;</kbd> to move &middot; <kbd>C</kbd> contents &middot; <kbd>N</kbd> speaking notes</p>
+<p class="kbdhint">Use <kbd>&larr;</kbd> <kbd>&rarr;</kbd> to move &middot; <kbd>C</kbd> contents</p>
 
 <footer>
   <b>Working With AI</b> &middot; syndicate brief &middot; 57 CSC &middot; 7 October 2026<br>
@@ -2299,21 +2200,6 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
     applyTheme(next); store('wwai-theme',next);
   });
 
-  /* ---------------- presenter notes ---------------- */
-  var notesBtn = $('#notesBtn');
-  function applyNotes(on){
-    document.body.classList.toggle('notes-on',on);
-    notesBtn.setAttribute('aria-pressed',on?'true':'false');
-    notesBtn.textContent = on ? 'Notes on' : 'Notes';
-  }
-  applyNotes(store('wwai-notes')==='1');
-  notesBtn.addEventListener('click',function(){
-    var on = !document.body.classList.contains('notes-on');
-    applyNotes(on); store('wwai-notes',on?'1':'0');
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='n' && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){ notesBtn.click(); }
-  });
 
   /* ---------------- courseware navigation ---------------- */
   var HUE = {coral:'#FF7A66',red:'#FF6B6B',violet:'#A78BFA',amber:'#FFC247',mint:'#4ADE80',

@@ -384,6 +384,200 @@ footer{
   font-family:var(--mono);font-size:11.5px;color:var(--fg-faint);letter-spacing:.03em;line-height:1.8;
 }
 footer b{color:var(--fg-dim);font-weight:500}
+
+/* ---------- concept cards (how it works) ---------- */
+.concepts{display:grid;gap:13px;margin:20px 0 6px}
+@media(min-width:760px){ .concepts{grid-template-columns:1fr 1fr} }
+.concept{
+  background:var(--panel);border:1px solid var(--edge);border-radius:5px;padding:16px 18px;
+  border-top:3px solid var(--amber-deep);
+}
+.concept h4{margin:0 0 7px;font-family:var(--display);font-weight:700;font-size:16.5px}
+.concept h4 span{
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--amber);
+  display:block;font-weight:500;margin-bottom:3px;text-transform:uppercase;
+}
+.concept p{margin:0 0 9px;font-size:14.5px;line-height:1.56;max-width:none}
+.concept p:last-child{margin-bottom:0}
+.concept .sowhat{
+  border-top:1px solid var(--edge);margin-top:11px;padding-top:9px;
+  font-size:13.5px;color:var(--fg-dim);
+}
+.concept .sowhat b{
+  font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);
+  text-transform:uppercase;display:block;margin-bottom:3px;
+}
+
+/* ---------- FAQ ---------- */
+.faq{display:grid;gap:8px;margin:20px 0 6px}
+.faq details{background:var(--panel);border:1px solid var(--edge);border-radius:4px}
+.faq details[open]{border-color:var(--amber-deep)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:14px 17px;display:grid;
+  grid-template-columns:1fr auto;gap:12px;align-items:center;
+  font-family:var(--display);font-weight:600;font-size:15.5px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";font-family:var(--mono);font-size:16px;color:var(--amber);line-height:1;
+}
+.faq details[open] summary::after{content:"\2212"}
+.faq .fbody{padding:0 17px 16px;border-top:1px solid var(--edge);padding-top:13px}
+.faq .fbody p{margin:0 0 10px;font-size:14.5px;line-height:1.58;max-width:68ch}
+.faq .fbody p:last-child{margin-bottom:0}
+.faq .fbody strong{color:var(--amber);font-weight:600}
+
+/* ---------- walkthrough steps ---------- */
+.walk{
+  background:var(--bg-2);border:1px solid var(--edge);border-radius:5px;
+  padding:16px 19px;margin:16px 0;
+}
+.walk h4{margin:0 0 4px;font-size:15.5px}
+.walk .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--fg-faint);
+  text-transform:uppercase;margin:0 0 12px}
+.walk ol{counter-reset:w;list-style:none;padding-left:0;margin:0}
+.walk ol>li{
+  position:relative;padding-left:30px;margin-bottom:10px;font-size:14.5px;line-height:1.55;
+  counter-increment:w;max-width:66ch;
+}
+.walk ol>li:last-child{margin-bottom:0}
+.walk ol>li::before{
+  content:counter(w);position:absolute;left:0;top:2px;font-family:var(--mono);font-size:10.5px;
+  font-weight:600;color:var(--amber);border:1px solid var(--edge-hi);border-radius:50%;
+  width:19px;height:19px;display:grid;place-content:center;
+}
+.filesample{
+  font-family:var(--mono);font-size:12px;line-height:1.6;background:var(--bg-2);
+  border:1px solid var(--edge);border-left:3px solid var(--amber);border-radius:4px;
+  padding:14px 16px;overflow-x:auto;white-space:pre;color:var(--fg-dim);margin:13px 0;
+}
+.filesample b{color:var(--amber);font-weight:500}
+.filesample i{color:var(--fg-faint);font-style:normal}
+
+/* ---------- glossary ---------- */
+.gloss{
+  display:grid;gap:0;margin:20px 0 6px;border:1px solid var(--edge);
+  border-radius:5px;overflow:hidden;
+}
+.gterm{
+  display:grid;grid-template-columns:190px 1fr;gap:18px;padding:12px 17px;
+  border-bottom:1px solid var(--edge);background:var(--panel);align-items:baseline;
+}
+.gterm:last-child{border-bottom:0}
+.gterm dt{
+  font-family:var(--display);font-weight:700;font-size:14.5px;color:var(--fg);margin:0;
+}
+.gterm dt small{
+  display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;
+  color:var(--fg-faint);letter-spacing:.04em;margin-top:2px;
+}
+.gterm dd{margin:0;font-size:14px;color:var(--fg-dim);line-height:1.55}
+@media(max-width:680px){
+  .gterm{grid-template-columns:1fr;gap:4px}
+}
+
+/* ---------- courseware shell ---------- */
+.lessonmeta{
+  font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--fg-dim);
+  white-space:nowrap;
+}
+.lessonmeta b{color:var(--amber);font-weight:600}
+.lessonmeta .ltitle{color:var(--fg);display:none}
+@media(min-width:900px){ .lessonmeta .ltitle{display:inline} }
+
+/* contents drawer */
+.toc{
+  position:fixed;inset:0;z-index:80;background:rgba(10,9,8,.72);
+  backdrop-filter:blur(3px);display:grid;place-items:start center;
+  padding:calc(env(safe-area-inset-top,0px) + 70px) 20px 40px;overflow-y:auto;
+}
+:root[data-theme="light"] .toc{background:rgba(120,112,96,.42)}
+.toc[hidden]{display:none}
+.toc-in{
+  width:100%;max-width:560px;background:var(--panel);border:1px solid var(--edge-hi);
+  border-radius:6px;overflow:hidden;
+}
+.toc-h{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--fg-faint);padding:13px 17px;background:var(--bg-2);border-bottom:1px solid var(--edge);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.toc-h button{background:none;border:0;color:var(--fg-dim);font-family:var(--mono);
+  font-size:15px;cursor:pointer;line-height:1;padding:0 2px}
+.toc-h button:hover{color:var(--amber)}
+.toc a{
+  display:grid;grid-template-columns:34px 1fr auto;gap:13px;align-items:center;
+  padding:12px 17px;border-bottom:1px solid var(--edge);color:var(--fg);
+}
+.toc a:last-child{border-bottom:0}
+.toc a:hover{background:var(--panel-2);text-decoration:none}
+.toc a.cur{background:var(--amber-wash)}
+.toc a .tn{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--fg-faint)}
+.toc a.cur .tn,.toc a.cur .tt{color:var(--amber)}
+.toc a.done .tn{color:var(--ok)}
+.toc a .tt{font-family:var(--display);font-weight:600;font-size:15px;line-height:1.3}
+.toc a .tm{font-family:var(--mono);font-size:10.5px;color:var(--fg-faint);white-space:nowrap}
+
+/* lessons */
+.lesson[hidden]{display:none!important}
+.lesson{animation:lfade .22s ease-out}
+@keyframes lfade{from{opacity:.35}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){ .lesson{animation:none} }
+
+.lessonhead{padding:36px 0 2px}
+.lessonhead .lkick{
+  font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 10px;
+}
+.lessonhead h2{
+  font-family:var(--display);font-weight:800;font-size:clamp(27px,5.2vw,42px);
+  letter-spacing:-.022em;line-height:1.06;margin:0 0 10px;text-wrap:balance;
+}
+.lessonhead .lsub{font-size:17px;color:var(--fg-dim);max-width:64ch;margin:0}
+
+/* bottom nav */
+.lessonnav{
+  display:flex;align-items:center;gap:12px;margin:46px 0 0;padding:20px 0 0;
+  border-top:1px solid var(--edge);
+}
+.navbtn{
+  font-family:var(--display);font-weight:700;font-size:14.5px;
+  background:var(--amber);color:#17160f;border:1px solid var(--amber);
+  padding:12px 20px;border-radius:4px;cursor:pointer;white-space:nowrap;
+}
+.navbtn:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#fff}
+.navbtn.back{background:transparent;color:var(--fg-dim);border-color:var(--edge-hi);font-weight:600}
+.navbtn.back:hover{color:var(--fg);background:var(--panel)}
+.navbtn[disabled]{opacity:.32;cursor:not-allowed}
+.navbtn[disabled]:hover{background:transparent;color:var(--fg-dim);border-color:var(--edge-hi)}
+.dots{display:flex;gap:5px;flex:1;justify-content:center;flex-wrap:wrap}
+.dot{
+  width:9px;height:9px;border-radius:50%;background:var(--edge-hi);border:0;padding:0;
+  cursor:pointer;flex:none;
+}
+.dot:hover{background:var(--fg-faint)}
+.dot.cur{background:var(--amber);transform:scale(1.25)}
+.dot.seen{background:var(--amber-deep)}
+@media(max-width:620px){ .dots{display:none} .navbtn{flex:1;text-align:center} }
+
+.kbdhint{
+  font-family:var(--mono);font-size:10.5px;color:var(--fg-faint);letter-spacing:.05em;
+  text-align:center;margin:14px 0 0;
+}
+.kbdhint kbd{
+  border:1px solid var(--edge-hi);border-radius:3px;padding:1px 5px;font-family:var(--mono);
+  font-size:10px;color:var(--fg-dim);
+}
+
+/* hero split for the portrait presenter clip */
+.herogrid{display:grid;gap:22px;align-items:start}
+@media(min-width:820px){ .herogrid{grid-template-columns:1fr 310px} }
+.portraitframe{
+  border:1px solid var(--edge-hi);border-radius:5px;overflow:hidden;background:#000;
+  aspect-ratio:552/720;max-width:310px;
+}
+.portraitframe video{width:100%;height:100%;object-fit:cover}
+@media(max-width:819px){ .portraitframe{max-width:240px} }
 </style>
 </head>
 <body>
@@ -391,14 +585,10 @@ footer b{color:var(--fg-dim);font-weight:500}
 <header class="topbar">
   <div class="topbar-in">
     <div class="brand">WORKING WITH <span>AI</span></div>
-    <nav class="navlinks" id="nav">
-      <a href="#edge"><b>01</b>Edge</a>
-      <a href="#agentic"><b>02</b>Agentic</a>
-      <a href="#pricing"><b>03</b>Pricing</a>
-      <a href="#plumbing"><b>04</b>Plumbing</a>
-      <a href="#build"><b>05</b>Build</a>
-    </nav>
-    <div class="toolbtns">
+    <button class="tbtn" id="menuBtn" aria-expanded="false">Contents</button>
+    <div class="lessonmeta">Lesson <b id="lnum">1</b>/<span id="ltot">9</span>
+      <span class="ltitle"> &middot; <span id="ltitle"></span></span></div>
+    <div class="toolbtns" style="margin-left:auto">
       <button class="tbtn" id="notesBtn" aria-pressed="false" title="Show the speaking notes">Notes</button>
       <button class="tbtn" id="themeBtn" title="Switch light / dark">Light</button>
     </div>
@@ -406,32 +596,62 @@ footer b{color:var(--fg-dim);font-weight:500}
   <div class="scanline"><i id="progress"></i></div>
 </header>
 
-<div class="wrap">
-
-<section class="hero">
-  <p class="kicker">Syndicate Brief &middot; 57 CSC &middot; 7 October 2026</p>
-  <h1>Everything here was built by <em>AI</em>. Including her.</h1>
-  <p class="standfirst">A working session on how I actually use these tools &mdash; the videos that taught me,
-  what changed when models started doing things instead of saying things, what the subscriptions really
-  cost, the plumbing nobody explains, and twenty minutes at the end where you build something that runs.</p>
-
-  <div class="videoframe">
-    <video id="heroVid" controls playsinline preload="metadata"
-           poster="assets/img/intro-talkinghead.jpg">
-      <source src="assets/video/intro-talkinghead.mp4" type="video/mp4">
-    </video>
+<nav class="toc" id="toc" hidden>
+  <div class="toc-in">
+    <div class="toc-h"><span>Contents</span><button id="tocClose" aria-label="Close contents">&#10005;</button></div>
+    <div id="tocList"></div>
   </div>
-  <p class="vcap"><b>CLIP 00</b><span>Synthetic presenter, synthetic voice, synthetic room. Generated from one paragraph of text,
-  start to finish, for about forty cents. Press play &mdash; it has sound.</span></p>
+</nav>
 
-  <div class="note">Play it cold, say nothing, let it finish. Then: &ldquo;Nobody in that shot exists. I wrote
-  three sentences and went to make coffee. That is the entire brief in one slide &mdash; the gap between what
-  you think this costs and what it actually costs.&rdquo;</div>
+<div class="wrap">
+<main id="deck">
+
+<section class="lesson" data-title="Start here" data-mins="3">
+  <div class="lessonhead">
+    <p class="lkick">Syndicate Brief &middot; 57 CSC &middot; 7 October 2026</p>
+    <h2>Everything here was built by <em style="font-style:normal;color:var(--amber)">AI</em>. Including me.</h2>
+  </div>
+
+  <div class="herogrid">
+    <div>
+      <p class="lsub" style="margin-bottom:18px">A working session on how I actually use these tools &mdash; the videos
+      that taught me, what changed when models started doing things instead of saying things, what the
+      subscriptions really cost, the plumbing nobody explains, and twenty minutes at the end where you
+      build something that runs.</p>
+      <p class="tiny" style="margin-bottom:6px">NINE LESSONS &middot; ABOUT 45 MINUTES &middot; LAST ONE IS HANDS-ON</p>
+      <p class="small muted" style="max-width:56ch">Work through it at your own pace with the arrows at the
+      bottom, or jump about using Contents. It remembers where you got to.</p>
+    </div>
+    <div>
+      <div class="portraitframe">
+        <video id="heroVid" controls playsinline preload="metadata" poster="assets/img/intro-caspar.jpg">
+          <source src="assets/video/intro-caspar.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="vcap" style="margin-top:8px"><b>CLIP 00</b><span>Press play &mdash; it has sound.</span></p>
+    </div>
+  </div>
+
+  <div class="bluf" style="margin-top:26px"><b>What that clip was</b>
+  That is my face, my suit and my tie &mdash; and I was not filmed. One photograph, three sentences of
+  instruction, about forty cents, and roughly two minutes of waiting. The voice is not mine either.</div>
+
+  <div class="note">Play it cold, say nothing, let it finish. Then: &ldquo;That was not filmed. It is one
+  headshot and a paragraph of text. And that is not my voice.&rdquo; Pause there &mdash; let the room sit
+  with it before you start explaining anything.</div>
+
+  <div class="warnbox"><b>Before we go further</b>
+  <p>Everything in this brief is unclassified and built on a personal account, on personal time, with no
+  official material. Keep your own experiments the same way &mdash; Lesson 7 covers exactly where the line is.</p></div>
 </section>
 
 <!-- ========================= 01 ========================= -->
-<section class="sec" id="edge">
-  <div class="sechead"><div class="secnum">01</div><h2>The edge was free and on YouTube</h2></div>
+<section class="lesson" hidden id="edge" data-title="The edge was free and on YouTube" data-mins="8">
+  <div class="lessonhead">
+    <p class="lkick">Lesson 02</p>
+    <h2>The edge was free and on YouTube</h2>
+    <p class="lsub">Where I actually learnt this, and the order to watch it in.</p>
+  </div>
 
   <div class="bluf"><b>Bottom line</b>
   I did not take a course or buy a tool. I watched people who use this daily, copied their workflow,
@@ -468,8 +688,12 @@ footer b{color:var(--fg-dim);font-weight:500}
 </section>
 
 <!-- ========================= 02 ========================= -->
-<section class="sec" id="agentic">
-  <div class="sechead"><div class="secnum">02</div><h2>From answering to doing</h2></div>
+<section class="lesson" hidden id="agentic" data-title="From answering to doing" data-mins="8">
+  <div class="lessonhead">
+    <p class="lkick">Lesson 03</p>
+    <h2>From answering to doing</h2>
+    <p class="lsub">How we got here, and what &ldquo;agentic&rdquo; actually means.</p>
+  </div>
 
   <div class="stinger">
     <video autoplay muted loop playsinline preload="none"
@@ -584,8 +808,12 @@ footer b{color:var(--fg-dim);font-weight:500}
 </section>
 
 <!-- ========================= 03 ========================= -->
-<section class="sec" id="pricing">
-  <div class="sechead"><div class="secnum">03</div><h2>What it costs, and what Perplexity is</h2></div>
+<section class="lesson" hidden id="pricing" data-title="What it costs, and what Perplexity is" data-mins="6">
+  <div class="lessonhead">
+    <p class="lkick">Lesson 04</p>
+    <h2>What it costs, and what Perplexity is</h2>
+    <p class="lsub">Every tier, what is worth paying for, and the discount nobody claims.</p>
+  </div>
 
   <div class="bluf"><b>Bottom line</b>
   Everyone converged on twenty dollars a month because that is the number people pay without thinking.
@@ -682,8 +910,12 @@ footer b{color:var(--fg-dim);font-weight:500}
 </section>
 
 <!-- ========================= 04 ========================= -->
-<section class="sec" id="plumbing">
-  <div class="sechead"><div class="secnum">04</div><h2>The plumbing nobody explains</h2></div>
+<section class="lesson" hidden id="plumbing" data-title="The plumbing nobody explains" data-mins="9">
+  <div class="lessonhead">
+    <p class="lkick">Lesson 05</p>
+    <h2>The plumbing nobody explains</h2>
+    <p class="lsub">Skills, MCP, connectors, and where your work actually happens.</p>
+  </div>
 
   <div class="stinger">
     <video autoplay muted loop playsinline preload="none"
@@ -856,8 +1088,12 @@ footer b{color:var(--fg-dim);font-weight:500}
 </section>
 
 <!-- ========================= 05 ========================= -->
-<section class="sec" id="build">
-  <div class="sechead"><div class="secnum">05</div><h2>Now you build one</h2></div>
+<section class="lesson" hidden id="build" data-title="Now you build one" data-mins="20">
+  <div class="lessonhead">
+    <p class="lkick">Lesson 06</p>
+    <h2>Now you build one</h2>
+    <p class="lsub">Twenty minutes, a free account, and something that runs at the end.</p>
+  </div>
 
   <div class="stinger">
     <video autoplay muted loop playsinline preload="none"
@@ -989,6 +1225,15 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
   </div>
 </section>
 
+</main>
+
+<div class="lessonnav">
+  <button class="navbtn back" id="prevBtn">&larr; Back</button>
+  <div class="dots" id="dots"></div>
+  <button class="navbtn" id="nextBtn">Next &rarr;</button>
+</div>
+<p class="kbdhint">Use <kbd>&larr;</kbd> <kbd>&rarr;</kbd> to move &middot; <kbd>C</kbd> contents &middot; <kbd>N</kbd> speaking notes</p>
+
 <footer>
   <b>Working With AI</b> &middot; syndicate brief &middot; 57 CSC &middot; 7 October 2026<br>
   Prices, titles and links verified 7 Oct 2026 &mdash; all of it moves, so re-check before quoting.<br>
@@ -1033,19 +1278,119 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
     if(e.key==='n' && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){ notesBtn.click(); }
   });
 
-  /* ---------------- scroll progress + active nav ---------------- */
-  var bar = $('#progress'), navA = $$('#nav a'),
-      secs = ['edge','agentic','pricing','plumbing','build'].map(function(id){ return document.getElementById(id); });
-  function onScroll(){
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    var p = h>0 ? Math.min(1,Math.max(0,window.scrollY/h)) : 0;
-    bar.style.right = (100 - p*100).toFixed(2)+'%';
-    var cur = -1, line = window.scrollY + window.innerHeight*0.32;
-    secs.forEach(function(s,i){ if(s && s.offsetTop <= line) cur = i; });
-    navA.forEach(function(a,i){ a.classList.toggle('on', i===cur); });
+  /* ---------------- courseware navigation ---------------- */
+  var deck   = document.getElementById('deck');
+  var LESSON = Array.prototype.slice.call(deck.querySelectorAll('.lesson'));
+  var TOTAL  = LESSON.length;
+  var cur    = 0;
+  var seen   = {};
+  try{ var sv = JSON.parse(store('wwai-seen')||'{}'); if(sv && typeof sv==='object') seen = sv; }catch(e){}
+
+  document.getElementById('ltot').textContent = TOTAL;
+
+  function slug(i){ return 'lesson' + (i+1); }
+
+  function buildToc(){
+    document.getElementById('tocList').innerHTML = LESSON.map(function(L,i){
+      return '<a href="#'+slug(i)+'" data-i="'+i+'">'+
+               '<span class="tn">'+String(i+1).padStart(2,'0')+'</span>'+
+               '<span class="tt">'+L.dataset.title+'</span>'+
+               '<span class="tm">'+L.dataset.mins+' min</span></a>';
+    }).join('');
+    Array.prototype.forEach.call(document.querySelectorAll('#tocList a'), function(a){
+      a.addEventListener('click',function(ev){ ev.preventDefault(); go(+a.dataset.i); closeToc(); });
+    });
   }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  window.addEventListener('resize',onScroll); onScroll();
+
+  function paintToc(){
+    Array.prototype.forEach.call(document.querySelectorAll('#tocList a'), function(a){
+      var i = +a.dataset.i;
+      a.classList.toggle('cur', i===cur);
+      a.classList.toggle('done', !!seen[i] && i!==cur);
+    });
+  }
+
+  function buildDots(){
+    document.getElementById('dots').innerHTML = LESSON.map(function(L,i){
+      return '<button class="dot" data-i="'+i+'" title="'+L.dataset.title.replace(/"/g,'&quot;')+'" aria-label="Lesson '+(i+1)+': '+L.dataset.title.replace(/"/g,'&quot;')+'"></button>';
+    }).join('');
+    Array.prototype.forEach.call(document.querySelectorAll('.dot'), function(d){
+      d.addEventListener('click',function(){ go(+d.dataset.i); });
+    });
+  }
+
+  function paintDots(){
+    Array.prototype.forEach.call(document.querySelectorAll('.dot'), function(d){
+      var i = +d.dataset.i;
+      d.classList.toggle('cur', i===cur);
+      d.classList.toggle('seen', !!seen[i] && i!==cur);
+    });
+  }
+
+  function go(i, noScroll){
+    i = Math.max(0, Math.min(TOTAL-1, i));
+    LESSON.forEach(function(L,k){
+      if(k!==i){ L.hidden = true; return; }
+      L.hidden = false;
+    });
+    // pause any video in a lesson we just left
+    $$('video').forEach(function(v){
+      if(!deck.contains(v)) return;
+      var host = v.closest('.lesson');
+      if(host && host.hidden && !v.paused){ v.pause(); }
+    });
+    cur = i;
+    seen[i] = 1;
+    try{ store('wwai-seen', JSON.stringify(seen)); store('wwai-at', String(i)); }catch(e){}
+
+    document.getElementById('lnum').textContent = i+1;
+    document.getElementById('ltitle').textContent = LESSON[i].dataset.title;
+    var pct = TOTAL>1 ? (i/(TOTAL-1))*100 : 100;
+    bar.style.right = (100-pct).toFixed(2)+'%';
+
+    var prev = document.getElementById('prevBtn'), next = document.getElementById('nextBtn');
+    prev.disabled = (i===0);
+    next.disabled = (i===TOTAL-1);
+    next.textContent = (i===TOTAL-1) ? 'End of brief' : 'Next \u2192';
+
+    paintDots(); paintToc();
+    if(history.replaceState) history.replaceState(null,'','#'+slug(i));
+    if(!noScroll) window.scrollTo({top:0,behavior:'instant'});
+    playVisibleStingers();
+  }
+
+  var bar = document.getElementById('progress');
+  buildToc(); buildDots();
+
+  document.getElementById('prevBtn').addEventListener('click',function(){ go(cur-1); });
+  document.getElementById('nextBtn').addEventListener('click',function(){ go(cur+1); });
+
+  /* contents drawer */
+  var toc = document.getElementById('toc'), menuBtn = document.getElementById('menuBtn');
+  function openToc(){ toc.hidden=false; menuBtn.setAttribute('aria-expanded','true'); }
+  function closeToc(){ toc.hidden=true; menuBtn.setAttribute('aria-expanded','false'); }
+  menuBtn.addEventListener('click',function(){ toc.hidden ? openToc() : closeToc(); });
+  document.getElementById('tocClose').addEventListener('click',closeToc);
+  toc.addEventListener('click',function(e){ if(e.target===toc) closeToc(); });
+
+  /* keyboard */
+  document.addEventListener('keydown',function(e){
+    if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    if(e.key==='ArrowRight'){ go(cur+1); }
+    else if(e.key==='ArrowLeft'){ go(cur-1); }
+    else if(e.key==='c'||e.key==='C'){ toc.hidden ? openToc() : closeToc(); }
+    else if(e.key==='Escape'){ closeToc(); }
+  });
+
+  /* open at the deep-linked lesson, else where they left off */
+  (function(){
+    var m = /^#lesson(\d+)$/.exec(location.hash||'');
+    var start = 0;
+    if(m){ start = (+m[1])-1; }
+    else { var at = parseInt(store('wwai-at')||'0',10); if(!isNaN(at)) start = at; }
+    go(start, true);
+  })();
 
   /* ---------------- section 1: videos ---------------- */
   var VIDS = [
@@ -1285,17 +1630,16 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
     } else { fallback(); }
   });
 
-  /* ---------------- stingers: pause when off-screen ---------------- */
-  if('IntersectionObserver' in window){
-    var io2 = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        var v = e.target;
-        if(e.isIntersecting){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
-        else { v.pause(); }
-      });
-    },{threshold:0.15});
-    $$('.stinger video').forEach(function(v){ io2.observe(v); });
+  /* ---------------- stingers ---------------- */
+  function playVisibleStingers(){
+    $$('.stinger video').forEach(function(v){
+      var host = v.closest('.lesson');
+      if(host && !host.hidden){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
+      else { v.pause(); }
+    });
   }
+  playVisibleStingers();
+
 })();
 </script>
 </body>

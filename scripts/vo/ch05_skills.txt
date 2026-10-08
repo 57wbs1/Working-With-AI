@@ -10,9 +10,9 @@ You stop writing steps, and you start stating the end state. The constraints it 
 
 Three things go into every delegation.
 
-The end state. What is true when this is finished? Not write me a summary. Something more like, I can walk into Thursday's tutorial able to defend a position on this.
+The end state. What is true when this is finished? Something like, I can walk into the Thursday tutorial able to defend a position on this.
 
-The constraints. Word count, which sources it may use, the house format, what it must never do. Those are bounds, not instructions.
+The constraints. Word count, which sources it may use, the house format, what it must never do. Those mark the bounds.
 
 And the test. How will you both know it worked? A worked example. A check it has to pass.
 
@@ -22,4 +22,4 @@ Which brings us to skills. A skill is a folder holding written instructions. It 
 
 That is how you stop repeating yourself. Your standards go in once, and they apply every time after that.
 
-And the fastest way to write one is not to sit down and write one. Do a real job with the model, correct it as you go, and then say, turn everything you just learnt into a skill. It writes the file for you. Then cut half of what it produced, because it will over-generalise.
+And the fastest way to write one is to skip writing it. Do a real job with the model, correct it as you go, and then say, turn everything you just learnt into a skill. It writes the file for you. Then cut half of what it produced, because it will over-generalise.

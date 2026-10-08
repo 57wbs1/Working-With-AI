@@ -18,7 +18,7 @@ Gemini Notebook, which was called NotebookLM until July, only answers from sourc
 
 Gamma builds a first-draft deck from a prompt in about two minutes.
 
-And Higgsfield generates video and images. The presenter clip at the start of each chapter came from there.
+And Higgsfield generates video and images. The clips in this course came from there.
 
 Now, the part worth remembering. Nothing is unlimited any more. Both of the two-hundred-dollar tiers are metered. Claude Max is the same model with more headroom, so if you are not hitting limits you are buying nothing at all.
 

@@ -27,7 +27,7 @@ SCENES = {
  (0.30,"Each one",None,None,["ChatGPT","Claude","Perplexity","Gemini"]),
  (0.52,"Students","$10","Perplexity Education Pro. Almost nobody claims it.",None),
  (0.70,None,"Gemini Notebook","answers only from sources you upload.",None),
- (0.84,"Remember","Nothing is unlimited","Both $200 tiers are metered.",None),
+ (0.84,"Remember","Nothing is unlimited","Every $200 tier is metered.",None),
  (0.94,None,"Prices moved 4× last quarter","Check before you quote me.",None),
 ],
 "skills": [

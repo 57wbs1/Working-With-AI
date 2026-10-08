@@ -12,7 +12,7 @@
    column, each opened by an amber BLUF bar, instrument labels in mono, data in tables. */
 :root{
   --bg:#0D1021; --bg-2:#151934; --panel:#1A1F3D; --panel-2:#232949;
-  --fg:#F2F4FF; --fg-dim:#A9B0D4; --fg-faint:#7079A3;
+  --fg:#F2F4FF; --fg-dim:#A9B0D4; --fg-faint:#868EB6;
   --edge:#2A3157; --edge-hi:#3C4576;
   --amber:#FFC247; --amber-deep:#F59E0B; --amber-wash:rgba(255,194,71,.14);
   --cyan:#45D6F5; --cyan-wash:rgba(69,214,245,.13);
@@ -25,7 +25,7 @@
 }
 :root[data-theme="light"]{
   --bg:#F7F8FF; --bg-2:#EDEFFB; --panel:#FFFFFF; --panel-2:#F3F5FF;
-  --fg:#141830; --fg-dim:#4A5280; --fg-faint:#7B83AD;
+  --fg:#141830; --fg-dim:#4A5280; --fg-faint:#6B7398;
   --edge:#DDE2F5; --edge-hi:#BFC7E8;
   --amber:#B45309; --amber-deep:#92400E; --amber-wash:rgba(180,83,9,.11);
   --cyan:#0E7490; --cyan-wash:rgba(14,116,144,.11);
@@ -131,7 +131,7 @@ a:hover{text-decoration:underline}
 .sec p{max-width:68ch}
 .lede{font-size:17px}
 h3{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.008em;margin:34px 0 10px}
-h4{font-family:var(--display);font-weight:600;font-size:15px;margin:22px 0 7px}
+h3,h4{font-family:var(--display);font-weight:600;font-size:15px;margin:22px 0 7px}
 .eyebrow{
   font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--fg-faint);margin:30px 0 10px;display:flex;align-items:center;gap:10px;
@@ -275,7 +275,7 @@ td.num,th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-sp
 .vs-col{background:var(--panel);border:1px solid var(--edge);border-radius:5px;padding:17px 19px}
 .vs-col.local{border-top:3px solid var(--amber)}
 .vs-col.cloud{border-top:3px solid var(--cyan)}
-.vs-col h4{margin:0 0 4px;font-size:17px;font-family:var(--display);font-weight:700}
+.vs-col h3,.vs-col h4{margin:0 0 4px;font-size:17px;font-family:var(--display);font-weight:700}
 .vs-col .tagline{font-family:var(--mono);font-size:11px;letter-spacing:.05em;margin:0 0 13px}
 .vs-col.local .tagline{color:var(--amber)}
 .vs-col.cloud .tagline{color:var(--cyan)}
@@ -382,8 +382,8 @@ footer b{color:var(--fg-dim);font-weight:500}
   background:var(--panel);border:1px solid var(--edge);border-radius:5px;padding:16px 18px;
   border-top:3px solid var(--amber-deep);
 }
-.concept h4{margin:0 0 7px;font-family:var(--display);font-weight:700;font-size:16.5px}
-.concept h4 span{
+.concept h3,.concept h4{margin:0 0 7px;font-family:var(--display);font-weight:700;font-size:16.5px}
+.concept h3,.concept h4 span{
   font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--amber);
   display:block;font-weight:500;margin-bottom:3px;text-transform:uppercase;
 }
@@ -589,7 +589,7 @@ footer b{color:var(--fg-dim);font-weight:500}
 /* ---------- quiz ---------- */
 .quiz{background:var(--panel);border:1px solid var(--edge-hi);border-radius:5px;padding:20px;margin:22px 0}
 .quiz-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:4px;flex-wrap:wrap}
-.quiz-top h4{margin:0;font-family:var(--display);font-weight:700;font-size:17px}
+.quiz-top h3,.quiz-top h4{margin:0;font-family:var(--display);font-weight:700;font-size:17px}
 .quiz-score{font-family:var(--mono);font-size:12px;color:var(--fg-dim);font-variant-numeric:tabular-nums}
 .quiz-score b{color:var(--amber)}
 .qblock{border-top:1px solid var(--edge);padding-top:16px;margin-top:16px}
@@ -705,7 +705,7 @@ footer b{color:var(--fg-dim);font-weight:500}
 }
 .logochip:hover{border-color:var(--c,var(--amber));color:var(--fg);transform:translateY(-2px)}
 .logochip .lg{color:var(--c,var(--amber))}
-.concept h4 .lg{margin-right:8px;color:var(--amber);vertical-align:-4px}
+.concept h3,.concept h3 .lg,.concept h4 .lg{margin-right:8px;color:var(--amber);vertical-align:-4px}
 td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 
 /* ---------- entrance animation ---------- */
@@ -757,7 +757,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 /* checklist */
 .check{background:var(--panel);border:1px solid var(--edge);border-radius:5px;padding:16px 18px;margin:20px 0}
 .check-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap}
-.check-h h4{margin:0;font-family:var(--display);font-weight:700;font-size:15.5px}
+.check-h h3,.check-h h4{margin:0;font-family:var(--display);font-weight:700;font-size:15.5px}
 .check-n{font-family:var(--mono);font-size:11.5px;color:var(--fg-dim);font-variant-numeric:tabular-nums}
 .check-n b{color:var(--ok)}
 .check ul{list-style:none;padding:0;margin:0}
@@ -820,7 +820,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 
 /* progress dashboard */
 .prog{background:var(--panel);border:1px solid var(--edge-hi);border-radius:6px;padding:18px 20px;margin:22px 0}
-.prog h4{margin:0 0 12px;font-family:var(--display);font-weight:700;font-size:16px}
+.prog h3,.prog h4{margin:0 0 12px;font-family:var(--display);font-weight:700;font-size:16px}
 .prog-days{display:grid;gap:11px}
 @media(min-width:680px){ .prog-days{grid-template-columns:repeat(3,1fr)} }
 .pday{background:var(--bg-2);border:1px solid var(--edge);border-radius:5px;padding:13px 15px;border-top:3px solid var(--d,var(--amber))}
@@ -828,6 +828,129 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 .pday .pd-s{font-family:var(--mono);font-size:11px;color:var(--fg-faint)}
 .pbar{height:5px;background:var(--edge);border-radius:3px;overflow:hidden;margin-top:9px}
 .pbar i{display:block;height:100%;background:var(--d,var(--amber));width:0;transition:width .5s ease}
+
+/* ---------- quiz: inline trigger + modal ---------- */
+.qtrig{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  background:var(--panel);border:1px solid var(--edge-hi);border-left:3px solid var(--amber);
+  border-radius:5px;padding:14px 17px;margin:30px 0 4px;
+}
+.qtrig .qt-t{font-family:var(--display);font-weight:700;font-size:15.5px}
+.qtrig .qt-s{font-family:var(--mono);font-size:11px;color:var(--fg-faint);letter-spacing:.04em}
+.qtrig .qt-go{
+  margin-left:auto;font-family:var(--display);font-weight:700;font-size:14px;
+  background:var(--amber);color:#17160f;border:1px solid var(--amber);
+  padding:11px 18px;border-radius:4px;cursor:pointer;min-height:44px;
+}
+.qtrig .qt-go:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#fff}
+.qtrig .qt-done{
+  font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--ok);
+  border:1px solid var(--ok);border-radius:3px;padding:4px 9px;
+}
+
+.qmodal{
+  position:fixed;inset:0;z-index:96;background:rgba(8,9,18,.86);backdrop-filter:blur(4px);
+  display:grid;place-items:center;padding:calc(env(safe-area-inset-top,0px) + 20px) 16px 20px;
+}
+.qmodal[hidden]{display:none}
+:root[data-theme="light"] .qmodal{background:rgba(90,96,130,.5)}
+.qmodal-in{
+  width:100%;max-width:660px;max-height:100%;display:flex;flex-direction:column;
+  background:var(--panel);border:1px solid var(--edge-hi);border-radius:8px;overflow:hidden;
+}
+.qmodal-h{
+  display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--bg-2);
+  border-bottom:1px solid var(--edge);flex:none;
+}
+.qmodal-h .qm-t{font-family:var(--display);font-weight:700;font-size:15.5px;flex:1;min-width:0}
+.qmodal-h .qm-t small{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;
+  color:var(--fg-faint);letter-spacing:.05em;margin-top:2px}
+.qmodal-h .qm-x{
+  background:transparent;border:1px solid var(--edge-hi);color:var(--fg-dim);border-radius:4px;
+  font-family:var(--mono);font-size:12px;padding:9px 13px;cursor:pointer;min-height:44px;flex:none;
+}
+.qmodal-h .qm-x:hover{color:var(--amber);border-color:var(--amber-deep)}
+.qmodal-body{overflow-y:auto;padding:4px 18px 8px;-webkit-overflow-scrolling:touch}
+.qmodal-f{
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:13px 18px;
+  border-top:1px solid var(--edge);background:var(--bg-2);flex:none;
+}
+.qmodal-f .qm-score{font-family:var(--mono);font-size:12px;color:var(--fg-dim);font-variant-numeric:tabular-nums}
+.qmodal-f .qm-score b{color:var(--amber)}
+.qmodal-f .qm-next{
+  margin-left:auto;font-family:var(--display);font-weight:700;font-size:14px;
+  background:var(--amber);color:#17160f;border:1px solid var(--amber);
+  padding:11px 18px;border-radius:4px;cursor:pointer;min-height:44px;
+}
+.qmodal-f .qm-next:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#fff}
+.qmodal .quiz{border:0;padding:0;margin:0;background:transparent}
+.qmodal .quiz-top,.qmodal .quiz-intro{display:none}
+
+/* ---------- UI audit fixes ---------- */
+.tbtn{min-height:44px;padding:0 12px}                 /* was 29px high */
+.navbtn{min-height:48px}
+.qt-go,.quiz-skip{min-height:44px}
+.quiz-skip{padding:0 12px}
+.check label{min-height:44px;align-items:center}
+.kbdhint{color:var(--fg-dim)}                          /* was 4.45:1, below AA */
+/* nav dots: keep the 9px dot, give it a 44px hit area */
+.dots{gap:0}
+.dot{
+  width:26px;height:40px;border-radius:0;background:transparent!important;position:relative;
+  display:grid;place-items:center;
+}
+.dot::after{
+  content:"";width:9px;height:9px;border-radius:50%;background:var(--edge-hi);
+  transition:background .15s,transform .15s;
+}
+.dot:hover::after{background:var(--fg-faint)}
+.dot.cur::after{background:var(--h,var(--amber));transform:scale(1.45)}
+.dot.seen::after{background:var(--h,var(--amber-deep));opacity:.6}
+.vhide{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- audit round 2 ---------- */
+.dot{height:44px}                       /* hit area; the visible dot stays 9px */
+.chip{min-height:44px;display:inline-flex;align-items:center}
+.tiny{color:var(--fg-dim)}              /* was 4.45:1 */
+.vcap{color:var(--fg-dim)}
+.dcap{color:var(--fg-dim)}
+.lb-out{color:#bbb}
+
+/* ---------- audit round 3 ---------- */
+.opt,.btn,.copy,.qopt{min-height:44px}
+.opt{display:flex;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center}
+.copy{display:inline-flex;align-items:center;top:8px}
+.rung-tog{color:var(--fg-dim)}
+.turn .who{color:var(--fg-dim)}
+.fld .hint{color:var(--fg-dim)}
+caption{color:var(--fg-dim)}
+
+/* ---------- light theme: amber is dark, so solid buttons need light text ---------- */
+:root[data-theme="light"] .navbtn,
+:root[data-theme="light"] .qt-go,
+:root[data-theme="light"] .qm-next,
+:root[data-theme="light"] .btn,
+:root[data-theme="light"] .chip[aria-pressed="true"],
+:root[data-theme="light"] .dot.cur{color:#fff}
+:root[data-theme="light"] .navbtn:hover,
+:root[data-theme="light"] .qt-go:hover,
+:root[data-theme="light"] .qm-next:hover,
+:root[data-theme="light"] .btn:hover{color:#fff}
+:root[data-theme="light"] .navbtn.back,
+:root[data-theme="light"] .btn.ghost{color:var(--fg-dim)}
+:root[data-theme="light"] .navbtn.back:hover,
+:root[data-theme="light"] .btn.ghost:hover{color:var(--fg)}
+:root[data-theme="light"] .lb-out{color:var(--fg-dim)}
+
+/* light theme: accent text sitting on its own wash needs a darker ink */
+:root[data-theme="light"] .labtag.time{color:#7D4F08;border-color:#B45309}
+:root[data-theme="light"] .pill.best{color:#7D4F08;border-color:#B45309}
+:root[data-theme="light"] .turn.me .who{color:#7D4F08}
+:root[data-theme="light"] .turn.ai .who{color:#0B5A6B}
+:root[data-theme="light"] .turn.note .who{color:var(--fg-dim)}
+:root[data-theme="light"] .tx-h{color:var(--fg-dim)}
 </style>
 </head>
 <body>
@@ -855,6 +978,20 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
   <div class="scanline"><i id="progress"></i></div>
 </header>
 
+<div class="qmodal" id="qmodal" hidden role="dialog" aria-modal="true" aria-labelledby="qmTitle">
+  <div class="qmodal-in">
+    <div class="qmodal-h">
+      <div class="qm-t" id="qmTitle">Check yourself<small id="qmSub"></small></div>
+      <button class="qm-x" id="qmClose">&#10005; Close</button>
+    </div>
+    <div class="qmodal-body" id="qmBody"></div>
+    <div class="qmodal-f">
+      <span class="qm-score" id="qmScore">0 / 0</span>
+      <button class="qm-next" id="qmNext">Continue the course &rarr;</button>
+    </div>
+  </div>
+</div>
+
 <div class="lb" id="lb" hidden>
   <div class="lb-in">
     <div class="lb-bar">
@@ -874,6 +1011,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 </nav>
 
 <div class="wrap">
+<h1 class="vhide">Working With AI &mdash; a three-day course</h1>
 <main id="deck">
 
 <section data-hue="coral" class="lesson" data-title="Start here" data-mins="3" data-day="1" data-kind="lesson">
@@ -908,7 +1046,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 
   
   <div class="prog rv">
-    <h4>Your progress</h4>
+    <h3>Your progress</h3>
     <div class="prog-days">
       <div class="pday" data-day="1" style="--d:#FF7A66">
         <div class="pd-t">Day 1 &middot; Foundations</div>
@@ -1207,7 +1345,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 
   <div class="check" data-lab="lab-delegate">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 7</span>
     </div>
     <ul>
@@ -1349,7 +1487,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 
   <div class="concepts">
     <div class="concept">
-      <h4><span>Study tool</span><svg class="lg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg> Gemini Notebook</h4>
+      <h3><span>Study tool</span><svg class="lg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg> Gemini Notebook</h3>
       <p>Renamed from NotebookLM in July 2026; same product, same notebooks. You upload your readings
       &mdash; PDFs, slides, notes, and it answers <em>only</em> from those, with a citation you
       can click back to the page.</p>
@@ -1363,7 +1501,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
     </div>
 
     <div class="concept">
-      <h4><span>Research</span><svg class="lg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg> Perplexity</h4>
+      <h3><span>Research</span><svg class="lg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg> Perplexity</h3>
       <p>An answer engine rather than a chatbot. It searches the live web, reads the results, and writes
       an answer with numbered citations you can audit. You also pick which model answers, GPT,
       Claude, Gemini or Grok, per query.</p>
@@ -1376,7 +1514,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
     </div>
 
     <div class="concept">
-      <h4><span>Slides</span><svg class="lg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M12 2 L22 7.5 v9 L12 22 L2 16.5 v-9 Z M12 6.2 L6 9.5 v5 L12 17.8 L18 14.5 v-5 Z"/></svg> Gamma</h4>
+      <h3><span>Slides</span><svg class="lg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M12 2 L22 7.5 v9 L12 22 L2 16.5 v-9 Z M12 6.2 L6 9.5 v5 L12 17.8 L18 14.5 v-5 Z"/></svg> Gamma</h3>
       <p>Describe a deck and it builds one, layout, images and all, then lets you edit it
       like a normal document. Exports to PowerPoint and PDF, so it drops into the formats we actually use.</p>
       <p>It is good at getting you to a complete first draft in two minutes. It is not good at house
@@ -1389,7 +1527,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
     </div>
 
     <div class="concept">
-      <h4><span>Video &amp; images</span><svg class="lg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg> Higgsfield</h4>
+      <h3><span>Video &amp; images</span><svg class="lg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg> Higgsfield</h3>
       <p>A front end onto many image and video models at once, Veo, Kling, Seedance, Nano Banana
       and others, billed from one pool of credits rather than a subscription each.</p>
       <p>Everything is priced in credits, and the price varies enormously by model. The talking head in
@@ -1453,7 +1591,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 
   <div class="check" data-lab="lab-stack">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 7</span>
     </div>
     <ul>
@@ -1497,7 +1635,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 
   <div class="check" data-lab="lab-sanitise">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 6</span>
     </div>
     <ul>
@@ -1599,7 +1737,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 
   <div class="vs">
     <div class="vs-col cloud">
-      <h4>The old way</h4>
+      <h3>The old way</h3>
       <p class="tagline">INSTRUCTING &middot; YOU OWN EVERY STEP</p>
       <ul>
         <li class="n">&ldquo;Act as an expert analyst. First, summarise the attached paper in 200 words.
@@ -1610,7 +1748,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
       </ul>
     </div>
     <div class="vs-col local">
-      <h4>The agentic way</h4>
+      <h3>The agentic way</h3>
       <p class="tagline">DELEGATING &middot; YOU OWN THE OUTCOME</p>
       <ul>
         <li class="y">&ldquo;I need to know whether this paper undermines my thesis. Tell me what would
@@ -1663,7 +1801,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <div class="eyebrow">Two worth having on day one</div>
   <div class="concepts">
     <div class="concept">
-      <h4><span>Prose</span>humanizer</h4>
+      <h3><span>Prose</span>humanizer</h3>
       <p>Strips the tells that make writing read as machine-generated: puffed-up significance, triads
       everywhere, the &ldquo;not X, but Y&rdquo; cadence, the em-dash habit, the stock closing
       paragraph about challenges and future prospects.</p>
@@ -1673,7 +1811,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
       <div class="sowhat"><b>Use it on</b>Anything with your name on it that a human will read closely.</div>
     </div>
     <div class="concept">
-      <h4><span>Prose</span>stop-slop</h4>
+      <h3><span>Prose</span>stop-slop</h3>
       <p>The lighter cousin. Removes filler, hedging and over-formality, the &ldquo;it is worth
       noting that&rdquo;, &ldquo;in today&rsquo;s rapidly evolving landscape&rdquo;, &ldquo;delve
       into&rdquo; register that creeps into every draft.</p>
@@ -1808,7 +1946,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="check" data-lab="lab-skill">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 8</span>
     </div>
     <ul>
@@ -1934,7 +2072,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="vs">
     <div class="vs-col local">
-      <h4>Local</h4>
+      <h3>Local</h3>
       <p class="tagline">ON YOUR MACHINE &middot; e.g. Claude Code, Codex CLI</p>
       <ul>
         <li class="y">Sees your actual files, folders and version history</li>
@@ -1947,7 +2085,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
       </ul>
     </div>
     <div class="vs-col cloud">
-      <h4>Cloud</h4>
+      <h3>Cloud</h3>
       <p class="tagline">ON THEIR SERVERS &middot; e.g. claude.ai, chatgpt.com</p>
       <ul>
         <li class="y">Nothing to install, a browser or a phone is enough</li>
@@ -2017,7 +2155,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="check" data-lab="lab-connect">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 6</span>
     </div>
     <ul>
@@ -2061,7 +2199,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="check" data-lab="lab-agentic">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 7</span>
     </div>
     <ul>
@@ -2129,7 +2267,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <div class="eyebrow">Tools that search the real literature</div>
   <div class="concepts">
     <div class="concept">
-      <h4><span>Literature</span>Google Scholar</h4>
+      <h3><span>Literature</span>Google Scholar</h3>
       <p>Returns actual papers with actual citation counts, and, the useful part, <em>who has cited this since</em>. That forward link is how you find the rebuttal to a paper you
       were about to lean on.</p>
       <p>Connected as a tool, the model searches it and hands back results you can open, rather than
@@ -2137,7 +2275,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
       <div class="sowhat"><b>Ask it</b>&ldquo;Who has cited this and disagreed with it?&rdquo;, the single most useful research question there is.</div>
     </div>
     <div class="concept">
-      <h4><span>Library</span>Zotero</h4>
+      <h3><span>Library</span>Zotero</h3>
       <p>Holds your sources, PDFs, notes and annotations, and formats the bibliography. Connected as a
       tool, the model can search <em>your own</em> library, so it answers from papers you have
       actually collected and read.</p>
@@ -2145,14 +2283,14 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
       <div class="sowhat"><b>Ask it</b>&ldquo;Which papers in my library contradict each other?&rdquo;</div>
     </div>
     <div class="concept">
-      <h4><span>Sources</span>Gemini Notebook</h4>
+      <h3><span>Sources</span>Gemini Notebook</h3>
       <p>Upload the readings; it answers only from them, with clickable citations. It cannot wander into
       half-remembered training data because it has nothing else to draw on.</p>
       <div class="sowhat"><b>Ask it</b>&ldquo;Where do these sources disagree with each other, and on what
       exactly?&rdquo;</div>
     </div>
     <div class="concept">
-      <h4><span>Web</span>Perplexity</h4>
+      <h3><span>Web</span>Perplexity</h3>
       <p>Fast orientation with citations on every claim. Best for the first hour of a topic you know
       nothing about, who the names are, what the debate is, which terms matter.</p>
       <div class="sowhat"><b>Ask it</b>&ldquo;What is the main line of criticism against this position?&rdquo;</div>
@@ -2235,7 +2373,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="check" data-lab="lab-citation">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 7</span>
     </div>
     <ul>
@@ -2281,7 +2419,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="check" data-lab="lab-research">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 8</span>
     </div>
     <ul>
@@ -2429,7 +2567,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="check" data-lab="lab-format">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 7</span>
     </div>
     <ul>
@@ -2474,7 +2612,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="check" data-lab="lab-folder">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 6</span>
     </div>
     <ul>
@@ -2600,7 +2738,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="vs">
     <div class="vs-col local">
-      <h4>Converging</h4>
+      <h3>Converging</h3>
       <p class="tagline">KEEP GOING</p>
       <ul>
         <li class="y">Each version is different from the last</li>
@@ -2611,7 +2749,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
       </ul>
     </div>
     <div class="vs-col cloud">
-      <h4>Circling</h4>
+      <h3>Circling</h3>
       <p class="tagline">STOP &mdash; MORE PROMPTING WILL NOT FIX IT</p>
       <ul>
         <li class="n">A bug you already fixed comes back</li>
@@ -2746,7 +2884,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
   <div class="check" data-lab="lab-circle">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 6</span>
     </div>
     <ul>
@@ -2842,13 +2980,13 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <div class="eyebrow">Where to do it &mdash; works on free accounts</div>
   <div class="grid g2">
     <div class="panel">
-      <h4 style="margin-top:0">Claude &mdash; Artifacts</h4>
+      <h3 style="margin-top:0">Claude &mdash; Artifacts</h3>
       <p class="small muted" style="margin-top:0">claude.ai &middot; free account</p>
       <p class="small">Ask for an app and it builds it in a panel next to the conversation, running and
       clickable. Say what is wrong, it rebuilds. Best of the two for anything interactive.</p>
     </div>
     <div class="panel">
-      <h4 style="margin-top:0">ChatGPT &mdash; Canvas</h4>
+      <h3 style="margin-top:0">ChatGPT &mdash; Canvas</h3>
       <p class="small muted" style="margin-top:0">chatgpt.com &middot; free account</p>
       <p class="small">Opens a side editor you and the model edit together, and will run simple web apps.
       Good if you already have a ChatGPT habit.</p>
@@ -2983,7 +3121,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
 
   <div class="check" data-lab="lab-spec">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 7</span>
     </div>
     <ul>
@@ -3028,7 +3166,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
 
   <div class="check" data-lab="lab-build">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 7</span>
     </div>
     <ul>
@@ -3072,7 +3210,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
 
   <div class="check" data-lab="lab-harden">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 6</span>
     </div>
     <ul>
@@ -3116,7 +3254,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
 
   <div class="check" data-lab="lab-ship">
     <div class="check-h">
-      <h4>Before you move on</h4>
+      <h3>Before you move on</h3>
       <span class="check-n"><b>0</b> / 7</span>
     </div>
     <ul>
@@ -3237,7 +3375,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
 
   <div class="check" data-lab="capstone">
     <div class="check-h">
-      <h4>Before you call it done</h4>
+      <h3>Before you call it done</h3>
       <span class="check-n"><b>0</b> / 10</span>
     </div>
     <ul>
@@ -3377,6 +3515,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
       if(host && host.hidden && !v.paused){ v.pause(); }
     });
     closeVideo();
+    if(typeof closeQuiz === 'function' && openQuizWrap) closeQuiz(false);
     cur = i;
     seen[i] = 1;
     try{ store('wwai-seen', JSON.stringify(seen)); store('wwai-at', String(i)); }catch(e){}
@@ -3418,6 +3557,10 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
   /* keyboard */
   document.addEventListener('keydown',function(e){
     if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    if(typeof qmodal !== 'undefined' && qmodal && !qmodal.hidden){
+      if(e.key === 'Escape') closeQuiz(false);
+      return;                                   /* the dialog owns the keyboard while open */
+    }
     if(e.metaKey||e.ctrlKey||e.altKey) return;
     if(e.key==='ArrowRight'){ go(cur+1); }
     else if(e.key==='ArrowLeft'){ go(cur-1); }
@@ -3708,30 +3851,38 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
   /* ---------------- per-lesson quizzes ---------------- */
   var QBANK = {"edge": [["What should you be doing while you watch one of these videos?", ["Running the same step on something of your own, with the tool open", "Taking notes to try later that evening", "Watching it through once at double speed first", "Reading the comments for the parts worth skipping"], "Passive viewing teaches almost nothing here. Pause every few minutes and run the step yourself, or you will remember the vocabulary and none of the technique."], ["A tutorial is fourteen months old. How much can you trust it?", ["Concepts yes, specific buttons and menus no", "Fully - the fundamentals have not changed", "Not at all, discard it", "Only if it has over 100,000 views"], "Anything past about six months is history rather than instruction. The ideas usually survive; the interface has almost certainly moved."], ["You have ten hours. What is the better use of them?", ["One tool, for a month, until you are fluent", "A tour of nine tools so you can compare", "The longest course you can find", "Whatever the newest channel is covering this week"], "The channels push something new weekly because that is their business model. Depth in one tool beats a survey of nine every time."], ["Why watch the parts of a video where the presenter's attempt fails?", ["That is where the recoverable technique actually is", "To check whether the tool is reliable", "To find out which tools to avoid", "They are usually edited out anyway"], "Anyone can film a thing working. Watching someone diagnose a failure is how you learn what to do when yours fails, which it will."]], "agentic": [["What makes a system agentic rather than just a chatbot?", ["A goal, tools, a loop where it sees its own result, and memory of what it tried", "A larger model with more parameters", "A longer context window", "More recent training data"], "All four must be present. A bigger model with a longer memory is still a chatbot if nothing it does changes the world and it never sees the consequence."], ["You are at rung 3, tool use. What is still missing?", ["The loop - it fetches once and answers, it does not act on what came back", "Access to the internet", "Permission to read your files", "A way to remember the conversation"], "Tool use is one hop: you ask, it fetches, it answers. Agentic means it looks at the result, notices it was wrong, and goes again."], ["Why is a wrong agent more dangerous than a wrong staff officer?", ["It shows none of the hesitation you would read as a warning", "It works faster so there is less time to intervene", "It has access to more systems", "It cannot be corrected once started"], "A person who is out of their depth hedges and comes back with questions. An agent that is wrong reads exactly like one that is right - same fluency, same confidence."], ["Under the staff officer framing, what is your actual job?", ["Setting intent and constraints, then reviewing the product before it goes anywhere", "Writing more precise instructions", "Checking each step as it happens", "Learning enough to do the work yourself if needed"], "You are commanding, not operating. The review is not a formality if time permits - it is now the main thing you are paid for."]], "pricing": [["You are a verified student. Cheapest route to full Perplexity Pro?", ["Education Pro at $10/month, verified through SheerID", "Perplexity Pro at $20/month", "Perplexity Max at $200/month", "There is no student rate"], "Education Pro is half price and includes everything in Pro. Almost nobody claims it, which makes it the easiest saving in the course."], ["What does Claude Max actually buy you over Claude Pro?", ["Roughly 5x or 20x the usage - the same model, more headroom", "A more capable model", "Unlimited usage", "Access to Claude Code"], "Max is the same Claude with more room. If you are not hitting limits you are buying nothing, and Claude Code is already included at $20."], ["You have forty PDFs of module readings to actually understand. Best tool?", ["Gemini Notebook - it answers only from your sources, with citations", "ChatGPT, pasting them in a few at a time", "Perplexity, searching for summaries of each", "Gamma, to turn them into slides"], "A general chat window will blend your sources with half-remembered training data. Gemini Notebook cannot, because it has nothing else to draw on."], ["Which of these is true of the $200 tiers in October 2026?", ["Both are metered - neither is unlimited", "Both are unlimited", "Only Claude's is unlimited", "Only ChatGPT's is unlimited"], "Nothing is unlimited any more. ChatGPT's $200 tier was reportedly cut from 20x to 10x Plus when a $500 tier appeared at the end of September 2026."]], "skills": [["When does a skill get loaded into the conversation?", ["Only when a task matches its description", "At the start of every conversation", "When you name it explicitly", "Whenever the model runs short of context"], "That is what makes skills scale. You can keep two hundred and only the relevant one ever enters the conversation."], ["Which line decides whether a skill ever fires?", ["The description line", "The name line", "The first instruction in the body", "The file path"], "The description is how the model judges relevance. A vague one means the skill sits there and never triggers, however good the body is."], ["What is the fastest way to write a skill worth keeping?", ["Do the task once, correcting as you go, then say \\u201cturn that into a skill\\u201d", "Write the rules out carefully before you start", "Copy a published skill and edit it", "Ask the model to write one from the module handbook"], "Sitting down to write a skill produces something generic. Your corrections during one real job are the rules - let the model collect them."], ["What does humanizer actually do for you?", ["Makes the prose less padded and less formulaic", "Makes AI writing undetectable", "Rewrites text to pass Turnitin", "Adds citations to unsourced claims"], "It improves the writing. If the real question is whether you can pass it off as your own in assessed work, the answer is no, whatever any tool does."]], "plumbing": [["What problem does MCP solve?", ["Every model needing a custom integration to every tool", "Models being too slow to use tools", "Models inventing facts and citations", "The cost of running models locally"], "Three models and three tools used to mean nine bespoke integrations. With one standard, a tool written once works with any model."], ["Running locally, where does the content of the files it reads go?", ["Off your machine, to be processed - same as anything pasted into a browser", "Nowhere, processing happens on your laptop", "It is encrypted locally and never sent", "Only filenames are sent, never contents"], "This is the most important misconception in the course. Local means its hands are local. The reasoning still happens remotely, so every file it reads is transmitted."], ["You need something to keep running after you shut the laptop. Which?", ["Cloud", "Local", "Either works", "Neither can do this"], "A local session dies with the machine. If it has to survive you closing the lid, it has to run on their servers."], ["How should you grant a connector's permissions?", ["As narrowly as the task allows, and revoke when done", "Full access, so it does not fail mid-task", "Read-write always, read-only is rarely useful", "It makes no difference, the model decides what to use"], "It can do anything you permit, including things you did not picture. Read-only beats read-write unless you need it to write, and a connector set up for one afternoon should not still be live next term."]], "research": [["Where must a citation come from?", ["A search result you can click and check", "The model, if you ask it to be accurate", "The model, if you ask twice and the answers agree", "Anywhere, provided you format it correctly"], "A citation-shaped string is extremely likely to follow a claim, so the model produces one whether or not the paper exists. Never let a citation originate with the model."], ["Which failure is harder to catch and costs more?", ["A real paper cited for a claim it does not make", "A completely invented paper", "A real paper with the year wrong", "A real paper cited twice"], "An invented reference dies the moment a marker searches the title. A real source hung on the wrong claim survives that check and collapses under someone who knows the literature."], ["You want to know who disagrees with a paper you are leaning on. What do you use?", ["The cited-by list - who has cited it since, and how", "The paper's own literature review", "A summary of the paper's limitations section", "A general web search for criticism"], "The forward citation link is how you find the published rebuttal. Engaging a real critic rather than a straw man separates bands in most rubrics."], ["Instead of \\u201csummarise this paper\\u201d, what gets you something useful?", ["\\u201cWhat does this claim that I would have to argue against?\\u201d", "\\u201cSummarise this paper in 200 words\\u201d", "\\u201cList the key points of this paper\\u201d", "\\u201cExplain this paper simply\\u201d"], "A summary is competent, accurate, and worth nothing, because everyone else gets the same one. The value is in questions that force a judgement."]], "decks": [["What is the one move that makes AI-generated decks usable?", ["Give it your format explicitly, then let it fill it", "Ask for more slides and cut the weak ones", "Describe the audience in detail", "Ask it to make the design more professional"], "Design is where it is weakest and where your house style is non-negotiable. Hand it the rules and it fills them; ask it to design and you rebuild from scratch."], ["Before asking for slides, what should exist?", ["The argument, settled in prose", "An outline of section headings", "The images you want to use", "A slide count"], "Decks built before the argument exists are where filler comes from. Settle what you are saying, then ask it to lay that out."], ["What does pointing it at a folder let you ask that uploading one file does not?", ["Questions across the whole set - contradictions, themes, what you keep getting wrong", "Questions about longer documents", "Questions about images inside documents", "Questions that need no citation"], "Reading a folder with its structure intact changes the kind of question available. \\u201cThese are my last six essays and their feedback - what do I keep getting wrong?\\u201d needs the folder."], ["Before letting an agent reorganise a folder, what do you add?", ["\\u201cShow me what you would change and wait for me to confirm\\u201d", "A list of files it may not touch", "A backup instruction at the end", "Nothing - reorganising is low risk"], "Reading is safe. Renaming and deleting are not, and an agent that has misunderstood your folder structure makes a bad afternoon. Make it propose first."]], "made": [["Roughly what did the eight-second presenter clip cost to generate?", ["About forty cents and two minutes of waiting", "Nothing, it was on a free tier", "About ten dollars", "About a hundred dollars"], "Twelve credits on a budget video model. The cost of this kind of production has collapsed, which is the entire point of opening with it."], ["How does an agent get permission to run commands on your machine?", ["It asks before each action, unless you turn the prompts off", "It has full access once installed", "It can only read, never write", "Each session needs a password"], "By default a box names the command and nothing runs until you approve. You can approve once, for a session, or disable the prompts - which is a deliberate trade, not a default."], ["What was wrong with two of the video attributions found by web search?", ["They credited the wrong channel, and were corrected against YouTube itself", "The videos had been deleted", "They were behind a paywall", "The durations were wrong"], "Search results are not sources. Checking all sixteen against YouTube's own metadata endpoint caught two bad attributions, which is the lesson on citations applied to this very page."], ["What makes a quiz question worth answering?", ["Wrong answers that are plausible rather than silly", "Four options rather than three", "Questions drawn from the opening paragraph", "Immediate scoring"], "If the distractors are obviously wrong you are testing reading speed, not understanding. Ask for questions that test whether you understood, not whether you can recall."]], "trouble": [["You have corrected the same bug three times and it keeps returning. What now?", ["Switch to a larger model, or restate the problem in a fresh conversation", "Repeat the correction in more detail", "Add more examples to the same thread", "Break the correction into smaller steps"], "A returning bug is the signature of circling, not converging. More prompting in a polluted thread will not fix it - the model tier is the usual culprit."], ["Which of these means you are converging and should keep going?", ["It asks you a sharp question you had not considered", "It apologises and agrees with every correction", "It gives the same answer in different words", "It quietly drops one requirement to satisfy another"], "The other three are all circling. Converging looks like each version being genuinely different, the named problem being fixed, and new problems being smaller than old ones."], ["Why does iterating burn through usage limits so fast?", ["Tearing the work apart and rebuilding costs roughly what the build cost", "Longer conversations use more memory", "Failed attempts are charged twice", "Larger models are used automatically after a failure"], "Five rounds is five builds. That is the honest price of the speed, and why the limits in the toolkit lesson bite sooner than people expect."], ["What is true of frontier models like Opus 5.5, Fable or GPT-6 Astra?", ["They hit a ceiling later, not never", "They do not have a ceiling", "They are only better at writing, not reasoning", "They are slower but otherwise identical"], "Each release pushes the boundary out. It has not disappeared. Knowing roughly where your own ceiling sits, and doing the work yourself when you reach it, is the actual skill."]], "build": [["What kind of thing is safe to vibe code?", ["Anything where being wrong is obvious and cheap", "Anything you can describe clearly", "Anything under about 500 lines", "Anything that does not need a database"], "A roster that double-books someone is obvious. Something that quietly mishandles personal data or money is not, and that is exactly where not reading the code stops being acceptable."], ["The trip app took two months and how many commits?", ["194", "12", "40", "Over a thousand"], "194 rounds of change. Anyone arriving expecting one prompt and a finished app gives up around round eight and concludes it does not work."], ["What single instruction should you add before it writes any code?", ["\\u201cList your assumptions and wait for me to confirm\\u201d", "\\u201cWrite clean, well-commented, production-quality code\\u201d", "\\u201cUse the latest version of every library\\u201d", "\\u201cMake it look modern and professional\\u201d"], "It surfaces the misunderstanding in ten seconds instead of after it has built the wrong thing. The others are vague instructions it cannot act on."], ["Your app works. What is the most useful next question?", ["\\u201cWhat inputs would break this?\\u201d", "\\u201cCan you make it faster?\\u201d", "\\u201cCan you add more features?\\u201d", "\\u201cIs this production ready?\\u201d"], "It is noticeably better at critiquing its own work than at getting it right first time. Ask it to attack what it just built."]]};
 
+  /* Quizzes live in the lesson but render into a modal, so they never block the page. */
+  var qmodal = document.getElementById('qmodal'),
+      qmBody = document.getElementById('qmBody'),
+      qmSub  = document.getElementById('qmSub'),
+      qmScore= document.getElementById('qmScore'),
+      qmNext = document.getElementById('qmNext');
+  var openQuizWrap = null, lastFocus = null;
+
   function buildQuizzes(){
-    if(typeof QBANK === 'undefined') return;   /* go() runs before this block is evaluated */
+    if(typeof QBANK === 'undefined') return;
     $$('.quizwrap').forEach(function(wrap){
       var id = wrap.dataset.quiz, qs = QBANK[id];
       if(!qs || wrap.dataset.built) return;
       wrap.dataset.built = '1';
 
-      /* shuffle options per question, tracking where the correct one lands */
       var model = qs.map(function(q){
         var opts = q[1].map(function(t,i){ return {t:t, correct:i===0}; });
-        for(var i=opts.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var tmp=opts[i]; opts[i]=opts[j]; opts[j]=tmp; }
+        for(var i=opts.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t2=opts[i]; opts[i]=opts[j]; opts[j]=t2; }
         return {q:q[0], opts:opts, why:q[2]};
       });
+      wrap._model = model;
+      wrap._state = {answered:0, correct:0};
 
+      /* the inline trigger: compact, never a wall of questions */
       wrap.innerHTML =
-        '<div class="quiz">' +
-          '<div class="quiz-top">' +
-            '<h4>Check yourself<span class="quiz-badge" hidden>done</span></h4>' +
-            '<div style="display:flex;gap:9px;align-items:center">' +
-              '<span class="quiz-score">0 / ' + model.length + '</span>' +
-              '<button class="quiz-skip">Skip</button>' +
-            '</div>' +
-          '</div>' +
-          '<p class="quiz-intro">' + model.length + ' questions. One attempt each, and the explanation appears either way. Skipping does not lock anything.</p>' +
+        '<div class="qtrig">' +
+          '<div><div class="qt-t">Check yourself</div>' +
+          '<div class="qt-s">' + model.length + ' questions \u00b7 optional</div></div>' +
+          '<span class="qt-done" hidden></span>' +
+          '<button class="qt-go">Open quiz</button>' +
+        '</div>' +
+        '<div class="quiz" hidden>' +
           '<div class="qbody">' +
             model.map(function(M,i){
               return '<div class="qblock" data-q="' + i + '">' +
@@ -3745,22 +3896,16 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
           '<div class="quiz-done" hidden></div>' +
         '</div>';
 
-      var answered = 0, correct = 0;
-      var root  = wrap.querySelector('.quiz');
-      var score = wrap.querySelector('.quiz-score');
-
-      wrap.querySelector('.quiz-skip').addEventListener('click', function(){
-        root.classList.toggle('quiz-collapsed');
-        this.textContent = root.classList.contains('quiz-collapsed') ? 'Show' : 'Skip';
-      });
+      wrap.querySelector('.qt-go').addEventListener('click', function(){ openQuiz(wrap); });
 
       wrap.querySelector('.qbody').addEventListener('click', function(e){
         var b = e.target.closest('.qopt');
         if(!b) return;
-        var qi = +b.dataset.q, block = wrap.querySelector('.qblock[data-q="' + qi + '"]');
-        if(block.dataset.done) return;
+        var block = b.closest('.qblock');          /* subtree may be inside the modal */
+        if(!block || block.dataset.done) return;
+        var qi = +b.dataset.q;
         block.dataset.done = '1';
-        var M = model[qi], chosen = model[qi].opts[+b.dataset.a];
+        var M = wrap._model[qi], chosen = M.opts[+b.dataset.a];
 
         $$('.qopt', block).forEach(function(o){
           var opt = M.opts[+o.dataset.a];
@@ -3772,22 +3917,73 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
         why.innerHTML = '<b>' + (chosen.correct ? 'Correct. ' : 'Not quite. ') + '</b>' + esc(M.why);
         why.hidden = false;
 
-        answered++; if(chosen.correct) correct++;
-        score.innerHTML = '<b>' + correct + '</b> / ' + answered;
+        var st = wrap._state;
+        st.answered++; if(chosen.correct) st.correct++;
+        paintQuizScore(wrap);
 
-        if(answered === model.length){
-          var d = wrap.querySelector('.quiz-done');
-          d.innerHTML = '<b>' + correct + ' out of ' + model.length + '</b>' +
-            (correct === model.length ? 'All of them. Move on.'
-             : correct >= model.length - 1 ? 'Close enough. Skim the bit you missed before moving on.'
+        if(st.answered === wrap._model.length){
+          var d = block.closest('.quiz').querySelector('.quiz-done');
+          d.innerHTML = '<b>' + st.correct + ' out of ' + wrap._model.length + '</b>' +
+            (st.correct === wrap._model.length ? 'All of them. Move on.'
+             : st.correct >= wrap._model.length - 1 ? 'Close enough. Skim the bit you missed.'
              : 'Worth re-reading this lesson before the next one.');
           d.hidden = false;
-          wrap.querySelector('.quiz-badge').hidden = false;
-          try{ store('wwai-quiz-' + id, correct + '/' + model.length); }catch(e){}
+          var badge = wrap.querySelector('.qt-done');
+          badge.textContent = st.correct + '/' + wrap._model.length;
+          badge.hidden = false;
+          try{ store('wwai-quiz-' + wrap.dataset.quiz, st.correct + '/' + wrap._model.length); }catch(e){}
         }
       });
     });
   }
+
+  function paintQuizScore(wrap){
+    var st = wrap._state;
+    if(openQuizWrap === wrap) qmScore.innerHTML = '<b>' + st.correct + '</b> / ' + st.answered +
+      ' answered \u00b7 ' + wrap._model.length + ' total';
+  }
+
+  function openQuiz(wrap){
+    var quiz = wrap.querySelector('.quiz');
+    lastFocus = document.activeElement;
+    openQuizWrap = wrap;
+    quiz.hidden = false;
+    qmBody.appendChild(quiz);              /* move the live node, so all state survives */
+    var host = wrap.closest('.lesson');
+    qmSub.textContent = host ? host.dataset.title : '';
+    paintQuizScore(wrap);
+    qmodal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    var first = qmBody.querySelector('.qopt:not([disabled])');
+    (first || document.getElementById('qmClose')).focus();
+  }
+
+  function closeQuiz(advance){
+    if(!openQuizWrap) return;
+    var quiz = qmBody.querySelector('.quiz');
+    if(quiz){ quiz.hidden = true; openQuizWrap.appendChild(quiz); }
+    qmodal.hidden = true;
+    document.body.style.overflow = '';
+    var w = openQuizWrap; openQuizWrap = null;
+    if(advance){ go(cur + 1); }
+    else if(lastFocus && lastFocus.focus){ lastFocus.focus(); }
+  }
+
+  document.getElementById('qmClose').addEventListener('click', function(){ closeQuiz(false); });
+  qmNext.addEventListener('click', function(){ closeQuiz(true); });
+  qmodal.addEventListener('click', function(e){ if(e.target === qmodal) closeQuiz(false); });
+
+  /* keep focus inside the dialog while it is open */
+  qmodal.addEventListener('keydown', function(e){
+    if(e.key !== 'Tab') return;
+    var f = $$('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])', qmodal)
+              .filter(function(el){ return !el.disabled && el.offsetParent !== null; });
+    if(!f.length) return;
+    var first = f[0], last = f[f.length-1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+
   buildQuizzes();
 
 

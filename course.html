@@ -678,6 +678,21 @@ footer b{color:var(--fg-dim);font-weight:500}
 :root[data-theme="light"] .lesson[data-hue="orange"]{--amber:#C2410C;--amber-deep:#9A3412;--amber-wash:rgba(194,65,12,.11)}
 .lesson[data-hue="gold"]{--amber:#FDE047;--amber-deep:#EAB308;--amber-wash:rgba(253,224,71,.15)}
 :root[data-theme="light"] .lesson[data-hue="gold"]{--amber:#A16207;--amber-deep:#854D0E;--amber-wash:rgba(161,98,7,.11)}
+
+/* ---------- per-lesson quiz ---------- */
+.quizwrap{margin:30px 0 4px}
+.quiz-skip{
+  background:transparent;border:1px solid var(--edge-hi);color:var(--fg-dim);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+  padding:5px 11px;border-radius:3px;cursor:pointer;
+}
+.quiz-skip:hover{color:var(--amber);border-color:var(--amber-deep)}
+.quiz-collapsed .qblock,.quiz-collapsed .quiz-done,.quiz-collapsed .quiz-intro{display:none}
+.quiz-intro{font-size:14px;color:var(--fg-dim);margin:0}
+.quiz-badge{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ok);border:1px solid var(--ok);border-radius:3px;padding:2px 7px;margin-left:8px;
+}
 </style>
 </head>
 <body>
@@ -806,6 +821,8 @@ footer b{color:var(--fg-dim);font-weight:500}
   <div class="vidlist" id="vidList"></div>
   <p class="tiny" style="margin-top:14px">Titles, channels and links verified against YouTube on 7 Oct 2026.
   Links open in a new tab.</p>
+
+  <div class="quizwrap" data-quiz="edge"></div>
 </section>
 
 <!-- ========================= 02 ========================= -->
@@ -957,6 +974,8 @@ footer b{color:var(--fg-dim);font-weight:500}
   <p>The discipline is the same as any delegation: state the constraints, make it show its working, and
   check the output yourself. Never let an agent be the last pair of eyes on anything carrying your
   name.</p></div>
+
+  <div class="quizwrap" data-quiz="agentic"></div>
 </section>
 
 <!-- ========================= 03 ========================= -->
@@ -1154,6 +1173,8 @@ footer b{color:var(--fg-dim);font-weight:500}
     </div>
     <div class="verdict" id="priceOut" hidden></div>
   </div>
+
+  <div class="quizwrap" data-quiz="pricing"></div>
 </section>
 
 <!-- ========================= 04 ========================= -->
@@ -1375,6 +1396,8 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     </table>
   </div>
   <p class="small muted">Next lesson covers the other two.</p>
+
+  <div class="quizwrap" data-quiz="skills"></div>
 </section>
 
 <!-- ========================= MCP / local-cloud ========================= -->
@@ -1534,6 +1557,8 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <p>Everything in this brief is unclassified, open-source and built on my own time and my own account.
   Keep it that way and you will not have a bad afternoon.</p></div>
 
+
+  <div class="quizwrap" data-quiz="plumbing"></div>
 </section>
 
 <!-- ========================= 05 ========================= -->
@@ -1661,6 +1686,8 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     some expect a declaration, some restrict it to specific stages, some prohibit it outright.</p>
     <p>Find your programme&rsquo;s rule and follow it. &ldquo;I did not know&rdquo; has never been a
     defence, and the tools leave more trace than people assume.</p></div>
+
+  <div class="quizwrap" data-quiz="research"></div>
 </section>
 
 <!-- ========================= Decks, docs, files ========================= -->
@@ -1761,6 +1788,8 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   for me to confirm&rdquo;. Reading is safe; renaming and deleting are not, and an agent that
   misunderstands your folder structure is a bad afternoon.</p></div>
 
+
+  <div class="quizwrap" data-quiz="decks"></div>
 </section>
 
 
@@ -1832,19 +1861,15 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <p>Exactly like this one &mdash; written from the material, with the wrong answers chosen to be
   plausible rather than silly. Give it your notes and ask for questions that test whether you
   <em>understood</em> rather than whether you can recall. Then have it mark your answers and explain the
-  misses. Gemini Notebook does this well because it only draws on your own sources.</p>
-
-  <div class="quiz" id="quiz">
-    <div class="quiz-top">
-      <h4>Check yourself</h4>
-      <div class="quiz-score" id="quizScore">0 / 6 answered</div>
-    </div>
+  misses. Gemini Notebook does this well because it only draws on your own sources.</p>    </div>
     <p class="small muted" style="margin:0">Six questions on the last eight lessons. One attempt each &mdash; the
     explanation appears either way.</p>
     <div id="quizBody"></div>
     <div class="quiz-done" id="quizDone" hidden></div>
   </div>
 
+
+  <div class="quizwrap" data-quiz="made"></div>
 </section>
 
 <!-- ========================= When it goes wrong ========================= -->
@@ -1969,6 +1994,8 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   when you hit it &mdash; is the actual skill.</b></p></div>
 
   <p><b>Everyone assumes it worked first time for the other person.</b> It did not. Assume several rounds and you will stop reading normal friction as failure.</p>
+
+  <div class="quizwrap" data-quiz="trouble"></div>
 </section>
 
 <section data-hue="gold" class="lesson" hidden id="build" data-title="Vibe coding — now you build one" data-mins="25">
@@ -2161,6 +2188,8 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
     roster. Anything you type into a free account is on somebody else&rsquo;s server by the time you hit
     enter.</p>
   </div>
+
+  <div class="quizwrap" data-quiz="build"></div>
 </section>
 
 </main>
@@ -2591,99 +2620,90 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
     openVideo(a.dataset.yt, a.dataset.t, a.dataset.c);
   });
 
-  /* ---------------- quiz ---------------- */
-  var QUIZ = [
-    {q:'What makes a system "agentic" rather than just a chatbot?',
-     a:['It has a goal, tools, a loop where it sees the result of its own last move, and memory of what it tried',
-        'It uses a larger model with more parameters',
-        'It can hold a longer conversation without forgetting',
-        'It has been trained on more recent data'],
-     c:0,
-     why:'All four have to be present. A bigger model or a longer memory is still a chatbot if nothing it does changes the world and it never sees the consequence of its own action.'},
-    {q:'You are a verified student. What is the cheapest way to get full Perplexity Pro?',
-     a:['Education Pro at $10 a month, verified through SheerID',
-        'Perplexity Pro at $20 a month',
-        'Perplexity Max at $200 a month',
-        'There is no student rate'],
-     c:0,
-     why:'Education Pro is half price and includes everything in Pro. Almost nobody claims it, which is the single easiest saving in the whole course.'},
-    {q:'Your laptop is running the model locally. Where does the content of the files it reads go?',
-     a:['Off your machine, to be processed on their servers \u2014 same as anything you paste in a browser',
-        'Nowhere \u2014 local means the processing happens on your laptop',
-        'It is encrypted on your machine and never transmitted',
-        'Only file names are sent, never the contents'],
-     c:0,
-     why:'This is the most important misconception in the course. "Local" means its HANDS are on your machine. The reasoning still happens remotely, so every file it reads is transmitted. Nothing classified, marked or personal goes near it.'},
-    {q:'What problem does MCP actually solve?',
-     a:['Every model needing a custom integration to every tool \u2014 it replaces N\u00d7M bespoke builds with one standard',
-        'Models being too slow to use tools in real time',
-        'Models inventing citations and facts',
-        'The cost of running a model on your own hardware'],
-     c:0,
-     why:'Before MCP, three models and three tools meant nine separate integrations. After it, write a tool once against the standard and any model can use it.'},
-    {q:'You have corrected the same bug three times and it keeps coming back. What is most likely to help?',
-     a:['Switch to a larger model, or restate the problem in a fresh conversation',
-        'Repeat the correction more firmly and in more detail',
-        'Add more examples of what you want to the same thread',
-        'Break the correction into smaller steps and send them one at a time'],
-     c:0,
-     why:'A bug that returns is the signature of circling, not converging. More prompting in a polluted thread will not fix it. The model tier is the usual culprit, and a clean conversation is the cheapest thing to try.'},
-    {q:'Before an agent writes any code for you, what is the single most useful instruction to add?',
-     a:['"List the assumptions you are making, then wait for me to confirm them"',
-        '"Write clean, well-commented, production-quality code"',
-        '"Use the latest version of every library"',
-        '"Make it look professional and modern"'],
-     c:0,
-     why:'It surfaces the misunderstanding in ten seconds instead of after it has built the wrong thing. The other three are vague instructions it cannot act on usefully.'}
-  ];
-  var qAnswered = 0, qCorrect = 0;
 
-  (function buildQuiz(){
-    var body = document.getElementById('quizBody');
-    if(!body) return;
-    body.innerHTML = QUIZ.map(function(Q,i){
-      return '<div class="qblock" data-q="'+i+'">'+
-        '<p class="qq"><span>Q'+(i+1)+'</span>'+esc(Q.q)+'</p>'+
-        '<div class="qopts">'+ Q.a.map(function(opt,j){
-          return '<button class="qopt" data-q="'+i+'" data-a="'+j+'">'+esc(opt)+'</button>';
-        }).join('') +'</div>'+
-        '<div class="qwhy" hidden></div></div>';
-    }).join('');
+  /* ---------------- per-lesson quizzes ---------------- */
+  var QBANK = {"edge": [["What should you be doing while you watch one of these videos?", ["Running the same step on something of your own, with the tool open", "Taking notes to try later that evening", "Watching it through once at double speed first", "Reading the comments for the parts worth skipping"], "Passive viewing teaches almost nothing here. Pause every few minutes and run the step yourself, or you will remember the vocabulary and none of the technique."], ["A tutorial is fourteen months old. How much can you trust it?", ["Concepts yes, specific buttons and menus no", "Fully - the fundamentals have not changed", "Not at all, discard it", "Only if it has over 100,000 views"], "Anything past about six months is history rather than instruction. The ideas usually survive; the interface has almost certainly moved."], ["You have ten hours. What is the better use of them?", ["One tool, for a month, until you are fluent", "A tour of nine tools so you can compare", "The longest course you can find", "Whatever the newest channel is covering this week"], "The channels push something new weekly because that is their business model. Depth in one tool beats a survey of nine every time."], ["Why watch the parts of a video where the presenter's attempt fails?", ["That is where the recoverable technique actually is", "To check whether the tool is reliable", "To find out which tools to avoid", "They are usually edited out anyway"], "Anyone can film a thing working. Watching someone diagnose a failure is how you learn what to do when yours fails, which it will."]], "agentic": [["What makes a system agentic rather than just a chatbot?", ["A goal, tools, a loop where it sees its own result, and memory of what it tried", "A larger model with more parameters", "A longer context window", "More recent training data"], "All four must be present. A bigger model with a longer memory is still a chatbot if nothing it does changes the world and it never sees the consequence."], ["You are at rung 3, tool use. What is still missing?", ["The loop - it fetches once and answers, it does not act on what came back", "Access to the internet", "Permission to read your files", "A way to remember the conversation"], "Tool use is one hop: you ask, it fetches, it answers. Agentic means it looks at the result, notices it was wrong, and goes again."], ["Why is a wrong agent more dangerous than a wrong staff officer?", ["It shows none of the hesitation you would read as a warning", "It works faster so there is less time to intervene", "It has access to more systems", "It cannot be corrected once started"], "A person who is out of their depth hedges and comes back with questions. An agent that is wrong reads exactly like one that is right - same fluency, same confidence."], ["Under the staff officer framing, what is your actual job?", ["Setting intent and constraints, then reviewing the product before it goes anywhere", "Writing more precise instructions", "Checking each step as it happens", "Learning enough to do the work yourself if needed"], "You are commanding, not operating. The review is not a formality if time permits - it is now the main thing you are paid for."]], "pricing": [["You are a verified student. Cheapest route to full Perplexity Pro?", ["Education Pro at $10/month, verified through SheerID", "Perplexity Pro at $20/month", "Perplexity Max at $200/month", "There is no student rate"], "Education Pro is half price and includes everything in Pro. Almost nobody claims it, which makes it the easiest saving in the course."], ["What does Claude Max actually buy you over Claude Pro?", ["Roughly 5x or 20x the usage - the same model, more headroom", "A more capable model", "Unlimited usage", "Access to Claude Code"], "Max is the same Claude with more room. If you are not hitting limits you are buying nothing, and Claude Code is already included at $20."], ["You have forty PDFs of module readings to actually understand. Best tool?", ["Gemini Notebook - it answers only from your sources, with citations", "ChatGPT, pasting them in a few at a time", "Perplexity, searching for summaries of each", "Gamma, to turn them into slides"], "A general chat window will blend your sources with half-remembered training data. Gemini Notebook cannot, because it has nothing else to draw on."], ["Which of these is true of the $200 tiers in October 2026?", ["Both are metered - neither is unlimited", "Both are unlimited", "Only Claude's is unlimited", "Only ChatGPT's is unlimited"], "Nothing is unlimited any more. ChatGPT's $200 tier was reportedly cut from 20x to 10x Plus when a $500 tier appeared at the end of September 2026."]], "skills": [["When does a skill get loaded into the conversation?", ["Only when a task matches its description", "At the start of every conversation", "When you name it explicitly", "Whenever the model runs short of context"], "That is what makes skills scale. You can keep two hundred and only the relevant one ever enters the conversation."], ["Which line decides whether a skill ever fires?", ["The description line", "The name line", "The first instruction in the body", "The file path"], "The description is how the model judges relevance. A vague one means the skill sits there and never triggers, however good the body is."], ["What is the fastest way to write a skill worth keeping?", ["Do the task once, correcting as you go, then say \\u201cturn that into a skill\\u201d", "Write the rules out carefully before you start", "Copy a published skill and edit it", "Ask the model to write one from the module handbook"], "Sitting down to write a skill produces something generic. Your corrections during one real job are the rules - let the model collect them."], ["What does humanizer actually do for you?", ["Makes the prose less padded and less formulaic", "Makes AI writing undetectable", "Rewrites text to pass Turnitin", "Adds citations to unsourced claims"], "It improves the writing. If the real question is whether you can pass it off as your own in assessed work, the answer is no, whatever any tool does."]], "plumbing": [["What problem does MCP solve?", ["Every model needing a custom integration to every tool", "Models being too slow to use tools", "Models inventing facts and citations", "The cost of running models locally"], "Three models and three tools used to mean nine bespoke integrations. With one standard, a tool written once works with any model."], ["Running locally, where does the content of the files it reads go?", ["Off your machine, to be processed - same as anything pasted into a browser", "Nowhere, processing happens on your laptop", "It is encrypted locally and never sent", "Only filenames are sent, never contents"], "This is the most important misconception in the course. Local means its hands are local. The reasoning still happens remotely, so every file it reads is transmitted."], ["You need something to keep running after you shut the laptop. Which?", ["Cloud", "Local", "Either works", "Neither can do this"], "A local session dies with the machine. If it has to survive you closing the lid, it has to run on their servers."], ["How should you grant a connector's permissions?", ["As narrowly as the task allows, and revoke when done", "Full access, so it does not fail mid-task", "Read-write always, read-only is rarely useful", "It makes no difference, the model decides what to use"], "It can do anything you permit, including things you did not picture. Read-only beats read-write unless you need it to write, and a connector set up for one afternoon should not still be live next term."]], "research": [["Where must a citation come from?", ["A search result you can click and check", "The model, if you ask it to be accurate", "The model, if you ask twice and the answers agree", "Anywhere, provided you format it correctly"], "A citation-shaped string is extremely likely to follow a claim, so the model produces one whether or not the paper exists. Never let a citation originate with the model."], ["Which failure is harder to catch and costs more?", ["A real paper cited for a claim it does not make", "A completely invented paper", "A real paper with the year wrong", "A real paper cited twice"], "An invented reference dies the moment a marker searches the title. A real source hung on the wrong claim survives that check and collapses under someone who knows the literature."], ["You want to know who disagrees with a paper you are leaning on. What do you use?", ["The cited-by list - who has cited it since, and how", "The paper's own literature review", "A summary of the paper's limitations section", "A general web search for criticism"], "The forward citation link is how you find the published rebuttal. Engaging a real critic rather than a straw man separates bands in most rubrics."], ["Instead of \\u201csummarise this paper\\u201d, what gets you something useful?", ["\\u201cWhat does this claim that I would have to argue against?\\u201d", "\\u201cSummarise this paper in 200 words\\u201d", "\\u201cList the key points of this paper\\u201d", "\\u201cExplain this paper simply\\u201d"], "A summary is competent, accurate, and worth nothing, because everyone else gets the same one. The value is in questions that force a judgement."]], "decks": [["What is the one move that makes AI-generated decks usable?", ["Give it your format explicitly, then let it fill it", "Ask for more slides and cut the weak ones", "Describe the audience in detail", "Ask it to make the design more professional"], "Design is where it is weakest and where your house style is non-negotiable. Hand it the rules and it fills them; ask it to design and you rebuild from scratch."], ["Before asking for slides, what should exist?", ["The argument, settled in prose", "An outline of section headings", "The images you want to use", "A slide count"], "Decks built before the argument exists are where filler comes from. Settle what you are saying, then ask it to lay that out."], ["What does pointing it at a folder let you ask that uploading one file does not?", ["Questions across the whole set - contradictions, themes, what you keep getting wrong", "Questions about longer documents", "Questions about images inside documents", "Questions that need no citation"], "Reading a folder with its structure intact changes the kind of question available. \\u201cThese are my last six essays and their feedback - what do I keep getting wrong?\\u201d needs the folder."], ["Before letting an agent reorganise a folder, what do you add?", ["\\u201cShow me what you would change and wait for me to confirm\\u201d", "A list of files it may not touch", "A backup instruction at the end", "Nothing - reorganising is low risk"], "Reading is safe. Renaming and deleting are not, and an agent that has misunderstood your folder structure makes a bad afternoon. Make it propose first."]], "made": [["Roughly what did the eight-second presenter clip cost to generate?", ["About forty cents and two minutes of waiting", "Nothing, it was on a free tier", "About ten dollars", "About a hundred dollars"], "Twelve credits on a budget video model. The cost of this kind of production has collapsed, which is the entire point of opening with it."], ["How does an agent get permission to run commands on your machine?", ["It asks before each action, unless you turn the prompts off", "It has full access once installed", "It can only read, never write", "Each session needs a password"], "By default a box names the command and nothing runs until you approve. You can approve once, for a session, or disable the prompts - which is a deliberate trade, not a default."], ["What was wrong with two of the video attributions found by web search?", ["They credited the wrong channel, and were corrected against YouTube itself", "The videos had been deleted", "They were behind a paywall", "The durations were wrong"], "Search results are not sources. Checking all sixteen against YouTube's own metadata endpoint caught two bad attributions, which is the lesson on citations applied to this very page."], ["What makes a quiz question worth answering?", ["Wrong answers that are plausible rather than silly", "Four options rather than three", "Questions drawn from the opening paragraph", "Immediate scoring"], "If the distractors are obviously wrong you are testing reading speed, not understanding. Ask for questions that test whether you understood, not whether you can recall."]], "trouble": [["You have corrected the same bug three times and it keeps returning. What now?", ["Switch to a larger model, or restate the problem in a fresh conversation", "Repeat the correction in more detail", "Add more examples to the same thread", "Break the correction into smaller steps"], "A returning bug is the signature of circling, not converging. More prompting in a polluted thread will not fix it - the model tier is the usual culprit."], ["Which of these means you are converging and should keep going?", ["It asks you a sharp question you had not considered", "It apologises and agrees with every correction", "It gives the same answer in different words", "It quietly drops one requirement to satisfy another"], "The other three are all circling. Converging looks like each version being genuinely different, the named problem being fixed, and new problems being smaller than old ones."], ["Why does iterating burn through usage limits so fast?", ["Tearing the work apart and rebuilding costs roughly what the build cost", "Longer conversations use more memory", "Failed attempts are charged twice", "Larger models are used automatically after a failure"], "Five rounds is five builds. That is the honest price of the speed, and why the limits in the toolkit lesson bite sooner than people expect."], ["What is true of frontier models like Opus 5.5, Fable or GPT-6 Astra?", ["They hit a ceiling later, not never", "They do not have a ceiling", "They are only better at writing, not reasoning", "They are slower but otherwise identical"], "Each release pushes the boundary out. It has not disappeared. Knowing roughly where your own ceiling sits, and doing the work yourself when you reach it, is the actual skill."]], "build": [["What kind of thing is safe to vibe code?", ["Anything where being wrong is obvious and cheap", "Anything you can describe clearly", "Anything under about 500 lines", "Anything that does not need a database"], "A roster that double-books someone is obvious. Something that quietly mishandles personal data or money is not, and that is exactly where not reading the code stops being acceptable."], ["The trip app took two months and how many commits?", ["194", "12", "40", "Over a thousand"], "194 rounds of change. Anyone arriving expecting one prompt and a finished app gives up around round eight and concludes it does not work."], ["What single instruction should you add before it writes any code?", ["\\u201cList your assumptions and wait for me to confirm\\u201d", "\\u201cWrite clean, well-commented, production-quality code\\u201d", "\\u201cUse the latest version of every library\\u201d", "\\u201cMake it look modern and professional\\u201d"], "It surfaces the misunderstanding in ten seconds instead of after it has built the wrong thing. The others are vague instructions it cannot act on."], ["Your app works. What is the most useful next question?", ["\\u201cWhat inputs would break this?\\u201d", "\\u201cCan you make it faster?\\u201d", "\\u201cCan you add more features?\\u201d", "\\u201cIs this production ready?\\u201d"], "It is noticeably better at critiquing its own work than at getting it right first time. Ask it to attack what it just built."]]};
 
-    body.addEventListener('click', function(e){
-      var b = e.target.closest('.qopt');
-      if(!b || b.disabled) return;
-      var qi = +b.dataset.q, ai = +b.dataset.a, Q = QUIZ[qi];
-      var block = body.querySelector('.qblock[data-q="'+qi+'"]');
-      if(block.dataset.done) return;
-      block.dataset.done = '1';
+  function buildQuizzes(){
+    $$('.quizwrap').forEach(function(wrap){
+      var id = wrap.dataset.quiz, qs = QBANK[id];
+      if(!qs || wrap.dataset.built) return;
+      wrap.dataset.built = '1';
 
-      Array.prototype.forEach.call(block.querySelectorAll('.qopt'), function(o){
-        var oi = +o.dataset.a;
-        o.disabled = true;
-        if(oi === Q.c){ o.classList.add('right'); o.innerHTML = '<span class="mark">\u2713</span>' + o.innerHTML; }
-        else if(oi === ai){ o.classList.add('wrong'); o.innerHTML = '<span class="mark">\u2715</span>' + o.innerHTML; }
+      /* shuffle options per question, tracking where the correct one lands */
+      var model = qs.map(function(q){
+        var opts = q[1].map(function(t,i){ return {t:t, correct:i===0}; });
+        for(var i=opts.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var tmp=opts[i]; opts[i]=opts[j]; opts[j]=tmp; }
+        return {q:q[0], opts:opts, why:q[2]};
       });
-      var why = block.querySelector('.qwhy');
-      why.innerHTML = '<b>' + (ai === Q.c ? 'Correct. ' : 'Not quite. ') + '</b>' + esc(Q.why);
-      why.hidden = false;
 
-      qAnswered++; if(ai === Q.c) qCorrect++;
-      document.getElementById('quizScore').innerHTML =
-        '<b>' + qCorrect + '</b> / ' + qAnswered + ' correct';
+      wrap.innerHTML =
+        '<div class="quiz">' +
+          '<div class="quiz-top">' +
+            '<h4>Check yourself<span class="quiz-badge" hidden>done</span></h4>' +
+            '<div style="display:flex;gap:9px;align-items:center">' +
+              '<span class="quiz-score">0 / ' + model.length + '</span>' +
+              '<button class="quiz-skip">Skip</button>' +
+            '</div>' +
+          '</div>' +
+          '<p class="quiz-intro">' + model.length + ' questions. One attempt each, and the explanation appears either way. Skipping does not lock anything.</p>' +
+          '<div class="qbody">' +
+            model.map(function(M,i){
+              return '<div class="qblock" data-q="' + i + '">' +
+                '<p class="qq"><span>Q' + (i+1) + '</span>' + esc(M.q) + '</p>' +
+                '<div class="qopts">' + M.opts.map(function(o,j){
+                  return '<button class="qopt" data-q="' + i + '" data-a="' + j + '">' + esc(o.t) + '</button>';
+                }).join('') + '</div>' +
+                '<div class="qwhy" hidden></div></div>';
+            }).join('') +
+          '</div>' +
+          '<div class="quiz-done" hidden></div>' +
+        '</div>';
 
-      if(qAnswered === QUIZ.length){
-        var d = document.getElementById('quizDone');
-        var msg = qCorrect === QUIZ.length
-          ? 'All six. You can run this session yourself.'
-          : (qCorrect >= 4
-             ? 'Solid. Worth re-reading the lessons behind the ones you missed before you present this.'
-             : 'Go back through the lessons you missed \u2014 those are the ones the room will ask about.');
-        d.innerHTML = '<b>' + qCorrect + ' out of ' + QUIZ.length + '</b>' + msg;
-        d.hidden = false;
-      }
+      var answered = 0, correct = 0;
+      var root  = wrap.querySelector('.quiz');
+      var score = wrap.querySelector('.quiz-score');
+
+      wrap.querySelector('.quiz-skip').addEventListener('click', function(){
+        root.classList.toggle('quiz-collapsed');
+        this.textContent = root.classList.contains('quiz-collapsed') ? 'Show' : 'Skip';
+      });
+
+      wrap.querySelector('.qbody').addEventListener('click', function(e){
+        var b = e.target.closest('.qopt');
+        if(!b) return;
+        var qi = +b.dataset.q, block = wrap.querySelector('.qblock[data-q="' + qi + '"]');
+        if(block.dataset.done) return;
+        block.dataset.done = '1';
+        var M = model[qi], chosen = model[qi].opts[+b.dataset.a];
+
+        $$('.qopt', block).forEach(function(o){
+          var opt = M.opts[+o.dataset.a];
+          o.disabled = true;
+          if(opt.correct){ o.classList.add('right'); o.innerHTML = '<span class="mark">\u2713</span>' + o.innerHTML; }
+          else if(o === b){ o.classList.add('wrong'); o.innerHTML = '<span class="mark">\u2715</span>' + o.innerHTML; }
+        });
+        var why = block.querySelector('.qwhy');
+        why.innerHTML = '<b>' + (chosen.correct ? 'Correct. ' : 'Not quite. ') + '</b>' + esc(M.why);
+        why.hidden = false;
+
+        answered++; if(chosen.correct) correct++;
+        score.innerHTML = '<b>' + correct + '</b> / ' + answered;
+
+        if(answered === model.length){
+          var d = wrap.querySelector('.quiz-done');
+          d.innerHTML = '<b>' + correct + ' out of ' + model.length + '</b>' +
+            (correct === model.length ? 'All of them. Move on.'
+             : correct >= model.length - 1 ? 'Close enough. Skim the bit you missed before moving on.'
+             : 'Worth re-reading this lesson before the next one.');
+          d.hidden = false;
+          wrap.querySelector('.quiz-badge').hidden = false;
+          try{ store('wwai-quiz-' + id, correct + '/' + model.length); }catch(e){}
+        }
+      });
     });
-  })();
+  }
+  buildQuizzes();
 
   /* ---------------- stingers ---------------- */
   function playVisibleStingers(){

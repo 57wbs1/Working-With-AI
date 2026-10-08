@@ -29,21 +29,20 @@ python3 -m http.server 8793
 - Each lesson has its own accent colour, so the dots and contents list show progress at a glance.
 - Progress and theme persist per browser.
 
-## The lessons
+## Structure
 
-| | Lesson | |
+Three days, 28 sections: 12 lessons, 15 labs, a troubleshooting playbook and a capstone.
+Roughly 20 hours, ending with a deployed URL.
+
+| Day | Covers | Labs |
 |---|---|---|
-| 01 | Start here | 3 min |
-| 02 | The edge was free and on YouTube | 8 min |
-| 03 | From answering to doing | 8 min |
-| 04 | The toolkit, and what it costs | 12 min |
-| 05 | Skills — teaching it your standards | 9 min |
-| 06 | MCP, connectors, and where work happens | 9 min |
-| 07 | Research that stands up | 11 min |
-| 08 | Decks, documents and your own files | 10 min |
-| 09 | How this brief was made (+ quiz) | 10 min |
-| 10 | When it goes wrong | 9 min |
-| 11 | Vibe coding — now you build one | 25 min |
+| 1 — Foundations | Agentic AI, the toolkit, costs | Delegate don't instruct · Choose your stack · Sanitisation drill |
+| 2 — Working | Skills, MCP, research, decks, files | Build a skill · Connectors · First agentic task · Citation audit · Research end-to-end · Your format · Point it at a folder |
+| 3 — Building | Failure modes, vibe coding | Circling drill · Spec · Build v1 · Break and harden · Ship it · **Capstone** |
+
+Every lesson carries a four-question MCQ (40 total, options shuffled, skippable).
+Every lab carries a persistent checklist (112 checks) feeding a per-day progress bar.
+Ticks and quiz scores save to the browser only — nothing is transmitted.
 
 ## Access gate — read this
 

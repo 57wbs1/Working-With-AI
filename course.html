@@ -737,6 +737,97 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
   .diagram svg [class^="pulse"]{animation:none;opacity:1}
 }
 .dcap{font-family:var(--mono);font-size:11px;color:var(--fg-faint);margin:8px 0 0;letter-spacing:.03em}
+
+/* ---------- labs ---------- */
+.lesson[data-kind="lab"] .lessonhead h2{font-size:clamp(24px,4.6vw,36px)}
+.labmeta{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 20px}
+.labtag{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  border:1px solid var(--edge-hi);border-radius:3px;padding:4px 9px;color:var(--fg-dim);
+}
+.labtag.time{color:var(--amber);border-color:var(--amber-deep);background:var(--amber-wash)}
+.deliver{
+  border:1px solid var(--amber-deep);border-left:4px solid var(--amber);background:var(--amber-wash);
+  border-radius:5px;padding:15px 18px;margin:20px 0;
+}
+.deliver b{font-family:var(--display);font-weight:700;color:var(--amber);font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:5px}
+.deliver p{margin:0;font-size:15.5px;max-width:66ch}
+
+/* checklist */
+.check{background:var(--panel);border:1px solid var(--edge);border-radius:5px;padding:16px 18px;margin:20px 0}
+.check-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.check-h h4{margin:0;font-family:var(--display);font-weight:700;font-size:15.5px}
+.check-n{font-family:var(--mono);font-size:11.5px;color:var(--fg-dim);font-variant-numeric:tabular-nums}
+.check-n b{color:var(--ok)}
+.check ul{list-style:none;padding:0;margin:0}
+.check li{margin:0 0 3px}
+.check label{
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;cursor:pointer;
+  padding:8px 10px;border-radius:4px;font-size:14.5px;line-height:1.5;
+}
+.check label:hover{background:var(--panel-2)}
+.check input{
+  appearance:none;width:17px;height:17px;border:1.5px solid var(--edge-hi);border-radius:3px;
+  margin:2px 0 0;cursor:pointer;flex:none;position:relative;background:var(--bg-2);
+}
+.check input:checked{background:var(--ok);border-color:var(--ok)}
+.check input:checked::after{
+  content:"\2713";position:absolute;inset:0;display:grid;place-content:center;
+  color:#0b1407;font-size:12px;font-weight:700;font-family:var(--mono);
+}
+.check input:checked + span{color:var(--fg-faint);text-decoration:line-through}
+.check.done{border-color:var(--ok)}
+
+/* stuck box */
+.stuck{border:1px dashed var(--cyan);background:var(--cyan-wash);border-radius:4px;padding:13px 16px;margin:18px 0}
+.stuck::before{content:"IF YOU GET STUCK";font-family:var(--mono);font-size:10px;letter-spacing:.13em;
+  color:var(--cyan);display:block;margin-bottom:5px}
+.stuck p{margin:0 0 8px;font-size:14.5px}
+.stuck p:last-child{margin-bottom:0}
+
+/* transcript */
+.tx{border:1px solid var(--edge);border-radius:6px;overflow:hidden;margin:20px 0;background:var(--panel)}
+.tx-h{background:var(--bg-2);border-bottom:1px solid var(--edge);padding:10px 15px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--fg-faint);
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.tx-h b{color:var(--amber);font-weight:500}
+.turn{padding:12px 15px;border-bottom:1px solid var(--edge);display:grid;grid-template-columns:62px 1fr;gap:13px}
+.turn:last-child{border-bottom:0}
+.turn .who{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;padding-top:2px}
+.turn.me .who{color:var(--amber)}
+.turn.ai .who{color:var(--cyan)}
+.turn.note{background:var(--bg-2)}
+.turn.note .who{color:var(--fg-faint)}
+.turn .said{font-size:14.5px;line-height:1.55;min-width:0}
+.turn .said code{font-family:var(--mono);font-size:12.5px;background:var(--bg-2);padding:1px 5px;
+  border-radius:3px;border:1px solid var(--edge)}
+.turn.note .said{color:var(--fg-dim);font-size:13.5px}
+@media(max-width:560px){ .turn{grid-template-columns:1fr;gap:4px} }
+
+/* day dividers in contents */
+.toc-day{
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--fg-faint);background:var(--bg-2);padding:9px 17px;border-bottom:1px solid var(--edge);
+  display:flex;justify-content:space-between;
+}
+.toc-day b{color:var(--amber);font-weight:500}
+.toc a .tk{
+  font-family:var(--mono);font-size:9px;letter-spacing:.08em;border:1px solid var(--edge-hi);
+  border-radius:2px;padding:1px 5px;color:var(--fg-faint);margin-left:7px;
+}
+.toc a.lab .tk{color:var(--mint,#4ADE80);border-color:currentColor}
+
+/* progress dashboard */
+.prog{background:var(--panel);border:1px solid var(--edge-hi);border-radius:6px;padding:18px 20px;margin:22px 0}
+.prog h4{margin:0 0 12px;font-family:var(--display);font-weight:700;font-size:16px}
+.prog-days{display:grid;gap:11px}
+@media(min-width:680px){ .prog-days{grid-template-columns:repeat(3,1fr)} }
+.pday{background:var(--bg-2);border:1px solid var(--edge);border-radius:5px;padding:13px 15px;border-top:3px solid var(--d,var(--amber))}
+.pday .pd-t{font-family:var(--display);font-weight:700;font-size:14.5px;margin-bottom:3px}
+.pday .pd-s{font-family:var(--mono);font-size:11px;color:var(--fg-faint)}
+.pbar{height:5px;background:var(--edge);border-radius:3px;overflow:hidden;margin-top:9px}
+.pbar i{display:block;height:100%;background:var(--d,var(--amber));width:0;transition:width .5s ease}
 </style>
 </head>
 <body>
@@ -785,7 +876,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 <div class="wrap">
 <main id="deck">
 
-<section data-hue="coral" class="lesson" data-title="Start here" data-mins="3">
+<section data-hue="coral" class="lesson" data-title="Start here" data-mins="3" data-day="1" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Syndicate Brief &middot; 57 CSC &middot; 7 October 2026</p>
     <h2>Everything here was built by <em style="font-style:normal;color:var(--amber)">AI</em>. Including me.</h2>
@@ -797,9 +888,8 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
       that taught me, what changed when models started doing things instead of saying things, what the
       subscriptions really cost, the plumbing nobody explains, and twenty minutes at the end where you
       build something that runs.</p>
-      <p class="tiny" style="margin-bottom:6px">ELEVEN LESSONS &middot; ABOUT TWO HOURS &middot; LAST ONE IS HANDS-ON</p>
-      <p class="small muted" style="max-width:56ch">Work through it at your own pace with the arrows at the
-      bottom, or jump about using Contents. It remembers where you got to.</p>
+      <p class="tiny" style="margin-bottom:6px">THREE DAYS &middot; 11 LESSONS &middot; 16 LABS &middot; ~24 HOURS &middot; ENDS WITH A LIVE URL</p>
+      <p class="small muted" style="max-width:56ch">Read the lessons, then do the labs. Each lab produces something you keep. Move with the arrows below, or jump about using Contents. It remembers where you got to and what you have ticked off.</p>
     </div>
     <div>
       <div class="portraitframe">
@@ -816,13 +906,37 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
   instruction, about forty cents, and roughly two minutes of waiting. The voice is not mine either.</div>
 
 
+  
+  <div class="prog rv">
+    <h4>Your progress</h4>
+    <div class="prog-days">
+      <div class="pday" data-day="1" style="--d:#FF7A66">
+        <div class="pd-t">Day 1 &middot; Foundations</div>
+        <div class="pd-s">0 / 0 checks &middot; 0%</div>
+        <div class="pbar"><i></i></div>
+      </div>
+      <div class="pday" data-day="2" style="--d:#4ADE80">
+        <div class="pd-t">Day 2 &middot; Working</div>
+        <div class="pd-s">0 / 0 checks &middot; 0%</div>
+        <div class="pbar"><i></i></div>
+      </div>
+      <div class="pday" data-day="3" style="--d:#FDE047">
+        <div class="pd-t">Day 3 &middot; Building</div>
+        <div class="pd-s">0 / 0 checks &middot; 0%</div>
+        <div class="pbar"><i></i></div>
+      </div>
+    </div>
+    <p class="tiny" style="margin:13px 0 0">Ticks are saved in this browser. Nothing is sent anywhere,
+    and nothing is locked &mdash; skip whatever you like.</p>
+  </div>
+
   <div class="warnbox"><b>Before we go further</b>
   <p>Everything in this brief is unclassified and built on a personal account, on personal time, with no
   official material. Keep your own experiments the same way &mdash; Lesson 7 covers exactly where the line is.</p></div>
 </section>
 
 <!-- ========================= 01 ========================= -->
-<section data-hue="red" class="lesson" hidden id="edge" data-title="The edge was free and on YouTube" data-mins="8">
+<section data-hue="red" class="lesson" hidden id="edge" data-title="The edge was free and on YouTube" data-mins="8" data-day="1" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 02</p>
     <h2>The edge was free and on YouTube</h2>
@@ -870,7 +984,7 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
 </section>
 
 <!-- ========================= 02 ========================= -->
-<section data-hue="violet" class="lesson" hidden id="agentic" data-title="From answering to doing" data-mins="8">
+<section data-hue="violet" class="lesson" hidden id="agentic" data-title="From answering to doing" data-mins="8" data-day="1" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 03</p>
     <h2>From answering to doing</h2>
@@ -1064,8 +1178,52 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
   <div class="quizwrap" data-quiz="agentic"></div>
 </section>
 
+<!-- ===================== lab-delegate ===================== -->
+<section data-hue="violet" class="lesson" hidden id="lab-delegate" data-title="Lab 1.1 - Delegate, do not instruct" data-mins="45" data-day="1" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 1 &middot; Lab</p>
+    <h2>Lab 1.1 &mdash; Delegate, do not instruct</h2>
+    <p class="lsub">Rewrite three of your own requests as intent, bounds and a test.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">45 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">7 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>Three rewritten requests, each with an end state, constraints and a test you could apply to the output.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Open whichever assistant you already use. Write down the <b>last three things you asked it to do</b>, in the words you actually used. Do not tidy them.</li>
+    <li>For each one, answer the three questions from Lesson 05 in writing. <b>End state:</b> what is true when this is done? <b>Constraints:</b> word count, sources, format, what it must not do. <b>Test:</b> how will you both know it worked?</li>
+    <li>Send the rewritten version in a <b>fresh conversation</b>, so the old one cannot prime it.</li>
+    <li>Put the two outputs side by side. Note specifically what changed: not &ldquo;it was better&rdquo;, but which part of the output moved and why.</li>
+    <li>Add the line &ldquo;list your assumptions and wait for me to confirm&rdquo; and send a fourth request with it. Count how many assumptions it names that you had not thought of.</li>
+  </ol>
+  <div class="stuck"><p>If the rewritten version produces the same output, your end state is probably still a task in disguise. &ldquo;Write a 500-word summary&rdquo; is a task. &ldquo;I can walk into Thursday&rsquo;s tutorial able to defend a position on this&rdquo; is an end state.</p></div>
+
+  <div class="check" data-lab="lab-delegate">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 7</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-delegate" data-i="0"><span>All three original requests written down verbatim</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-delegate" data-i="1"><span>Each has an explicit end state, not a task</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-delegate" data-i="2"><span>Each has at least two real constraints</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-delegate" data-i="3"><span>Each has a test that could fail</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-delegate" data-i="4"><span>Run in a fresh conversation, not the old thread</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-delegate" data-i="5"><span>Noted what specifically changed in the output</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-delegate" data-i="6"><span>Ran the assumptions version and counted what it surfaced</span></label></li>
+    </ul>
+  </div>
+</section>
+
 <!-- ========================= 03 ========================= -->
-<section data-hue="amber" class="lesson" hidden id="pricing" data-title="The toolkit, and what it costs" data-mins="12">
+<section data-hue="amber" class="lesson" hidden id="pricing" data-title="The toolkit, and what it costs" data-mins="12" data-day="1" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 04</p>
     <h2>The toolkit, and what it costs</h2>
@@ -1265,8 +1423,96 @@ td .lg,th .lg{margin-right:7px;vertical-align:-3px;opacity:.9}
   <div class="quizwrap" data-quiz="pricing"></div>
 </section>
 
+<!-- ===================== lab-stack ===================== -->
+<section data-hue="amber" class="lesson" hidden id="lab-stack" data-title="Lab 1.2 - Choose your stack" data-mins="60" data-day="1" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 1 &middot; Lab</p>
+    <h2>Lab 1.2 &mdash; Choose your stack</h2>
+    <p class="lsub">Decide what you will pay for, on evidence rather than impression.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">60 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">7 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A one-page note naming the tools you will use for which job, what you will pay, and what you deliberately rejected.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Create free accounts on <b>Claude</b>, <b>ChatGPT</b> and <b>Perplexity</b> if you do not have them. If you are a student, start the Perplexity Education Pro verification now, since it takes a day or two to come back.</li>
+    <li>Take one <b>real</b> task from this week and run it on all three. Same prompt, same inputs, no tailoring to each.</li>
+    <li>Score each on three things only: did it get the facts right, could you check its sources, and how much editing did the output need?</li>
+    <li>Open Gemini Notebook and upload one set of module readings. Ask it something you already know the answer to, and check whether the citation points at the right page.</li>
+    <li>Write the one-pager. For each tool: what you will use it for, what you will not, and the price. Name at least one you are <b>not</b> paying for and why.</li>
+    <li>Diary a review date four weeks out. Prices in Lesson 04 moved four times last quarter.</li>
+  </ol>
+  <div class="stuck"><p>If all three feel the same, your test task is too easy. Pick something with a fact you can check and a judgement you can disagree with.</p></div>
+
+  <div class="check" data-lab="lab-stack">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 7</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-stack" data-i="0"><span>Three free accounts created</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-stack" data-i="1"><span>Student verification started, if eligible</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-stack" data-i="2"><span>One real task run on all three, unmodified</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-stack" data-i="3"><span>Scored on facts, checkability and editing load</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-stack" data-i="4"><span>Gemini Notebook tested against something you can verify</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-stack" data-i="5"><span>One-pager written, naming a tool you rejected</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-stack" data-i="6"><span>Review date in the diary</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== lab-sanitise ===================== -->
+<section data-hue="amber" class="lesson" hidden id="lab-sanitise" data-title="Lab 1.3 - The sanitisation drill" data-mins="30" data-day="1" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 1 &middot; Lab</p>
+    <h2>Lab 1.3 &mdash; The sanitisation drill</h2>
+    <p class="lsub">Practise the line before you are near anything that matters.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">30 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">6 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A sanitised version of a real document, plus a written rule for yourself about what never goes in.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Take a document you genuinely work with. <b>Do not open anything classified or marked for this.</b> Use something routine: a kit list, a programme, a set of meeting notes.</li>
+    <li>Make a copy. In the copy, replace every name with a letter, every unit with a placeholder, every date with a relative one, and every real figure with an invented one that keeps the same shape.</li>
+    <li>Read the sanitised copy cold. If it still identifies a person, a place or an activity, you have not finished.</li>
+    <li>Only now put the sanitised copy into a tool and ask it to do the real task.</li>
+    <li>Write your own rule in one sentence, and keep it somewhere you will see it. Mine is: if I would not email it to a vendor, I do not prompt it.</li>
+  </ol>
+  <div class="stuck"><p>The common failure is replacing names but leaving a detail that identifies just as well &mdash; a unique location, an unusual piece of equipment, a date everyone would recognise. Shape matters as much as content.</p></div>
+
+  <div class="check" data-lab="lab-sanitise">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 6</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-sanitise" data-i="0"><span>Started from something routine and unmarked</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-sanitise" data-i="1"><span>Worked on a copy, never the original</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-sanitise" data-i="2"><span>Names, units, dates and figures all replaced</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-sanitise" data-i="3"><span>Read cold and still unidentifiable</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-sanitise" data-i="4"><span>Task run only on the sanitised copy</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-sanitise" data-i="5"><span>One-sentence personal rule written down</span></label></li>
+    </ul>
+  </div>
+</section>
+
 <!-- ========================= 04 ========================= -->
-<section data-hue="mint" class="lesson" hidden id="skills" data-title="Skills — teaching it your standards" data-mins="9">
+<section data-hue="mint" class="lesson" hidden id="skills" data-title="Skills — teaching it your standards" data-mins="9" data-day="2" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 05</p>
     <h2>Skills — teaching it your standards</h2>
@@ -1531,8 +1777,55 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <div class="quizwrap" data-quiz="skills"></div>
 </section>
 
+<!-- ===================== lab-skill ===================== -->
+<section data-hue="mint" class="lesson" hidden id="lab-skill" data-title="Lab 2.1 - Build a skill from your own feedback" data-mins="75" data-day="2" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 2 &middot; Lab</p>
+    <h2>Lab 2.1 &mdash; Build a skill from your own feedback</h2>
+    <p class="lsub">Turn marking you have already received into something that works on every future assignment.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">75 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">8 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A working skill file that catches at least three things a marker has previously pulled you up on.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Find written feedback you have been given &mdash; tutor comments, a marked essay, a returned brief. Any amount will do.</li>
+    <li>Pull out every <b>recurring</b> criticism. Not the one-offs. The things said more than once, or that you suspect would be said again.</li>
+    <li>Start a conversation and work through a real piece of writing with the model, correcting it as you go against those criticisms. Be explicit: &ldquo;no, we always do it this way, because...&rdquo;</li>
+    <li>When you have corrected it four or five times, say: <b>&ldquo;turn everything you just learnt into a skill, including the description line.&rdquo;</b></li>
+    <li>Read what it produced and <b>cut half</b>. Keep what is specific to you; delete generic good practice, which it already knows.</li>
+    <li>Sharpen the description so it names the trigger: &ldquo;Use when drafting or reviewing any assessed essay for [your programme].&rdquo;</li>
+    <li>Test it on a different piece of writing. Does it fire without being asked? Does it catch the things you built it for?</li>
+  </ol>
+  <div class="stuck"><p>If it never fires, the description is the problem, not the body. It should read like a trigger condition, not a summary of contents.</p></div>
+
+  <div class="check" data-lab="lab-skill">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 8</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-skill" data-i="0"><span>Real feedback gathered</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-skill" data-i="1"><span>Recurring criticisms separated from one-offs</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-skill" data-i="2"><span>Worked through a real piece, correcting out loud</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-skill" data-i="3"><span>Asked it to turn the corrections into a skill</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-skill" data-i="4"><span>Cut at least half of what it wrote</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-skill" data-i="5"><span>Description names an explicit trigger</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-skill" data-i="6"><span>Fires unprompted on a second piece</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-skill" data-i="7"><span>Catches three things it was built for</span></label></li>
+    </ul>
+  </div>
+</section>
+
 <!-- ========================= MCP / local-cloud ========================= -->
-<section data-hue="cyan" class="lesson" hidden id="plumbing" data-title="MCP, connectors and where work happens" data-mins="9">
+<section data-hue="cyan" class="lesson" hidden id="plumbing" data-title="MCP, connectors and where work happens" data-mins="9" data-day="2" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 06</p>
     <h2>MCP, connectors, and where work happens</h2>
@@ -1694,10 +1987,99 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <div class="quizwrap" data-quiz="plumbing"></div>
 </section>
 
+<!-- ===================== lab-connect ===================== -->
+<section data-hue="cyan" class="lesson" hidden id="lab-connect" data-title="Lab 2.2 - Three connectors, and one you revoke" data-mins="50" data-day="2" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 2 &middot; Lab</p>
+    <h2>Lab 2.2 &mdash; Three connectors, and one you revoke</h2>
+    <p class="lsub">Wire it to something real, then practise taking the permission back.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">50 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">6 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>Three working connectors, one revoked on purpose, and a note on what each could see.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>In your assistant's settings, find the connector list. Install <b>three</b> you would actually use. Calendar, Drive and one other is a sensible start.</li>
+    <li>For each one, read what it is asking for <b>before</b> you approve. Write down what it can see and what it can change.</li>
+    <li>Grant the narrowest permission that still does the job. Where read-only is offered, take it.</li>
+    <li>Ask a question that can only be answered using each connector, so you know it is genuinely wired and not guessing.</li>
+    <li>Now <b>revoke one</b>. Confirm the model can no longer answer the question it could answer five minutes ago.</li>
+    <li>Write down which connectors you would never grant on a work account, and why.</li>
+  </ol>
+  <div class="stuck"><p>If it answers your test question without the connector, it is guessing from training data. Ask something only your own account could know &mdash; what is in Thursday&rsquo;s calendar slot, what the third file in that folder is called.</p></div>
+
+  <div class="check" data-lab="lab-connect">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 6</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-connect" data-i="0"><span>Three connectors installed</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-connect" data-i="1"><span>Permissions read before approving, not after</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-connect" data-i="2"><span>Narrowest useful scope chosen for each</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-connect" data-i="3"><span>Each verified with a question only it can answer</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-connect" data-i="4"><span>One revoked, and the loss confirmed</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-connect" data-i="5"><span>Note written on what you would never grant</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== lab-agentic ===================== -->
+<section data-hue="cyan" class="lesson" hidden id="lab-agentic" data-title="Lab 2.3 - Your first agentic task" data-mins="60" data-day="2" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 2 &middot; Lab</p>
+    <h2>Lab 2.3 &mdash; Your first agentic task</h2>
+    <p class="lsub">Give it a goal on your own files and let it run without stepping in.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">60 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">7 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>One completed multi-step task you did not supervise step by step, plus notes on where it went wrong.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Make a folder you could afford to lose. Copy in ten to twenty real but unmarked documents &mdash; notes, drafts, readings.</li>
+    <li>Install a local tool if you have not, or use a cloud assistant with the folder uploaded. Lesson 06 covers which you need.</li>
+    <li>Give it a goal, not a task list: <b>&ldquo;Read everything in this folder and tell me what is inconsistent between the documents.&rdquo;</b></li>
+    <li><b>Do not intervene.</b> Let it finish, even if you can see it going somewhere you would not have chosen.</li>
+    <li>Check its output against the actual documents. Find at least one thing it got wrong or overstated, because there will be one.</li>
+    <li>Now run it again with a constraint added that would have prevented that error. Note whether the second run is better or just different.</li>
+  </ol>
+  <div class="stuck"><p>If it refuses or stalls, the folder is probably too large or the goal too vague. Cut to ten documents and name what &ldquo;inconsistent&rdquo; means for your material.</p></div>
+
+  <div class="check" data-lab="lab-agentic">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 7</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-agentic" data-i="0"><span>Throwaway folder with real but unmarked documents</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-agentic" data-i="1"><span>Goal given, not a list of steps</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-agentic" data-i="2"><span>Let it run to completion without intervening</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-agentic" data-i="3"><span>Output checked against the source documents</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-agentic" data-i="4"><span>At least one error or overstatement found</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-agentic" data-i="5"><span>Second run with a corrective constraint</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-agentic" data-i="6"><span>Noted whether round two was better or just different</span></label></li>
+    </ul>
+  </div>
+</section>
+
 <!-- ========================= 05 ========================= -->
 
 <!-- ========================= Research ========================= -->
-<section data-hue="blue" class="lesson" hidden id="research" data-title="Research that stands up" data-mins="11">
+<section data-hue="blue" class="lesson" hidden id="research" data-title="Research that stands up" data-mins="11" data-day="2" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 07</p>
     <h2>Research that stands up</h2>
@@ -1823,8 +2205,100 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <div class="quizwrap" data-quiz="research"></div>
 </section>
 
+<!-- ===================== lab-citation ===================== -->
+<section data-hue="blue" class="lesson" hidden id="lab-citation" data-title="Lab 2.4 - The citation audit" data-mins="45" data-day="2" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 2 &middot; Lab</p>
+    <h2>Lab 2.4 &mdash; The citation audit</h2>
+    <p class="lsub">Watch it invent a source, then build the habit that catches it.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">45 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">7 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A table of five citations with a verdict on each: exists, exists but misused, or invented.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Pick a narrow topic in your field &mdash; narrow enough that you would notice a fake, broad enough that real work exists.</li>
+    <li>Ask a <b>plain chat window</b>, with no search tool, for five scholarly sources on it, with full citations. Do not tell it to be careful.</li>
+    <li>Search for each one. Title first, then author, then the journal and year.</li>
+    <li>For any that exist, find the specific claim it was cited for and check the source actually makes it. This is the step people skip.</li>
+    <li>Record a verdict per citation: <b>exists and supports</b>, <b>exists but does not support</b>, or <b>no such work</b>.</li>
+    <li>Now run the same question through a tool that genuinely searches, and compare the hit rate.</li>
+  </ol>
+  <div class="stuck"><p>If all five turn out real, you have probably picked a very well-trodden topic, or the tool searched without telling you. Go narrower, or turn search off explicitly.</p></div>
+
+  <div class="check" data-lab="lab-citation">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 7</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-citation" data-i="0"><span>Narrow topic chosen</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-citation" data-i="1"><span>Five citations requested from a non-searching chat window</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-citation" data-i="2"><span>Every one searched for</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-citation" data-i="3"><span>Claim fidelity checked on the real ones</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-citation" data-i="4"><span>Verdict recorded for all five</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-citation" data-i="5"><span>Same question run through a searching tool</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-citation" data-i="6"><span>Hit rates compared</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== lab-research ===================== -->
+<section data-hue="blue" class="lesson" hidden id="lab-research" data-title="Lab 2.5 - Research a real question end to end" data-mins="90" data-day="2" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 2 &middot; Lab</p>
+    <h2>Lab 2.5 &mdash; Research a real question end to end</h2>
+    <p class="lsub">The full workflow on something you actually have to write.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">90 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">8 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A one-page brief on a real question, every claim cited, with the strongest counter-argument named and engaged.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Take a question you genuinely have to answer &mdash; an essay, a paper, a decision you are staffing.</li>
+    <li><b>Map the ground.</b> Use a searching tool to find what exists and who is canonical. You are asking what the debate is, not what the answer is.</li>
+    <li><b>Find your opponent.</b> Search for the strongest published objection to the position you are drifting towards. Name the person.</li>
+    <li><b>Read the load-bearing sources yourself.</b> Not summaries. If a claim holds up a section of your argument, you read the page.</li>
+    <li><b>Draft the brief.</b> One page. Every claim carries a citation you have personally opened.</li>
+    <li><b>Audit it.</b> Run the citation check from Lab 2.4 over your own draft. Then ask: &ldquo;which paragraph is doing the least work?&rdquo; and cut it.</li>
+    <li>Ask: &ldquo;what would change your answer?&rdquo; and add a line to the brief about what would.</li>
+  </ol>
+  <div class="stuck"><p>If you cannot find anyone who disagrees, either the question is not contested &mdash; in which case it may not be worth a brief &mdash; or you are searching for agreement. Search for the objection by name.</p></div>
+
+  <div class="check" data-lab="lab-research">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 8</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-research" data-i="0"><span>Real question, not a practice one</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-research" data-i="1"><span>Ground mapped with a searching tool</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-research" data-i="2"><span>A named opponent, not a generic counter-argument</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-research" data-i="3"><span>Load-bearing sources read directly</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-research" data-i="4"><span>One-page brief drafted</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-research" data-i="5"><span>Every citation personally opened</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-research" data-i="6"><span>Weakest paragraph identified and cut</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-research" data-i="7"><span>A line on what would change the conclusion</span></label></li>
+    </ul>
+  </div>
+</section>
+
 <!-- ========================= Decks, docs, files ========================= -->
-<section data-hue="pink" class="lesson" hidden id="decks" data-title="Decks, documents and your own files" data-mins="10">
+<section data-hue="pink" class="lesson" hidden id="decks" data-title="Decks, documents and your own files" data-mins="10" data-day="2" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 08</p>
     <h2>Decks, documents and your own files</h2>
@@ -1925,9 +2399,98 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <div class="quizwrap" data-quiz="decks"></div>
 </section>
 
+<!-- ===================== lab-format ===================== -->
+<section data-hue="pink" class="lesson" hidden id="lab-format" data-title="Lab 2.6 - Give it your format" data-mins="45" data-day="2" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 2 &middot; Lab</p>
+    <h2>Lab 2.6 &mdash; Give it your format</h2>
+    <p class="lsub">Write your house rules down once and watch the output change.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">45 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">7 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A format block that produces a usable first-draft deck, saved as a skill.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Take a deck you were happy with. Work out the rules you were following, even the ones you never wrote down: type sizes, how much text per slide, what the top bar means, how notes are written.</li>
+    <li>Write them out as a plain block, the way Lesson 08 shows. Be specific about the things you would otherwise correct every time.</li>
+    <li>Ask for a deck on a real topic <b>without</b> the format block. Keep the output.</li>
+    <li>Ask for the same deck <b>with</b> the block. Compare the two honestly &mdash; count how many slides you would have to rebuild in each.</li>
+    <li>Fix whatever the format block missed, and run it a third time.</li>
+    <li>Save the block as a skill so you never type it again.</li>
+  </ol>
+  <div class="stuck"><p>If the formatted version is no better, your block is probably describing taste rather than rules. &ldquo;Professional and clean&rdquo; is taste. &ldquo;Minimum 8.5pt, never split a point across two slides&rdquo; is a rule.</p></div>
+
+  <div class="check" data-lab="lab-format">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 7</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-format" data-i="0"><span>Rules extracted from a deck that worked</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-format" data-i="1"><span>Written as an explicit block</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-format" data-i="2"><span>Control version generated without it</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-format" data-i="3"><span>Same deck generated with it</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-format" data-i="4"><span>Rebuild count compared between the two</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-format" data-i="5"><span>Block corrected and re-run</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-format" data-i="6"><span>Saved as a skill</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== lab-folder ===================== -->
+<section data-hue="pink" class="lesson" hidden id="lab-folder" data-title="Lab 2.7 - Point it at a folder" data-mins="40" data-day="2" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 2 &middot; Lab</p>
+    <h2>Lab 2.7 &mdash; Point it at a folder</h2>
+    <p class="lsub">The question you can only ask when it can see everything.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">40 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">6 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>An answer to a question about your own body of work that you could not have asked a chat window.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Gather a real set of your own documents into one folder. Past essays and their feedback is the highest-value set, if you have it.</li>
+    <li>Ask the question that needs the whole set: <b>&ldquo;What do I keep getting wrong across these?&rdquo;</b></li>
+    <li>Push on the answer. Ask for the evidence: which document, which line, how many times.</li>
+    <li>Ask the inverse: &ldquo;what do I consistently do well that I should keep doing?&rdquo;</li>
+    <li>Take the single most repeated criticism and add it to the skill you built in Lab 2.1.</li>
+    <li>Try a reorganisation task, with <b>&ldquo;show me what you would change and wait&rdquo;</b> added. Read the plan. Do not run it unless it is right.</li>
+  </ol>
+  <div class="stuck"><p>If the answer is generic (&ldquo;be clearer, add more evidence&rdquo;) it has not actually read them. Ask it to quote the specific lines it is drawing on and the generic answer usually collapses.</p></div>
+
+  <div class="check" data-lab="lab-folder">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 6</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-folder" data-i="0"><span>Real folder of your own work</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-folder" data-i="1"><span>Asked a question that needs the whole set</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-folder" data-i="2"><span>Demanded evidence per claim</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-folder" data-i="3"><span>Asked the inverse question too</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-folder" data-i="4"><span>Most repeated criticism folded into your skill</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-folder" data-i="5"><span>Reorganisation proposed and reviewed before running</span></label></li>
+    </ul>
+  </div>
+</section>
+
 
 <!-- ========================= How this was made ========================= -->
-<section data-hue="lime" class="lesson" hidden id="made" data-title="How this brief was made" data-mins="10">
+<section data-hue="lime" class="lesson" hidden id="made" data-title="How this brief was made" data-mins="10" data-day="3" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 09</p>
     <h2>How this brief was made</h2>
@@ -2001,7 +2564,7 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 </section>
 
 <!-- ========================= When it goes wrong ========================= -->
-<section data-hue="orange" class="lesson" hidden id="trouble" data-title="When it goes wrong" data-mins="9">
+<section data-hue="orange" class="lesson" hidden id="trouble" data-title="When it goes wrong" data-mins="9" data-day="3" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 10</p>
     <h2>When it goes wrong</h2>
@@ -2078,6 +2641,33 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     piece and let it carry on. Not a defeat, a division of labour.</li>
   </ol>
 
+  
+  <div class="eyebrow">What twenty rounds actually looks like</div>
+  <p class="lede">Lesson 11 claims the trip app took 194 rounds. Here is a real stretch of one, cut down.
+  Nothing here is unusual, which is the point.</p>
+
+  <div class="tx rv">
+    <div class="tx-h"><span>Duty roster tool &middot; rounds 4&ndash;11</span><b>abridged</b></div>
+    <div class="turn me"><span class="who">Me</span><span class="said">Nobody should do two weekends in a row.</span></div>
+    <div class="turn ai"><span class="who">It</span><span class="said">Done. Added a check that skips anyone rostered the previous weekend.</span></div>
+    <div class="turn me"><span class="who">Me</span><span class="said">Now Tan has four and Lim has one.</span></div>
+    <div class="turn ai"><span class="who">It</span><span class="said">Fixed. Now balancing totals across the term.</span></div>
+    <div class="turn me"><span class="who">Me</span><span class="said">Tan is on consecutive weekends again.</span></div>
+    <div class="turn note"><span class="who">note</span><span class="said">Round six. The first rule has been dropped to satisfy the second. This is the trade-off failure from the staff officer table, and it will not announce itself.</span></div>
+    <div class="turn ai"><span class="who">It</span><span class="said">Apologies, you are right. Fixing the consecutive-weekend rule now.</span></div>
+    <div class="turn me"><span class="who">Me</span><span class="said">Lim is back on one.</span></div>
+    <div class="turn note"><span class="who">note</span><span class="said">Round eight, and the two rules are now swapping places. That is circling, not converging. More corrections here would have bought nothing.</span></div>
+    <div class="turn me"><span class="who">Me</span><span class="said">Stop. Both rules have to hold at once. If they cannot, say so instead of silently dropping one. Show me your approach before you write any code.</span></div>
+    <div class="turn ai"><span class="who">It</span><span class="said">The two constraints can conflict. With 4 people over 8 weekends and one away in week 3, a perfectly even split forces a repeat. I will spread as evenly as possible subject to no repeats, and report the imbalance rather than hide it. Confirm?</span></div>
+    <div class="turn note"><span class="who">note</span><span class="said">That is the whole fix. Not a better correction, a different kind of instruction: state the end state, require it to surface the conflict, make it propose before it builds.</span></div>
+    <div class="turn me"><span class="who">Me</span><span class="said">Confirmed. Build that.</span></div>
+    <div class="turn ai"><span class="who">It</span><span class="said">Built. 4 names, 8 weekends, one away in week 3: everyone has 2, nobody is on twice running.</span></div>
+  </div>
+
+  <p>Eight rounds, of which <b>four were wasted</b> going round the same loop. The recovery was not a
+  cleverer correction. It was stopping, restating the outcome, and requiring it to flag the conflict
+  rather than resolve it silently.</p>
+
   <div class="eyebrow">Usually it is the model</div>
   <p class="lede">This is the part most people never find out, because the free tier is the only one they
   ever use. The gap between a small model and a frontier one is not politeness or speed. It is <b>how
@@ -2126,7 +2716,51 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
   <div class="quizwrap" data-quiz="trouble"></div>
 </section>
 
-<section data-hue="gold" class="lesson" hidden id="build" data-title="Vibe coding — now you build one" data-mins="25">
+<!-- ===================== lab-circle ===================== -->
+<section data-hue="orange" class="lesson" hidden id="lab-circle" data-title="Lab 3.1 - The circling drill" data-mins="40" data-day="3" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 3 &middot; Lab</p>
+    <h2>Lab 3.1 &mdash; The circling drill</h2>
+    <p class="lsub">Break it on purpose so you recognise the failure when it costs you.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">40 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">6 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A written description of what circling looks like in your own words, and which recovery worked.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Pick a task slightly beyond what you would expect to work &mdash; an awkward calculation, a layout with several interacting constraints.</li>
+    <li>Use the <b>smallest or cheapest model</b> you have access to. The free tier is ideal.</li>
+    <li>Push it through at least six rounds of correction. Keep going past the point where it feels productive.</li>
+    <li>Record the moment it starts circling, and what the signal was. Repeated answer? A fixed bug returning? Apologies without edits?</li>
+    <li>Now try the recoveries from Lesson 10 in order: fresh conversation, then restate as end state plus test, then ask it to diagnose itself, then switch to a bigger model.</li>
+    <li>Write down which one worked and at what point you should have stopped.</li>
+  </ol>
+  <div class="stuck"><p>If it never circles, the task is too easy. Add an interacting constraint &mdash; something that forces it to trade one requirement against another.</p></div>
+
+  <div class="check" data-lab="lab-circle">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 6</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-circle" data-i="0"><span>Task chosen that is genuinely at the edge</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-circle" data-i="1"><span>Small or free-tier model used deliberately</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-circle" data-i="2"><span>At least six rounds pushed through</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-circle" data-i="3"><span>Circling signal identified and recorded</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-circle" data-i="4"><span>All four recoveries tried, in order</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-circle" data-i="5"><span>Noted which worked and when to have stopped</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<section data-hue="gold" class="lesson" hidden id="build" data-title="Vibe coding — now you build one" data-mins="25" data-day="3" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 11</p>
     <h2>Vibe coding &mdash; now you build one</h2>
@@ -2320,6 +2954,312 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
   <div class="quizwrap" data-quiz="build"></div>
 </section>
 
+<!-- ===================== lab-spec ===================== -->
+<section data-hue="gold" class="lesson" hidden id="lab-spec" data-title="Lab 3.2 - Spec the thing" data-mins="45" data-day="3" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 3 &middot; Lab</p>
+    <h2>Lab 3.2 &mdash; Spec the thing</h2>
+    <p class="lsub">Ninety seconds of thinking that decides whether the next three hours work.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">45 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">7 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A completed six-part spec for a tool you will actually use.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Pick something you do by hand repeatedly. The test is that you have done it at least three times already.</li>
+    <li>Use the builder in Lesson 11 and fill all six fields. Do not skip <b>rules</b>; that is where people are lazy and then wonder why the output is wrong.</li>
+    <li>Write the <b>done means</b> field as a worked example with the answer you expect, not a description.</li>
+    <li>Read the generated prompt back. If a stranger could not build the right thing from it, it is not finished.</li>
+    <li>Send it, and make it list its assumptions before writing any code. Confirm or correct each one.</li>
+    <li>Keep the prompt. It is the source; the app is the output.</li>
+  </ol>
+
+  <div class="check" data-lab="lab-spec">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 7</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-spec" data-i="0"><span>Task you have genuinely done three times or more</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-spec" data-i="1"><span>All six fields filled</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-spec" data-i="2"><span>Rules are specific enough to be checkable</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-spec" data-i="3"><span>Done-means is a worked example with an expected answer</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-spec" data-i="4"><span>Prompt readable by a stranger</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-spec" data-i="5"><span>Assumptions listed and confirmed before any code</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-spec" data-i="6"><span>Prompt saved</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== lab-build ===================== -->
+<section data-hue="gold" class="lesson" hidden id="lab-build" data-title="Lab 3.3 - Build version one" data-mins="120" data-day="3" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 3 &middot; Lab</p>
+    <h2>Lab 3.3 &mdash; Build version one</h2>
+    <p class="lsub">Get to something that runs, then use it like a real person would.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">120 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">7 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A working app you can click, and a list of everything wrong with it.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Send the spec and let it build. Do not interrupt. Wait for something clickable.</li>
+    <li>Use it on the <b>awkward</b> path, not the happy one: empty fields, silly numbers, the corner case you know about.</li>
+    <li>Write down every problem before you report any of them. You will find more this way.</li>
+    <li>Report them <b>one at a time</b>, specifically. &ldquo;When the date is blank it shows NaN&rdquo;, not &ldquo;dates are broken&rdquo;.</li>
+    <li>Repeat until the list is empty. Four or five rounds is normal and is not a sign you did something wrong.</li>
+    <li>When it passes your done-means test, stop adding features.</li>
+  </ol>
+  <div class="stuck"><p>If it keeps breaking the same thing, you are circling &mdash; go back to Lab 3.1 and use the recoveries. A fresh conversation with the original spec very often lands first try.</p></div>
+
+  <div class="check" data-lab="lab-build">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 7</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-build" data-i="0"><span>Built without interrupting the first pass</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-build" data-i="1"><span>Tested on the awkward path</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-build" data-i="2"><span>All problems written down before reporting</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-build" data-i="3"><span>Reported one at a time, specifically</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-build" data-i="4"><span>Iterated until the list was empty</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-build" data-i="5"><span>Passes the done-means test</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-build" data-i="6"><span>Stopped at done rather than adding features</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== lab-harden ===================== -->
+<section data-hue="gold" class="lesson" hidden id="lab-harden" data-title="Lab 3.4 - Break it, then harden it" data-mins="60" data-day="3" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 3 &middot; Lab</p>
+    <h2>Lab 3.4 &mdash; Break it, then harden it</h2>
+    <p class="lsub">It is noticeably better at attacking its own work than at getting it right.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">60 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">6 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A hardened version, plus the list of inputs that broke the first one.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Ask: <b>&ldquo;What inputs would break this?&rdquo;</b> and make it list at least ten.</li>
+    <li>Try all ten yourself. Keep the ones that actually break it.</li>
+    <li>Ask it to handle each failure gracefully &mdash; never an error code, never a blank screen, never silent wrong output.</li>
+    <li>Ask: <b>&ldquo;Show me a simpler approach you considered and rejected.&rdquo;</b> Sometimes the rejected one is the one you wanted.</li>
+    <li>Check the honest limits from Lesson 11: does this touch real personal data, money or credentials? If yes, it is out of scope for vibe coding and stops here.</li>
+    <li>Re-run your done-means test.</li>
+  </ol>
+
+  <div class="check" data-lab="lab-harden">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 6</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-harden" data-i="0"><span>Ten breaking inputs listed by the model</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-harden" data-i="1"><span>All ten tried by hand</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-harden" data-i="2"><span>Real failures handled gracefully</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-harden" data-i="3"><span>Rejected simpler approach reviewed</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-harden" data-i="4"><span>Checked against the data, money and credentials limit</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-harden" data-i="5"><span>Done-means test re-run and passing</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== lab-ship ===================== -->
+<section data-hue="gold" class="lesson" hidden id="lab-ship" data-title="Lab 3.5 - Ship it" data-mins="60" data-day="3" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 3 &middot; Lab</p>
+    <h2>Lab 3.5 &mdash; Ship it</h2>
+    <p class="lsub">A URL someone else can open. This is the one that makes it real.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">60 min</span>
+    <span class="labtag">Hands-on</span>
+    <span class="labtag">7 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A live URL you can send to another person, and they can use it without you.</p></div>
+
+  <div class="eyebrow">Steps</div>
+  <ol class="steps">
+    <li>Decide who else should be able to open this, and whether it contains anything that should not be public. Sanitise now if so &mdash; Lab 1.3.</li>
+    <li>Ask it to put the whole thing in a single self-contained file, so there is nothing to install and nothing to run.</li>
+    <li>Publish it. Ask the model to walk you through whichever route it recommends; it will handle the commands.</li>
+    <li>Open the live URL on your <b>phone</b>, on mobile data, with the original tab closed. If it breaks there, it is not shipped.</li>
+    <li>Send it to one other person with no instructions and watch what they do. Everything they get stuck on is a real defect.</li>
+    <li>Fix what they hit. Then stop.</li>
+  </ol>
+  <div class="stuck"><p>If publishing fails, the usual causes are a missing account, the wrong folder, or a file that was never saved. Paste the exact error back and let it diagnose &mdash; this is a case where it is genuinely good.</p></div>
+
+  <div class="check" data-lab="lab-ship">
+    <div class="check-h">
+      <h4>Before you move on</h4>
+      <span class="check-n"><b>0</b> / 7</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="lab-ship" data-i="0"><span>Checked for anything that should not be public</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-ship" data-i="1"><span>Single self-contained file</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-ship" data-i="2"><span>Published to a live URL</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-ship" data-i="3"><span>Opened on a phone, on mobile data, fresh</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-ship" data-i="4"><span>Sent to one person with no instructions</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-ship" data-i="5"><span>Watched where they got stuck</span></label></li>
+      <li><label><input type="checkbox" data-lab="lab-ship" data-i="6"><span>Fixed what they hit</span></label></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ===================== playbook ===================== -->
+<section data-hue="red" class="lesson" hidden id="playbook" data-title="Troubleshooting playbook" data-mins="8" data-day="3" data-kind="lesson">
+  <div class="lessonhead">
+    <p class="lkick">Reference</p>
+    <h2>Troubleshooting playbook</h2>
+    <p class="lsub">Symptom, cause, fix. Come back to this page rather than reading it through.</p>
+  </div>
+
+  <div class="bluf"><b>How to use this</b>
+  Find the symptom, not the lesson. Almost everything that goes wrong in the first month is on this
+  page, and most of it is one of three things: the model is too small, the context is polluted, or you
+  gave it a task when you meant to give it an outcome.</div>
+
+  <div class="tscroll rv">
+    <table>
+      <caption>The sixteen things that actually go wrong</caption>
+      <thead><tr><th>Symptom</th><th>Usually because</th><th>Do this</th></tr></thead>
+      <tbody>
+        <tr><td>It keeps reintroducing a bug you already fixed</td><td class="muted">Context is polluted; the failed attempts are pulling it back</td><th>Fresh conversation, restate the problem cleanly from the original spec</th></tr>
+        <tr><td>It agrees with every correction and changes nothing</td><td class="muted">Model too small to hold the constraints together</td><th>Move up a tier before you try anything else</th></tr>
+        <tr><td>Output is fluent but says nothing</td><td class="muted">No actual claim was asked for</td><th>Make it state the one claim in a sentence first, then build from that</th></tr>
+        <tr><td>It invented a citation</td><td class="muted">Normal behaviour, not a bug</td><th>Never accept a citation that did not come from a clickable search result</th></tr>
+        <tr><td>A real source does not support the claim</td><td class="muted">Retrieval attached the model's own analysis to a named source</td><th>Open the page and check the specific claim, every time</th></tr>
+        <tr><td>The skill never fires</td><td class="muted">Description is a summary, not a trigger</td><th>Rewrite it as a condition: \u201cUse when\u2026\u201d</th></tr>
+        <tr><td>It forgot your house style in a new chat</td><td class="muted">Standards were in the conversation, not in a skill</td><th>Move them into a skill file</th></tr>
+        <tr><td>The connector answers without using the connector</td><td class="muted">It is guessing from training data</td><th>Ask something only your account could know</th></tr>
+        <tr><td>It cannot see your files</td><td class="muted">You are on a cloud tool</td><th>Use a local tool, or upload \u2014 Lesson 06</th></tr>
+        <tr><td>The session died when you shut the laptop</td><td class="muted">Local sessions do not survive sleep</td><th>Use a cloud runner for anything unattended</th></tr>
+        <tr><td>Deck looks like the tool made it</td><td class="muted">You asked it to design</td><th>Give it your format block, then let it fill it</th></tr>
+        <tr><td>It renamed files you did not want renamed</td><td class="muted">It acted instead of proposing</td><th>Always add \u201cshow me what you would change and wait\u201d</th></tr>
+        <tr><td>The app works for you and breaks for everyone else</td><td class="muted">Only the happy path was tested</td><th>Lab 3.4 \u2014 make it list ten breaking inputs, try all ten</th></tr>
+        <tr><td>It says it is done but it is not</td><td class="muted">\u201cIt works now\u201d is a prediction, not a test</td><th>Use the thing yourself before believing it</th></tr>
+        <tr><td>You have burned through your limits by Wednesday</td><td class="muted">Every rebuild costs what the build cost</td><th>Fewer, better-specified rounds; spec properly before sending</th></tr>
+        <tr><td>It refuses a task that seems reasonable</td><td class="muted">Usually phrasing, occasionally a real limit</td><th>Restate as the end state, and say what the output is for</th></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="eyebrow">The three-question triage</div>
+  <ol class="steps">
+    <li><b>Have the last two rounds moved it closer?</b> If not, stop correcting. You are circling, and
+    more prompting will not fix it.</li>
+    <li><b>Is this the smallest model that could do the job?</b> Try one tier up before you conclude the
+    task is impossible. This is the most commonly skipped step in the whole course.</li>
+    <li><b>Did you give it a task or an outcome?</b> If you listed steps, you capped the result at your
+    own plan. State the end state and the test instead.</li>
+  </ol>
+
+  <div class="warnbox"><b>When to stop and do it yourself</b>
+  <p>Every model has a point past which more context and more patience produce nothing. Frontier models
+  reach it later, not never.</p>
+  <p>If you have tried a bigger model, a clean conversation and a restated outcome, and it is still
+  wrong, that is the ceiling. Write the hard part yourself and hand it back. That is a division of
+  labour, not a defeat.</p></div>
+</section>
+
+<!-- ===================== capstone ===================== -->
+<section data-hue="gold" class="lesson" hidden id="capstone" data-title="Capstone" data-mins="180" data-day="3" data-kind="lab">
+  <div class="lessonhead">
+    <p class="lkick">Day 3 &middot; Capstone</p>
+    <h2>Capstone &mdash; ship one real thing</h2>
+    <p class="lsub">Everything from the three days, on a problem that is actually yours.</p>
+  </div>
+
+  <div class="labmeta">
+    <span class="labtag time">180 min</span>
+    <span class="labtag">Everything</span>
+    <span class="labtag">10 checks</span>
+  </div>
+
+  <div class="deliver"><b>What you produce</b>
+    <p>A live URL solving a real problem for real people, built with a skill you wrote, researched with
+    sources you verified, and hardened against inputs you made it find. Plus one page on what it cost
+    you in time and money.</p></div>
+
+  <div class="eyebrow">The brief</div>
+  <p class="lede">Pick a problem that currently wastes your syndicate's time. Not a demo. Something that,
+  if it works, you will still be using in a month.</p>
+
+  <ol class="steps">
+    <li><b>Define it as an outcome.</b> What is true when this is done, who it is for, and the test it
+    must pass. No step lists.</li>
+    <li><b>Research anything you do not know.</b> If it encodes a rule, a formula or a standard, verify
+    it against a source you opened yourself. Lab 2.5.</li>
+    <li><b>Write or reuse a skill</b> that carries your standards into the build, so you are not
+    re-explaining them each round. Lab 2.1.</li>
+    <li><b>Sanitise your test data</b> before it goes anywhere near a tool. Lab 1.3.</li>
+    <li><b>Spec it properly</b> and make it list assumptions before writing code. Lab 3.2.</li>
+    <li><b>Build, breaking it deliberately</b> between rounds. Lab 3.3.</li>
+    <li><b>Harden it</b> against ten inputs it found itself. Lab 3.4.</li>
+    <li><b>Ship it</b> to a URL and test it on a phone, on mobile data, cold. Lab 3.5.</li>
+    <li><b>Give it to two people</b> with no explanation. Watch. Fix what they hit.</li>
+    <li><b>Write the cost page.</b> Hours spent, money spent, rounds taken, what you would do differently.
+    This is the part that makes the next one faster.</li>
+  </ol>
+
+  <div class="stuck">
+    <p>Scope is the usual killer. If you cannot describe the finished thing in one sentence, it is too
+    big &mdash; cut it until you can.</p>
+    <p>If you are three hours in with nothing clickable, you over-specified. Strip to the smallest
+    version that passes one test, ship that, then add.</p>
+  </div>
+
+  <div class="check" data-lab="capstone">
+    <div class="check-h">
+      <h4>Before you call it done</h4>
+      <span class="check-n"><b>0</b> / 10</span>
+    </div>
+    <ul>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="0"><span>Solves a real problem, named in one sentence</span></label></li>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="1"><span>Defined as an outcome with a test, not a step list</span></label></li>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="2"><span>Any encoded rule verified against a source you opened</span></label></li>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="3"><span>A skill carried your standards through the build</span></label></li>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="4"><span>All test data sanitised before use</span></label></li>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="5"><span>Assumptions confirmed before any code</span></label></li>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="6"><span>Hardened against ten inputs it found itself</span></label></li>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="7"><span>Live URL, tested cold on a phone on mobile data</span></label></li>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="8"><span>Two people used it unaided and their problems were fixed</span></label></li>
+      <li><label><input type="checkbox" data-lab="capstone" data-i="9"><span>Cost page written: hours, money, rounds, lessons</span></label></li>
+    </ul>
+  </div>
+
+  <div class="bluf" style="margin-top:28px"><b>That is the course</b>
+  If you shipped something, you can now do on your own what took this entire brief to explain. The tools
+  will change within months. The method &mdash; intent, bounds, a test, and your own eyes on the output
+  &mdash; will not.</div>
+</section>
+
 </main>
 
 <div class="lessonnav">
@@ -2373,12 +3313,25 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
   function slug(i){ return 'lesson' + (i+1); }
 
   function buildToc(){
-    document.getElementById('tocList').innerHTML = LESSON.map(function(L,i){
-      return '<a href="#'+slug(i)+'" data-i="'+i+'" style="border-left:3px solid '+HUE[L.dataset.hue]+'">'+
-               '<span class="tn" style="color:'+HUE[L.dataset.hue]+'">'+String(i+1).padStart(2,'0')+'</span>'+
-               '<span class="tt">'+L.dataset.title+'</span>'+
-               '<span class="tm">'+L.dataset.mins+' min</span></a>';
-    }).join('');
+    var DAYNAME = {1:'Day 1 \u00b7 Foundations', 2:'Day 2 \u00b7 Working', 3:'Day 3 \u00b7 Building'};
+    var html = '', lastDay = null;
+    LESSON.forEach(function(L,i){
+      var d = +(L.dataset.day || 1);
+      if(d !== lastDay){
+        var mins = LESSON.filter(function(X){ return +(X.dataset.day||1) === d; })
+                         .reduce(function(a,X){ return a + (+X.dataset.mins||0); }, 0);
+        html += '<div class="toc-day"><span>' + DAYNAME[d] + '</span><b>' +
+                Math.round(mins/60*10)/10 + ' hrs</b></div>';
+        lastDay = d;
+      }
+      var isLab = L.dataset.kind === 'lab';
+      html += '<a href="#'+slug(i)+'" data-i="'+i+'" class="'+(isLab?'lab':'')+'"' +
+              ' style="border-left:3px solid '+HUE[L.dataset.hue]+'">'+
+                '<span class="tn" style="color:'+HUE[L.dataset.hue]+'">'+String(i+1).padStart(2,'0')+'</span>'+
+                '<span class="tt">'+L.dataset.title+(isLab?'<span class="tk">LAB</span>':'')+'</span>'+
+                '<span class="tm">'+L.dataset.mins+' min</span></a>';
+    });
+    document.getElementById('tocList').innerHTML = html;
     Array.prototype.forEach.call(document.querySelectorAll('#tocList a'), function(a){
       a.addEventListener('click',function(ev){ ev.preventDefault(); go(+a.dataset.i); closeToc(); });
     });
@@ -2444,6 +3397,8 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
     if(!noScroll) window.scrollTo({top:0,behavior:'instant'});
     playVisibleStingers();
     if(typeof armReveals==='function') armReveals();
+    if(typeof initChecks==='function'){ initChecks(); paintProgress(); }
+    if(typeof buildQuizzes==='function') buildQuizzes();
   }
 
   var bar = document.getElementById('progress');
@@ -2754,6 +3709,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
   var QBANK = {"edge": [["What should you be doing while you watch one of these videos?", ["Running the same step on something of your own, with the tool open", "Taking notes to try later that evening", "Watching it through once at double speed first", "Reading the comments for the parts worth skipping"], "Passive viewing teaches almost nothing here. Pause every few minutes and run the step yourself, or you will remember the vocabulary and none of the technique."], ["A tutorial is fourteen months old. How much can you trust it?", ["Concepts yes, specific buttons and menus no", "Fully - the fundamentals have not changed", "Not at all, discard it", "Only if it has over 100,000 views"], "Anything past about six months is history rather than instruction. The ideas usually survive; the interface has almost certainly moved."], ["You have ten hours. What is the better use of them?", ["One tool, for a month, until you are fluent", "A tour of nine tools so you can compare", "The longest course you can find", "Whatever the newest channel is covering this week"], "The channels push something new weekly because that is their business model. Depth in one tool beats a survey of nine every time."], ["Why watch the parts of a video where the presenter's attempt fails?", ["That is where the recoverable technique actually is", "To check whether the tool is reliable", "To find out which tools to avoid", "They are usually edited out anyway"], "Anyone can film a thing working. Watching someone diagnose a failure is how you learn what to do when yours fails, which it will."]], "agentic": [["What makes a system agentic rather than just a chatbot?", ["A goal, tools, a loop where it sees its own result, and memory of what it tried", "A larger model with more parameters", "A longer context window", "More recent training data"], "All four must be present. A bigger model with a longer memory is still a chatbot if nothing it does changes the world and it never sees the consequence."], ["You are at rung 3, tool use. What is still missing?", ["The loop - it fetches once and answers, it does not act on what came back", "Access to the internet", "Permission to read your files", "A way to remember the conversation"], "Tool use is one hop: you ask, it fetches, it answers. Agentic means it looks at the result, notices it was wrong, and goes again."], ["Why is a wrong agent more dangerous than a wrong staff officer?", ["It shows none of the hesitation you would read as a warning", "It works faster so there is less time to intervene", "It has access to more systems", "It cannot be corrected once started"], "A person who is out of their depth hedges and comes back with questions. An agent that is wrong reads exactly like one that is right - same fluency, same confidence."], ["Under the staff officer framing, what is your actual job?", ["Setting intent and constraints, then reviewing the product before it goes anywhere", "Writing more precise instructions", "Checking each step as it happens", "Learning enough to do the work yourself if needed"], "You are commanding, not operating. The review is not a formality if time permits - it is now the main thing you are paid for."]], "pricing": [["You are a verified student. Cheapest route to full Perplexity Pro?", ["Education Pro at $10/month, verified through SheerID", "Perplexity Pro at $20/month", "Perplexity Max at $200/month", "There is no student rate"], "Education Pro is half price and includes everything in Pro. Almost nobody claims it, which makes it the easiest saving in the course."], ["What does Claude Max actually buy you over Claude Pro?", ["Roughly 5x or 20x the usage - the same model, more headroom", "A more capable model", "Unlimited usage", "Access to Claude Code"], "Max is the same Claude with more room. If you are not hitting limits you are buying nothing, and Claude Code is already included at $20."], ["You have forty PDFs of module readings to actually understand. Best tool?", ["Gemini Notebook - it answers only from your sources, with citations", "ChatGPT, pasting them in a few at a time", "Perplexity, searching for summaries of each", "Gamma, to turn them into slides"], "A general chat window will blend your sources with half-remembered training data. Gemini Notebook cannot, because it has nothing else to draw on."], ["Which of these is true of the $200 tiers in October 2026?", ["Both are metered - neither is unlimited", "Both are unlimited", "Only Claude's is unlimited", "Only ChatGPT's is unlimited"], "Nothing is unlimited any more. ChatGPT's $200 tier was reportedly cut from 20x to 10x Plus when a $500 tier appeared at the end of September 2026."]], "skills": [["When does a skill get loaded into the conversation?", ["Only when a task matches its description", "At the start of every conversation", "When you name it explicitly", "Whenever the model runs short of context"], "That is what makes skills scale. You can keep two hundred and only the relevant one ever enters the conversation."], ["Which line decides whether a skill ever fires?", ["The description line", "The name line", "The first instruction in the body", "The file path"], "The description is how the model judges relevance. A vague one means the skill sits there and never triggers, however good the body is."], ["What is the fastest way to write a skill worth keeping?", ["Do the task once, correcting as you go, then say \\u201cturn that into a skill\\u201d", "Write the rules out carefully before you start", "Copy a published skill and edit it", "Ask the model to write one from the module handbook"], "Sitting down to write a skill produces something generic. Your corrections during one real job are the rules - let the model collect them."], ["What does humanizer actually do for you?", ["Makes the prose less padded and less formulaic", "Makes AI writing undetectable", "Rewrites text to pass Turnitin", "Adds citations to unsourced claims"], "It improves the writing. If the real question is whether you can pass it off as your own in assessed work, the answer is no, whatever any tool does."]], "plumbing": [["What problem does MCP solve?", ["Every model needing a custom integration to every tool", "Models being too slow to use tools", "Models inventing facts and citations", "The cost of running models locally"], "Three models and three tools used to mean nine bespoke integrations. With one standard, a tool written once works with any model."], ["Running locally, where does the content of the files it reads go?", ["Off your machine, to be processed - same as anything pasted into a browser", "Nowhere, processing happens on your laptop", "It is encrypted locally and never sent", "Only filenames are sent, never contents"], "This is the most important misconception in the course. Local means its hands are local. The reasoning still happens remotely, so every file it reads is transmitted."], ["You need something to keep running after you shut the laptop. Which?", ["Cloud", "Local", "Either works", "Neither can do this"], "A local session dies with the machine. If it has to survive you closing the lid, it has to run on their servers."], ["How should you grant a connector's permissions?", ["As narrowly as the task allows, and revoke when done", "Full access, so it does not fail mid-task", "Read-write always, read-only is rarely useful", "It makes no difference, the model decides what to use"], "It can do anything you permit, including things you did not picture. Read-only beats read-write unless you need it to write, and a connector set up for one afternoon should not still be live next term."]], "research": [["Where must a citation come from?", ["A search result you can click and check", "The model, if you ask it to be accurate", "The model, if you ask twice and the answers agree", "Anywhere, provided you format it correctly"], "A citation-shaped string is extremely likely to follow a claim, so the model produces one whether or not the paper exists. Never let a citation originate with the model."], ["Which failure is harder to catch and costs more?", ["A real paper cited for a claim it does not make", "A completely invented paper", "A real paper with the year wrong", "A real paper cited twice"], "An invented reference dies the moment a marker searches the title. A real source hung on the wrong claim survives that check and collapses under someone who knows the literature."], ["You want to know who disagrees with a paper you are leaning on. What do you use?", ["The cited-by list - who has cited it since, and how", "The paper's own literature review", "A summary of the paper's limitations section", "A general web search for criticism"], "The forward citation link is how you find the published rebuttal. Engaging a real critic rather than a straw man separates bands in most rubrics."], ["Instead of \\u201csummarise this paper\\u201d, what gets you something useful?", ["\\u201cWhat does this claim that I would have to argue against?\\u201d", "\\u201cSummarise this paper in 200 words\\u201d", "\\u201cList the key points of this paper\\u201d", "\\u201cExplain this paper simply\\u201d"], "A summary is competent, accurate, and worth nothing, because everyone else gets the same one. The value is in questions that force a judgement."]], "decks": [["What is the one move that makes AI-generated decks usable?", ["Give it your format explicitly, then let it fill it", "Ask for more slides and cut the weak ones", "Describe the audience in detail", "Ask it to make the design more professional"], "Design is where it is weakest and where your house style is non-negotiable. Hand it the rules and it fills them; ask it to design and you rebuild from scratch."], ["Before asking for slides, what should exist?", ["The argument, settled in prose", "An outline of section headings", "The images you want to use", "A slide count"], "Decks built before the argument exists are where filler comes from. Settle what you are saying, then ask it to lay that out."], ["What does pointing it at a folder let you ask that uploading one file does not?", ["Questions across the whole set - contradictions, themes, what you keep getting wrong", "Questions about longer documents", "Questions about images inside documents", "Questions that need no citation"], "Reading a folder with its structure intact changes the kind of question available. \\u201cThese are my last six essays and their feedback - what do I keep getting wrong?\\u201d needs the folder."], ["Before letting an agent reorganise a folder, what do you add?", ["\\u201cShow me what you would change and wait for me to confirm\\u201d", "A list of files it may not touch", "A backup instruction at the end", "Nothing - reorganising is low risk"], "Reading is safe. Renaming and deleting are not, and an agent that has misunderstood your folder structure makes a bad afternoon. Make it propose first."]], "made": [["Roughly what did the eight-second presenter clip cost to generate?", ["About forty cents and two minutes of waiting", "Nothing, it was on a free tier", "About ten dollars", "About a hundred dollars"], "Twelve credits on a budget video model. The cost of this kind of production has collapsed, which is the entire point of opening with it."], ["How does an agent get permission to run commands on your machine?", ["It asks before each action, unless you turn the prompts off", "It has full access once installed", "It can only read, never write", "Each session needs a password"], "By default a box names the command and nothing runs until you approve. You can approve once, for a session, or disable the prompts - which is a deliberate trade, not a default."], ["What was wrong with two of the video attributions found by web search?", ["They credited the wrong channel, and were corrected against YouTube itself", "The videos had been deleted", "They were behind a paywall", "The durations were wrong"], "Search results are not sources. Checking all sixteen against YouTube's own metadata endpoint caught two bad attributions, which is the lesson on citations applied to this very page."], ["What makes a quiz question worth answering?", ["Wrong answers that are plausible rather than silly", "Four options rather than three", "Questions drawn from the opening paragraph", "Immediate scoring"], "If the distractors are obviously wrong you are testing reading speed, not understanding. Ask for questions that test whether you understood, not whether you can recall."]], "trouble": [["You have corrected the same bug three times and it keeps returning. What now?", ["Switch to a larger model, or restate the problem in a fresh conversation", "Repeat the correction in more detail", "Add more examples to the same thread", "Break the correction into smaller steps"], "A returning bug is the signature of circling, not converging. More prompting in a polluted thread will not fix it - the model tier is the usual culprit."], ["Which of these means you are converging and should keep going?", ["It asks you a sharp question you had not considered", "It apologises and agrees with every correction", "It gives the same answer in different words", "It quietly drops one requirement to satisfy another"], "The other three are all circling. Converging looks like each version being genuinely different, the named problem being fixed, and new problems being smaller than old ones."], ["Why does iterating burn through usage limits so fast?", ["Tearing the work apart and rebuilding costs roughly what the build cost", "Longer conversations use more memory", "Failed attempts are charged twice", "Larger models are used automatically after a failure"], "Five rounds is five builds. That is the honest price of the speed, and why the limits in the toolkit lesson bite sooner than people expect."], ["What is true of frontier models like Opus 5.5, Fable or GPT-6 Astra?", ["They hit a ceiling later, not never", "They do not have a ceiling", "They are only better at writing, not reasoning", "They are slower but otherwise identical"], "Each release pushes the boundary out. It has not disappeared. Knowing roughly where your own ceiling sits, and doing the work yourself when you reach it, is the actual skill."]], "build": [["What kind of thing is safe to vibe code?", ["Anything where being wrong is obvious and cheap", "Anything you can describe clearly", "Anything under about 500 lines", "Anything that does not need a database"], "A roster that double-books someone is obvious. Something that quietly mishandles personal data or money is not, and that is exactly where not reading the code stops being acceptable."], ["The trip app took two months and how many commits?", ["194", "12", "40", "Over a thousand"], "194 rounds of change. Anyone arriving expecting one prompt and a finished app gives up around round eight and concludes it does not work."], ["What single instruction should you add before it writes any code?", ["\\u201cList your assumptions and wait for me to confirm\\u201d", "\\u201cWrite clean, well-commented, production-quality code\\u201d", "\\u201cUse the latest version of every library\\u201d", "\\u201cMake it look modern and professional\\u201d"], "It surfaces the misunderstanding in ten seconds instead of after it has built the wrong thing. The others are vague instructions it cannot act on."], ["Your app works. What is the most useful next question?", ["\\u201cWhat inputs would break this?\\u201d", "\\u201cCan you make it faster?\\u201d", "\\u201cCan you add more features?\\u201d", "\\u201cIs this production ready?\\u201d"], "It is noticeably better at critiquing its own work than at getting it right first time. Ask it to attack what it just built."]]};
 
   function buildQuizzes(){
+    if(typeof QBANK === 'undefined') return;   /* go() runs before this block is evaluated */
     $$('.quizwrap').forEach(function(wrap){
       var id = wrap.dataset.quiz, qs = QBANK[id];
       if(!qs || wrap.dataset.built) return;
@@ -2847,6 +3803,60 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
     });
   }
   armReveals();
+
+
+  /* ---------------- lab checklists ---------------- */
+  function labKey(id){ return 'wwai-lab-' + id; }
+
+  function paintCheck(box){
+    var id = box.dataset.lab;
+    var inputs = $$('input[type=checkbox]', box);
+    var done = inputs.filter(function(i){ return i.checked; }).length;
+    box.querySelector('.check-n').innerHTML = '<b>' + done + '</b> / ' + inputs.length;
+    box.classList.toggle('done', done === inputs.length && inputs.length > 0);
+    try{ store(labKey(id), JSON.stringify(inputs.map(function(i){ return i.checked ? 1 : 0; }))); }catch(e){}
+  }
+
+  function initChecks(){
+    $$('.check').forEach(function(box){
+      if(box.dataset.wired) return;
+      box.dataset.wired = '1';
+      var id = box.dataset.lab, inputs = $$('input[type=checkbox]', box);
+      try{
+        var saved = JSON.parse(store(labKey(id)) || 'null');
+        if(Array.isArray(saved)) inputs.forEach(function(inp,i){ inp.checked = !!saved[i]; });
+      }catch(e){}
+      box.addEventListener('change', function(){ paintCheck(box); paintProgress(); });
+      paintCheck(box);
+    });
+  }
+
+  /* ---------------- progress across the three days ---------------- */
+  function labStats(){
+    var byDay = {1:{done:0,total:0},2:{done:0,total:0},3:{done:0,total:0}};
+    LESSON.forEach(function(L){
+      if(L.dataset.kind !== 'lab') return;
+      var d = +(L.dataset.day || 1), box = L.querySelector('.check');
+      if(!box) return;
+      var inputs = $$('input[type=checkbox]', box);
+      byDay[d].total += inputs.length;
+      byDay[d].done  += inputs.filter(function(i){ return i.checked; }).length;
+    });
+    return byDay;
+  }
+
+  function paintProgress(){
+    var st = labStats();
+    $$('.pday').forEach(function(el){
+      var d = +el.dataset.day, s2 = st[d] || {done:0,total:0};
+      var pct = s2.total ? Math.round(s2.done / s2.total * 100) : 0;
+      el.querySelector('.pd-s').textContent = s2.done + ' / ' + s2.total + ' checks \u00b7 ' + pct + '%';
+      el.querySelector('.pbar i').style.width = pct + '%';
+    });
+  }
+
+  initChecks();
+  paintProgress();
 
   /* ---------------- stingers ---------------- */
   function playVisibleStingers(){

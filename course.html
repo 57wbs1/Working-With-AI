@@ -2158,6 +2158,59 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     live next term.</li>
   </ul>
 
+  
+  <div class="eyebrow">Mods, the one that landed in October</div>
+  <p class="lede">Anthropic shipped <b>mods</b> on 1 October 2026. They are new enough that almost nobody
+  in your syndicate will have seen one, and they change what a plugin is allowed to be.</p>
+
+  <p>Until now a plugin bundled things the model uses: skills, subagents, hooks, MCP servers. A hook was
+  a command fired at a lifecycle event, and it could not show you anything. A mod is a plugin whose hooks
+  are written as <b>JavaScript functions running inside the session</b>, and those functions can draw.</p>
+
+  <ul class="clean">
+    <li><b>A pane.</b> A panel beside your work, with its own buttons, refreshing on its own.</li>
+    <li><b>A band above the prompt.</b> One line that is always there. Project health, a count of what is
+    overdue, which branch you are on.</li>
+    <li><b>A status line and toasts.</b> Quiet notes, and a nudge when something finishes.</li>
+    <li><b>Its own commands</b>, added by the module rather than written as separate files.</li>
+  </ul>
+
+  <p>It also <b>hot-reloads</b>. You edit the module and the session picks it up, so building one is a
+  tight loop rather than a restart every time.</p>
+
+  <div class="tscroll">
+    <table>
+      <caption>Four words, and what each one actually gives you</caption>
+      <thead><tr><th>Term</th><th>What it is</th><th>What it gives you</th></tr></thead>
+      <tbody>
+        <tr><th>Skill</th><td>Instructions in a folder, loaded on demand</td>
+            <td>Knowledge. Your standards, applied without restating them.</td></tr>
+        <tr><th>MCP server</th><td>A standard interface to a tool or a source</td>
+            <td>Reach. It can act on something outside the chat.</td></tr>
+        <tr><th>Connector</th><td>An MCP server already wired to a service</td>
+            <td>The same reach, with the plumbing done for you.</td></tr>
+        <tr class="rowhi"><th>Mod</th><td>A plugin whose hooks are functions that can draw</td>
+            <td>A surface. Something the session shows <em>you</em>, continuously.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The distinction worth holding on to: a skill changes what the model knows, MCP changes what it can
+  reach, and a mod changes <b>what you see while it works</b>. The first two point at the model. The
+  third points back at you.</p>
+
+  <div class="deliver" style="margin-top:22px"><b>Where this goes</b>
+    <p>Think of that band above the prompt as a dashboard that is always on. Readiness, what is overdue,
+    what changed since you last looked. Far more interesting than another chat window, and the pieces to
+    build it shipped this month.</p></div>
+
+  <div class="warnbox"><b>Before you install one</b>
+  <p>A mod runs JavaScript inside your session with your privileges. The official marketplace shows a
+  context cost before you install, and an enabled plugin sits in every session rather than only the ones
+  where you use it.</p>
+  <p>Read what it does first, the same way you would an unknown script. This is the newest surface in the
+  course and the one with the least community scrutiny so far.</p></div>
+
   <div class="eyebrow">Local vs cloud, where the work happens</div>
   <p class="lede">This trips people up constantly, and the distinction is simpler than it sounds: it is
   about <b>where the hands are</b>, not where the brain is. The model is a remote service either way.
@@ -2729,6 +2782,153 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
 
 
 <!-- ========================= How this was made ========================= -->
+
+<!-- ===================== academic ===================== -->
+<section data-hue="blue" class="lesson" hidden id="academic" data-title="Academic work that holds up" data-mins="14" data-day="2" data-kind="lesson">
+  <div class="lessonhead">
+    <p class="lkick">Lesson 09</p>
+    <h2>Academic work that holds up</h2>
+    <p class="lsub">Essays, reflections, briefs and a thesis. What to delegate, and what never to.</p>
+  </div>
+
+  <div class="bluf"><b>Bottom line</b>
+  The instinct is to ask it to write the thing. That produces competent, average work that a marker has
+  read forty times. The value sits somewhere else entirely: in using it to attack your own argument
+  before somebody else does.</div>
+
+  <div class="warnbox"><b>Read this first</b>
+  <p>Every institution now has a position on AI in assessed work, and they differ sharply. Some expect a
+  declaration, some permit it at specific stages, some prohibit it outright.</p>
+  <p>Find your programme&rsquo;s rule and follow it. Nothing on this page is a way around that, and
+  &ldquo;I did not know&rdquo; has never been a defence.</p></div>
+
+  <div class="eyebrow">Essays</div>
+  <p class="lede">The single highest-value move is to stop asking for prose and start asking for
+  resistance.</p>
+
+  <div class="tscroll">
+    <table>
+      <caption>Where it helps, and where it costs you marks</caption>
+      <thead><tr><th>Stage</th><th>Worth delegating</th><th>Keep for yourself</th></tr></thead>
+      <tbody>
+        <tr><td><b>Finding the question</b></td>
+            <td>Mapping what the debate is and who the names are</td>
+            <td>Deciding what you actually think</td></tr>
+        <tr class="rowhi"><td><b>Sharpening the thesis</b></td>
+            <td>&ldquo;Give me three ways to attack this claim&rdquo;</td>
+            <td>The claim itself</td></tr>
+        <tr><td><b>Structure</b></td>
+            <td>&ldquo;Does this order build, or does it just list?&rdquo;</td>
+            <td>What goes in and what gets cut</td></tr>
+        <tr><td><b>Drafting</b></td>
+            <td>Almost nothing</td>
+            <td>The writing. This is the part being assessed.</td></tr>
+        <tr><td><b>Evidence</b></td>
+            <td>Finding candidates, checking a claim against its source</td>
+            <td>Reading anything load-bearing yourself</td></tr>
+        <tr class="rowhi"><td><b>Auditing</b></td>
+            <td>Everything. This is where it earns its keep.</td>
+            <td>Deciding which criticisms to accept</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The audit pass is the part people skip, and it is the part that moves a band. Four questions, run
+  on your own finished draft:</p>
+
+  <ol class="steps">
+    <li><b>&ldquo;Which paragraph is doing the least work?&rdquo;</b> Then cut it. It will name one, and
+    it is usually right.</li>
+    <li><b>&ldquo;Where have I asserted something without evidence?&rdquo;</b> Orphan claims are the most
+    common thing in marker feedback and the easiest to fix once named.</li>
+    <li><b>&ldquo;Argue the opposite as strongly as you can.&rdquo;</b> If the counter-case is stronger
+    than your case, you have found out in time.</li>
+    <li><b>&ldquo;Where does my argument leap?&rdquo;</b> Ask it to find every place you move from X to Y
+    without showing the step between.</li>
+  </ol>
+
+  <div class="eyebrow">Reflections</div>
+  <p class="lede">Reflective writing is the one form where delegating the writing is both obvious and
+  self-defeating. The marker is assessing whether you thought about it. A model cannot have had your week.</p>
+
+  <p>So invert it. Rather than asking it to write a reflection, ask it to <b>interview you</b>:</p>
+
+<div class="filesample">I have to write a reflection on <i>[the thing that happened]</i>.
+Do not write it. Ask me eight questions, one at a time, that would
+make me say something I have not already thought.
+
+Push back when an answer is vague. When we are done, show me the
+three strongest things I said, in my own words.</div>
+
+  <p>That gets you a reflection built from your own sentences, which is both the honest version and
+  reliably the better one. It also surfaces the thing you were avoiding, which is usually the material
+  the marker is looking for.</p>
+
+  <div class="eyebrow">Briefs and presentations</div>
+  <p>Covered in the previous lesson, with one addition specific to assessed work. A brief is marked on
+  judgement, not coverage. The failure mode is a deck that explains everything and recommends nothing.</p>
+  <ul class="clean">
+    <li><b>Write the recommendation first</b>, in one sentence, before you ask for a single slide.
+    If you cannot, you are not ready to build the deck.</li>
+    <li><b>Give it the format</b> you already work to, then let it fill it. Your house rules go in a
+    skill once.</li>
+    <li><b>Ask what a hostile audience would attack.</b> Then answer that on a slide rather than hoping
+    nobody raises it.</li>
+  </ul>
+
+  <div class="eyebrow">Deep research</div>
+  <p class="lede">Most assistants now have a long-form research mode that runs for several minutes,
+  searches widely and returns something report-shaped with citations. It is genuinely useful and it is
+  routinely misused.</p>
+
+  <div class="vs">
+    <div class="vs-col local">
+      <h3>Good at</h3>
+      <p class="tagline">USE IT HERE</p>
+      <ul>
+        <li class="y">Mapping an unfamiliar field fast</li>
+        <li class="y">Finding the names you should know</li>
+        <li class="y">Gathering candidate sources to check</li>
+        <li class="y">Surfacing a view you had not met</li>
+      </ul>
+    </div>
+    <div class="vs-col cloud">
+      <h3>Bad at</h3>
+      <p class="tagline">DO NOT TRUST IT HERE</p>
+      <ul>
+        <li class="n">Judging which source is authoritative</li>
+        <li class="n">Noticing that two of them contradict</li>
+        <li class="n">Weighting evidence by quality</li>
+        <li class="n">Being right about anything you cannot check</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Treat its output as <b>a reading list with commentary</b>, not a finding. Open the sources that
+  matter. The report is where your research starts.</p>
+
+  <div class="eyebrow">A thesis, or anything long</div>
+  <p class="lede">At fifteen thousand words the problem changes. It stops being about any individual
+  paragraph and becomes about coherence: whether chapter six still agrees with chapter two.</p>
+
+  <ol class="steps">
+    <li><b>Keep a claim ledger.</b> One line per claim, where it is made, what supports it. A plain file.
+    This is the single most useful artefact in a long project and almost nobody keeps one.</li>
+    <li><b>Work chapter by chapter, in fresh conversations.</b> A thread carrying your whole thesis gets
+    worse, not better. Start clean and bring the ledger.</li>
+    <li><b>Put your conventions in a skill.</b> Referencing style, terminology, which spelling, how you
+    refer to your own argument. Re-explaining that at chapter nine is how drift happens.</li>
+    <li><b>Run a coherence pass across chapters.</b> Point it at the whole folder and ask where the
+    chapters disagree with each other. Lesson 08 covers how.</li>
+    <li><b>Re-audit near the end.</b> Claims that were true in March may not have survived your own
+    later chapters.</li>
+  </ol>
+
+  <div class="bluf"><b>The honest summary</b>
+  Delegate the attacking, the checking and the mapping. Keep the thinking, the writing and the judgement.
+  Anything you would be embarrassed to be asked about in a viva is a thing you should have done yourself.</div>
+</section>
+
 <section data-hue="lime" class="lesson" hidden id="made" data-title="How this brief was made" data-mins="10" data-day="3" data-kind="lesson">
   <div class="lessonhead">
     <p class="lkick">Lesson 09</p>
@@ -4165,6 +4365,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
   function fmt(t){ t=Math.max(0,t|0); return (t/60|0)+':'+String(t%60).padStart(2,'0'); }
 
   function buildVox(){
+    if(typeof VOXSCENES === 'undefined') return;   /* go() runs before this block is evaluated */
     $$('.vox').forEach(function(box){
       if(box.dataset.built) return;
       box.dataset.built='1';

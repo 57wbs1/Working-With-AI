@@ -1,0 +1,23 @@
+Chapter seven. Research that survives a marker.
+
+A chat model will hand you a citation that looks perfect. Right author, right journal, plausible year. And no such paper exists.
+
+It is worth understanding why, because it is not a bug anybody forgot to fix.
+
+The model produces text that is likely to follow what came before. After a claim, the thing most likely to come next is a citation. So it generates one. Correctly formatted, confidently placed, attached to nothing at all.
+
+It happens most when you ask for something that ought to exist. Ask for a study showing some particular thing, and if none is in its memory, the likeliest next text is still a citation.
+
+So there is one rule for this entire chapter. A citation comes from a search result you can click. Never from the model.
+
+Now, the invented reference is the obvious failure, and it dies the moment a marker searches the title.
+
+The expensive failure is quieter. A real paper, cited for a claim it does not actually make. That survives a quick check, and then it collapses under somebody who knows the literature.
+
+Which is why you check twice. Once that the paper exists. Again that the specific claim you hung on it is the claim it makes.
+
+And then the part that separates a good brief from an average one. Stop asking for summaries. A summary is accurate and competent and worth nothing, because everybody else gets the same one.
+
+Ask instead what this source claims that you would have to argue against. Ask who has cited it since and disagreed. Ask which paragraph of your own draft is doing the least work, and then cut it.
+
+The best question in this chapter is four words long. What would change your answer?

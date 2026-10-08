@@ -1,0 +1,25 @@
+Chapter six. The plumbing, and the thing people get wrong about it.
+
+Two ideas here, and then one warning that matters more than both of them.
+
+First idea. MCP, which stands for Model Context Protocol. Anthropic published it in late twenty twenty-four and gave it away.
+
+The problem it solves is unglamorous and enormous. Before it, every model needed a custom integration to every tool. Three models and three tools meant nine separate builds. Add a fourth model, build three more.
+
+With one standard, you write a tool once and any model can use it. The analogy everyone reaches for is a USB socket, and for once the analogy holds up.
+
+Second idea. A connector is one of those sockets with the wiring already done. Gmail, Drive, Notion, Slack, GitHub. You sign in once through the normal login screen and tick what it is allowed to touch. Grant it the narrowest permission that still does the job, and revoke it when the job is finished.
+
+Now the warning.
+
+There is a difference between running something locally and running it in the cloud, and almost everybody gets this backwards.
+
+Local means the hands are on your machine. It can read your actual files, run real commands, reach things only your laptop can reach.
+
+What local does not mean is private.
+
+The reasoning still happens on somebody else's servers. Every file it reads locally gets sent off to be processed, exactly like anything you paste into a browser.
+
+So the rule is the boring one, and it has not changed. Nothing classified. Nothing marked. No personal data belonging to other people. That holds on every tier, including the local one.
+
+If you would not email it to a vendor, do not prompt it.

@@ -1,0 +1,19 @@
+Chapter two. Where the edge actually came from.
+
+So the honest version of this is quite boring. There was no course, no certification, nothing you could put on a CV.
+
+It was YouTube. Specifically, it was watching people build real things and then copying what they did.
+
+And here is the part that matters, because it changes which videos are worth your time. The useful channels are the ones where something goes wrong on camera. Where the thing breaks, and you watch somebody work out why.
+
+Anyone can film a tool working. That teaches you almost nothing, because your version will not work the first time either. Watching somebody diagnose a failure is the part you can actually use on Tuesday morning.
+
+Three rules before you press play on any of this.
+
+First. Have the thing open while you watch. Passive viewing teaches you vocabulary and nothing else. Pause every few minutes, run the same step on something of your own, and watch it behave differently to how it did on screen.
+
+Second. Pick one tool and stay with it for a month. The channels will push something new every single week, because that is their business model. Depth in one beats a tour of nine, every time.
+
+Third. Check the upload date. Anything past about six months has aged out of being instruction. The ideas usually survive. The buttons have almost certainly moved.
+
+The list in this chapter is sixteen videos and four channels, sorted by how long each one takes. Start at the top. About thirty minutes of it will put you ahead of most people in the room.

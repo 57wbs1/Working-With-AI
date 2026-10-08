@@ -1,0 +1,23 @@
+Chapter three. From answering, to doing.
+
+Right. This is the one that changes how you think about everything else.
+
+For about two years these tools did a single thing. You asked a question, an answer came back, and then you went off and did the actual work yourself. Genuinely useful. Also a very fast writer with no hands.
+
+What changed is that the model stopped answering and started acting.
+
+Here is what that looks like in practice. You give it an outcome. You give it the bounds it has to stay inside. Then it works out the route itself. It uses tools, it looks at what came back, and when that turns out to be wrong it goes again. It keeps going until the thing holds, or until it gets stuck and says so.
+
+Four things have to be true before any of that works. It has to be chasing an outcome. A list of steps will not do it. It has to be allowed to use real tools. There has to be a loop, so it sees the consequence of its own last move. And it has to remember what it already tried. Take one of those away and you are back to a chatbot with extra steps.
+
+The useful way to picture this is a staff officer. Capable, quick, tireless, widely read, and completely dependent on you for direction.
+
+Which makes your job the one you already know how to do. Set the intent. Set the bounds. Then check the work before it goes anywhere near anyone else. That last part is now most of the job.
+
+And here is the bit worth sitting with for a second.
+
+Someone who is out of their depth hesitates. They hedge, they come back with questions, and you read all of that as a warning long before you read their actual work.
+
+An agent that is wrong reads exactly like an agent that is right. Same fluency, same confidence, same speed.
+
+So the signals you have spent a career learning to read simply are not available here. Which leaves one thing. You check it yourself, every single time.

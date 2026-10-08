@@ -1,0 +1,23 @@
+Chapter eight. Formats, and the question a folder lets you ask.
+
+Ask for a deck and you get generic slides. That is not the tool failing. That is a design request, and design is where it is weakest.
+
+So hand it the rules instead.
+
+Write out the format you already work to. Minimum type size. How much text goes on a slide. What the bar across the top means. Whether notes are written in full sentences. Be specific about the things you would otherwise correct every single time.
+
+That takes thirty seconds and it is the difference between a deck you rebuild and a deck you tidy. Put the block in a skill and you never type it again.
+
+One more thing on decks. Settle the argument in prose before you ask for slides. Decks built before the argument exists are where filler comes from.
+
+Now the part people underestimate.
+
+Running locally, it can read an entire folder. Not one file you uploaded. Everything, with the structure intact.
+
+That changes the kind of question available to you. Read every PDF in here and build me a thematic index. Which of these documents contradict each other. Find every file that mentions this, and tell me where it came from.
+
+And the best one, if you have the material. These are my last six essays and the feedback on each. What do I keep getting wrong?
+
+You could not ask that of a chat window. It needs the whole set.
+
+Two rules before you point anything at a folder. Everything it reads leaves your machine, so a folder of personal data is not a folder you point anything at. And make it propose before it moves anything. Reading is safe. Renaming and deleting are not.

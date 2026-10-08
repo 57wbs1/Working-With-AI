@@ -4,257 +4,522 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Working With AI</title>
-<meta name="description" content="An eleven-lesson practical course on actually using AI — tools, costs, skills, research, and building something that runs.">
+<meta name="description" content="A three-day practical course on using AI properly. Eleven lessons, fifteen labs, and you finish with something shipped.">
+<meta name="theme-color" content="#0D1021">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 :root{
   --bg:#0D1021; --bg-2:#151934; --panel:#1A1F3D; --panel-2:#232949;
-  --fg:#F2F4FF; --fg-dim:#A9B0D4; --fg-faint:#7079A3;
+  --fg:#F2F4FF; --fg-dim:#AEB5D8; --fg-faint:#868EB6;
   --edge:#2A3157; --edge-hi:#3C4576;
-  --amber:#FFC247; --amber-deep:#F59E0B; --amber-wash:rgba(255,194,71,.14);
-  --violet:#A78BFA; --mint:#4ADE80; --cyan:#45D6F5; --coral:#FF7A66; --pink:#F472B6;
-  --ok:#4ADE80; --crit:#FF6B6B;
+  --amber:#FFC247; --amber-deep:#F59E0B; --amber-wash:rgba(255,194,71,.13);
+  --violet:#A78BFA; --mint:#4ADE80; --cyan:#45D6F5; --coral:#FF7A66; --gold:#FDE047;
+  --ok:#4ADE80;
   --display:'Archivo',"Helvetica Neue",Arial,sans-serif;
   --body:'IBM Plex Sans',"Segoe UI",system-ui,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,"SF Mono",Menlo,monospace;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{height:100%}
-body{
-  margin:0;min-height:100%;background:var(--bg);color:var(--fg);
-  font-family:var(--body);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;
-  background-image:
-    radial-gradient(900px 500px at 12% -5%, rgba(167,139,250,.16), transparent 60%),
-    radial-gradient(800px 480px at 95% 8%, rgba(69,214,245,.12), transparent 62%),
-    radial-gradient(700px 500px at 50% 108%, rgba(255,194,71,.10), transparent 60%);
-  background-attachment:fixed;
-  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
-}
-img,video{max-width:100%;display:block}
-a{color:var(--amber)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video,svg{max-width:100%;display:block}
+a{color:var(--amber);text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:3px}
-.wrap{max-width:980px;margin:0 auto;padding:0 20px 70px}
+.wrap{max-width:1020px;margin:0 auto;padding:0 22px}
+@media(max-width:640px){ .wrap{padding:0 18px} body{font-size:16.5px} }
+section{padding:clamp(50px,9vw,88px) 0}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--edge),transparent);border:0;margin:0}
+
+/* sticky buy bar on phones */
+.buybar{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;
+  background:rgba(21,25,52,.96);backdrop-filter:blur(10px);border-top:1px solid var(--edge-hi);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+  align-items:center;gap:12px;
+}
+.buybar .bb-p{font-family:var(--display);font-weight:800;font-size:19px}
+.buybar .bb-p small{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--fg-faint);display:block}
+@media(max-width:760px){ .buybar{display:flex} body{padding-bottom:78px} }
 
 /* hero */
-.hero{padding:46px 0 34px}
-.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--violet);margin:0 0 15px}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,7.6vw,68px);line-height:1;letter-spacing:-.028em;margin:0 0 18px;text-wrap:balance}
-h1 em{font-style:normal;background:linear-gradient(96deg,var(--amber),var(--coral) 48%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
-.stand{font-size:clamp(16px,2.3vw,19.5px);color:var(--fg-dim);max-width:60ch;margin:0 0 26px}
-.herogrid{display:grid;gap:26px;align-items:start}
-@media(min-width:840px){ .herogrid{grid-template-columns:1fr 300px} }
-.pf{border:1px solid var(--edge-hi);border-radius:7px;overflow:hidden;background:#000;aspect-ratio:552/720;max-width:300px}
-.pf video{width:100%;height:100%;object-fit:cover}
-.cap{font-family:var(--mono);font-size:11px;color:var(--fg-faint);margin-top:9px;line-height:1.6}
+.hero{position:relative;overflow:hidden;padding:clamp(46px,11vw,98px) 0 clamp(40px,8vw,70px);isolation:isolate}
+.hero-v{position:absolute;inset:0;z-index:-3;overflow:hidden}
+.hero-v img,.hero-v video{width:100%;height:100%;object-fit:cover;opacity:.3}
+.hero-v::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,16,33,.6) 0%,rgba(13,16,33,.84) 55%,var(--bg) 100%)}
+.hero::before{content:"";position:absolute;inset:-25% -10%;z-index:-2;pointer-events:none;
+  background:radial-gradient(40vw 40vw at 15% 10%,rgba(167,139,250,.26),transparent 62%),
+             radial-gradient(36vw 36vw at 86% 26%,rgba(69,214,245,.18),transparent 64%);
+  animation:drift 26s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate3d(-2%,-1%,0)}to{transform:translate3d(3%,2%,0) scale(1.1)}}
+@media (prefers-reduced-motion:reduce){ .hero::before{animation:none} }
 
-/* lesson list */
-h2{font-family:var(--display);font-weight:700;font-size:clamp(23px,3.9vw,31px);letter-spacing:-.018em;margin:0 0 6px;text-wrap:balance}
-.sub{color:var(--fg-dim);margin:0 0 20px;max-width:62ch}
-.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-faint);margin:46px 0 12px;display:flex;align-items:center;gap:11px}
-.eyebrow::after{content:"";flex:1;height:1px;background:var(--edge)}
-.ll{display:grid;gap:7px;margin:0 0 8px}
-.lrow{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--edge);border-left:3px solid var(--h,var(--amber));border-radius:5px;padding:12px 15px}
-.lrow .n{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--h,var(--amber))}
-.lrow .t{font-family:var(--display);font-weight:600;font-size:15.5px;line-height:1.32}
-.lrow .t small{display:block;font-family:var(--body);font-weight:400;font-size:13.5px;color:var(--fg-dim);margin-top:2px;line-height:1.45}
-.lrow .m{font-family:var(--mono);font-size:10.5px;color:var(--fg-faint);white-space:nowrap}
-@media(max-width:560px){ .lrow{grid-template-columns:28px 1fr;gap:11px} .lrow .m{display:none} }
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--violet);margin:0 0 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.eyebrow i{width:24px;height:1px;background:var(--violet);font-style:normal}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,8.4vw,74px);line-height:1;
+  letter-spacing:-.032em;margin:0 0 20px;text-wrap:balance;max-width:17ch}
+h1 em{font-style:normal;background:linear-gradient(100deg,var(--amber),var(--coral) 48%,var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:clamp(17px,2.4vw,21px);color:var(--fg-dim);max-width:50ch;margin:0 0 26px}
+.ticks{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:9px;max-width:46ch}
+.ticks li{position:relative;padding-left:30px;font-size:16.5px;line-height:1.5}
+.ticks li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--ok);font-weight:700;font-family:var(--mono)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--display);font-weight:700;font-size:16px;background:var(--amber);color:#17160f;
+  border:1px solid var(--amber);padding:0 26px;min-height:54px;border-radius:8px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;
+  transition:transform .14s,box-shadow .14s,background .14s;box-shadow:0 6px 22px rgba(255,194,71,.16)}
+.btn:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#1a1405;
+  transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,194,71,.24)}
+.btn.sm{min-height:46px;font-size:15px;padding:0 18px;box-shadow:none}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--edge-hi);box-shadow:none;font-weight:600}
+.btn.ghost:hover{background:var(--panel);border-color:var(--amber-deep);color:var(--fg)}
+.under{font-family:var(--mono);font-size:12px;color:var(--fg-faint);margin:14px 0 0}
 
-/* value grid */
-.vg{display:grid;gap:13px;margin:16px 0 6px}
-@media(min-width:700px){ .vg{grid-template-columns:1fr 1fr} }
-.vc{background:var(--panel);border:1px solid var(--edge);border-radius:6px;padding:16px 18px;border-top:3px solid var(--c,var(--amber))}
-.vc h3{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 6px}
-.vc p{margin:0;font-size:14.5px;color:var(--fg-dim);line-height:1.55}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,5vw,40px);letter-spacing:-.022em;
+  line-height:1.08;margin:0 0 16px;text-wrap:balance;max-width:20ch}
+.sec-k{font-family:var(--mono);font-size:11px;letter-spacing:.19em;text-transform:uppercase;
+  color:var(--fg-faint);margin:0 0 14px}
+.lede{font-size:clamp(16.5px,2.1vw,19px);color:var(--fg-dim);max-width:58ch;margin:0 0 8px}
 
-/* pay */
-.pay{background:var(--panel);border:1px solid var(--edge-hi);border-radius:8px;padding:24px;margin:20px 0 0}
-.paygrid{display:grid;gap:26px;align-items:start}
-@media(min-width:760px){ .paygrid{grid-template-columns:230px 1fr} }
-.qr{background:#fff;border-radius:7px;padding:12px;width:100%;max-width:230px}
-.qr img{width:100%;height:auto;image-rendering:pixelated}
-.price{font-family:var(--display);font-weight:800;font-size:46px;line-height:1;letter-spacing:-.02em;margin:0 0 4px}
-.price span{font-size:19px;color:var(--fg-dim);font-weight:600;letter-spacing:0}
-.payrow{font-family:var(--mono);font-size:13.5px;margin:14px 0 0;display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}
-.payrow b{color:var(--fg-faint);font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;flex:none;min-width:74px}
-.payrow code{font-family:var(--mono);font-size:15px;color:var(--amber);letter-spacing:.04em}
-.copybtn{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;background:transparent;color:var(--fg-dim);border:1px solid var(--edge-hi);padding:3px 8px;border-radius:3px;cursor:pointer}
+/* pain */
+.pains{display:grid;gap:13px;margin-top:30px}
+@media(min-width:720px){ .pains{grid-template-columns:1fr 1fr} }
+.pain{background:var(--panel);border:1px solid var(--edge);border-radius:10px;padding:18px 20px;
+  border-left:3px solid var(--coral)}
+.pain p{margin:0;font-size:16px;line-height:1.55}
+.pain b{color:var(--fg);font-weight:600}
+
+/* outcomes */
+.outs{display:grid;gap:14px;margin-top:30px}
+@media(min-width:760px){ .outs{grid-template-columns:1fr 1fr} }
+.out{background:var(--panel);border:1px solid var(--edge);border-radius:11px;padding:20px 22px;
+  border-top:3px solid var(--c,var(--amber))}
+.out h3{font-family:var(--display);font-weight:700;font-size:17.5px;margin:0 0 7px}
+.out p{margin:0;font-size:15.5px;color:var(--fg-dim);line-height:1.6}
+
+/* curriculum */
+.days{display:grid;gap:16px;margin-top:30px}
+@media(min-width:820px){ .days{grid-template-columns:repeat(3,1fr)} }
+.day{background:var(--panel);border:1px solid var(--edge);border-radius:12px;overflow:hidden;
+  border-top:4px solid var(--c);display:flex;flex-direction:column}
+.day-v{aspect-ratio:16/9;background:#000;position:relative;overflow:hidden}
+.day-v video{width:100%;height:100%;object-fit:cover;opacity:.7}
+.day-v::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--panel))}
+.day-b{padding:16px 19px 20px}
+.day-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--c);margin-bottom:6px}
+.day h3{font-family:var(--display);font-weight:700;font-size:19px;margin:0 0 8px;letter-spacing:-.012em}
+.day p{margin:0 0 13px;font-size:15px;color:var(--fg-dim);line-height:1.55}
+.day ul{list-style:none;margin:0;padding:13px 0 0;border-top:1px solid var(--edge)}
+.day li{font-size:13.5px;color:var(--fg-dim);padding:4px 0 4px 18px;position:relative;line-height:1.5}
+.day li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;
+  background:var(--c);opacity:.8}
+
+.nums{display:grid;gap:1px;background:var(--edge);border:1px solid var(--edge);border-radius:12px;
+  overflow:hidden;margin-top:28px}
+@media(min-width:620px){ .nums{grid-template-columns:repeat(4,1fr)} }
+.num{background:var(--panel);padding:20px 16px;text-align:center}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(26px,4.6vw,38px);
+  letter-spacing:-.02em;color:var(--amber);line-height:1}
+.num span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--fg-faint);margin-top:7px}
+
+/* pricing */
+.pay{background:var(--panel);border:1px solid var(--edge-hi);border-radius:14px;overflow:hidden;margin-top:28px}
+.pay-grid{display:grid}
+@media(min-width:800px){ .pay-grid{grid-template-columns:1fr 300px} }
+.pay-l{padding:clamp(24px,4vw,36px)}
+.pay-r{background:var(--bg-2);padding:clamp(22px,4vw,30px);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:13px;border-top:1px solid var(--edge)}
+@media(min-width:800px){ .pay-r{border-top:0;border-left:1px solid var(--edge)} }
+.price{font-family:var(--display);font-weight:800;font-size:clamp(46px,9vw,62px);line-height:1;
+  letter-spacing:-.03em;margin:0 0 4px}
+.price span{font-size:18px;color:var(--fg-dim);font-weight:600;letter-spacing:0}
+.price-sub{font-family:var(--mono);font-size:12px;color:var(--fg-faint);margin:0 0 18px}
+.incl{list-style:none;margin:0;padding:0}
+.incl li{position:relative;padding:7px 0 7px 28px;font-size:15.5px;color:var(--fg-dim);line-height:1.55}
+.incl li::before{content:"\2713";position:absolute;left:0;top:7px;color:var(--ok);font-weight:700;font-family:var(--mono)}
+.qr{background:#fff;border-radius:10px;padding:11px;width:100%;max-width:200px}
+.payline{font-family:var(--mono);font-size:13px;text-align:center;color:var(--fg-dim)}
+.payline b{display:block;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-faint);margin-bottom:3px}
+.payline code{color:var(--amber);font-size:16px;letter-spacing:.05em}
+.copybtn{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  background:transparent;color:var(--fg-dim);border:1px solid var(--edge-hi);padding:0 12px;
+  min-height:44px;border-radius:5px;cursor:pointer}
 .copybtn:hover{color:var(--amber);border-color:var(--amber-deep)}
 .copybtn.done{color:var(--ok);border-color:var(--ok)}
 
-/* code entry */
-.gate{margin-top:24px;padding-top:22px;border-top:1px solid var(--edge)}
-.gate label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
-.gatein{display:flex;gap:9px;flex-wrap:wrap}
-.gatein input{
-  flex:1;min-width:160px;background:var(--bg-2);color:var(--fg);border:1px solid var(--edge-hi);
-  border-radius:5px;padding:13px 15px;font-family:var(--mono);font-size:17px;letter-spacing:.14em;
-}
+.gate{border-top:1px solid var(--edge);margin-top:24px;padding-top:22px}
+.gate label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.gatein{display:flex;gap:10px;flex-wrap:wrap}
+.gatein input{flex:1;min-width:150px;background:var(--bg-2);color:var(--fg);border:1px solid var(--edge-hi);
+  border-radius:7px;padding:0 16px;min-height:54px;font-family:var(--mono);font-size:19px;letter-spacing:.2em}
 .gatein input:focus{border-color:var(--amber);outline:none}
-.btn{font-family:var(--display);font-weight:700;font-size:15px;background:var(--amber);color:#17160f;border:1px solid var(--amber);padding:13px 24px;border-radius:5px;cursor:pointer;white-space:nowrap}
-.btn:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#1a1405}
-.msg{margin-top:11px;font-size:14px;min-height:21px}
-.msg.bad{color:var(--crit)}
+.msg{margin-top:12px;font-size:15px;min-height:22px}
+.msg.bad{color:#FF8E8E}
 .msg.good{color:var(--ok)}
-.note{font-size:13.5px;color:var(--fg-faint);margin-top:16px;line-height:1.6}
-footer{border-top:1px solid var(--edge);margin-top:46px;padding-top:24px;font-family:var(--mono);font-size:11.5px;color:var(--fg-faint);line-height:1.85}
+.note{font-size:14px;color:var(--fg-faint);margin-top:15px;line-height:1.6}
+
+/* faq */
+.faq{display:grid;gap:9px;margin-top:28px}
+.faq details{background:var(--panel);border:1px solid var(--edge);border-radius:9px}
+.faq details[open]{border-color:var(--amber-deep)}
+.faq summary{cursor:pointer;list-style:none;padding:16px 19px;display:grid;grid-template-columns:1fr auto;
+  gap:12px;align-items:center;font-family:var(--display);font-weight:600;font-size:16.5px;min-height:56px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);font-size:17px;color:var(--amber)}
+.faq details[open] summary::after{content:"\2212"}
+.faq .a{padding:0 19px 17px;border-top:1px solid var(--edge);padding-top:14px}
+.faq .a p{margin:0 0 10px;font-size:15.5px;color:var(--fg-dim);line-height:1.6;max-width:64ch}
+.faq .a p:last-child{margin:0}
+
+/* roadmap */
+.road{display:grid;gap:12px;margin-top:28px}
+@media(min-width:700px){ .road{grid-template-columns:1fr 1fr} }
+.rd{background:var(--panel);border:1px solid var(--edge);border-radius:10px;padding:17px 19px;
+  display:flex;gap:14px;align-items:flex-start}
+.rd.live{border-color:var(--amber-deep);background:var(--amber-wash)}
+.rd .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;border:1px solid var(--edge-hi);
+  border-radius:3px;padding:3px 7px;color:var(--fg-faint);flex:none;margin-top:2px}
+.rd.live .tag{color:var(--amber);border-color:var(--amber-deep)}
+.rd h3{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 4px}
+.rd p{margin:0;font-size:14.5px;color:var(--fg-dim);line-height:1.5}
+
+footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mono);font-size:12px;
+  color:var(--fg-faint);line-height:1.9}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none} }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<section class="hero">
-  <p class="kicker">57 CSC &middot; Syndicate Course &middot; October 2026</p>
-  <div class="herogrid">
-    <div>
-      <h1>Working With <em>AI</em></h1>
-      <p class="stand">Eleven lessons on what these tools actually do, what they actually cost, and how
-      to get real work out of them. Built from a year of using them daily &mdash; including the parts
-      that did not work.</p>
-      <p class="cap" style="margin-bottom:0">ELEVEN LESSONS &middot; ABOUT TWO HOURS &middot; SELF-PACED &middot; LAST ONE IS HANDS-ON</p>
+<header class="hero">
+  <div class="hero-v" aria-hidden="true"><img src="assets/img/hero-nodes.jpg" alt=""></div>
+  <div class="wrap">
+    <p class="eyebrow"><i></i>The Academy &middot; Course 01</p>
+    <h1>Stop reading about <em>AI</em>. Start shipping with it.</h1>
+    <p class="sub">Three days, from what these tools actually are to a working app with a URL you can
+    send someone. Written by somebody using them daily, including the parts that did not work.</p>
+    <ul class="ticks">
+      <li>Built for people with no coding background</li>
+      <li>Every lab runs on free accounts</li>
+      <li>You finish with something that exists</li>
+    </ul>
+    <div class="cta">
+      <a class="btn" href="#access">Get access &mdash; $50</a>
+      <a class="btn ghost" href="#curriculum">See the curriculum</a>
     </div>
-    <div>
-      <div class="pf">
-        <video controls playsinline preload="metadata" poster="assets/img/intro-caspar.jpg">
-          <source src="assets/video/intro-caspar.mp4" type="video/mp4">
-        </video>
-      </div>
-      <p class="cap">Press play &mdash; it has sound.<br>That is my face. I was never filmed.</p>
+    <p class="under">One payment &middot; lifetime access &middot; updates included</p>
+  </div>
+</header>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <p class="sec-k">Why this exists</p>
+    <h2>You have heard it changes everything. Nobody showed you how.</h2>
+    <p class="lede">If any of these sound like you, this is the course.</p>
+    <div class="pains">
+      <div class="pain reveal"><p><b>You opened it, asked a few things, and were not impressed.</b>
+        You were using it as a search engine with better manners. That is rung one of four.</p></div>
+      <div class="pain reveal"><p><b>You do not know what to pay for.</b> Everything is twenty dollars
+        a month and nothing explains what the money actually buys.</p></div>
+      <div class="pain reveal"><p><b>It gave you a citation that did not exist.</b> So now you do not
+        trust it for anything that matters, which is the correct instinct and the wrong conclusion.</p></div>
+      <div class="pain reveal"><p><b>You gave up around round eight.</b> Everyone does. Nobody tells you
+        that the people who make it work went to round two hundred.</p></div>
     </div>
   </div>
 </section>
 
-<div class="eyebrow">What you get</div>
-<div class="vg">
-  <div class="vc" style="--c:var(--violet)"><h3>No theory you cannot use</h3>
-    <p>Every lesson ends in something you can do on Monday. The tools, the prices, the exact prompts,
-    the mistakes to skip.</p></div>
-  <div class="vc" style="--c:var(--mint)"><h3>Costs, stated plainly</h3>
-    <p>Seven tools compared tier by tier, verified against the vendors' own pages &mdash; including the
-    student discount almost nobody claims.</p></div>
-  <div class="vc" style="--c:var(--cyan)"><h3>Built with what it teaches</h3>
-    <p>One lesson is the receipts: every tool that ran to produce this course, and what each one did.</p></div>
-  <div class="vc" style="--c:var(--coral)"><h3>You build something</h3>
-    <p>The last lesson is hands-on and works on a free account. Everyone finishes with a working app.</p></div>
-</div>
+<hr class="rule">
 
-<div class="eyebrow">The eleven lessons</div>
-<div class="ll">
-  <div class="lrow" style="--h:#FF7A66"><span class="n">01</span><span class="t">Start here<small>What this covers, and the clip that explains why it matters.</small></span><span class="m">3 min</span></div>
-  <div class="lrow" style="--h:#FF6B6B"><span class="n">02</span><span class="t">The edge was free and on YouTube<small>Sixteen videos and four channels, ordered, with why each one earns the time.</small></span><span class="m">8 min</span></div>
-  <div class="lrow" style="--h:#A78BFA"><span class="n">03</span><span class="t">From answering to doing<small>How we got here, what "agentic" means, and why it is a staff officer.</small></span><span class="m">8 min</span></div>
-  <div class="lrow" style="--h:#FFC247"><span class="n">04</span><span class="t">The toolkit, and what it costs<small>ChatGPT, Claude, Perplexity, Gemini, Gemini Notebook, Gamma, Higgsfield.</small></span><span class="m">12 min</span></div>
-  <div class="lrow" style="--h:#4ADE80"><span class="n">05</span><span class="t">Skills &mdash; teaching it your standards<small>Why prompting is dead, and how to write a skill that holds your house style.</small></span><span class="m">9 min</span></div>
-  <div class="lrow" style="--h:#45D6F5"><span class="n">06</span><span class="t">MCP, connectors, and where work happens<small>The standard plug, and why "local" does not mean private.</small></span><span class="m">9 min</span></div>
-  <div class="lrow" style="--h:#60A5FA"><span class="n">07</span><span class="t">Research that stands up<small>Real sources, invented citations, and the questions that find the good stuff.</small></span><span class="m">11 min</span></div>
-  <div class="lrow" style="--h:#F472B6"><span class="n">08</span><span class="t">Decks, documents and your own files<small>Give it your format. Point it at a folder. Watch what changes.</small></span><span class="m">10 min</span></div>
-  <div class="lrow" style="--h:#A3E635"><span class="n">09</span><span class="t">How this brief was made<small>The receipts, the permission model, and a quiz to check you were paying attention.</small></span><span class="m">10 min</span></div>
-  <div class="lrow" style="--h:#FB923C"><span class="n">10</span><span class="t">When it goes wrong<small>The first output is never right. Knowing when to push and when to stop.</small></span><span class="m">9 min</span></div>
-  <div class="lrow" style="--h:#FDE047"><span class="n">11</span><span class="t">Vibe coding &mdash; now you build one<small>A real app, 194 commits, and twenty minutes to build your own.</small></span><span class="m">25 min</span></div>
-</div>
-
-<div class="eyebrow">Access</div>
-<div class="pay">
-  <div class="paygrid">
-    <div>
-      <div class="qr"><img src="assets/img/paynow-50.png" alt="PayNow QR code for SGD 50 to 9181 7066" width="460" height="460"></div>
-      <p class="cap" style="text-align:center">Scan with any Singapore banking app</p>
+<section>
+  <div class="wrap">
+    <p class="sec-k">What you walk away with</p>
+    <h2>Outcomes, not features.</h2>
+    <div class="outs">
+      <div class="out reveal" style="--c:var(--violet)"><h3>A stack you chose on evidence</h3>
+        <p>Seven tools compared tier by tier against the vendors' own pages. You will know what to pay
+        for, what to skip, and the student discount almost nobody claims.</p></div>
+      <div class="out reveal" style="--c:var(--mint)"><h3>A skill that carries your standards</h3>
+        <p>Built from feedback you have already been given, so it catches the things you keep getting
+        marked down for. It works on every assignment after that.</p></div>
+      <div class="out reveal" style="--c:var(--cyan)"><h3>Research that survives a marker</h3>
+        <p>How invented citations happen, how to catch them, and the questions that get you past a
+        summary anyone could have produced.</p></div>
+      <div class="out reveal" style="--c:var(--coral)"><h3>Something you actually shipped</h3>
+        <p>The last day ends with a live URL you can hand to a colleague, built without writing code.</p></div>
     </div>
-    <div>
-      <p class="price">$50<span> &nbsp;SGD &middot; one-off</span></p>
-      <p style="color:var(--fg-dim);margin:0;max-width:46ch">Lifetime access. Updates included &mdash;
-      and this material dates fast, so that matters.</p>
+  </div>
+</section>
 
-      <div class="payrow"><b>PayNow</b><code id="num">9181 7066</code>
-        <button class="copybtn" data-copy="91817066">Copy</button></div>
-      <div class="payrow"><b>Reference</b><code>AIBRIEF</code>
-        <button class="copybtn" data-copy="AIBRIEF">Copy</button></div>
+<hr class="rule">
 
-      <div class="gate">
-        <label for="code">Already paid? Enter your access code</label>
-        <div class="gatein">
-          <input id="code" type="text" inputmode="numeric" autocomplete="off" placeholder="6 digits" maxlength="12" aria-describedby="msg">
-          <button class="btn" id="go">Start the course</button>
+<section id="curriculum">
+  <div class="wrap">
+    <p class="sec-k">The curriculum</p>
+    <h2>Six hours reading. Fourteen hours doing.</h2>
+    <p class="lede">Most AI courses stop at explaining. Every lesson here is followed by a lab that
+    produces something you keep.</p>
+
+    <div class="days">
+      <article class="day reveal" style="--c:#FF7A66">
+        <div class="day-v"><video autoplay muted loop playsinline preload="none" poster="assets/img/stinger-evolution.jpg">
+          <source src="assets/video/stinger-evolution.mp4" type="video/mp4"></video></div>
+        <div class="day-b">
+          <p class="day-n">DAY 1 &middot; FOUNDATIONS</p>
+          <h3>What these things actually are</h3>
+          <p>Agentic AI without the marketing, and the seven-tool cost comparison.</p>
+          <ul><li>Delegate, do not instruct</li><li>Choose your stack</li><li>The sanitisation drill</li></ul>
         </div>
-        <p class="msg" id="msg" role="status"></p>
-        <p class="note">Paid and no code yet? Message me with your PayNow reference and I will send one.</p>
+      </article>
+      <article class="day reveal" style="--c:#4ADE80">
+        <div class="day-v"><video autoplay muted loop playsinline preload="none" poster="assets/img/stinger-connect.jpg">
+          <source src="assets/video/stinger-connect.mp4" type="video/mp4"></video></div>
+        <div class="day-b">
+          <p class="day-n">DAY 2 &middot; WORKING</p>
+          <h3>Getting real work out of it</h3>
+          <p>Skills, research that holds up, and pointing it at your own folders.</p>
+          <ul><li>Build a skill from your feedback</li><li>The citation audit</li><li>Research end to end</li><li>Point it at a folder</li></ul>
+        </div>
+      </article>
+      <article class="day reveal" style="--c:#FDE047">
+        <div class="day-v"><video autoplay muted loop playsinline preload="none" poster="assets/img/stinger-build.jpg">
+          <source src="assets/video/stinger-build.mp4" type="video/mp4"></video></div>
+        <div class="day-b">
+          <p class="day-n">DAY 3 &middot; BUILDING</p>
+          <h3>Ship something real</h3>
+          <p>Vibe coding, where it bites, and a capstone that ends in a URL.</p>
+          <ul><li>The circling drill</li><li>Spec, build, harden</li><li>Ship it</li><li>Capstone</li></ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="nums reveal">
+      <div class="num"><b>28</b><span>Pages</span></div>
+      <div class="num"><b>15</b><span>Hands-on labs</span></div>
+      <div class="num"><b>40</b><span>Quiz questions</span></div>
+      <div class="num"><b>112</b><span>Lab checks</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <p class="sec-k">Why this one</p>
+    <h2>Written by someone who had to use it, not sell it.</h2>
+    <div class="outs">
+      <div class="out reveal" style="--c:var(--amber)"><h3>The failures are in it</h3>
+        <p>A real transcript of eight rounds, four of them wasted going in circles, annotated with the
+        exact turn where it went wrong.</p></div>
+      <div class="out reveal" style="--c:var(--violet)"><h3>Built with what it teaches</h3>
+        <p>One chapter is the receipts: every tool that ran to produce this course, what each did,
+        and what it cost.</p></div>
+      <div class="out reveal" style="--c:var(--mint)"><h3>Narrated, chapter by chapter</h3>
+        <p>Each chapter opens with a two-minute spoken download over animated visuals. Captions
+        throughout.</p></div>
+      <div class="out reveal" style="--c:var(--cyan)"><h3>Progress that persists</h3>
+        <p>Quizzes and lab checklists save as you go, so a three-day course survives being done over
+        three weeks.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="access">
+  <div class="wrap">
+    <p class="sec-k">Access</p>
+    <h2>One payment. Updates included.</h2>
+    <p class="lede">This material dates fast. Prices moved four times last quarter, so updates matter
+    more here than they usually would.</p>
+
+    <div class="pay reveal">
+      <div class="pay-grid">
+        <div class="pay-l">
+          <p class="price">$50<span> &nbsp;SGD</span></p>
+          <p class="price-sub">ONE PAYMENT &middot; NOT A SUBSCRIPTION</p>
+          <ul class="incl">
+            <li>All 28 pages, 11 lessons and 15 labs</li>
+            <li>Narrated chapter downloads with captions</li>
+            <li>40 quiz questions with explanations</li>
+            <li>Troubleshooting playbook and capstone</li>
+            <li>Progress saved as you go</li>
+            <li>Lifetime access and every update</li>
+          </ul>
+          <div class="gate">
+            <label for="code">Already paid? Enter your access code</label>
+            <div class="gatein">
+              <input id="code" type="text" inputmode="numeric" autocomplete="one-time-code"
+                     placeholder="6 digits" maxlength="12" aria-describedby="msg">
+              <button class="btn" id="go">Start</button>
+            </div>
+            <p class="msg" id="msg" role="status"></p>
+            <p class="note">Paid and have no code? Send me your PayNow reference and I will issue one.</p>
+          </div>
+        </div>
+        <div class="pay-r">
+          <div class="qr"><img src="assets/img/paynow-50.png" width="460" height="460"
+               alt="PayNow QR code for fifty Singapore dollars"></div>
+          <p class="payline"><b>PayNow</b><code>9181 7066</code></p>
+          <button class="copybtn" data-copy="91817066">Copy number</button>
+          <p class="payline"><b>Reference</b><code>AIBRIEF</code></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <p class="sec-k">Questions</p>
+    <h2>Before you pay.</h2>
+    <div class="faq">
+      <details><summary>Do I need to be technical?</summary><div class="a">
+        <p>No. The course assumes no programming background. The one lesson that builds software does it
+        without you writing any code, and every lab works on a free account.</p></div></details>
+      <details><summary>How long does it actually take?</summary><div class="a">
+        <p>About twenty hours if you do every lab. Roughly six hours of that is reading. It is built as
+        three days but nothing stops you doing it over three weeks, and it remembers where you got to.</p></div></details>
+      <details><summary>Will it be out of date in a month?</summary><div class="a">
+        <p>Parts of it, yes, and the course says so on the page. Prices and model names move constantly.
+        The method does not, and updates are included for exactly this reason.</p></div></details>
+      <details><summary>Can I use this for assessed work?</summary><div class="a">
+        <p>Your institution's rules apply and the course tells you to find them. What it does teach is how
+        to research without inventing citations, which is the thing that actually gets people in trouble.</p></div></details>
+      <details><summary>Is any of it classified or official?</summary><div class="a">
+        <p>None of it. It was built on a personal account, on personal time, with no official material.
+        One lesson is specifically about where that line sits and how to stay on the right side of it.</p></div></details>
+      <details><summary>What if it is not for me?</summary><div class="a">
+        <p>Message me and I will refund it. The curriculum is listed above in full so you can judge before
+        you pay rather than after.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <p class="sec-k">What comes next</p>
+    <h2>This is the first course, not the only one.</h2>
+    <p class="lede">The plan is a small academy: short, practical courses on the things people keep
+    asking me about. Buying this one gets you early access to the rest.</p>
+    <div class="road">
+      <div class="rd live reveal"><span class="tag">LIVE</span>
+        <div><h3>Working With AI</h3><p>Three days, eleven lessons, fifteen labs, ending in a shipped app.</p></div></div>
+      <div class="rd reveal"><span class="tag">NEXT</span>
+        <div><h3>Writing That Gets Marked Well</h3><p>Essays, reflections and briefs. What markers reward,
+        and how to use AI without losing your own argument.</p></div></div>
+      <div class="rd reveal"><span class="tag">SOON</span>
+        <div><h3>Getting Through CSC</h3><p>The modules, the assessments, and the workflow that keeps a
+        year of staff college from eating your evenings.</p></div></div>
+      <div class="rd reveal"><span class="tag">SOON</span>
+        <div><h3>Design Thinking in Practice</h3><p>The technopreneurial toolkit applied to problems you
+        actually have, rather than a case study about a fruit company.</p></div></div>
+    </div>
+    <div class="cta" style="margin-top:28px"><a class="btn" href="#access">Get access &mdash; $50</a></div>
+  </div>
+</section>
 
 <footer>
-  <b>Working With AI</b> &middot; 57 CSC &middot; October 2026<br>
-  Unclassified. Built on a personal account, on personal time, with no official material.<br>
-  Prices and links verified 7 Oct 2026 &mdash; all of it moves, so re-check before relying on it.
+  <div class="wrap">
+    <b>The Academy</b> &middot; Course 01 &middot; October 2026<br>
+    Unclassified. Built on a personal account, on personal time, with no official material.<br>
+    Prices and links verified 7 Oct 2026 &mdash; all of it moves, so re-check before relying on it.
+  </div>
 </footer>
 
+<div class="buybar">
+  <div class="bb-p">$50<small>one payment</small></div>
+  <a class="btn sm" href="#access" style="margin-left:auto">Get access</a>
 </div>
 
 <script>
 (function(){
   "use strict";
-  /* SHA-256 of "wwai:"+code, so the codes are not sitting in plain sight in the source. */
   var HASHES = [
     "69c315d23e35efacc8d74c68dd309bdef0cc33a46d9b57ef3571b0cbc758a583",
     "cf79e76e4efdf39778b4ee5bb644bd255186ea554e6f32fe7186b72fc431d732"
   ];
-  var input = document.getElementById('code'),
-      msg   = document.getElementById('msg'),
-      go    = document.getElementById('go');
-
-  function already(){
-    try{ return localStorage.getItem('wwai-access') === 'ok'; }catch(e){ return false; }
-  }
-  if(already()){
-    msg.className = 'msg good';
-    msg.textContent = 'You already have access.';
-    go.textContent = 'Resume the course';
-  }
+  var input=document.getElementById('code'), msg=document.getElementById('msg'), go=document.getElementById('go');
+  function already(){ try{ return localStorage.getItem('wwai-access')==='ok'; }catch(e){ return false; } }
+  if(already()){ msg.className='msg good'; msg.textContent='You already have access.'; go.textContent='Resume'; }
 
   async function sha256(str){
     if(!(window.crypto && window.crypto.subtle)) return null;
     var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-    return Array.from(new Uint8Array(buf)).map(function(b){
-      return b.toString(16).padStart(2,'0');
-    }).join('');
+    return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
   }
-
   async function submit(){
-    if(already()){ location.href = 'course.html'; return; }
-    var v = (input.value||'').trim().replace(/\s+/g,'');
+    if(already()){ location.href='course.html'; return; }
+    var v=(input.value||'').trim().replace(/\s+/g,'');
     if(!v){ msg.className='msg bad'; msg.textContent='Enter the code you were given.'; input.focus(); return; }
-    var h = await sha256('wwai:' + v);
-    if(h === null){
-      msg.className='msg bad';
-      msg.textContent='This browser cannot check the code. Open the course over https, or use another browser.';
-      return;
-    }
-    if(HASHES.indexOf(h) > -1){
+    var h=await sha256('wwai:'+v);
+    if(h===null){ msg.className='msg bad'; msg.textContent='This browser cannot check the code. Open over https, or try another browser.'; return; }
+    if(HASHES.indexOf(h)>-1){
       try{ localStorage.setItem('wwai-access','ok'); }catch(e){}
       msg.className='msg good'; msg.textContent='Thanks — opening the course.';
-      setTimeout(function(){ location.href = 'course.html'; }, 450);
-    } else {
-      msg.className='msg bad'; msg.textContent='That code is not right. Check it and try again.';
-      input.select();
-    }
+      setTimeout(function(){ location.href='course.html'; },420);
+    } else { msg.className='msg bad'; msg.textContent='That code is not right. Check it and try again.'; input.select(); }
   }
-  go.addEventListener('click', submit);
-  input.addEventListener('keydown', function(e){ if(e.key === 'Enter') submit(); });
+  go.addEventListener('click',submit);
+  input.addEventListener('keydown',function(e){ if(e.key==='Enter') submit(); });
 
-  Array.prototype.forEach.call(document.querySelectorAll('.copybtn'), function(b){
-    b.addEventListener('click', function(){
-      var t = b.dataset.copy;
+  Array.prototype.forEach.call(document.querySelectorAll('.copybtn'),function(b){
+    b.addEventListener('click',function(){
       function done(){ b.textContent='Copied'; b.classList.add('done');
-        setTimeout(function(){ b.textContent='Copy'; b.classList.remove('done'); }, 1500); }
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(t).then(done).catch(function(){ b.textContent='Copy failed'; });
+        setTimeout(function(){ b.textContent='Copy number'; b.classList.remove('done'); },1600); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(b.dataset.copy).then(done).catch(function(){ b.textContent='Copy failed'; });
       } else { b.textContent='Copy failed'; }
     });
   });
+
+  var els=Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:.12, rootMargin:'0px 0px -50px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
+
+  /* hero still upgrades to video only when that is cheap */
+  (function(){
+    var host=document.querySelector('.hero-v'); if(!host) return;
+    var conn=navigator.connection||{};
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if(conn.saveData || /2g/.test(conn.effectiveType||'')) return;
+    var v=document.createElement('video');
+    v.muted=true; v.loop=true; v.playsInline=true; v.autoplay=true;
+    v.setAttribute('poster','assets/img/hero-nodes.jpg');
+    v.innerHTML='<source src="assets/video/hero-nodes.mp4" type="video/mp4">';
+    v.addEventListener('canplay',function(){ host.innerHTML=''; host.appendChild(v);
+      var p=v.play(); if(p&&p.catch) p.catch(function(){}); },{once:true});
+    v.load();
+  })();
+
+  var vids=Array.prototype.slice.call(document.querySelectorAll('.day-v video'));
+  if('IntersectionObserver' in window){
+    var vo=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ var p=e.target.play(); if(p&&p.catch) p.catch(function(){}); }
+                              else { e.target.pause(); } });
+    },{threshold:.25});
+    vids.forEach(function(v){ vo.observe(v); });
+  }
 })();
 </script>
 </body>

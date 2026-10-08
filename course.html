@@ -951,6 +951,79 @@ caption{color:var(--fg-dim)}
 :root[data-theme="light"] .turn.ai .who{color:#0B5A6B}
 :root[data-theme="light"] .turn.note .who{color:var(--fg-dim)}
 :root[data-theme="light"] .tx-h{color:var(--fg-dim)}
+
+/* ---------- chapter explainer (VOX-style: narration + timed scenes) ---------- */
+.vox{
+  background:var(--panel);border:1px solid var(--edge-hi);border-radius:10px;overflow:hidden;
+  margin:26px 0 6px;
+}
+.vox-stage{
+  position:relative;aspect-ratio:16/9;background:
+    radial-gradient(60% 70% at 25% 20%, rgba(167,139,250,.16), transparent 60%),
+    radial-gradient(55% 65% at 80% 75%, rgba(255,194,71,.14), transparent 62%),
+    var(--bg-2);
+  overflow:hidden;
+}
+.vox-stage::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--edge) 1px,transparent 1px),linear-gradient(90deg,var(--edge) 1px,transparent 1px);
+  background-size:46px 46px;opacity:.18;
+}
+.scene{
+  position:absolute;inset:0;display:grid;place-content:center;gap:14px;padding:clamp(18px,4vw,38px);
+  opacity:0;transform:translateY(12px) scale(.985);
+  transition:opacity .55s ease, transform .55s cubic-bezier(.22,.9,.3,1);
+  text-align:center;
+}
+.scene.on{opacity:1;transform:none}
+.scene .s-k{
+  font-family:var(--mono);font-size:clamp(9px,1.5vw,11px);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--amber);
+}
+.scene .s-h{
+  font-family:var(--display);font-weight:800;font-size:clamp(20px,4.4vw,42px);line-height:1.04;
+  letter-spacing:-.025em;color:var(--fg);text-wrap:balance;max-width:18ch;margin:0 auto;
+}
+.scene .s-p{
+  font-size:clamp(13px,1.9vw,17px);color:var(--fg-dim);max-width:34ch;margin:0 auto;line-height:1.5;
+}
+.scene .s-big{
+  font-family:var(--display);font-weight:800;font-size:clamp(46px,11vw,110px);line-height:.9;
+  letter-spacing:-.04em;
+  background:linear-gradient(100deg,var(--amber),var(--coral,#FF7A66) 50%,var(--violet,#A78BFA));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.scene .s-row{display:flex;gap:clamp(8px,1.6vw,18px);justify-content:center;flex-wrap:wrap}
+.scene .s-chip{
+  font-family:var(--mono);font-size:clamp(9px,1.5vw,12px);border:1px solid var(--edge-hi);
+  border-radius:999px;padding:7px 13px;color:var(--fg-dim);background:rgba(26,31,61,.6);
+}
+.scene .s-chip.hot{color:var(--amber);border-color:var(--amber-deep);background:var(--amber-wash)}
+
+.vox-bar{display:flex;align-items:center;gap:13px;padding:12px 15px;border-top:1px solid var(--edge);background:var(--bg-2);flex-wrap:wrap}
+.vox-play{
+  background:var(--amber);color:#17160f;border:1px solid var(--amber);border-radius:50%;
+  width:46px;height:46px;min-height:46px;cursor:pointer;flex:none;display:grid;place-content:center;
+  font-size:15px;line-height:1;padding:0;
+}
+.vox-play:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#fff}
+.vox-seek{flex:1;min-width:120px;height:5px;background:var(--edge);border-radius:3px;cursor:pointer;position:relative}
+.vox-seek i{display:block;height:100%;width:0;background:var(--amber);border-radius:3px}
+.vox-t{font-family:var(--mono);font-size:11.5px;color:var(--fg-dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.vox-cc{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--edge-hi);color:var(--fg-dim);
+  border-radius:4px;padding:0 11px;min-height:44px;cursor:pointer;
+}
+.vox-cc[aria-pressed="true"]{color:var(--amber);border-color:var(--amber-deep);background:var(--amber-wash)}
+.vox-tr{
+  max-height:0;overflow:hidden;transition:max-height .35s ease;border-top:0 solid var(--edge);
+  font-size:14.5px;line-height:1.65;color:var(--fg-dim);
+}
+.vox-tr.open{max-height:460px;overflow-y:auto;border-top-width:1px;padding:15px 17px}
+.vox-tr p{margin:0 0 11px;max-width:68ch}
+.vox-tr p.now{color:var(--fg)}
+@media (prefers-reduced-motion:reduce){ .scene{transition:none} }
 </style>
 </head>
 <body>
@@ -1081,6 +1154,10 @@ caption{color:var(--fg-dim)}
     <p class="lsub">Where I actually learnt this, and the order to watch it in.</p>
   </div>
 
+  <div class="vox" data-vox="edge" data-audio="assets/audio/ch02-edge.mp3"></div>
+  <p class="dcap">Chapter download &middot; narrated, about two minutes. Captions below.</p>
+
+
   <div class="presenter">
     <div class="pf"><video controls playsinline preload="none" poster="assets/img/lesson-L02.jpg">
       <source src="assets/video/lesson-L02.mp4" type="video/mp4"></video></div>
@@ -1128,6 +1205,10 @@ caption{color:var(--fg-dim)}
     <h2>From answering to doing</h2>
     <p class="lsub">How we got here, and what &ldquo;agentic&rdquo; actually means.</p>
   </div>
+
+  <div class="vox" data-vox="agentic" data-audio="assets/audio/ch03-agentic.mp3"></div>
+  <p class="dcap">Chapter download &middot; narrated, about two minutes. Captions below.</p>
+
 
   <div class="stinger">
     <video autoplay muted loop playsinline preload="none"
@@ -1367,6 +1448,10 @@ caption{color:var(--fg-dim)}
     <h2>The toolkit, and what it costs</h2>
     <p class="lsub">Seven tools, what each one is actually for, and what you should pay for.</p>
   </div>
+
+  <div class="vox" data-vox="pricing" data-audio="assets/audio/ch04-toolkit.mp3"></div>
+  <p class="dcap">Chapter download &middot; narrated, about two minutes. Captions below.</p>
+
 
   <div class="presenter">
     <div class="pf"><video controls playsinline preload="none" poster="assets/img/lesson-L04.jpg">
@@ -1656,6 +1741,10 @@ caption{color:var(--fg-dim)}
     <h2>Skills — teaching it your standards</h2>
     <p class="lsub">How to stop re-explaining your house style every single time.</p>
   </div>
+
+  <div class="vox" data-vox="skills" data-audio="assets/audio/ch05-skills.mp3"></div>
+  <p class="dcap">Chapter download &middot; narrated, about two minutes. Captions below.</p>
+
 
   <div class="stinger">
     <video autoplay muted loop playsinline preload="none"
@@ -1970,6 +2059,10 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     <p class="lsub">How the model reaches your tools, and the difference between local and cloud.</p>
   </div>
 
+  <div class="vox" data-vox="plumbing" data-audio="assets/audio/ch06-plumbing.mp3"></div>
+  <p class="dcap">Chapter download &middot; narrated, about two minutes. Captions below.</p>
+
+
   <div class="presenter">
     <div class="pf"><video controls playsinline preload="none" poster="assets/img/lesson-L06.jpg">
       <source src="assets/video/lesson-L06.mp4" type="video/mp4"></video></div>
@@ -2224,6 +2317,10 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     <p class="lsub">Finding real sources, checking they say what you claim, and digging past the summary.</p>
   </div>
 
+  <div class="vox" data-vox="research" data-audio="assets/audio/ch07-research.mp3"></div>
+  <p class="dcap">Chapter download &middot; narrated, about two minutes. Captions below.</p>
+
+
   <div class="presenter">
     <div class="pf"><video controls playsinline preload="none" poster="assets/img/lesson-L07.jpg">
       <source src="assets/video/lesson-L07.mp4" type="video/mp4"></video></div>
@@ -2442,6 +2539,10 @@ Mark every deck OFFICIAL (CLOSED) / NON-SENSITIVE.</div>
     <h2>Decks, documents and your own files</h2>
     <p class="lsub">Giving it a format to follow, and pointing it at the folders you already have.</p>
   </div>
+
+  <div class="vox" data-vox="decks" data-audio="assets/audio/ch08-decks.mp3"></div>
+  <p class="dcap">Chapter download &middot; narrated, about two minutes. Captions below.</p>
+
 
   <div class="presenter">
     <div class="pf"><video controls playsinline preload="none" poster="assets/img/lesson-L08.jpg">
@@ -3515,6 +3616,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
       if(host && host.hidden && !v.paused){ v.pause(); }
     });
     closeVideo();
+    if(typeof stopAllVox==='function') stopAllVox();
     if(typeof closeQuiz === 'function' && openQuizWrap) closeQuiz(false);
     cur = i;
     seen[i] = 1;
@@ -3538,6 +3640,7 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
     if(typeof armReveals==='function') armReveals();
     if(typeof initChecks==='function'){ initChecks(); paintProgress(); }
     if(typeof buildQuizzes==='function') buildQuizzes();
+    if(typeof buildVox==='function') buildVox();
   }
 
   var bar = document.getElementById('progress');
@@ -4053,6 +4156,115 @@ Your finished prompt appears here, ready to copy into Claude or ChatGPT.</pre>
 
   initChecks();
   paintProgress();
+
+
+  /* ---------------- chapter explainers ---------------- */
+  var VOXSCENES = {"edge": [[0.0, "Chapter two", "Where the edge came from", null, null], [0.08, null, "No course. No certificate.", "It was YouTube, and copying what people did.", null], [0.26, "The filter", "Watch the ones that break", "Anyone can film a tool working.", null], [0.42, "Rule one", "Have it open while you watch", "Passive viewing teaches vocabulary and nothing else.", null], [0.58, "Rule two", "One tool. One month.", "Depth beats a tour of nine.", null], [0.74, "Rule three", "Check the upload date", "Six months is history, not instruction.", null], [0.88, null, "16 videos · 4 channels", null, ["START HERE", "GO DEEPER", "STAY CURRENT"]]], "agentic": [[0.0, "Chapter three", "From answering, to doing", null, null], [0.07, "Before", "A very fast writer with no hands", "You asked. It answered. You did the work.", null], [0.22, "What changed", "It stopped answering and started acting", null, null], [0.33, "In practice", "You give an outcome", "It works out the route itself.", null], [0.52, "All four, or none", "Goal · Tools · Loop · Memory", null, ["OUTCOME", "REAL TOOLS", "A LOOP", "MEMORY"]], [0.74, null, "Take one away", "and you have a chatbot with extra steps.", null], [0.86, "The frame", "A staff officer", "Capable, quick, and dependent on you for direction.", null]], "pricing": [[0.0, "Chapter four", "What the toolkit costs", null, null], [0.06, null, "7", "tools in this chapter. You need about two.", null], [0.18, "The number", "$20", "is what everyone converged on.", null], [0.3, "Each one", null, null, ["ChatGPT", "Claude", "Perplexity", "Gemini"]], [0.52, "Students", "$10", "Perplexity Education Pro. Almost nobody claims it.", null], [0.7, null, "Gemini Notebook", "answers only from sources you upload.", null], [0.84, "Remember", "Nothing is unlimited", "Both $200 tiers are metered.", null], [0.94, null, "Prices moved 4× last quarter", "Check before you quote me.", null]], "skills": [[0.0, "Chapter five", "Why prompting is dead", null, null], [0.1, null, "Magic phrases were a workaround", "for models that could not follow instructions.", null], [0.24, "What replaced it", "Stop writing steps", "Start stating the end state.", null], [0.38, "Every delegation", null, null, ["END STATE", "CONSTRAINTS", "A TEST"]], [0.58, "You know this", "Mission command", "Intent, bounds, freedom of action, back-brief.", null], [0.72, "A skill", "A folder of written instructions", "It loads only when a task matches.", null], [0.88, "The trick", "“Turn that into a skill”", "Then cut half of what it wrote.", null]], "plumbing": [[0.0, "Chapter six", "The plumbing", null, null], [0.08, "Before MCP", "3 models × 3 tools = 9 builds", null, null], [0.22, "After", "Write it once", "Any model can use it.", null], [0.34, "Connectors", "Sockets already wired", null, ["GMAIL", "DRIVE", "NOTION", "SLACK", "GITHUB"]], [0.5, null, "Grant narrowly. Revoke after.", null, null], [0.6, "The warning", "Local does not mean private", null, null], [0.76, null, "The hands are local", "The reasoning is not.", null], [0.88, null, "If you would not email it to a vendor", "do not prompt it.", null]], "research": [[0.0, "Chapter seven", "Research that survives a marker", null, null], [0.07, null, "It looks perfect", "Right author. Right journal. No such paper.", null], [0.22, "Why", "A citation is what usually follows a claim", "So it produces one. Attached to nothing.", null], [0.4, "One rule", "A citation comes from a result you can click", null, null], [0.54, "The expensive one", "A real paper, for a claim it never makes", "That one survives a quick check.", null], [0.7, "So check twice", null, null, ["DOES IT EXIST", "DOES IT SAY THAT"]], [0.82, "Stop asking", "“Summarise this”", "Everybody else gets the same one.", null], [0.92, null, "What would change your answer?", null, null]], "decks": [[0.0, "Chapter eight", "Formats, and what a folder lets you ask", null, null], [0.08, null, "Ask for a deck, get generic slides", "Design is where it is weakest.", null], [0.22, "Instead", "Hand it your format", "Then let it fill it.", null], [0.4, null, "Settle the argument first", "Decks built before the argument are filler.", null], [0.54, "The underrated part", "It can read a whole folder", "Not one file. Everything.", null], [0.7, "The question", null, "“My last six essays and the feedback. What do I keep getting wrong?”", null], [0.86, "Two rules", null, null, ["IT ALL LEAVES YOUR MACHINE", "MAKE IT PROPOSE FIRST"]]]};
+  var VOXLINES  = {"edge": ["Chapter two. Where the edge actually came from.", "So the honest version of this is quite boring. There was no course, no certification, nothing you could put on a CV.", "It was YouTube. Specifically, it was watching people build real things and then copying what they did.", "And here is the part that matters, because it changes which videos are worth your time. The useful channels are the ones where something goes wrong on camera. Where the thing breaks, and you watch somebody work out why.", "Anyone can film a tool working. That teaches you almost nothing, because your version will not work the first time either. Watching somebody diagnose a failure is the part you can actually use on Tuesday morning.", "Three rules before you press play on any of this.", "First. Have the thing open while you watch. Passive viewing teaches you vocabulary and nothing else. Pause every few minutes, run the same step on something of your own, and watch it behave differently to how it did on screen.", "Second. Pick one tool and stay with it for a month. The channels will push something new every single week, because that is their business model. Depth in one beats a tour of nine, every time.", "Third. Check the upload date. Anything past about six months has aged out of being instruction. The ideas usually survive. The buttons have almost certainly moved.", "The list in this chapter is sixteen videos and four channels, sorted by how long each one takes. Start at the top. About thirty minutes of it will put you ahead of most people in the room."], "agentic": ["Chapter three. From answering, to doing.", "Right. This is the one that changes how you think about everything else.", "For about two years these tools did a single thing. You asked a question, an answer came back, and then you went off and did the actual work yourself. Genuinely useful. Also a very fast writer with no hands.", "What changed is that the model stopped answering and started acting.", "Here is what that looks like in practice. You give it an outcome. You give it the bounds it has to stay inside. Then it works out the route itself. It uses tools, it looks at what came back, and when that turns out to be wrong it goes again. It keeps going until the thing holds, or until it gets stuck and says so.", "Four things have to be true before any of that works. It has to be chasing an outcome. A list of steps will not do it. It has to be allowed to use real tools. There has to be a loop, so it sees the consequence of its own last move. And it has to remember what it already tried. Take one of those away and you are back to a chatbot with extra steps.", "The useful way to picture this is a staff officer. Capable, quick, tireless, widely read, and completely dependent on you for direction.", "Which makes your job the one you already know how to do. Set the intent. Set the bounds. Then check the work before it goes anywhere near anyone else. That last part is now most of the job.", "And here is the bit worth sitting with for a second.", "Someone who is out of their depth hesitates. They hedge, they come back with questions, and you read all of that as a warning long before you read their actual work.", "An agent that is wrong reads exactly like an agent that is right. Same fluency, same confidence, same speed.", "So the signals you have spent a career learning to read simply are not available here. Which leaves one thing. You check it yourself, every single time."], "pricing": ["Chapter four. What the toolkit costs.", "There are seven tools in this chapter. You need about two of them.", "Everyone converged on twenty dollars a month, because that happens to be the number people pay without thinking about it. The free tiers have become genuinely good, which complicates the picture in a useful way.", "Let me go through what each one is for.", "ChatGPT is the broadest. Biggest feature set, biggest ecosystem, and a free tier that now carries ads.", "Claude handles long documents and careful reasoning, and Claude Code comes included from twenty dollars. If you want to build things, that is the cheapest serious setup available.", "Perplexity is an answer engine. It searches the live web, reads what it finds, and puts a citation on every claim so you can check it. If you are a student, Education Pro is ten dollars instead of twenty, verified with an academic email, and almost nobody claims it.", "Gemini lives inside Gmail and Docs and Drive, and copes well with very long inputs.", "Gemini Notebook, which was called NotebookLM until July, only answers from sources you upload. That restriction is the whole feature. It cannot wander into half-remembered training data, because it has nothing else to draw on.", "Gamma builds a first-draft deck from a prompt in about two minutes.", "And Higgsfield generates video and images. The presenter clip at the start of each chapter came from there.", "Now, the part worth remembering. Nothing is unlimited any more. Both of the two-hundred-dollar tiers are metered. Claude Max is the same model with more headroom, so if you are not hitting limits you are buying nothing at all.", "Prices moved four times last quarter. Check them before you quote me on any of this."], "skills": ["Chapter five. Why prompting is dead.", "There was a whole industry built around prompt engineering. Magic phrases, elaborate templates, telling the model it was a world-class expert.", "All of that was a workaround for models that could not follow ordinary instructions. They can now. That skill has quietly expired.", "What replaced it is a different job entirely.", "You stop writing steps, and you start stating the end state. The constraints it has to work inside. And how you will judge whether it worked. Then it finds its own route, which is frequently a route you would not have chosen.", "Three things go into every delegation.", "The end state. What is true when this is finished? Not write me a summary. Something more like, I can walk into Thursday's tutorial able to defend a position on this.", "The constraints. Word count, which sources it may use, the house format, what it must never do. Those are bounds, not instructions.", "And the test. How will you both know it worked? A worked example. A check it has to pass.", "You already know how to do this, by the way. It is mission command. Intent, constraints, freedom of action, back-brief. The only new part is that this particular subordinate will never tell you when it is out of its depth.", "Which brings us to skills. A skill is a folder holding written instructions. It sits there doing nothing until a task matches its description, and then the model loads it and follows it.", "That is how you stop repeating yourself. Your standards go in once, and they apply every time after that.", "And the fastest way to write one is not to sit down and write one. Do a real job with the model, correct it as you go, and then say, turn everything you just learnt into a skill. It writes the file for you. Then cut half of what it produced, because it will over-generalise."], "plumbing": ["Chapter six. The plumbing, and the thing people get wrong about it.", "Two ideas here, and then one warning that matters more than both of them.", "First idea. MCP, which stands for Model Context Protocol. Anthropic published it in late twenty twenty-four and gave it away.", "The problem it solves is unglamorous and enormous. Before it, every model needed a custom integration to every tool. Three models and three tools meant nine separate builds. Add a fourth model, build three more.", "With one standard, you write a tool once and any model can use it. The analogy everyone reaches for is a USB socket, and for once the analogy holds up.", "Second idea. A connector is one of those sockets with the wiring already done. Gmail, Drive, Notion, Slack, GitHub. You sign in once through the normal login screen and tick what it is allowed to touch. Grant it the narrowest permission that still does the job, and revoke it when the job is finished.", "Now the warning.", "There is a difference between running something locally and running it in the cloud, and almost everybody gets this backwards.", "Local means the hands are on your machine. It can read your actual files, run real commands, reach things only your laptop can reach.", "What local does not mean is private.", "The reasoning still happens on somebody else's servers. Every file it reads locally gets sent off to be processed, exactly like anything you paste into a browser.", "So the rule is the boring one, and it has not changed. Nothing classified. Nothing marked. No personal data belonging to other people. That holds on every tier, including the local one.", "If you would not email it to a vendor, do not prompt it."], "research": ["Chapter seven. Research that survives a marker.", "A chat model will hand you a citation that looks perfect. Right author, right journal, plausible year. And no such paper exists.", "It is worth understanding why, because it is not a bug anybody forgot to fix.", "The model produces text that is likely to follow what came before. After a claim, the thing most likely to come next is a citation. So it generates one. Correctly formatted, confidently placed, attached to nothing at all.", "It happens most when you ask for something that ought to exist. Ask for a study showing some particular thing, and if none is in its memory, the likeliest next text is still a citation.", "So there is one rule for this entire chapter. A citation comes from a search result you can click. Never from the model.", "Now, the invented reference is the obvious failure, and it dies the moment a marker searches the title.", "The expensive failure is quieter. A real paper, cited for a claim it does not actually make. That survives a quick check, and then it collapses under somebody who knows the literature.", "Which is why you check twice. Once that the paper exists. Again that the specific claim you hung on it is the claim it makes.", "And then the part that separates a good brief from an average one. Stop asking for summaries. A summary is accurate and competent and worth nothing, because everybody else gets the same one.", "Ask instead what this source claims that you would have to argue against. Ask who has cited it since and disagreed. Ask which paragraph of your own draft is doing the least work, and then cut it.", "The best question in this chapter is four words long. What would change your answer?"], "decks": ["Chapter eight. Formats, and the question a folder lets you ask.", "Ask for a deck and you get generic slides. That is not the tool failing. That is a design request, and design is where it is weakest.", "So hand it the rules instead.", "Write out the format you already work to. Minimum type size. How much text goes on a slide. What the bar across the top means. Whether notes are written in full sentences. Be specific about the things you would otherwise correct every single time.", "That takes thirty seconds and it is the difference between a deck you rebuild and a deck you tidy. Put the block in a skill and you never type it again.", "One more thing on decks. Settle the argument in prose before you ask for slides. Decks built before the argument exists are where filler comes from.", "Now the part people underestimate.", "Running locally, it can read an entire folder. Not one file you uploaded. Everything, with the structure intact.", "That changes the kind of question available to you. Read every PDF in here and build me a thematic index. Which of these documents contradict each other. Find every file that mentions this, and tell me where it came from.", "And the best one, if you have the material. These are my last six essays and the feedback on each. What do I keep getting wrong?", "You could not ask that of a chat window. It needs the whole set.", "Two rules before you point anything at a folder. Everything it reads leaves your machine, so a folder of personal data is not a folder you point anything at. And make it propose before it moves anything. Reading is safe. Renaming and deleting are not."]};
+
+  function fmt(t){ t=Math.max(0,t|0); return (t/60|0)+':'+String(t%60).padStart(2,'0'); }
+
+  function buildVox(){
+    $$('.vox').forEach(function(box){
+      if(box.dataset.built) return;
+      box.dataset.built='1';
+      var id = box.dataset.vox, scenes = VOXSCENES[id] || [], lines = VOXLINES[id] || [];
+
+      box.innerHTML =
+        '<div class="vox-stage">' +
+          scenes.map(function(sc,i){
+            var kick = sc[1] ? '<div class="s-k">'+esc(sc[1])+'</div>' : '';
+            var head = sc[2] ? (/^[0-9$]/.test(sc[2]) && sc[2].length<22
+                                ? '<div class="s-big">'+esc(sc[2])+'</div>'
+                                : '<div class="s-h">'+esc(sc[2])+'</div>') : '';
+            var sub  = sc[3] ? '<div class="s-p">'+esc(sc[3])+'</div>' : '';
+            var row  = sc[4] ? '<div class="s-row">'+sc[4].map(function(c,n){
+                         return '<span class="s-chip'+(n===0?' hot':'')+'">'+esc(c)+'</span>'; }).join('')+'</div>' : '';
+            return '<div class="scene'+(i===0?' on':'')+'" data-at="'+sc[0]+'">'+kick+head+sub+row+'</div>';
+          }).join('') +
+        '</div>' +
+        '<div class="vox-bar">' +
+          '<button class="vox-play" aria-label="Play the chapter narration">&#9654;</button>' +
+          '<div class="vox-seek"><i></i></div>' +
+          '<span class="vox-t">0:00</span>' +
+          '<button class="vox-cc" aria-pressed="false">Transcript</button>' +
+        '</div>' +
+        '<div class="vox-tr">' + lines.map(function(l){ return '<p>'+esc(l)+'</p>'; }).join('') + '</div>';
+
+      var audio = new Audio();
+      audio.preload = 'none';
+      audio.src = box.dataset.audio;
+      box._audio = audio;
+
+      /* a chapter whose narration is not published yet keeps the visuals and drops the player */
+      audio.addEventListener('error', function(){
+        var bar = box.querySelector('.vox-bar');
+        if(bar) bar.innerHTML = '<span class="vox-t">Narration for this chapter is not published yet.</span>' +
+          '<button class="vox-cc" aria-pressed="false">Read it instead</button>';
+        var cc = box.querySelector('.vox-cc');
+        if(cc) cc.addEventListener('click', function(){
+          var open = box.querySelector('.vox-tr').classList.toggle('open');
+          cc.setAttribute('aria-pressed', open ? 'true' : 'false');
+        });
+        /* cycle the scenes slowly so the board still reads as a summary */
+        var els = $$('.scene', box), i = 0;
+        if(els.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          setInterval(function(){
+            i = (i + 1) % els.length;
+            els.forEach(function(el, n){ el.classList.toggle('on', n === i); });
+          }, 4200);
+        }
+      });
+
+      var playBtn = box.querySelector('.vox-play'),
+          seek    = box.querySelector('.vox-seek'),
+          fill    = seek.querySelector('i'),
+          tLabel  = box.querySelector('.vox-t'),
+          ccBtn   = box.querySelector('.vox-cc'),
+          tr      = box.querySelector('.vox-tr'),
+          sceneEls= $$('.scene', box),
+          paras   = $$('p', tr);
+
+      playBtn.addEventListener('click', function(){
+        if(audio.paused){
+          /* only one narration at a time across the whole course */
+          $$('.vox').forEach(function(o){ if(o!==box && o._audio && !o._audio.paused) o._audio.pause(); });
+          var pr = audio.play(); if(pr && pr.catch) pr.catch(function(){});
+        } else { audio.pause(); }
+      });
+      audio.addEventListener('play',  function(){ playBtn.innerHTML='&#10073;&#10073;'; });
+      audio.addEventListener('pause', function(){ playBtn.innerHTML='&#9654;'; });
+      audio.addEventListener('ended', function(){ playBtn.innerHTML='&#9654;'; });
+
+      audio.addEventListener('timeupdate', function(){
+        var d = audio.duration || 0, f = d ? audio.currentTime/d : 0;
+        fill.style.width = (f*100).toFixed(2)+'%';
+        tLabel.textContent = fmt(audio.currentTime) + (d ? ' / '+fmt(d) : '');
+        var cur = 0;
+        sceneEls.forEach(function(el,i){ if(parseFloat(el.dataset.at) <= f) cur = i; });
+        sceneEls.forEach(function(el,i){ el.classList.toggle('on', i===cur); });
+        if(paras.length){
+          var li = Math.min(paras.length-1, Math.floor(f*paras.length));
+          paras.forEach(function(pp,i){ pp.classList.toggle('now', i===li); });
+        }
+      });
+
+      seek.addEventListener('click', function(e){
+        if(!audio.duration) return;
+        var r = seek.getBoundingClientRect();
+        audio.currentTime = ((e.clientX - r.left)/r.width) * audio.duration;
+      });
+
+      ccBtn.addEventListener('click', function(){
+        var open = tr.classList.toggle('open');
+        ccBtn.setAttribute('aria-pressed', open ? 'true' : 'false');
+      });
+    });
+  }
+  buildVox();
+
+  /* stop any narration when the lesson changes */
+  function stopAllVox(){ $$('.vox').forEach(function(b){ if(b._audio && !b._audio.paused) b._audio.pause(); }); }
 
   /* ---------------- stingers ---------------- */
   function playVisibleStingers(){

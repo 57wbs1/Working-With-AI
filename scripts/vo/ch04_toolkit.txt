@@ -1,0 +1,25 @@
+Chapter four. What the toolkit costs.
+
+There are seven tools in this chapter. You need about two of them.
+
+Everyone converged on twenty dollars a month, because that happens to be the number people pay without thinking about it. The free tiers have become genuinely good, which complicates the picture in a useful way.
+
+Let me go through what each one is for.
+
+ChatGPT is the broadest. Biggest feature set, biggest ecosystem, and a free tier that now carries ads.
+
+Claude handles long documents and careful reasoning, and Claude Code comes included from twenty dollars. If you want to build things, that is the cheapest serious setup available.
+
+Perplexity is an answer engine. It searches the live web, reads what it finds, and puts a citation on every claim so you can check it. If you are a student, Education Pro is ten dollars instead of twenty, verified with an academic email, and almost nobody claims it.
+
+Gemini lives inside Gmail and Docs and Drive, and copes well with very long inputs.
+
+Gemini Notebook, which was called NotebookLM until July, only answers from sources you upload. That restriction is the whole feature. It cannot wander into half-remembered training data, because it has nothing else to draw on.
+
+Gamma builds a first-draft deck from a prompt in about two minutes.
+
+And Higgsfield generates video and images. The presenter clip at the start of each chapter came from there.
+
+Now, the part worth remembering. Nothing is unlimited any more. Both of the two-hundred-dollar tiers are metered. Claude Max is the same model with more headroom, so if you are not hitting limits you are buying nothing at all.
+
+Prices moved four times last quarter. Check them before you quote me on any of this.

@@ -4,8 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Working With AI</title>
-<meta name="description" content="A three-day practical course on using AI properly. Eleven lessons, fifteen labs, and you finish with something shipped.">
+<meta name="description" content="A three-day, self-paced course on using AI in staff work, from The Disruptive Company. Thirteen lessons, fifteen labs and a capstone, and you finish with something shipped.">
 <meta name="theme-color" content="#0D1021">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Disruptive Company">
+<meta property="og:title" content="Working With AI">
+<meta property="og:description" content="A three-day, self-paced course on using AI in staff work. Thirteen lessons, fifteen labs and a capstone across 30 pages, with 48 quiz questions and seven narrated chapters.">
+<meta property="og:url" content="https://57wbs1.github.io/Working-With-AI/">
+<meta property="og:image" content="https://57wbs1.github.io/Working-With-AI/assets/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Working With AI">
+<meta name="twitter:description" content="A three-day, self-paced course on using AI in staff work. Thirteen lessons, fifteen labs and a capstone across 30 pages, with 48 quiz questions and seven narrated chapters.">
+<meta name="twitter:image" content="https://57wbs1.github.io/Working-With-AI/assets/img/og-card.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -56,7 +68,7 @@ section{padding:clamp(50px,9vw,88px) 0}
              radial-gradient(36vw 36vw at 86% 26%,rgba(69,214,245,.18),transparent 64%);
   animation:drift 26s ease-in-out infinite alternate}
 @keyframes drift{from{transform:translate3d(-2%,-1%,0)}to{transform:translate3d(3%,2%,0) scale(1.1)}}
-@media (prefers-reduced-motion:reduce){ .hero::before{animation:none} }
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .hero::before{animation:none} }
 
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--violet);margin:0 0 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -179,18 +191,6 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,5vw,40px);let
 .faq .a p{margin:0 0 10px;font-size:15.5px;color:var(--fg-dim);line-height:1.6;max-width:64ch}
 .faq .a p:last-child{margin:0}
 
-/* roadmap */
-.road{display:grid;gap:12px;margin-top:28px}
-@media(min-width:700px){ .road{grid-template-columns:1fr 1fr} }
-.rd{background:var(--panel);border:1px solid var(--edge);border-radius:10px;padding:17px 19px;
-  display:flex;gap:14px;align-items:flex-start}
-.rd.live{border-color:var(--amber-deep);background:var(--amber-wash)}
-.rd .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;border:1px solid var(--edge-hi);
-  border-radius:3px;padding:3px 7px;color:var(--fg-faint);flex:none;margin-top:2px}
-.rd.live .tag{color:var(--amber);border-color:var(--amber-deep)}
-.rd h3{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 4px}
-.rd p{margin:0;font-size:14.5px;color:var(--fg-dim);line-height:1.5}
-
 footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mono);font-size:12px;
   color:var(--fg-faint);line-height:1.9}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
@@ -203,9 +203,9 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
 <header class="hero">
   <div class="hero-v" aria-hidden="true"><img src="assets/img/hero-nodes.jpg" alt=""></div>
   <div class="wrap">
-    <p class="eyebrow"><i></i>57 CSC &middot; Syndicate Course</p>
-    <h1>Stop reading about <em>AI</em>. Start shipping with it.</h1>
-    <p class="sub">Three days, from what these tools actually are to a working app with a URL you can
+    <p class="eyebrow"><i></i>The Disruptive Company &middot; Self-paced course</p>
+    <h1>Learn to ship real work with <em>AI</em>.</h1>
+    <p class="sub">Three days for staff officers and anyone doing staff work, from what these tools actually are to a working app with a URL you can
     send someone. Written by somebody using them daily, including the parts that did not work.</p>
     <ul class="ticks">
       <li>Built for people with no coding background</li>
@@ -213,12 +213,14 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
       <li>You finish with something that exists</li>
     </ul>
     <div class="cta">
-      <a class="btn" href="#access">Get access &mdash; $50</a>
+      <a class="btn" href="#access">Get access &middot; SGD 50</a>
       <a class="btn ghost" href="#curriculum">See the curriculum</a>
     </div>
     <p class="under">One payment &middot; lifetime access &middot; updates included</p>
   </div>
 </header>
+
+<main id="main">
 
 <hr class="rule">
 
@@ -233,7 +235,7 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
       <div class="pain reveal"><p><b>You do not know what to pay for.</b> Everything is twenty dollars
         a month and nothing explains what the money actually buys.</p></div>
       <div class="pain reveal"><p><b>It gave you a citation that did not exist.</b> So now you do not
-        trust it for anything that matters, which is the correct instinct and the wrong conclusion.</p></div>
+        trust it for anything that matters. The instinct is sound; the fix is to check every source, which this course teaches.</p></div>
       <div class="pain reveal"><p><b>You gave up around round eight.</b> Everyone does. Nobody tells you
         that the people who make it work went to round two hundred.</p></div>
     </div>
@@ -245,16 +247,16 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
 <section>
   <div class="wrap">
     <p class="sec-k">What you walk away with</p>
-    <h2>Outcomes, not features.</h2>
+    <h2>Four things you keep.</h2>
     <div class="outs">
       <div class="out reveal" style="--c:var(--violet)"><h3>A stack you chose on evidence</h3>
-        <p>Seven tools compared tier by tier against the vendors' own pages. You will know what to pay
-        for, what to skip, and the student discount almost nobody claims.</p></div>
+        <p>Seven tools compared tier by tier, with prices checked on 7 Oct 2026. You will know what to pay
+        for and what to skip, including the student discount almost nobody claims.</p></div>
       <div class="out reveal" style="--c:var(--mint)"><h3>A skill that carries your standards</h3>
         <p>Built from feedback you have already been given, so it catches the things you keep getting
         marked down for. It works on every assignment after that.</p></div>
       <div class="out reveal" style="--c:var(--cyan)"><h3>Research that survives a marker</h3>
-        <p>How invented citations happen, how to catch them, and the questions that get you past a
+        <p>Why invented citations happen and how to catch them. Then the questions that take you past a
         summary anyone could have produced.</p></div>
       <div class="out reveal" style="--c:var(--coral)"><h3>Something you actually shipped</h3>
         <p>The last day ends with a live URL you can hand to a colleague, built without writing code.</p></div>
@@ -267,36 +269,36 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
 <section id="curriculum">
   <div class="wrap">
     <p class="sec-k">The curriculum</p>
-    <h2>Two hours reading. Seventeen hours doing.</h2>
-    <p class="lede">Most AI courses stop at explaining. Every lesson here is followed by a lab that
+    <h2>About twenty hours, seventeen of them hands-on.</h2>
+    <p class="lede">Most lessons here are followed by a lab that
     produces something you keep.</p>
 
     <div class="days">
       <article class="day reveal" style="--c:#FF7A66">
-        <div class="day-v"><video autoplay muted loop playsinline preload="none" poster="assets/img/stinger-evolution.jpg">
+        <div class="day-v"><video muted playsinline preload="none" aria-hidden="true" poster="assets/img/stinger-evolution.jpg">
           <source src="assets/video/stinger-evolution.mp4" type="video/mp4"></video></div>
         <div class="day-b">
-          <p class="day-n">DAY 1 &middot; FOUNDATIONS</p>
+          <p class="day-n">DAY 1 &middot; FOUNDATIONS &middot; 2.8 HRS</p>
           <h3>What these things actually are</h3>
           <p>Agentic AI without the marketing, and the seven-tool cost comparison.</p>
-          <ul><li>Delegate, do not instruct</li><li>Choose your stack</li><li>The sanitisation drill</li></ul>
+          <ul><li>Delegate by intent</li><li>Choose your stack</li><li>The sanitisation drill</li></ul>
         </div>
       </article>
       <article class="day reveal" style="--c:#4ADE80">
-        <div class="day-v"><video autoplay muted loop playsinline preload="none" poster="assets/img/stinger-connect.jpg">
+        <div class="day-v"><video muted playsinline preload="none" aria-hidden="true" poster="assets/img/stinger-connect.jpg">
           <source src="assets/video/stinger-connect.mp4" type="video/mp4"></video></div>
         <div class="day-b">
-          <p class="day-n">DAY 2 &middot; WORKING</p>
+          <p class="day-n">DAY 2 &middot; WORKING &middot; 7.6 HRS</p>
           <h3>Getting real work out of it</h3>
           <p>Skills, research that holds up, and pointing it at your own folders.</p>
           <ul><li>Build a skill from your feedback</li><li>The citation audit</li><li>Research end to end</li><li>Point it at a folder</li></ul>
         </div>
       </article>
       <article class="day reveal" style="--c:#FDE047">
-        <div class="day-v"><video autoplay muted loop playsinline preload="none" poster="assets/img/stinger-build.jpg">
+        <div class="day-v"><video muted playsinline preload="none" aria-hidden="true" poster="assets/img/stinger-build.jpg">
           <source src="assets/video/stinger-build.mp4" type="video/mp4"></video></div>
         <div class="day-b">
-          <p class="day-n">DAY 3 &middot; BUILDING</p>
+          <p class="day-n">DAY 3 &middot; BUILDING &middot; 9.3 HRS</p>
           <h3>Ship something real</h3>
           <p>Vibe coding, where it bites, and a capstone that ends in a URL.</p>
           <ul><li>The circling drill</li><li>Spec, build, harden</li><li>Ship it</li><li>Capstone</li></ul>
@@ -305,7 +307,7 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
     </div>
 
     <div class="nums reveal">
-      <div class="num"><b>29</b><span>Pages</span></div>
+      <div class="num"><b>30</b><span>Pages</span></div>
       <div class="num"><b>15</b><span>Hands-on labs</span></div>
       <div class="num"><b>44</b><span>Quiz questions</span></div>
       <div class="num"><b>112</b><span>Lab checks</span></div>
@@ -318,20 +320,20 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
 <section>
   <div class="wrap">
     <p class="sec-k">Why this one</p>
-    <h2>Written by someone who had to use it, not sell it.</h2>
+    <h2>Written by someone who uses it daily.</h2>
     <div class="outs">
       <div class="out reveal" style="--c:var(--amber)"><h3>The failures are in it</h3>
         <p>A real transcript of eight rounds, four of them wasted going in circles, annotated with the
         exact turn where it went wrong.</p></div>
       <div class="out reveal" style="--c:var(--violet)"><h3>Built with what it teaches</h3>
-        <p>One chapter is the receipts: every tool that ran to produce this course, what each did,
-        and what it cost.</p></div>
+        <p>One chapter is the receipts: every tool that ran to produce this course and what each one
+        did.</p></div>
       <div class="out reveal" style="--c:var(--mint)"><h3>Narrated, chapter by chapter</h3>
         <p>Chapters 2 to 8 each open with a two-minute narrated briefing over animated visuals. Every one has
         a full transcript.</p></div>
-      <div class="out reveal" style="--c:var(--cyan)"><h3>Progress that persists</h3>
-        <p>Quizzes and lab checklists save as you go, so a three-day course survives being done over
-        three weeks.</p></div>
+      <div class="out reveal" style="--c:var(--cyan)"><h3>Progress that saves as you go</h3>
+        <p>Quizzes and lab checklists save in this browser, on this device. In Safari, a week without
+        opening the course can clear them, so keep the gaps short there.</p></div>
     </div>
   </div>
 </section>
@@ -342,20 +344,20 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
   <div class="wrap">
     <p class="sec-k">Access</p>
     <h2>One payment. Updates included.</h2>
-    <p class="lede">This material dates fast. Prices moved four times last quarter, so updates matter
+    <p class="lede">This material dates fast. Prices and features change every few weeks, so updates matter
     more here than they usually would.</p>
 
     <div class="pay reveal">
       <div class="pay-grid">
         <div class="pay-l">
           <p class="price">$50<span> &nbsp;SGD</span></p>
-          <p class="price-sub">ONE PAYMENT &middot; NOT A SUBSCRIPTION</p>
+          <p class="price-sub">ONE-OFF PAYMENT &middot; LIFETIME ACCESS</p>
           <ul class="incl">
-            <li>All 29 pages: 12 lessons, 15 labs and a capstone</li>
+            <li>All 30 pages: 13 lessons, 15 labs, a capstone and a troubleshooting playbook</li>
             <li>Seven narrated chapter briefings, each with a full transcript</li>
-            <li>44 quiz questions with explanations</li>
-            <li>Troubleshooting playbook and capstone</li>
-            <li>Progress saved as you go</li>
+            <li>48 quiz questions with explanations</li>
+            <li>112 lab checks to tick off as you work</li>
+            <li>Progress saved in your browser as you go</li>
             <li>Lifetime access and every update</li>
           </ul>
           <div class="gate">
@@ -366,7 +368,7 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
               <button class="btn" id="go">Start</button>
             </div>
             <p class="msg" id="msg" role="status"></p>
-            <p class="note">After paying, message <b>9181 7066</b> on WhatsApp or Telegram with the name your PayNow came from. Your code comes back the same day.</p>
+            <p class="note">After paying, message <b>9181 7066</b> on WhatsApp or Telegram with the name your PayNow came from. I will reply with your access code.</p>
           </div>
         </div>
         <div class="pay-r">
@@ -392,31 +394,31 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
         <p>No. The course assumes no programming background. The one lesson that builds software does it
         without you writing any code, and every lab works on a free account.</p></div></details>
       <details><summary>How long does it actually take?</summary><div class="a">
-        <p>About twenty hours if you do every lab. Roughly six hours of that is reading. It is built as
-        three days but nothing stops you doing it over three weeks, and it remembers where you got to.</p></div></details>
+        <p>About twenty hours if you do every lab. Just over two hours of that is reading. It is built as
+        three days but nothing stops you doing it over three weeks, and it remembers where you got to in the same browser.</p></div></details>
       <details><summary>Will it be out of date in a month?</summary><div class="a">
-        <p>Parts of it, yes, and the course says so on the page. Prices and model names move constantly.
-        The method does not, and updates are included for exactly this reason.</p></div></details>
+        <p>Parts of it, yes, and the course says so on the page. Prices and model names move constantly,
+        which is why updates are included. The method itself changes far more slowly.</p></div></details>
       <details><summary>Can I use this for assessed work?</summary><div class="a">
         <p>Your institution's rules apply and the course tells you to find them. What it does teach is how
         to research without inventing citations, which is the thing that actually gets people in trouble.</p></div></details>
       <details><summary>Is any of it classified or official?</summary><div class="a">
-        <p>None of it. It was built on a personal account, on personal time, with no official material.
+        <p>None of it. I built it on a personal account in my own time, using no official material.
         Lesson 06 and a dedicated lab cover exactly where that line sits and how to stay on the right side of it.</p></div></details>
       <details><summary>What if it is not for me?</summary><div class="a">
-        <p>The full curriculum is listed above so you can judge it properly before
-        you pay rather than after.</p></div></details>
+        <p>The curriculum is outlined above so you can judge it before you pay. If you still
+        have a question, message <b>9181 7066</b> on WhatsApp or Telegram and ask.</p></div></details>
     </div>
   </div>
 </section>
 
-
+</main>
 
 <footer>
   <div class="wrap">
-    <b>Working With AI</b> &middot; 57 CSC &middot; October 2026<br>
-    Unclassified. Built on a personal account, on personal time, with no official material.<br>
-    Prices and links verified 7 Oct 2026 &mdash; all of it moves, so re-check before relying on it.
+    <b>Working With AI</b> &middot; The Disruptive Company &middot; October 2026<br>
+    An independent course with no official affiliation or endorsement. Unclassified, written on a personal account in my own time using no official material.<br>
+    Prices and links verified 7 Oct 2026. All of it moves, so re-check before relying on it.
   </div>
 </footer>
 
@@ -441,16 +443,18 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
     var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
     return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
   }
+  /* a deep link opened before unlocking was parked by the course gate; return to it */
+  function dest(){ var h=''; try{ h=sessionStorage.getItem('wwai-next')||''; sessionStorage.removeItem('wwai-next'); }catch(e){} return 'course.html'+(/^#[a-z0-9-]+$/.test(h)?h:''); }
   async function submit(){
-    if(already()){ location.href='course.html'; return; }
+    if(already()){ location.href=dest(); return; }
     var v=(input.value||'').trim().replace(/\s+/g,'');
     if(!v){ msg.className='msg bad'; msg.textContent='Enter the code you were given.'; input.focus(); return; }
     var h=await sha256('wwai:'+v);
     if(h===null){ msg.className='msg bad'; msg.textContent='This browser cannot check the code. Open over https, or try another browser.'; return; }
     if(HASHES.indexOf(h)>-1){
       try{ localStorage.setItem('wwai-access','ok'); }catch(e){}
-      msg.className='msg good'; msg.textContent='Thanks — opening the course.';
-      setTimeout(function(){ location.href='course.html'; },420);
+      msg.className='msg good'; msg.textContent='Thanks. Opening the course.';
+      setTimeout(function(){ location.href=dest(); },420);
     } else { msg.className='msg bad'; msg.textContent='That code is not right. Check it and try again.'; input.select(); }
   }
   go.addEventListener('click',submit);
@@ -460,9 +464,19 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
     b.addEventListener('click',function(){
       function done(){ b.textContent='Copied'; b.classList.add('done');
         setTimeout(function(){ b.textContent='Copy number'; b.classList.remove('done'); },1600); }
+      /* clipboard blocked: select the number so it can be copied by hand */
+      function fail(){
+        var code = b.previousElementSibling && b.previousElementSibling.querySelector('code');
+        if(code && window.getSelection){
+          var r = document.createRange(); r.selectNodeContents(code);
+          var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+          b.textContent = 'Selected. Copy it now';
+        } else { b.textContent = 'Copy failed'; }
+        setTimeout(function(){ b.textContent = 'Copy number'; }, 2600);
+      }
       if(navigator.clipboard&&navigator.clipboard.writeText){
-        navigator.clipboard.writeText(b.dataset.copy).then(done).catch(function(){ b.textContent='Copy failed'; });
-      } else { b.textContent='Copy failed'; }
+        navigator.clipboard.writeText(b.dataset.copy).then(done).catch(fail);
+      } else { fail(); }
     });
   });
 
@@ -490,7 +504,8 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
   })();
 
   var vids=Array.prototype.slice.call(document.querySelectorAll('.day-v video'));
-  if('IntersectionObserver' in window){
+  var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!still && 'IntersectionObserver' in window){   /* reduced motion: posters only */
     var vo=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ var p=e.target.play(); if(p&&p.catch) p.catch(function(){}); }
                               else { e.target.pause(); } });

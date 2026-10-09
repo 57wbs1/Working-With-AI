@@ -20,6 +20,6 @@ Gamma builds a first-draft deck from a prompt in about two minutes.
 
 And Higgsfield generates video and images. The clips in this course came from there.
 
-Now, the part worth remembering. Nothing is unlimited any more. Both of the two-hundred-dollar tiers are metered. Claude Max is the same model with more headroom, so if you are not hitting limits you are buying nothing at all.
+Now, the part worth remembering. The two-hundred-dollar plans from ChatGPT and Claude are both metered, so even those run out. Claude Max mostly buys you headroom, plus Fable inside the plan. If you are not hitting your limits, you do not need it yet.
 
-Prices moved four times last quarter. Check them before you quote me on any of this.
+Prices change all the time, so check them before you quote me on any of this.

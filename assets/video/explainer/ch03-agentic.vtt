@@ -1,0 +1,206 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.500
+Chapter three. From answering to doing.
+
+2
+00:00:04.760 --> 00:00:07.440
+Right. This is the one that changes how you
+
+3
+00:00:07.440 --> 00:00:08.960
+think about everything else.
+
+4
+00:00:09.700 --> 00:00:12.160
+For about two years these tools did a single
+
+5
+00:00:12.160 --> 00:00:14.120
+thing. You asked a question,
+
+6
+00:00:14.820 --> 00:00:15.840
+an answer came back,
+
+7
+00:00:16.220 --> 00:00:18.340
+and then you went off and did the actual work
+
+8
+00:00:18.340 --> 00:00:20.980
+yourself. Genuinely useful.
+
+9
+00:00:22.080 --> 00:00:24.560
+Also a very fast writer with no hands.
+
+10
+00:00:26.100 --> 00:00:29.240
+What changed is that the model stopped answering
+
+11
+00:00:29.240 --> 00:00:30.800
+and started acting.
+
+12
+00:00:32.740 --> 00:00:34.540
+Here is what that looks like in practice.
+
+13
+00:00:35.280 --> 00:00:36.260
+You give it an outcome.
+
+14
+00:00:37.040 --> 00:00:39.500
+You give it the bounds it has to stay inside.
+
+15
+00:00:40.320 --> 00:00:42.480
+Then it works out the route itself.
+
+16
+00:00:43.480 --> 00:00:46.160
+It uses tools, it looks at what came back,
+
+17
+00:00:46.420 --> 00:00:48.440
+and when that turns out to be wrong it goes
+
+18
+00:00:48.780 --> 00:00:51.640
+again. It keeps going until the thing holds,
+
+19
+00:00:52.320 --> 00:00:54.480
+or until it gets stuck and says so.
+
+20
+00:00:56.020 --> 00:00:58.420
+Four things have to be true before any of
+
+21
+00:00:58.420 --> 00:01:01.260
+that works. It has to be chasing an outcome.
+
+22
+00:01:02.440 --> 00:01:04.240
+A list of steps will not do it.
+
+23
+00:01:05.000 --> 00:01:07.120
+It has to be allowed to use real tools.
+
+24
+00:01:07.840 --> 00:01:08.880
+There has to be a loop,
+
+25
+00:01:08.880 --> 00:01:11.180
+so it sees the consequence of its own last
+
+26
+00:01:11.180 --> 00:01:14.180
+move. And it has to remember what it already
+
+27
+00:01:14.180 --> 00:01:17.120
+tried. Take one of those away and you are
+
+28
+00:01:17.120 --> 00:01:19.040
+back to a chatbot with extra steps.
+
+29
+00:01:19.720 --> 00:01:21.860
+The useful way to picture this is a staff
+
+30
+00:01:21.860 --> 00:01:23.540
+officer. Capable, quick,
+
+31
+00:01:24.000 --> 00:01:25.300
+tireless, widely read,
+
+32
+00:01:25.640 --> 00:01:27.640
+and completely dependent on you for direction.
+
+33
+00:01:28.300 --> 00:01:30.380
+Which makes your job the one you already know
+
+34
+00:01:30.380 --> 00:01:32.000
+how to do. Set the intent.
+
+35
+00:01:32.420 --> 00:01:34.520
+Set the bounds. Then check the work before
+
+36
+00:01:34.520 --> 00:01:36.060
+it goes anywhere near anyone else.
+
+37
+00:01:36.460 --> 00:01:38.320
+That last part is now most of the job.
+
+38
+00:01:38.960 --> 00:01:40.800
+And here is the bit worth sitting with for
+
+39
+00:01:40.800 --> 00:01:43.320
+a second. Someone who is out of their depth
+
+40
+00:01:43.320 --> 00:01:44.660
+hesitates. They hedge,
+
+41
+00:01:44.980 --> 00:01:45.900
+they come back with questions,
+
+42
+00:01:46.360 --> 00:01:48.160
+and you read all of that as a warning long
+
+43
+00:01:48.160 --> 00:01:49.620
+before you read their actual work.
+
+44
+00:01:49.980 --> 00:01:51.900
+An agent that is wrong reads exactly like
+
+45
+00:01:51.900 --> 00:01:52.760
+an agent that is right.
+
+46
+00:01:53.260 --> 00:01:54.940
+Same fluency, same confidence,
+
+47
+00:01:55.380 --> 00:01:57.460
+same speed. So the signals you have spent
+
+48
+00:01:57.460 --> 00:01:59.720
+a career learning to read simply are not available
+
+49
+00:01:59.720 --> 00:02:01.380
+here. Which leaves one thing.
+
+50
+00:02:02.180 --> 00:02:03.080
+You check it yourself,
+
+51
+00:02:03.360 --> 00:02:04.160
+every single time.
+

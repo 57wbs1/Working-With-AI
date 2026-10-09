@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Disruptive Company Academy</title>
+<meta name="description" content="Practical online courses for people who do staff work: briefs, papers and decisions. Working With AI is open now, with three more courses coming soon.">
+<meta name="theme-color" content="#0D1021">
+<meta property="og:title" content="The Disruptive Company Academy">
+<meta property="og:description" content="Practical online courses for people who do staff work: briefs, papers and decisions. Working With AI is open now.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://57wbs1.github.io/Working-With-AI/academy.html">
+<meta property="og:image" content="https://57wbs1.github.io/Working-With-AI/assets/img/academy/host-studio.jpg">
+<meta property="og:image:alt" content="Channing, the course presenter, beside a large screen showing a glowing network of points.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Disruptive Company Academy">
+<meta name="twitter:description" content="Practical online courses for people who do staff work: briefs, papers and decisions.">
+<meta name="twitter:image" content="https://57wbs1.github.io/Working-With-AI/assets/img/academy/host-studio.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<script>
+/* Runs before first paint: restore the saved theme (same key as course.html) and flag JS. */
+(function(){
+  var r=document.documentElement;
+  r.className+=' js';
+  try{ if(localStorage.getItem('wwai-theme')==='light') r.setAttribute('data-theme','light'); }catch(e){}
+})();
+</script>
+<style>
+:root{
+  --bg:#0D1021; --bg-2:#151934; --panel:#1A1F3D; --panel-2:#232949;
+  --fg:#F2F4FF; --fg-dim:#AEB5D8; --fg-faint:#868EB6;
+  --edge:#2A3157; --edge-hi:#3C4576;
+  --amber:#FFC247; --amber-deep:#F59E0B; --amber-wash:rgba(255,194,71,.13);
+  --violet:#A78BFA; --mint:#4ADE80; --cyan:#45D6F5; --coral:#FF7A66; --gold:#FDE047;
+  --ok:#4ADE80;
+  --display:'Archivo',"Helvetica Neue",Arial,sans-serif;
+  --body:'IBM Plex Sans',"Segoe UI",system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,"SF Mono",Menlo,monospace;
+  --maxw:1120px;
+  --bar:rgba(13,16,33,.92);
+  color-scheme:dark;
+}
+:root[data-theme="light"]{
+  --bg:#F7F8FF; --bg-2:#EDEFFB; --panel:#FFFFFF; --panel-2:#F3F5FF;
+  --fg:#141830; --fg-dim:#4A5280; --fg-faint:#6B7398;
+  --edge:#DDE2F5; --edge-hi:#BFC7E8;
+  --amber:#B45309; --amber-deep:#92400E; --amber-wash:rgba(180,83,9,.11);
+  --violet:#6D28D9; --ok:#15803D;
+  --bar:rgba(247,248,255,.93);
+  color-scheme:light;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:112px}
+@media(min-width:760px){ html{scroll-padding-top:80px} }
+@media(prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;
+  line-height:1.62;-webkit-font-smoothing:antialiased}
+@media(min-width:640px){ body{font-size:17px} }
+img,svg{max-width:100%;display:block}
+a{color:var(--amber);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:3px}
+h1,h2,h3,p,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+@media(min-width:640px){ .wrap{padding:0 24px} }
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);
+  white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--amber);color:#17160f;
+  font-family:var(--display);font-weight:700;padding:12px 18px;border-radius:8px;text-decoration:none}
+.skip:focus{top:10px}
+
+/* fixed dark scope: the hero sits on a photograph, so it keeps dark tokens in either theme */
+.on-dark{--fg:#F2F4FF;--fg-dim:#AEB5D8;--fg-faint:#868EB6;--edge:#2A3157;--edge-hi:#3C4576;
+  --amber:#FFC247;--amber-deep:#F59E0B;--panel:#1A1F3D;--violet:#A78BFA;color:var(--fg)}
+
+/* ---------- top bar ---------- */
+.topbar{position:sticky;top:0;z-index:60;background:var(--bar);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--edge);
+  padding-top:env(safe-area-inset-top,0px)}
+.topbar-in{max-width:var(--maxw);margin:0 auto;padding:4px 16px;display:grid;
+  grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:10px;row-gap:4px}
+@media(min-width:640px){ .topbar-in{padding:6px 24px} }
+.brand{grid-column:1;grid-row:1;display:inline-flex;align-items:center;gap:8px;min-height:44px;min-width:0;
+  font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.005em;color:var(--fg);
+  text-decoration:none;white-space:nowrap}
+.tag{font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--amber);border:1px solid var(--amber-deep);border-radius:4px;padding:2px 6px;line-height:1.5}
+@media(max-width:359px){ .brand .tag{display:none} }
+.navlinks{grid-column:1/-1;grid-row:2;display:flex;gap:4px;border-top:1px solid var(--edge);margin:0;padding-bottom:2px}
+.navlinks a{flex:1 1 0;display:flex;align-items:center;justify-content:center;min-height:44px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--fg-dim);text-decoration:none;padding:0 8px;border-radius:6px;white-space:nowrap}
+.navlinks a:hover{color:var(--fg);background:var(--panel)}
+.tbtn{grid-column:2;grid-row:1;display:none;align-items:center;justify-content:center;min-height:44px;
+  min-width:58px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--panel);color:var(--fg-dim);border:1px solid var(--edge-hi);padding:0 10px;
+  border-radius:8px;cursor:pointer}
+.js .tbtn{display:inline-flex}
+.tbtn:hover{color:var(--fg);border-color:var(--amber-deep)}
+@media(min-width:760px){
+  .topbar-in{display:flex;column-gap:0}
+  .brand{font-size:16px;gap:10px}
+  .tag{font-size:10.5px;padding:2px 7px}
+  .navlinks{margin:0 0 0 auto;border-top:0;gap:2px;padding-bottom:0}
+  .navlinks a{flex:none;padding:0 14px}
+  .js .tbtn{margin-left:10px;font-size:12px;padding:0 14px;min-width:70px}
+}
+
+/* ---------- buttons ---------- */
+.btn{font-family:var(--display);font-weight:700;font-size:16px;line-height:1.2;background:var(--amber);
+  color:#17160f;border:1px solid var(--amber);padding:0 26px;min-height:52px;border-radius:8px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;
+  transition:transform .14s,box-shadow .14s,background .14s;box-shadow:0 6px 22px rgba(255,194,71,.16)}
+.btn:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#1a1405;
+  transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,194,71,.24)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--edge-hi);box-shadow:none;font-weight:600}
+.btn.ghost:hover{background:var(--panel);border-color:var(--amber-deep);color:var(--fg)}
+.btn .ic{width:18px;height:18px}
+:root[data-theme="light"] .btn{color:#fff;box-shadow:0 6px 22px rgba(180,83,9,.18)}
+:root[data-theme="light"] .btn:hover{color:#fff}
+:root[data-theme="light"] .btn.ghost{color:var(--fg);box-shadow:none}
+:root[data-theme="light"] .btn.ghost:hover{color:var(--fg)}
+:root[data-theme="light"] .on-dark .btn{color:#17160f}
+:root[data-theme="light"] .on-dark .btn:hover{color:#1a1405}
+:root[data-theme="light"] .on-dark .btn.ghost,
+:root[data-theme="light"] .on-dark .btn.ghost:hover{color:var(--fg)}
+
+/* ---------- shared bits ---------- */
+.ic{width:16px;height:16px;flex:none}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.eyebrow i{width:26px;height:1px;background:currentColor;font-style:normal}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,5.4vw,46px);letter-spacing:-.025em;
+  line-height:1.06;text-wrap:balance;max-width:20ch}
+.lede{font-size:clamp(16px,2.1vw,19px);color:var(--fg-dim);max-width:56ch;margin-top:14px}
+section{padding:clamp(56px,9vw,96px) 0}
+.badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:#F2F4FF;background:rgba(13,16,33,.88);
+  border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:5px 12px;min-height:30px;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--dot,#FFC247);flex:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;padding:0;
+  min-height:620px;min-height:max(620px,min(780px,88svh));background:#0D1021}
+.hero-img{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:73% 0%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(13,16,33,.45) 0%,rgba(13,16,33,.1) 20%,rgba(13,16,33,.8) 52%,#0D1021 100%)}
+.hero-in{width:100%;padding-top:270px;padding-bottom:clamp(34px,6vw,76px)}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,9vw,84px);line-height:1;
+  letter-spacing:-.033em;text-wrap:balance;margin-bottom:18px}
+@media(min-width:760px){ .hero h1{max-width:13ch} }
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--amber),var(--coral) 48%,var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:clamp(17px,2.3vw,21px);color:#C3C9E8;max-width:44ch;margin-bottom:26px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.cta .btn{flex:1 1 100%}
+@media(min-width:520px){ .cta .btn{flex:0 0 auto} }
+.hero .btn.ghost{background:rgba(13,16,33,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+@media(min-width:760px){
+  .hero{align-items:center}
+  .hero::after{background:
+    linear-gradient(90deg,rgba(13,16,33,.95) 0%,rgba(13,16,33,.8) 36%,rgba(13,16,33,.12) 68%,rgba(13,16,33,0) 100%),
+    linear-gradient(180deg,rgba(13,16,33,0) 72%,#0D1021 100%)}
+  .hero-in{padding-top:70px;padding-bottom:70px}
+  .hero-img img{object-position:62% 30%}
+}
+@media(prefers-reduced-motion:no-preference){
+  .hero-img img{animation:settle 2.2s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes settle{from{transform:scale(1.07)}to{transform:scale(1)}}
+}
+
+/* ---------- courses ---------- */
+#courses{background:var(--bg)}
+.filters{display:none;flex-wrap:wrap;gap:10px;margin-top:28px}
+.js .filters{display:flex}
+.chip{font-family:var(--display);font-weight:600;font-size:16px;min-height:44px;padding:0 20px;
+  border-radius:8px;background:transparent;color:var(--fg-dim);border:1px solid var(--edge-hi);cursor:pointer;
+  transition:background .14s,color .14s,border-color .14s}
+.chip:hover{color:var(--fg);border-color:var(--amber-deep);background:var(--panel)}
+.chip[aria-pressed="true"]{background:var(--amber);border-color:var(--amber);color:#17160f}
+:root[data-theme="light"] .chip[aria-pressed="true"]{color:#fff}
+.count{font-family:var(--mono);font-size:12.5px;color:var(--fg-faint);margin-top:14px;min-height:20px}
+
+.grid{display:grid;gap:22px;margin-top:22px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px} }
+.card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--edge);
+  border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s}
+.card[hidden]{display:none}
+.card.live{border-color:var(--amber-deep)}
+:root[data-theme="light"] .card{box-shadow:0 1px 2px rgba(20,24,48,.06),0 10px 28px rgba(20,24,48,.07)}
+@media(hover:hover){ .card:hover{transform:translateY(-4px);border-color:var(--amber-deep);
+  box-shadow:0 18px 44px rgba(0,0,0,.28)} }
+.card-img{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--panel-2)}
+.card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card-img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(13,16,33,.35) 0%,rgba(13,16,33,0) 38%)}
+@media(hover:hover){ .card:hover .card-img img{transform:scale(1.045)} }
+.card-img .badge{position:absolute;left:14px;top:14px;z-index:1}
+.card-body{display:flex;flex-direction:column;flex:1;padding:20px 20px 22px}
+.topic{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:8px}
+.card h3{font-family:var(--display);font-weight:700;font-size:clamp(22px,3vw,27px);letter-spacing:-.02em;
+  line-height:1.12;margin-bottom:10px}
+.card .desc{font-size:16px;color:var(--fg-dim);line-height:1.55;margin-bottom:18px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:auto;padding-top:16px;
+  border-top:1px solid var(--edge);margin-bottom:18px}
+.meta li{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:14px;
+  color:var(--fg-dim);line-height:1.3}
+.meta li.price{color:var(--amber);font-weight:600}
+.card .btn{width:100%}
+@media(min-width:1000px){ .card .btn{width:auto;align-self:flex-start} }
+.grid.is-single{grid-template-columns:minmax(0,1fr)}
+@media(min-width:860px){
+  .grid.is-single .card{flex-direction:row}
+  .grid.is-single .card-img{flex:1.15 1 0;aspect-ratio:auto;min-height:340px}
+  .grid.is-single .card-body{flex:1 1 0;justify-content:center;padding:32px}
+  .grid.is-single .meta{margin-top:6px}
+}
+
+/* ---------- how it works ---------- */
+#how{background:var(--bg-2);border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.how-grid{display:grid;gap:14px;margin-top:32px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:560px){ .how-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media(min-width:920px){ .how-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px} }
+.tile{position:relative;isolation:isolate;overflow:hidden;border-radius:12px;border:1px solid var(--edge);
+  background:#0D1021;color:#F2F4FF;aspect-ratio:16/10}
+@media(min-width:560px){ .tile{aspect-ratio:1/1} }
+@media(min-width:920px){ .tile{aspect-ratio:4/5} }
+.tile img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+@media(hover:hover){ .tile:hover img{transform:scale(1.05)} }
+.tile::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(13,16,33,0) 18%,rgba(13,16,33,.62) 52%,rgba(13,16,33,.95) 100%)}
+.tile-cap{position:absolute;left:0;right:0;bottom:0;padding:18px 18px 20px}
+.tile-k{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:#FFC247;margin-bottom:6px}
+.tile-cap p{font-family:var(--display);font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-.005em}
+
+/* ---------- host ---------- */
+#host{background:var(--bg)}
+.host{display:grid;gap:30px;align-items:center}
+@media(min-width:860px){ .host{grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:64px} }
+.portrait{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--edge-hi);
+  aspect-ratio:1000/1242;max-width:440px;background:var(--panel-2);width:100%}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait .badge{position:absolute;left:14px;bottom:14px}
+.host-text h2{margin-bottom:20px}
+.host-text p{color:var(--fg-dim);max-width:54ch;font-size:clamp(16.5px,2vw,18.5px)}
+.host-text p+p{margin-top:16px}
+
+/* ---------- footer ---------- */
+footer{background:var(--bg-2);border-top:1px solid var(--edge);padding:30px 0 calc(34px + env(safe-area-inset-bottom,0px))}
+.foot{display:grid;gap:18px}
+@media(min-width:760px){ .foot{grid-template-columns:1fr auto;align-items:center} }
+.foot-brand{font-family:var(--display);font-weight:800;font-size:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.foot-copy{font-family:var(--mono);font-size:12.5px;color:var(--fg-faint);margin-top:4px}
+.foot nav{display:flex;flex-wrap:wrap;gap:4px 22px}
+.foot nav a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--mono);font-size:14px;
+  letter-spacing:.04em}
+
+/* ---------- reveal on scroll (armed by script; content shows without it) ---------- */
+.rv .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
+.rv .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.2 9.2A2 2 0 0 0 6.5 21h11a2 2 0 0 0 1.7-2.8L14 9V3"/><path d="M7.5 15h9"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12.5V4h8.5L21 13.5 13.5 21z"/><circle cx="7.5" cy="8.5" r="1.2"/></symbol>
+  <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<a class="skip" href="#courses">Skip to courses</a>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#top">The Disruptive Company <span class="tag">Academy</span></a>
+    <nav class="navlinks" aria-label="Academy sections">
+      <a href="#courses">Courses</a>
+      <a href="#how">How it works</a>
+      <a href="#host">Your host</a>
+    </nav>
+    <button class="tbtn" id="themeBtn" type="button" aria-label="Switch to light theme">Light</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero on-dark" id="top" aria-labelledby="hero-h">
+  <div class="hero-img">
+    <img src="assets/img/academy/host-studio.jpg"
+         srcset="assets/img/academy/host-studio-sm.jpg 480w, assets/img/academy/host-studio.jpg 1280w"
+         sizes="100vw" width="1280" height="714" fetchpriority="high" decoding="async"
+         alt="Channing, the course presenter, standing beside a large screen that shows a glowing network of connected points.">
+  </div>
+  <div class="wrap hero-in">
+    <p class="eyebrow"><i></i>Online academy</p>
+    <h1 id="hero-h">Practical courses for people who do <em>staff work.</em></h1>
+    <p class="sub">Online courses on briefs, papers and decisions, with a presenter who walks you through each lesson.</p>
+    <div class="cta">
+      <a class="btn" href="#courses">Browse courses</a>
+      <a class="btn ghost" href="index.html">Start the AI course</a>
+    </div>
+  </div>
+</section>
+
+<section id="courses" aria-labelledby="courses-h">
+  <div class="wrap">
+    <p class="eyebrow"><i></i>Courses</p>
+    <h2 id="courses-h">Pick a course.</h2>
+    <p class="lede">One course is open now. Three more are coming soon.</p>
+
+    <div class="filters" role="group" aria-label="Filter courses by topic">
+      <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-filter="ai" aria-pressed="false">AI</button>
+      <button class="chip" type="button" data-filter="writing" aria-pressed="false">Writing</button>
+      <button class="chip" type="button" data-filter="staff-work" aria-pressed="false">Staff work</button>
+      <button class="chip" type="button" data-filter="design-thinking" aria-pressed="false">Design thinking</button>
+    </div>
+    <p class="count" id="filter-status" role="status" aria-live="polite"></p>
+
+    <div class="grid" id="grid">
+
+      <article class="card live reveal" data-topic="ai">
+        <div class="card-img">
+          <img src="assets/img/academy/course-ai.jpg"
+               srcset="assets/img/academy/course-ai-sm.jpg 480w, assets/img/academy/course-ai.jpg 1280w"
+               sizes="(min-width:1180px) 550px, (min-width:760px) 46vw, 92vw"
+               width="1280" height="714" loading="lazy" decoding="async"
+               alt="Hands typing on a laptop while glowing panels and a network of points float above the screen.">
+          <span class="badge" style="--dot:#4ADE80"><i></i>Available now</span>
+        </div>
+        <div class="card-body">
+          <p class="topic">AI</p>
+          <h3>Working With AI</h3>
+          <p class="desc">A practical course on using AI tools properly for real work: research, papers, decks and a small app you build yourself.</p>
+          <ul class="meta" aria-label="Course details">
+            <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg>3 days</li>
+            <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg>13 lessons</li>
+            <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg>15 labs</li>
+            <li class="price"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-tag"/></svg>SGD 50</li>
+          </ul>
+          <a class="btn" href="index.html">View course
+            <svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card soon reveal" data-topic="staff-work">
+        <div class="card-img">
+          <img src="assets/img/academy/course-csc.jpg"
+               srcset="assets/img/academy/course-csc-sm.jpg 480w, assets/img/academy/course-csc.jpg 1280w"
+               sizes="(min-width:1180px) 550px, (min-width:760px) 46vw, 92vw"
+               width="1280" height="714" loading="lazy" decoding="async"
+               alt="A team of professionals planning around a table covered in maps, notebooks and sticky notes.">
+          <span class="badge"><i></i>Coming soon</span>
+        </div>
+        <div class="card-body">
+          <p class="topic">Staff work</p>
+          <h3>Staff College, Survived</h3>
+          <p class="desc">How to get through a command and staff course: the reading load, the syndicate work and the written assessments.</p>
+          <ul class="meta" aria-label="Course details">
+            <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-screen"/></svg>Online course</li>
+            <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-clock"/></svg>Length and price to follow</li>
+          </ul>
+          <a class="btn ghost" href="https://wa.me/6591817066?text=Hello%2C%20please%20tell%20me%20when%20Staff%20College%2C%20Survived%20opens." target="_blank" rel="noopener">
+            <svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-bell"/></svg>Tell me when it opens<span class="vh"> (Staff College, Survived)</span></a>
+        </div>
+      </article>
+
+      <article class="card soon reveal" data-topic="design-thinking">
+        <div class="card-img">
+          <img src="assets/img/academy/course-design.jpg"
+               srcset="assets/img/academy/course-design-sm.jpg 480w, assets/img/academy/course-design.jpg 1280w"
+               sizes="(min-width:1180px) 550px, (min-width:760px) 46vw, 92vw"
+               width="1280" height="714" loading="lazy" decoding="async"
+               alt="A hand placing a sticky note on a workshop wall covered in sketches and notes, with colleagues talking behind.">
+          <span class="badge"><i></i>Coming soon</span>
+        </div>
+        <div class="card-body">
+          <p class="topic">Design thinking</p>
+          <h3>Design Thinking for Staff Work</h3>
+          <p class="desc">Framing the right problem, testing small, and where AI speeds up each stage.</p>
+          <ul class="meta" aria-label="Course details">
+            <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-screen"/></svg>Online course</li>
+            <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-clock"/></svg>Length and price to follow</li>
+          </ul>
+          <a class="btn ghost" href="https://wa.me/6591817066?text=Hello%2C%20please%20tell%20me%20when%20Design%20Thinking%20for%20Staff%20Work%20opens." target="_blank" rel="noopener">
+            <svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-bell"/></svg>Tell me when it opens<span class="vh"> (Design Thinking for Staff Work)</span></a>
+        </div>
+      </article>
+
+      <article class="card soon reveal" data-topic="writing">
+        <div class="card-img">
+          <img src="assets/img/academy/course-writing.jpg"
+               srcset="assets/img/academy/course-writing-sm.jpg 480w, assets/img/academy/course-writing.jpg 1280w"
+               sizes="(min-width:1180px) 550px, (min-width:760px) 46vw, 92vw"
+               width="1280" height="714" loading="lazy" decoding="async"
+               alt="An essay marked in red pen on a wooden desk beside a laptop, a pen and a cup of tea, lit by a brass lamp.">
+          <span class="badge"><i></i>Coming soon</span>
+        </div>
+        <div class="card-body">
+          <p class="topic">Writing</p>
+          <h3>Essays That Hold Up</h3>
+          <p class="desc">Research, argument and citations that survive a marker.</p>
+          <ul class="meta" aria-label="Course details">
+            <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-screen"/></svg>Online course</li>
+            <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-clock"/></svg>Length and price to follow</li>
+          </ul>
+          <a class="btn ghost" href="https://wa.me/6591817066?text=Hello%2C%20please%20tell%20me%20when%20Essays%20That%20Hold%20Up%20opens." target="_blank" rel="noopener">
+            <svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-bell"/></svg>Tell me when it opens<span class="vh"> (Essays That Hold Up)</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <p class="eyebrow"><i></i>How it works</p>
+    <h2 id="how-h">How the courses work</h2>
+
+    <ul class="how-grid">
+      <li class="tile reveal">
+        <img src="assets/img/academy/host-walk.jpg"
+             srcset="assets/img/academy/host-walk-sm.jpg 480w, assets/img/academy/host-walk.jpg 1280w"
+             sizes="(min-width:920px) 25vw, (min-width:560px) 46vw, 92vw"
+             width="1280" height="714" loading="lazy" decoding="async"
+             style="object-position:40% 50%"
+             alt="Channing standing between library shelves with a tablet in her hands.">
+        <div class="tile-cap"><span class="tile-k">01 &middot; Watch</span><p>Narrated chapters with a presenter on screen.</p></div>
+      </li>
+      <li class="tile reveal">
+        <img src="assets/img/academy/l-build.jpg"
+             srcset="assets/img/academy/l-build-sm.jpg 480w, assets/img/academy/l-build.jpg 1280w"
+             sizes="(min-width:920px) 25vw, (min-width:560px) 46vw, 92vw"
+             width="1280" height="714" loading="lazy" decoding="async"
+             style="object-position:62% 50%"
+             alt="A woman pointing at an app on a phone beside paper sketches and a laptop showing the same screen.">
+        <div class="tile-cap"><span class="tile-k">02 &middot; Build</span><p>Hands-on labs that leave you with something built.</p></div>
+      </li>
+      <li class="tile reveal">
+        <img src="assets/img/academy/l-research.jpg"
+             srcset="assets/img/academy/l-research-sm.jpg 480w, assets/img/academy/l-research.jpg 1280w"
+             sizes="(min-width:920px) 25vw, (min-width:560px) 46vw, 92vw"
+             width="1280" height="714" loading="lazy" decoding="async"
+             style="object-position:55% 50%"
+             alt="A student reading at a library desk with a laptop, a magnifying glass and stacks of old books.">
+        <div class="tile-cap"><span class="tile-k">03 &middot; Check</span><p>A short quiz after each lesson.</p></div>
+      </li>
+      <li class="tile reveal">
+        <img src="assets/img/academy/l-start.jpg"
+             srcset="assets/img/academy/l-start-sm.jpg 480w, assets/img/academy/l-start.jpg 1280w"
+             sizes="(min-width:920px) 25vw, (min-width:560px) 46vw, 92vw"
+             width="1280" height="714" loading="lazy" decoding="async"
+             style="object-position:45% 50%"
+             alt="An open notebook, a closed laptop and a cup of coffee on a wooden desk beside a window at sunrise.">
+        <div class="tile-cap"><span class="tile-k">04 &middot; Read</span><p>Pages that read well on a phone.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="host" aria-labelledby="host-h">
+  <div class="wrap">
+    <div class="host">
+      <figure class="portrait reveal">
+        <img src="assets/img/academy/host-desk.jpg"
+             srcset="assets/img/academy/host-desk-sm.jpg 480w, assets/img/academy/host-desk.jpg 1000w"
+             sizes="(min-width:860px) 400px, 92vw"
+             width="1000" height="1242" loading="lazy" decoding="async"
+             alt="Channing, the AI presenter, smiling at a wooden desk with a laptop and a leather notebook, lit by a brass lamp.">
+        <span class="badge"><i></i>AI-generated presenter</span>
+      </figure>
+      <div class="host-text reveal">
+        <p class="eyebrow"><i></i>Your host</p>
+        <h2 id="host-h">Meet Channing</h2>
+        <p>Channing is an AI presenter. Her voice and her image were generated by software.</p>
+        <p>Each course is written in the first person by an officer who used these methods on his own staff course. He prefers to stay anonymous, so Channing presents the material on screen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <p class="foot-brand">The Disruptive Company <span class="tag">Academy</span></p>
+      <p class="foot-copy">&copy; 2026</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="https://wa.me/6591817066" target="_blank" rel="noopener">WhatsApp 9181 7066</a>
+      <a href="index.html">Working With AI course</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+
+  /* theme: same key and pattern as course.html, so the choice carries across pages */
+  var btn = document.getElementById('themeBtn');
+  var meta = document.querySelector('meta[name="theme-color"]');
+  function store(k,v){
+    try{ if(arguments.length>1){ localStorage.setItem(k,v); return v; } return localStorage.getItem(k); }
+    catch(e){ return null; }
+  }
+  function applyTheme(t){
+    if(t==='light'){
+      root.setAttribute('data-theme','light'); btn.textContent='Dark';
+      btn.setAttribute('aria-label','Switch to dark theme');
+      if(meta) meta.setAttribute('content','#F7F8FF');
+    } else {
+      root.removeAttribute('data-theme'); btn.textContent='Light';
+      btn.setAttribute('aria-label','Switch to light theme');
+      if(meta) meta.setAttribute('content','#0D1021');
+    }
+  }
+  applyTheme(store('wwai-theme')||'dark');
+  btn.addEventListener('click',function(){
+    var next = root.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+    applyTheme(next); store('wwai-theme',next);
+  });
+
+  /* topic filter: every card shows until a chip is chosen */
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var grid = document.getElementById('grid');
+  var status = document.getElementById('filter-status');
+  function apply(topic,fromUser){
+    var shown = 0;
+    cards.forEach(function(c){
+      var on = topic==='all' || c.getAttribute('data-topic')===topic;
+      if(on){ c.removeAttribute('hidden'); if(fromUser) c.classList.add('in'); shown++; }
+      else { c.setAttribute('hidden',''); }
+    });
+    chips.forEach(function(ch){
+      ch.setAttribute('aria-pressed', ch.getAttribute('data-filter')===topic ? 'true' : 'false');
+    });
+    grid.classList.toggle('is-single', shown===1);
+    status.textContent = shown===cards.length
+      ? 'Showing all '+cards.length+' courses'
+      : 'Showing '+shown+' of '+cards.length+' courses';
+  }
+  chips.forEach(function(ch){
+    ch.addEventListener('click',function(){ apply(ch.getAttribute('data-filter'),true); });
+  });
+  apply('all');
+  status.textContent = '';
+
+  /* reveal on scroll: armed here, so a script failure never leaves content hidden */
+  var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    root.classList.add('rv');
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{threshold:.1, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>

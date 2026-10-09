@@ -1,6 +1,6 @@
 Chapter eight. Formats, and the question a folder lets you ask.
 
-Ask for a deck and you get generic slides. That is not the tool failing. That is a design request, and design is where it is weakest.
+Ask for a deck and you get generic slides, because you asked for design, and design is where it is weakest.
 
 So hand it the rules instead.
 
@@ -12,9 +12,9 @@ One more thing on decks. Settle the argument in prose before you ask for slides.
 
 Now the part people underestimate.
 
-Running locally, it can read an entire folder. Not one file you uploaded. Everything, with the structure intact.
+Running locally, it can read an entire folder, every file in it, with the structure intact.
 
-That changes the kind of question available to you. Read every PDF in here and build me a thematic index. Which of these documents contradict each other. Find every file that mentions this, and tell me where it came from.
+That changes the kind of question available to you. Read every PDF in here and build me a thematic index. Which of these documents contradict each other? Find every file that mentions this, and tell me where it came from.
 
 And the best one, if you have the material. These are my last six essays and the feedback on each. What do I keep getting wrong?
 

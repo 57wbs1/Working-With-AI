@@ -20,6 +20,6 @@ What local does not mean is private.
 
 The reasoning still happens on servers belonging to somebody else. Every file it reads locally gets sent off to be processed, exactly like anything you paste into a browser.
 
-So the rule is the boring one, and it has not changed. Nothing classified. Nothing marked. No personal data belonging to other people. That holds on every tier, including the local one.
+So the rule is the boring one, and it has not changed. Nothing classified, nothing marked, no work documents, and no personal data belonging to other people. That holds on every tier, including the local one.
 
 If you would not email it to a vendor, do not prompt it.

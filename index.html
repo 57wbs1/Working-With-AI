@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -18,6 +18,7 @@
 <meta name="twitter:title" content="Working With AI">
 <meta name="twitter:description" content="A three-day, self-paced course on using AI in staff work. Thirteen lessons, fifteen labs and a capstone across 30 pages, with 48 quiz questions and seven narrated chapters.">
 <meta name="twitter:image" content="https://57wbs1.github.io/Working-With-AI/assets/img/og-card.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230D1021'/%3E%3Cpath d='M6 10l4 12 6-12 6 12 4-12' fill='none' stroke='%23FFC247' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -32,154 +33,311 @@
   --display:'Archivo',"Helvetica Neue",Arial,sans-serif;
   --body:'IBM Plex Sans',"Segoe UI",system-ui,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,"SF Mono",Menlo,monospace;
+  --maxw:1200px;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;
-  line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:16px}
+@media(min-width:760px){ html{scroll-padding-top:84px} }
+@media(prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;
+  line-height:1.62;-webkit-font-smoothing:antialiased}
+@media(min-width:640px){ body{font-size:17px} }
 img,video,svg{max-width:100%;display:block}
 a{color:var(--amber);text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:3px}
-.wrap{max-width:1020px;margin:0 auto;padding:0 22px}
-@media(max-width:640px){ .wrap{padding:0 18px} body{font-size:16.5px} }
-section{padding:clamp(50px,9vw,88px) 0}
-.rule{height:1px;background:linear-gradient(90deg,transparent,var(--edge),transparent);border:0;margin:0}
+h1,h2,h3,p,ul,figure,dl,dd{margin:0}
+ul{padding:0;list-style:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+@media(min-width:640px){ .wrap{padding:0 24px} }
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);
+  white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--amber);color:#17160f;
+  font-family:var(--display);font-weight:700;padding:12px 18px;border-radius:8px;text-decoration:none}
+.skip:focus{top:10px}
+.ic{width:16px;height:16px;flex:none}
 
-/* sticky buy bar on phones */
-.buybar{
-  position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;
-  background:rgba(21,25,52,.96);backdrop-filter:blur(10px);border-top:1px solid var(--edge-hi);
-  padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
-  align-items:center;gap:12px;
+/* ---------- top bar ---------- */
+.topbar{background:rgba(13,16,33,.95);border-bottom:1px solid var(--edge);padding-top:env(safe-area-inset-top,0px)}
+@media(min-width:760px){ .topbar{position:sticky;top:0;z-index:60;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)} }
+.topbar-in{max-width:var(--maxw);margin:0 auto;padding:4px 16px;display:grid;
+  grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"brand cta" "nav nav";align-items:center;column-gap:10px}
+@media(min-width:640px){ .topbar-in{padding:6px 24px} }
+.brand{grid-area:brand;display:inline-flex;align-items:center;min-height:44px;min-width:0;
+  font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.005em;color:var(--fg);
+  text-decoration:none;white-space:nowrap}
+.brand:hover{color:var(--amber)}
+@media(max-width:359px){ .brand{white-space:normal;line-height:1.1;font-size:15px} }
+.navlinks{grid-area:nav;display:flex;gap:4px;border-top:1px solid var(--edge);padding-bottom:2px}
+.navlinks a{flex:1 1 0;display:flex;align-items:center;justify-content:center;min-height:44px;
+  font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--fg-dim);text-decoration:none;padding:0 8px;border-radius:6px;white-space:nowrap}
+.navlinks a:hover{color:var(--fg);background:var(--panel)}
+.topbar .btn{grid-area:cta}
+@media(min-width:760px){
+  .topbar-in{display:flex;column-gap:0}
+  .brand{font-size:17px}
+  .navlinks{margin:0 14px 0 auto;border-top:0;gap:2px;padding-bottom:0}
+  .navlinks a{flex:none;padding:0 14px}
 }
-.buybar .bb-p{font-family:var(--display);font-weight:800;font-size:19px}
-.buybar .bb-p small{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--fg-faint);display:block}
-@media(max-width:760px){ .buybar{display:flex} body{padding-bottom:78px} }
 
-/* hero */
-.hero{position:relative;overflow:hidden;padding:clamp(46px,11vw,98px) 0 clamp(40px,8vw,70px);isolation:isolate}
-.hero-v{position:absolute;inset:0;z-index:-3;overflow:hidden}
-.hero-v img,.hero-v video{width:100%;height:100%;object-fit:cover;opacity:.3}
-.hero-v::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(13,16,33,.6) 0%,rgba(13,16,33,.84) 55%,var(--bg) 100%)}
-.hero::before{content:"";position:absolute;inset:-25% -10%;z-index:-2;pointer-events:none;
-  background:radial-gradient(40vw 40vw at 15% 10%,rgba(167,139,250,.26),transparent 62%),
-             radial-gradient(36vw 36vw at 86% 26%,rgba(69,214,245,.18),transparent 64%);
-  animation:drift 26s ease-in-out infinite alternate}
-@keyframes drift{from{transform:translate3d(-2%,-1%,0)}to{transform:translate3d(3%,2%,0) scale(1.1)}}
-@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .hero::before{animation:none} }
-
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--violet);margin:0 0 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.eyebrow i{width:24px;height:1px;background:var(--violet);font-style:normal}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,8.4vw,74px);line-height:1;
-  letter-spacing:-.032em;margin:0 0 20px;text-wrap:balance;max-width:17ch}
-h1 em{font-style:normal;background:linear-gradient(100deg,var(--amber),var(--coral) 48%,var(--violet));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{font-size:clamp(17px,2.4vw,21px);color:var(--fg-dim);max-width:50ch;margin:0 0 26px}
-.ticks{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:9px;max-width:46ch}
-.ticks li{position:relative;padding-left:30px;font-size:16.5px;line-height:1.5}
-.ticks li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--ok);font-weight:700;font-family:var(--mono)}
-.cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.btn{font-family:var(--display);font-weight:700;font-size:16px;background:var(--amber);color:#17160f;
-  border:1px solid var(--amber);padding:0 26px;min-height:54px;border-radius:8px;cursor:pointer;
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;
+/* ---------- buttons ---------- */
+.btn{font-family:var(--display);font-weight:700;font-size:16px;line-height:1.2;background:var(--amber);
+  color:#17160f;border:1px solid var(--amber);padding:0 26px;min-height:54px;border-radius:8px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;
   transition:transform .14s,box-shadow .14s,background .14s;box-shadow:0 6px 22px rgba(255,194,71,.16)}
 .btn:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:#1a1405;
   transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,194,71,.24)}
-.btn.sm{min-height:46px;font-size:15px;padding:0 18px;box-shadow:none}
-.btn.ghost{background:transparent;color:var(--fg);border-color:var(--edge-hi);box-shadow:none;font-weight:600}
+.btn.sm{min-height:46px;font-size:16px;padding:0 18px;box-shadow:none}
+.btn.ghost{background:rgba(13,16,33,.55);color:var(--fg);border-color:var(--edge-hi);box-shadow:none;font-weight:600;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .btn.ghost:hover{background:var(--panel);border-color:var(--amber-deep);color:var(--fg)}
-.under{font-family:var(--mono);font-size:12px;color:var(--fg-faint);margin:14px 0 0}
+.btn .ic{width:18px;height:18px}
 
-h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,5vw,40px);letter-spacing:-.022em;
-  line-height:1.08;margin:0 0 16px;text-wrap:balance;max-width:20ch}
-.sec-k{font-family:var(--mono);font-size:11px;letter-spacing:.19em;text-transform:uppercase;
-  color:var(--fg-faint);margin:0 0 14px}
-.lede{font-size:clamp(16.5px,2.1vw,19px);color:var(--fg-dim);max-width:58ch;margin:0 0 8px}
+/* ---------- shared bits ---------- */
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--amber);margin:0 0 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.eyebrow i{width:26px;height:1px;background:currentColor;font-style:normal;flex:none}
+@media(max-width:519px){ .hide-s{display:none} }
+h2{font-family:var(--display);font-weight:700;font-size:clamp(27px,5.2vw,42px);letter-spacing:-.024em;
+  line-height:1.08;text-wrap:balance;max-width:22ch}
+.lede{font-size:clamp(16px,2vw,18.5px);color:var(--fg-dim);max-width:58ch;margin-top:14px}
+.col section{padding:clamp(38px,6.5vw,62px) 0}
+.col section+section,.col-b section{border-top:1px solid var(--edge)}
+.badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.08em;text-transform:uppercase;color:#F2F4FF;background:rgba(13,16,33,.88);
+  border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:5px 12px;min-height:30px;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--dot,#FFC247);flex:none}
 
-/* pain */
-.pains{display:grid;gap:13px;margin-top:30px}
-@media(min-width:720px){ .pains{grid-template-columns:1fr 1fr} }
-.pain{background:var(--panel);border:1px solid var(--edge);border-radius:10px;padding:18px 20px;
-  border-left:3px solid var(--coral)}
-.pain p{margin:0;font-size:16px;line-height:1.55}
-.pain b{color:var(--fg);font-weight:600}
+/* ---------- hero ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#0D1021}
+.hero-img{position:absolute;left:0;right:0;top:0;height:440px;z-index:-2;overflow:hidden}
+.hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:74% 0%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(13,16,33,.3) 0,rgba(13,16,33,0) 80px,rgba(13,16,33,.55) 260px,#0D1021 440px)}
+.hero-in{width:100%;padding-top:290px;padding-bottom:26px}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(42px,12vw,76px);line-height:.98;
+  letter-spacing:-.034em;text-wrap:balance;margin-bottom:14px}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--amber),var(--coral) 48%,var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:clamp(17px,2.2vw,21px);color:#C9CFEC;max-width:40ch;margin-bottom:18px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 0;margin-bottom:22px}
+.meta li{display:inline-flex;align-items:center;font-family:var(--mono);font-size:14px;color:#C9CFEC;line-height:1.3}
+.meta li.price{color:var(--amber);font-weight:600}
+.meta li svg{display:none}
+.meta li+li::before{content:"\00b7";margin:0 9px;color:var(--fg-faint)}
+@media(min-width:520px){
+  .meta{gap:6px 20px}
+  .meta li{gap:7px}
+  .meta li svg{display:block}
+  .meta li+li::before{content:none}
+}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.cta .btn{flex:1 1 100%}
+@media(min-width:520px){ .cta .btn{flex:0 0 auto} }
+.under{font-family:var(--mono);font-size:13px;color:#A9B0D3;margin-top:14px}
+@media(min-width:1024px){
+  .hero{display:flex;align-items:center;min-height:max(580px,min(720px,78svh))}
+  .hero-img{height:auto;bottom:0}
+  .hero::after{background:
+    linear-gradient(90deg,rgba(13,16,33,.96) 0%,rgba(13,16,33,.82) 38%,rgba(13,16,33,.12) 68%,rgba(13,16,33,0) 100%),
+    linear-gradient(180deg,rgba(13,16,33,0) 74%,#0D1021 100%)}
+  .hero-in{padding-top:56px;padding-bottom:72px}
+  .hero-text{max-width:560px}
+  .hero h1{font-size:clamp(60px,6.4vw,88px)}
+  .hero-img img{object-position:62% 30%}
+}
+@media(prefers-reduced-motion:no-preference){
+  .hero-img img{animation:settle 2.2s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes settle{from{transform:scale(1.07)}to{transform:scale(1)}}
+}
 
-/* outcomes */
-.outs{display:grid;gap:14px;margin-top:30px}
-@media(min-width:760px){ .outs{grid-template-columns:1fr 1fr} }
-.out{background:var(--panel);border:1px solid var(--edge);border-radius:11px;padding:20px 22px;
-  border-top:3px solid var(--c,var(--amber))}
-.out h3{font-family:var(--display);font-weight:700;font-size:17.5px;margin:0 0 7px}
-.out p{margin:0;font-size:15.5px;color:var(--fg-dim);line-height:1.6}
+/* ---------- two-column layout, sticky buy card on wide screens ---------- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr)}
+.col{min-width:0}
+@media(min-width:1024px){
+  .layout{grid-template-columns:minmax(0,1fr) clamp(360px,33vw,416px);column-gap:clamp(36px,4.4vw,56px);align-items:start}
+  .col-a{grid-column:1;grid-row:1}
+  .col-b{grid-column:1;grid-row:2}
+  .buy{grid-column:2;grid-row:1 / span 2;position:sticky;top:76px;margin-top:38px}
+}
 
-/* curriculum */
-.days{display:grid;gap:16px;margin-top:30px}
-@media(min-width:820px){ .days{grid-template-columns:repeat(3,1fr)} }
-.day{background:var(--panel);border:1px solid var(--edge);border-radius:12px;overflow:hidden;
-  border-top:4px solid var(--c);display:flex;flex-direction:column}
-.day-v{aspect-ratio:16/9;background:#000;position:relative;overflow:hidden}
-.day-v video{width:100%;height:100%;object-fit:cover;opacity:.7}
-.day-v::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--panel))}
-.day-b{padding:16px 19px 20px}
-.day-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--c);margin-bottom:6px}
-.day h3{font-family:var(--display);font-weight:700;font-size:19px;margin:0 0 8px;letter-spacing:-.012em}
-.day p{margin:0 0 13px;font-size:15px;color:var(--fg-dim);line-height:1.55}
-.day ul{list-style:none;margin:0;padding:13px 0 0;border-top:1px solid var(--edge)}
-.day li{font-size:13.5px;color:var(--fg-dim);padding:4px 0 4px 18px;position:relative;line-height:1.5}
-.day li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;
-  background:var(--c);opacity:.8}
+/* ---------- free chapter ---------- */
+.vframe{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--edge-hi);background:#000;
+  margin-top:24px;box-shadow:0 26px 60px rgba(0,0,0,.45),0 0 0 1px rgba(255,194,71,.05)}
+.vframe video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000;object-fit:contain}
+.vplay{position:absolute;left:50%;top:46%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;border:0;
+  background:var(--amber);color:#17160f;display:flex;align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:0 10px 36px rgba(0,0,0,.5),0 0 0 10px rgba(255,194,71,.18);transition:transform .16s,background .16s}
+.vplay[hidden]{display:none}
+.vplay:hover{background:var(--amber-deep);transform:scale(1.06)}
+.vplay svg{width:30px;height:30px;margin-left:4px}
+@media(max-width:519px){ .vplay{width:64px;height:64px;margin:-32px 0 0 -32px} .vplay svg{width:26px;height:26px} }
+.vcap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:14px;font-family:var(--mono);
+  font-size:14px;color:var(--fg-dim);line-height:1.4}
+.vcap .badge{--dot:#4ADE80;background:var(--panel)}
 
-.nums{display:grid;gap:1px;background:var(--edge);border:1px solid var(--edge);border-radius:12px;
-  overflow:hidden;margin-top:28px}
-@media(min-width:620px){ .nums{grid-template-columns:repeat(4,1fr)} }
-.num{background:var(--panel);padding:20px 16px;text-align:center}
-.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(26px,4.6vw,38px);
+/* ---------- what you'll learn ---------- */
+.learn-box{background:var(--panel);border:1px solid var(--edge-hi);border-radius:16px;padding:clamp(20px,4vw,30px)}
+.learn-box h2{max-width:none}
+.learn{display:grid;gap:14px 28px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:22px}
+.learn li{position:relative;padding-left:32px;font-size:16px;line-height:1.5;color:var(--fg)}
+.learn li::before{content:"\2713";position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;
+  background:rgba(74,222,128,.14);color:var(--ok);font-family:var(--mono);font-weight:700;font-size:13px;
+  display:flex;align-items:center;justify-content:center;line-height:1}
+
+/* ---------- curriculum ---------- */
+.glance{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--edge);
+  border:1px solid var(--edge);border-radius:12px;overflow:hidden;margin-top:24px}
+@media(min-width:620px){ .glance{grid-template-columns:repeat(4,minmax(0,1fr))} }
+.glance li{background:var(--panel);padding:16px 12px;text-align:center}
+.glance b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(26px,4.6vw,34px);
   letter-spacing:-.02em;color:var(--amber);line-height:1}
-.num span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;
-  text-transform:uppercase;color:var(--fg-faint);margin-top:7px}
+.glance span{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--fg-faint);margin-top:7px}
+.cur-tools{display:flex;justify-content:flex-end;margin-top:14px}
+.linkbtn{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);
+  background:transparent;border:1px solid var(--edge-hi);border-radius:8px;min-height:44px;padding:0 16px;cursor:pointer}
+.linkbtn:hover{border-color:var(--amber-deep);background:var(--panel)}
+.day{--c:var(--coral);background:var(--panel);border:1px solid var(--edge);border-top:3px solid var(--c);
+  border-radius:14px;overflow:hidden;margin-top:14px}
+.day[open]{border-color:var(--edge-hi);border-top-color:var(--c)}
+.day summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;
+  padding:12px 16px;min-height:76px;cursor:pointer;list-style:none}
+.day summary::-webkit-details-marker{display:none}
+.day summary:hover{background:rgba(255,255,255,.02)}
+.dnum{font-family:var(--display);font-weight:800;font-size:38px;line-height:1;color:var(--c);min-width:28px;text-align:center}
+.dtxt{display:block;min-width:0}
+.dk{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--c);margin-bottom:2px}
+.dt{display:block;font-family:var(--display);font-weight:700;font-size:18px;line-height:1.2;letter-spacing:-.01em}
+.dm{display:block;font-family:var(--mono);font-size:13px;color:var(--fg-faint);margin-top:4px}
+.chev{width:22px;height:22px;color:var(--fg-dim);transition:transform .2s}
+.day[open] .chev{transform:rotate(180deg)}
+.day-lead{padding:2px 16px 14px;font-size:16px;color:var(--fg-dim);line-height:1.5}
+.rows{border-top:1px solid var(--edge)}
+.row{--tc:var(--violet);display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;
+  padding:12px 16px;border-top:1px solid var(--edge)}
+.row:first-child{border-top:0}
+.row.lab{--tc:var(--amber)}
+.row.cap{--tc:var(--coral)}
+.row.ref{--tc:var(--cyan)}
+@media(min-width:640px){ .row{grid-template-columns:152px minmax(0,1fr);gap:18px;padding:12px 20px} }
+.th{position:relative;display:block;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:var(--panel-2);
+  border:1px solid var(--edge)}
+.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lab .th img{transform:scale(1.55);transform-origin:var(--o,50% 50%)}
+.mk{position:absolute;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.mk-lab{left:5px;bottom:5px;width:22px;height:22px;background:rgba(13,16,33,.82);color:var(--amber)}
+.mk-lab .ic{width:13px;height:13px}
+.mk-play{left:50%;top:50%;width:36px;height:36px;margin:-18px 0 0 -18px;background:var(--amber);color:#17160f;
+  box-shadow:0 4px 16px rgba(0,0,0,.45)}
+.mk-play .ic{width:16px;height:16px;margin-left:2px}
+.rm{display:flex;flex-wrap:wrap;align-items:center;gap:2px 10px;font-family:var(--mono);font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;line-height:1.5;margin-bottom:3px}
+.rm .tag{color:var(--tc);font-weight:600}
+.rm .min{color:var(--fg-faint)}
+.rn{font-family:var(--display);font-weight:600;font-size:16px;line-height:1.3;color:var(--fg)}
+@media(min-width:640px){ .rn{font-size:17px} }
+.free{position:relative;display:inline-flex;align-items:center;gap:6px;background:var(--amber);color:#17160f;
+  font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  border-radius:999px;padding:2px 10px;text-decoration:none}
+.free::after{content:"";position:absolute;inset:-12px -8px}
+.free:hover{background:var(--amber-deep);color:#1a1405}
 
-/* pricing */
-.pay{background:var(--panel);border:1px solid var(--edge-hi);border-radius:14px;overflow:hidden;margin-top:28px}
-.pay-grid{display:grid}
-@media(min-width:800px){ .pay-grid{grid-template-columns:1fr 300px} }
-.pay-l{padding:clamp(24px,4vw,36px)}
-.pay-r{background:var(--bg-2);padding:clamp(22px,4vw,30px);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:13px;border-top:1px solid var(--edge)}
-@media(min-width:800px){ .pay-r{border-top:0;border-left:1px solid var(--edge)} }
-.price{font-family:var(--display);font-weight:800;font-size:clamp(46px,9vw,62px);line-height:1;
-  letter-spacing:-.03em;margin:0 0 4px}
-.price span{font-size:18px;color:var(--fg-dim);font-weight:600;letter-spacing:0}
-.price-sub{font-family:var(--mono);font-size:12px;color:var(--fg-faint);margin:0 0 18px}
-.incl{list-style:none;margin:0;padding:0}
-.incl li{position:relative;padding:7px 0 7px 28px;font-size:15.5px;color:var(--fg-dim);line-height:1.55}
-.incl li::before{content:"\2713";position:absolute;left:0;top:7px;color:var(--ok);font-weight:700;font-family:var(--mono)}
-.qr{background:#fff;border-radius:10px;padding:11px;width:100%;max-width:200px}
-.payline{font-family:var(--mono);font-size:13px;text-align:center;color:var(--fg-dim)}
-.payline b{display:block;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-faint);margin-bottom:3px}
+/* ---------- inside every chapter ---------- */
+.tiles{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:26px}
+@media(min-width:640px){ .tiles{gap:16px} }
+.tile{position:relative;isolation:isolate;overflow:hidden;border-radius:14px;border:1px solid var(--edge);
+  background:#0D1021;color:#F2F4FF;aspect-ratio:4/5}
+@media(min-width:640px){ .tile{aspect-ratio:4/3} }
+.tile img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+@media(hover:hover){ .tile:hover img{transform:scale(1.05)} }
+.tile::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(13,16,33,0) 16%,rgba(13,16,33,.66) 50%,rgba(13,16,33,.95) 100%)}
+.tile-cap{position:absolute;left:0;right:0;bottom:0;padding:14px 14px 16px}
+@media(min-width:640px){ .tile-cap{padding:18px 20px 20px} }
+.tile-k{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:#FFC247;margin-bottom:5px}
+.tile-cap p{font-family:var(--display);font-weight:600;font-size:16px;line-height:1.28}
+@media(min-width:640px){ .tile-cap p{font-size:18px} }
+
+/* ---------- host ---------- */
+.host{display:grid;gap:26px;align-items:center;margin-top:26px}
+@media(min-width:640px){ .host{grid-template-columns:minmax(0,270px) minmax(0,1fr);gap:38px} }
+.portrait{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--edge-hi);aspect-ratio:4/5;
+  background:var(--panel-2);width:100%;max-width:340px}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait .badge{position:absolute;left:12px;bottom:12px}
+.host-text p{color:var(--fg-dim);max-width:52ch}
+.host-text p+p{margin-top:14px}
+.host-text h3{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.4vw,30px);letter-spacing:-.02em;
+  line-height:1.1;margin-bottom:14px}
+.facts-h{font-family:var(--display);font-weight:700;font-size:clamp(21px,3vw,25px);letter-spacing:-.016em;
+  line-height:1.15;margin:40px 0 0}
+.facts{display:grid;gap:20px 12px;margin-top:20px}
+@media(min-width:640px){ .facts{gap:12px} }
+@media(min-width:640px){ .facts{grid-template-columns:repeat(2,minmax(0,1fr))} .facts .wide{grid-column:1/-1} }
+.fact{border-left:3px solid var(--c,var(--amber));padding:2px 0 2px 16px}
+@media(min-width:640px){ .fact{background:var(--panel);border:1px solid var(--edge);border-top:3px solid var(--c,var(--amber));border-radius:11px;padding:16px 18px} }
+.fact h4{font-family:var(--display);font-weight:700;font-size:17px;margin:0 0 6px;line-height:1.25}
+.fact p{font-size:16px;color:var(--fg-dim);line-height:1.55}
+
+/* ---------- buy card ---------- */
+.buy{margin:8px 0 8px}
+@media(min-width:1024px){ .buy{margin-top:38px} }
+@media(max-width:1023px){ .buy{max-width:560px;width:100%;margin:clamp(24px,5vw,40px) auto} }
+.buy-card{background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--edge-hi);border-radius:16px;
+  padding:18px 20px 18px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+@media(min-width:1024px){ .buy-card{max-height:calc(100svh - 92px);overflow-y:auto;overscroll-behavior:contain} }
+.pricerow{display:flex;align-items:center;gap:6px 16px;flex-wrap:wrap;margin:0 0 10px}
+.price{font-family:var(--display);font-weight:800;font-size:clamp(42px,5vw,48px);line-height:1;letter-spacing:-.03em}
+.price-sub{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-faint);line-height:1.5}
+.price-sub span{display:block}
+.price-sub i{display:none;font-style:normal}
+.incl li{position:relative;padding:3px 0 3px 26px;font-size:16px;color:var(--fg-dim);line-height:1.38}
+.incl li::before{content:"\2713";position:absolute;left:0;top:3px;color:var(--ok);font-weight:700;font-family:var(--mono)}
+.paybox{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;
+  border-top:1px solid var(--edge);margin-top:12px;padding-top:14px}
+.qr{background:#fff;border-radius:10px;padding:7px;width:116px}
+.qr img{width:100%;height:auto}
+.payinfo{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+@media(min-width:420px){
+  .payinfo{display:grid;grid-template-columns:auto auto;justify-content:start;align-content:center;gap:10px 22px}
+  .payinfo .p1{grid-area:1/1}
+  .payinfo .p2{grid-area:1/2}
+  .payinfo .copybtn{grid-area:2/1/3/3;justify-self:start}
+}
+.payline{font-family:var(--mono);font-size:13px;color:var(--fg-dim)}
+.payline b{display:block;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-faint);margin-bottom:2px;font-weight:500}
 .payline code{color:var(--amber);font-size:16px;letter-spacing:.05em}
-.copybtn{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+.copybtn{font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;
   background:transparent;color:var(--fg-dim);border:1px solid var(--edge-hi);padding:0 12px;
-  min-height:44px;border-radius:5px;cursor:pointer}
+  min-height:44px;border-radius:6px;cursor:pointer}
 .copybtn:hover{color:var(--amber);border-color:var(--amber-deep)}
 .copybtn.done{color:var(--ok);border-color:var(--ok)}
-
-.gate{border-top:1px solid var(--edge);margin-top:24px;padding-top:22px}
-.gate label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.note{font-size:16px;color:var(--fg-faint);margin-top:12px;line-height:1.5}
+.note a{display:inline-block;padding:11px 2px;margin:-11px -2px}
+.note b{color:var(--fg-dim);font-weight:600}
+.gate{border-top:1px solid var(--edge);margin-top:14px;padding-top:14px}
+.gate label{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:9px}
 .gatein{display:flex;gap:10px;flex-wrap:wrap}
-.gatein input{flex:1;min-width:150px;background:var(--bg-2);color:var(--fg);border:1px solid var(--edge-hi);
-  border-radius:7px;padding:0 16px;min-height:54px;font-family:var(--mono);font-size:19px;letter-spacing:.2em}
+.gatein input{flex:1;min-width:140px;background:var(--bg-2);color:var(--fg);border:1px solid var(--edge-hi);
+  border-radius:7px;padding:0 14px;min-height:52px;font-family:var(--mono);font-size:19px;letter-spacing:.2em}
 .gatein input:focus{border-color:var(--amber);outline:none}
-.msg{margin-top:12px;font-size:15px;min-height:22px}
+.gatein .btn{min-height:52px}
+.msg{font-size:16px}
+.msg:not(:empty){margin-top:10px}
 .msg.bad{color:#FF8E8E}
 .msg.good{color:var(--ok)}
-.note{font-size:14px;color:var(--fg-faint);margin-top:15px;line-height:1.6}
+@media(prefers-reduced-motion:no-preference){
+  .buy:target .buy-card{animation:ring 1.5s ease 1}
+  @keyframes ring{0%{box-shadow:0 0 0 0 rgba(255,194,71,.6)}100%{box-shadow:0 0 0 20px rgba(255,194,71,0)}}
+}
 
-/* faq */
-.faq{display:grid;gap:9px;margin-top:28px}
+/* ---------- faq ---------- */
+.faq{display:grid;gap:9px;margin-top:26px}
 .faq details{background:var(--panel);border:1px solid var(--edge);border-radius:9px}
 .faq details[open]{border-color:var(--amber-deep)}
 .faq summary{cursor:pointer;list-style:none;padding:16px 19px;display:grid;grid-template-columns:1fr auto;
@@ -187,243 +345,371 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,5vw,40px);let
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";font-family:var(--mono);font-size:17px;color:var(--amber)}
 .faq details[open] summary::after{content:"\2212"}
-.faq .a{padding:0 19px 17px;border-top:1px solid var(--edge);padding-top:14px}
-.faq .a p{margin:0 0 10px;font-size:15.5px;color:var(--fg-dim);line-height:1.6;max-width:64ch}
+.faq .a{padding:14px 19px 17px;border-top:1px solid var(--edge)}
+.faq .a p{margin:0 0 10px;font-size:16px;color:var(--fg-dim);line-height:1.6;max-width:64ch}
 .faq .a p:last-child{margin:0}
 
-footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mono);font-size:12px;
-  color:var(--fg-faint);line-height:1.9}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none} }
+/* ---------- footer ---------- */
+footer{background:var(--bg-2);border-top:1px solid var(--edge);padding:28px 0 calc(30px + env(safe-area-inset-bottom,0px));margin-top:clamp(20px,4vw,40px)}
+.foot{display:grid;gap:16px}
+@media(min-width:760px){ .foot{grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:40px} }
+.foot-copy{font-family:var(--mono);font-size:14px;color:var(--fg-faint);line-height:1.75}
+.foot-copy b{color:var(--fg);font-family:var(--display);font-size:16px}
+.foot nav{display:flex;flex-wrap:wrap;gap:0 22px}
+.foot nav a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--mono);font-size:14px;letter-spacing:.04em}
+
+/* ---------- sticky buy bar on phones and tablets ---------- */
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;
+  background:rgba(21,25,52,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid var(--edge-hi);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+  align-items:center;gap:12px}
+.buybar .bb-p{font-family:var(--display);font-weight:800;font-size:19px;line-height:1.15}
+.buybar .bb-p small{font-family:var(--mono);font-weight:400;font-size:12px;color:var(--fg-faint);display:block}
+@media(max-width:1023px){ .buybar{display:flex} body{padding-bottom:calc(78px + env(safe-area-inset-bottom,0px))} }
+
+/* ---------- reveal on scroll (armed by script, so content shows without it) ---------- */
+.rv .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
+.rv .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="hero-v" aria-hidden="true"><img src="assets/img/hero-nodes.jpg" alt=""></div>
-  <div class="wrap">
-    <p class="eyebrow"><i></i>The Disruptive Company &middot; Self-paced course</p>
-    <h1>Learn to ship real work with <em>AI</em>.</h1>
-    <p class="sub">Three days for staff officers and anyone doing staff work, from what these tools actually are to a working app with a URL you can
-    send someone. Written by somebody using them daily, including the parts that did not work.</p>
-    <ul class="ticks">
-      <li>Built for people with no coding background</li>
-      <li>Every lab runs on free accounts</li>
-      <li>You finish with something that exists</li>
-    </ul>
-    <div class="cta">
-      <a class="btn" href="#access">Get access &middot; SGD 50</a>
-      <a class="btn ghost" href="#curriculum">See the curriculum</a>
-    </div>
-    <p class="under">One payment &middot; lifetime access &middot; updates included</p>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/></symbol>
+  <symbol id="i-playsolid" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.2 9.2A2 2 0 0 0 6.5 21h11a2 2 0 0 0 1.7-2.8L14 9V3"/><path d="M7.5 15h9"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12.5V4h8.5L21 13.5 13.5 21z"/><circle cx="7.5" cy="8.5" r="1.2"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="academy.html">The Disruptive Company</a>
+    <nav class="navlinks" aria-label="Page sections">
+      <a href="#curriculum">Curriculum</a>
+      <a href="#host">Host</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn sm" href="#access">Get access</a>
   </div>
 </header>
 
 <main id="main">
 
-<hr class="rule">
-
-<section>
-  <div class="wrap">
-    <p class="sec-k">Why this exists</p>
-    <h2>You have heard it changes everything. Nobody showed you how.</h2>
-    <p class="lede">If any of these sound like you, this is the course.</p>
-    <div class="pains">
-      <div class="pain reveal"><p><b>You opened it, asked a few things, and were not impressed.</b>
-        You were using it as a search engine with better manners. That is rung one of four.</p></div>
-      <div class="pain reveal"><p><b>You do not know what to pay for.</b> Everything is twenty dollars
-        a month and nothing explains what the money actually buys.</p></div>
-      <div class="pain reveal"><p><b>It gave you a citation that did not exist.</b> So now you do not
-        trust it for anything that matters. The instinct is sound; the fix is to check every source, which this course teaches.</p></div>
-      <div class="pain reveal"><p><b>You gave up around round eight.</b> Everyone does. Nobody tells you
-        that the people who make it work went to round two hundred.</p></div>
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-img">
+    <img src="assets/img/academy/host-studio.jpg"
+         srcset="assets/img/academy/host-studio-sm.jpg 480w, assets/img/academy/host-studio.jpg 1280w"
+         sizes="100vw" width="1280" height="714" loading="eager" fetchpriority="high" decoding="async"
+         alt="Channing, the course presenter, standing beside a large screen that shows a glowing network of connected points.">
+  </div>
+  <div class="wrap hero-in">
+    <div class="hero-text">
+      <p class="eyebrow"><i></i><span class="hide-s">The Disruptive Company &middot; </span>Self-paced course</p>
+      <h1 id="hero-h">Working With <em>AI</em></h1>
+      <p class="sub">Learn to ship real work with AI, from your first task to an app with a live URL.</p>
+      <ul class="meta" aria-label="Course details">
+        <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg>3 days</li>
+        <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg>13 lessons</li>
+        <li><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg>15 labs</li>
+        <li class="price"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-tag"/></svg>SGD 50</li>
+      </ul>
+      <div class="cta">
+        <a class="btn" href="#access">Get access</a>
+        <a class="btn ghost" href="#preview"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg>Watch a free chapter</a>
+      </div>
+      <p class="under">One payment. Lifetime access and updates included.</p>
     </div>
   </div>
 </section>
 
-<hr class="rule">
+<div class="wrap layout">
 
-<section>
-  <div class="wrap">
-    <p class="sec-k">What you walk away with</p>
-    <h2>Four things you keep.</h2>
-    <div class="outs">
-      <div class="out reveal" style="--c:var(--violet)"><h3>A stack you chose on evidence</h3>
-        <p>Seven tools compared tier by tier, with prices checked on 7 Oct 2026. You will know what to pay
-        for and what to skip, including the student discount almost nobody claims.</p></div>
-      <div class="out reveal" style="--c:var(--mint)"><h3>A skill that carries your standards</h3>
-        <p>Built from feedback you have already been given, so it catches the things you keep getting
-        marked down for. It works on every assignment after that.</p></div>
-      <div class="out reveal" style="--c:var(--cyan)"><h3>Research that survives a marker</h3>
-        <p>Why invented citations happen and how to catch them. Then the questions that take you past a
-        summary anyone could have produced.</p></div>
-      <div class="out reveal" style="--c:var(--coral)"><h3>Something you actually shipped</h3>
-        <p>The last day ends with a live URL you can hand to a colleague, built without writing code.</p></div>
-    </div>
+<div class="col col-a">
+
+<section id="preview" aria-labelledby="preview-h">
+  <p class="eyebrow"><i></i>Free chapter</p>
+  <h2 id="preview-h">Watch a free chapter</h2>
+  <p class="lede">This is chapter 3 of the course, one of seven narrated chapters. It runs about two minutes and is presented by Channing, an AI presenter.</p>
+  <div class="vframe reveal">
+    <video controls playsinline preload="none" width="1280" height="720"
+           poster="assets/video/explainer/ch03-agentic.jpg" aria-describedby="vcap">
+      <source src="assets/video/explainer/ch03-agentic.mp4" type="video/mp4">
+      <track kind="captions" srclang="en" label="English" src="assets/video/explainer/ch03-agentic.vtt">
+      Your browser cannot play this video.
+    </video>
+    <button class="vplay" type="button" hidden aria-label="Play the free chapter"><svg aria-hidden="true" focusable="false"><use href="#i-playsolid"/></svg></button>
+  </div>
+  <p class="vcap" id="vcap"><span class="badge"><i></i>Free</span><span>Chapter 3 &middot; From answering to doing &middot; about 2 min &middot; captions available</span></p>
+</section>
+
+<section id="learn" aria-labelledby="learn-h">
+  <div class="learn-box reveal">
+    <h2 id="learn-h">What you&rsquo;ll learn</h2>
+    <p class="lede">Written for staff officers and anyone doing staff work. No coding background is needed, and every lab runs on free accounts.</p>
+    <ul class="learn">
+      <li>Tell a chatbot from an agent, and hand over a whole task by intent.</li>
+      <li>Choose your stack on evidence: seven tools compared tier by tier, with prices checked on 7 Oct 2026. It includes the student rate almost nobody claims.</li>
+      <li>Run the sanitisation drill, so nothing sensitive reaches a public tool.</li>
+      <li>Build a skill from your own feedback, so it catches what you keep getting marked down for.</li>
+      <li>Connect AI to your files and tools, and revoke the access when the job is done.</li>
+      <li>Catch an invented citation by checking every source before a marker does.</li>
+      <li>Ask the questions that take you past a summary anyone could have produced.</li>
+      <li>Give it your own format and get decks and documents you can use.</li>
+      <li>Spot a session that is going in circles, and know what to do about it.</li>
+      <li>Spec, build, harden and ship a small app with a live URL you can hand to a colleague. You write no code.</li>
+    </ul>
   </div>
 </section>
 
-<hr class="rule">
+<section id="curriculum" aria-labelledby="cur-h">
+  <p class="eyebrow"><i></i>Curriculum</p>
+  <h2 id="cur-h">About twenty hours, seventeen of them hands-on.</h2>
+  <p class="lede">Most lessons here are followed by a lab that produces something you keep.</p>
+  <ul class="glance reveal" aria-label="Course in numbers">
+    <li><b>30</b><span>Pages</span></li>
+    <li><b>15</b><span>Hands-on labs</span></li>
+    <li><b>48</b><span>Quiz questions</span></li>
+    <li><b>112</b><span>Lab checks</span></li>
+  </ul>
+  <div class="cur-tools"><button class="linkbtn" id="expand" type="button" hidden>Expand all days</button></div>
 
-<section id="curriculum">
-  <div class="wrap">
-    <p class="sec-k">The curriculum</p>
-    <h2>About twenty hours, seventeen of them hands-on.</h2>
-    <p class="lede">Most lessons here are followed by a lab that
-    produces something you keep.</p>
+  <details class="day reveal" style="--c:#FF7A66" open>
+    <summary>
+      <span class="dnum" aria-hidden="true">1</span>
+      <span class="dtxt"><span class="dk">Day 1 &middot; Foundations</span><span class="dt">What these things actually are</span>
+        <span class="dm">7 pages &middot; 2.8 hrs</span></span>
+      <svg class="chev" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev"/></svg>
+    </summary>
+    <p class="day-lead">Agentic AI without the marketing, then the seven-tool cost comparison.</p>
+    <ul class="rows">
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-start-sm.jpg" srcset="assets/img/academy/l-start-sm.jpg 480w, assets/img/academy/l-start.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 01</span><span class="min">3 min</span></p><p class="rn">Start here</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-edge-sm.jpg" srcset="assets/img/academy/l-edge-sm.jpg 480w, assets/img/academy/l-edge.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 02</span><span class="min">8 min</span></p><p class="rn">The edge was free and on YouTube</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-agentic-sm.jpg" srcset="assets/img/academy/l-agentic-sm.jpg 480w, assets/img/academy/l-agentic.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-play"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-playsolid"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lesson 03</span><span class="min">8 min</span><a class="free" href="#preview">Free preview<span class="vh">: watch chapter 3 above</span></a></p><p class="rn">From answering to doing</p></div></li>
+      <li class="row lab"><span class="th" style="--o:78% 72%"><img src="assets/img/academy/l-agentic-sm.jpg" srcset="assets/img/academy/l-agentic-sm.jpg 480w, assets/img/academy/l-agentic.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 1.1</span><span class="min">45 min</span></p><p class="rn">Delegate by intent</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-toolkit-sm.jpg" srcset="assets/img/academy/l-toolkit-sm.jpg 480w, assets/img/academy/l-toolkit.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 04</span><span class="min">12 min</span></p><p class="rn">The toolkit, and what it costs</p></div></li>
+      <li class="row lab"><span class="th" style="--o:30% 40%"><img src="assets/img/academy/l-toolkit-sm.jpg" srcset="assets/img/academy/l-toolkit-sm.jpg 480w, assets/img/academy/l-toolkit.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 1.2</span><span class="min">60 min</span></p><p class="rn">Choose your stack</p></div></li>
+      <li class="row lab"><span class="th" style="--o:84% 18%"><img src="assets/img/academy/l-toolkit-sm.jpg" srcset="assets/img/academy/l-toolkit-sm.jpg 480w, assets/img/academy/l-toolkit.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 1.3</span><span class="min">30 min</span></p><p class="rn">The sanitisation drill</p></div></li>
+    </ul>
+  </details>
 
-    <div class="days">
-      <article class="day reveal" style="--c:#FF7A66">
-        <div class="day-v"><video muted playsinline preload="none" aria-hidden="true" poster="assets/img/stinger-evolution.jpg">
-          <source src="assets/video/stinger-evolution.mp4" type="video/mp4"></video></div>
-        <div class="day-b">
-          <p class="day-n">DAY 1 &middot; FOUNDATIONS &middot; 2.8 HRS</p>
-          <h3>What these things actually are</h3>
-          <p>Agentic AI without the marketing, and the seven-tool cost comparison.</p>
-          <ul><li>Delegate by intent</li><li>Choose your stack</li><li>The sanitisation drill</li></ul>
-        </div>
-      </article>
-      <article class="day reveal" style="--c:#4ADE80">
-        <div class="day-v"><video muted playsinline preload="none" aria-hidden="true" poster="assets/img/stinger-connect.jpg">
-          <source src="assets/video/stinger-connect.mp4" type="video/mp4"></video></div>
-        <div class="day-b">
-          <p class="day-n">DAY 2 &middot; WORKING &middot; 7.6 HRS</p>
-          <h3>Getting real work out of it</h3>
-          <p>Skills, research that holds up, and pointing it at your own folders.</p>
-          <ul><li>Build a skill from your feedback</li><li>The citation audit</li><li>Research end to end</li><li>Point it at a folder</li></ul>
-        </div>
-      </article>
-      <article class="day reveal" style="--c:#FDE047">
-        <div class="day-v"><video muted playsinline preload="none" aria-hidden="true" poster="assets/img/stinger-build.jpg">
-          <source src="assets/video/stinger-build.mp4" type="video/mp4"></video></div>
-        <div class="day-b">
-          <p class="day-n">DAY 3 &middot; BUILDING &middot; 9.3 HRS</p>
-          <h3>Ship something real</h3>
-          <p>Vibe coding, where it bites, and a capstone that ends in a URL.</p>
-          <ul><li>The circling drill</li><li>Spec, build, harden</li><li>Ship it</li><li>Capstone</li></ul>
-        </div>
-      </article>
+  <details class="day reveal" style="--c:#4ADE80">
+    <summary>
+      <span class="dnum" aria-hidden="true">2</span>
+      <span class="dtxt"><span class="dk">Day 2 &middot; Working</span><span class="dt">Getting real work out of it</span>
+        <span class="dm">12 pages &middot; 7.6 hrs</span></span>
+      <svg class="chev" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev"/></svg>
+    </summary>
+    <p class="day-lead">Skills and research that holds up, then pointing it at your own folders.</p>
+    <ul class="rows">
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-skills-sm.jpg" srcset="assets/img/academy/l-skills-sm.jpg 480w, assets/img/academy/l-skills.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 05</span><span class="min">9 min</span></p><p class="rn">Skills: teaching it your standards</p></div></li>
+      <li class="row lab"><span class="th" style="--o:38% 55%"><img src="assets/img/academy/l-skills-sm.jpg" srcset="assets/img/academy/l-skills-sm.jpg 480w, assets/img/academy/l-skills.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 2.1</span><span class="min">75 min</span></p><p class="rn">Build a skill from your own feedback</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-plumbing-sm.jpg" srcset="assets/img/academy/l-plumbing-sm.jpg 480w, assets/img/academy/l-plumbing.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 06</span><span class="min">9 min</span></p><p class="rn">MCP, connectors and where work happens</p></div></li>
+      <li class="row lab"><span class="th" style="--o:18% 72%"><img src="assets/img/academy/l-plumbing-sm.jpg" srcset="assets/img/academy/l-plumbing-sm.jpg 480w, assets/img/academy/l-plumbing.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 2.2</span><span class="min">50 min</span></p><p class="rn">Three connectors, and one you revoke</p></div></li>
+      <li class="row lab"><span class="th" style="--o:82% 28%"><img src="assets/img/academy/l-plumbing-sm.jpg" srcset="assets/img/academy/l-plumbing-sm.jpg 480w, assets/img/academy/l-plumbing.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 2.3</span><span class="min">60 min</span></p><p class="rn">Your first agentic task</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-research-sm.jpg" srcset="assets/img/academy/l-research-sm.jpg 480w, assets/img/academy/l-research.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 07</span><span class="min">11 min</span></p><p class="rn">Research that stands up</p></div></li>
+      <li class="row lab"><span class="th" style="--o:48% 58%"><img src="assets/img/academy/l-research-sm.jpg" srcset="assets/img/academy/l-research-sm.jpg 480w, assets/img/academy/l-research.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 2.4</span><span class="min">45 min</span></p><p class="rn">The citation audit</p></div></li>
+      <li class="row lab"><span class="th" style="--o:88% 62%"><img src="assets/img/academy/l-research-sm.jpg" srcset="assets/img/academy/l-research-sm.jpg 480w, assets/img/academy/l-research.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 2.5</span><span class="min">90 min</span></p><p class="rn">Research a real question end to end</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-decks-sm.jpg" srcset="assets/img/academy/l-decks-sm.jpg 480w, assets/img/academy/l-decks.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 08</span><span class="min">10 min</span></p><p class="rn">Decks, documents and your own files</p></div></li>
+      <li class="row lab"><span class="th" style="--o:72% 36%"><img src="assets/img/academy/l-decks-sm.jpg" srcset="assets/img/academy/l-decks-sm.jpg 480w, assets/img/academy/l-decks.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 2.6</span><span class="min">45 min</span></p><p class="rn">Give it your format</p></div></li>
+      <li class="row lab"><span class="th" style="--o:16% 70%"><img src="assets/img/academy/l-decks-sm.jpg" srcset="assets/img/academy/l-decks-sm.jpg 480w, assets/img/academy/l-decks.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 2.7</span><span class="min">40 min</span></p><p class="rn">Point it at a folder</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-academic-sm.jpg" srcset="assets/img/academy/l-academic-sm.jpg 480w, assets/img/academy/l-academic.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 09</span><span class="min">14 min</span></p><p class="rn">Academic work that holds up</p></div></li>
+    </ul>
+  </details>
+
+  <details class="day reveal" style="--c:#FDE047">
+    <summary>
+      <span class="dnum" aria-hidden="true">3</span>
+      <span class="dtxt"><span class="dk">Day 3 &middot; Building</span><span class="dt">Ship something real</span>
+        <span class="dm">11 pages &middot; 9.5 hrs</span></span>
+      <svg class="chev" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev"/></svg>
+    </summary>
+    <p class="day-lead">Vibe coding and where it bites, then a capstone that ends in a URL.</p>
+    <ul class="rows">
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-made-sm.jpg" srcset="assets/img/academy/l-made-sm.jpg 480w, assets/img/academy/l-made.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 10</span><span class="min">10 min</span></p><p class="rn">How this course was made</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-trouble-sm.jpg" srcset="assets/img/academy/l-trouble-sm.jpg 480w, assets/img/academy/l-trouble.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 11</span><span class="min">9 min</span></p><p class="rn">When it goes wrong</p></div></li>
+      <li class="row lab"><span class="th" style="--o:26% 58%"><img src="assets/img/academy/l-trouble-sm.jpg" srcset="assets/img/academy/l-trouble-sm.jpg 480w, assets/img/academy/l-trouble.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 3.1</span><span class="min">40 min</span></p><p class="rn">The circling drill</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-build-sm.jpg" srcset="assets/img/academy/l-build-sm.jpg 480w, assets/img/academy/l-build.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 12</span><span class="min">25 min</span></p><p class="rn">Vibe coding: now you build one</p></div></li>
+      <li class="row lab"><span class="th" style="--o:78% 22%"><img src="assets/img/academy/l-build-sm.jpg" srcset="assets/img/academy/l-build-sm.jpg 480w, assets/img/academy/l-build.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 3.2</span><span class="min">45 min</span></p><p class="rn">Spec the thing</p></div></li>
+      <li class="row lab"><span class="th" style="--o:28% 62%"><img src="assets/img/academy/l-build-sm.jpg" srcset="assets/img/academy/l-build-sm.jpg 480w, assets/img/academy/l-build.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 3.3</span><span class="min">120 min</span></p><p class="rn">Build version one</p></div></li>
+      <li class="row lab"><span class="th" style="--o:62% 74%"><img src="assets/img/academy/l-build-sm.jpg" srcset="assets/img/academy/l-build-sm.jpg 480w, assets/img/academy/l-build.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 3.4</span><span class="min">60 min</span></p><p class="rn">Break it, then harden it</p></div></li>
+      <li class="row lab"><span class="th" style="--o:92% 52%"><img src="assets/img/academy/l-build-sm.jpg" srcset="assets/img/academy/l-build-sm.jpg 480w, assets/img/academy/l-build.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""><span class="mk mk-lab"><svg class="ic" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flask"/></svg></span></span><div class="rt"><p class="rm"><span class="tag">Lab 3.5</span><span class="min">60 min</span></p><p class="rn">Ship it</p></div></li>
+      <li class="row lesson"><span class="th"><img src="assets/img/academy/l-design-sm.jpg" srcset="assets/img/academy/l-design-sm.jpg 480w, assets/img/academy/l-design.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Lesson 13</span><span class="min">12 min</span></p><p class="rn">Design thinking, with AI on the team</p></div></li>
+      <li class="row ref"><span class="th"><img src="assets/img/academy/l-playbook-sm.jpg" srcset="assets/img/academy/l-playbook-sm.jpg 480w, assets/img/academy/l-playbook.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Reference</span><span class="min">8 min</span></p><p class="rn">Troubleshooting playbook</p></div></li>
+      <li class="row cap"><span class="th"><img src="assets/img/academy/l-capstone-sm.jpg" srcset="assets/img/academy/l-capstone-sm.jpg 480w, assets/img/academy/l-capstone.jpg 1280w" sizes="(min-width:640px) 152px, 96px" width="1280" height="714" loading="lazy" decoding="async" alt=""></span><div class="rt"><p class="rm"><span class="tag">Capstone</span><span class="min">180 min</span></p><p class="rn">Capstone</p></div></li>
+    </ul>
+  </details>
+
+</section>
+
+<section id="inside" aria-labelledby="inside-h">
+  <p class="eyebrow"><i></i>How it works</p>
+  <h2 id="inside-h">Inside every chapter</h2>
+  <ul class="tiles">
+    <li class="tile reveal">
+      <img src="assets/img/academy/host-walk.jpg"
+           srcset="assets/img/academy/host-walk-sm.jpg 480w, assets/img/academy/host-walk.jpg 1280w"
+           sizes="(min-width:1024px) 340px, (min-width:640px) 46vw, 46vw"
+           width="1280" height="714" loading="lazy" decoding="async"
+           style="object-position:56% 50%"
+           alt="Channing standing between library shelves with a tablet in her hands.">
+      <div class="tile-cap"><span class="tile-k">01 &middot; Watch</span><p>Narrated video with an on-screen presenter.</p></div>
+    </li>
+    <li class="tile reveal">
+      <img src="assets/img/academy/l-build.jpg"
+           srcset="assets/img/academy/l-build-sm.jpg 480w, assets/img/academy/l-build.jpg 1280w"
+           sizes="(min-width:1024px) 340px, (min-width:640px) 46vw, 46vw"
+           width="1280" height="714" loading="lazy" decoding="async"
+           style="object-position:62% 50%"
+           alt="A woman pointing at an app on a phone beside paper sketches and a laptop showing the same screen.">
+      <div class="tile-cap"><span class="tile-k">02 &middot; Build</span><p>Labs that leave you with something built.</p></div>
+    </li>
+    <li class="tile reveal">
+      <img src="assets/img/academy/l-research.jpg"
+           srcset="assets/img/academy/l-research-sm.jpg 480w, assets/img/academy/l-research.jpg 1280w"
+           sizes="(min-width:1024px) 340px, (min-width:640px) 46vw, 46vw"
+           width="1280" height="714" loading="lazy" decoding="async"
+           style="object-position:60% 50%"
+           alt="A student reading at a library desk with a laptop, a magnifying glass and stacks of old books.">
+      <div class="tile-cap"><span class="tile-k">03 &middot; Check</span><p>A quiz after each lesson.</p></div>
+    </li>
+    <li class="tile reveal">
+      <img src="assets/img/academy/l-start.jpg"
+           srcset="assets/img/academy/l-start-sm.jpg 480w, assets/img/academy/l-start.jpg 1280w"
+           sizes="(min-width:1024px) 340px, (min-width:640px) 46vw, 46vw"
+           width="1280" height="714" loading="lazy" decoding="async"
+           style="object-position:45% 50%"
+           alt="An open notebook, a closed laptop and a cup of coffee on a wooden desk beside a window at sunrise.">
+      <div class="tile-cap"><span class="tile-k">04 &middot; Read</span><p>Reads well on a phone.</p></div>
+    </li>
+  </ul>
+</section>
+
+<section id="host" aria-labelledby="host-h">
+  <p class="eyebrow"><i></i>Your host</p>
+  <h2 id="host-h">Meet Channing</h2>
+  <div class="host">
+    <figure class="portrait reveal">
+      <img src="assets/img/academy/host-desk.jpg"
+           srcset="assets/img/academy/host-desk-sm.jpg 480w, assets/img/academy/host-desk.jpg 1000w"
+           sizes="(min-width:640px) 270px, 92vw"
+           width="1000" height="1242" loading="lazy" decoding="async"
+           alt="Channing, the AI presenter, smiling at a wooden desk with a laptop and a leather notebook, lit by a brass lamp.">
+      <span class="badge"><i></i>AI-generated presenter</span>
+    </figure>
+    <div class="host-text reveal">
+      <p>Channing is an AI presenter. Her voice and her image are AI-generated, and she is not a real person.</p>
+      <p>The course is written in the first person by an officer, from his own work and notes. He prefers to stay anonymous, so Channing presents the material on screen.</p>
     </div>
+  </div>
 
-    <div class="nums reveal">
-      <div class="num"><b>30</b><span>Pages</span></div>
-      <div class="num"><b>15</b><span>Hands-on labs</span></div>
-      <div class="num"><b>44</b><span>Quiz questions</span></div>
-      <div class="num"><b>112</b><span>Lab checks</span></div>
-    </div>
+  <h3 class="facts-h">Written by someone who uses it daily.</h3>
+  <div class="facts">
+    <div class="fact reveal" style="--c:var(--amber)"><h4>The failures are in it</h4>
+      <p>A real transcript of eight rounds, four of them wasted going in circles, annotated with the exact turn where it went wrong.</p></div>
+    <div class="fact reveal" style="--c:var(--violet)"><h4>Built with what it teaches</h4>
+      <p>One chapter is the receipts: every tool that ran to produce this course and what each one did.</p></div>
+    <div class="fact reveal" style="--c:var(--mint)"><h4>Narrated, chapter by chapter</h4>
+      <p>Chapters 2 to 8 each open with a two-minute narrated briefing over animated visuals. Every one has a full transcript.</p></div>
+    <div class="fact reveal" style="--c:var(--cyan)"><h4>Progress that saves as you go</h4>
+      <p>Quizzes and lab checklists save in this browser, on this device. In Safari, a week without opening the course can clear them, so keep the gaps short there.</p></div>
+    <div class="fact wide reveal" style="--c:var(--coral)"><h4>Updates included</h4>
+      <p>This material dates fast. Prices and features change every few weeks, so updates matter more here than they usually would.</p></div>
   </div>
 </section>
 
-<hr class="rule">
+</div>
 
-<section>
-  <div class="wrap">
-    <p class="sec-k">Why this one</p>
-    <h2>Written by someone who uses it daily.</h2>
-    <div class="outs">
-      <div class="out reveal" style="--c:var(--amber)"><h3>The failures are in it</h3>
-        <p>A real transcript of eight rounds, four of them wasted going in circles, annotated with the
-        exact turn where it went wrong.</p></div>
-      <div class="out reveal" style="--c:var(--violet)"><h3>Built with what it teaches</h3>
-        <p>One chapter is the receipts: every tool that ran to produce this course and what each one
-        did.</p></div>
-      <div class="out reveal" style="--c:var(--mint)"><h3>Narrated, chapter by chapter</h3>
-        <p>Chapters 2 to 8 each open with a two-minute narrated briefing over animated visuals. Every one has
-        a full transcript.</p></div>
-      <div class="out reveal" style="--c:var(--cyan)"><h3>Progress that saves as you go</h3>
-        <p>Quizzes and lab checklists save in this browser, on this device. In Safari, a week without
-        opening the course can clear them, so keep the gaps short there.</p></div>
+<aside class="buy" id="access" aria-labelledby="buy-h">
+  <div class="buy-card">
+    <h2 id="buy-h" class="vh">One payment. Updates included.</h2>
+    <div class="pricerow">
+      <p class="price">SGD 50</p>
+      <p class="price-sub"><span>One-off payment</span> <i>&middot;</i> <span>Lifetime access</span></p>
     </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<section id="access">
-  <div class="wrap">
-    <p class="sec-k">Access</p>
-    <h2>One payment. Updates included.</h2>
-    <p class="lede">This material dates fast. Prices and features change every few weeks, so updates matter
-    more here than they usually would.</p>
-
-    <div class="pay reveal">
-      <div class="pay-grid">
-        <div class="pay-l">
-          <p class="price">$50<span> &nbsp;SGD</span></p>
-          <p class="price-sub">ONE-OFF PAYMENT &middot; LIFETIME ACCESS</p>
-          <ul class="incl">
-            <li>All 30 pages: 13 lessons, 15 labs, a capstone and a troubleshooting playbook</li>
-            <li>Seven narrated chapter briefings, each with a full transcript</li>
-            <li>48 quiz questions with explanations</li>
-            <li>112 lab checks to tick off as you work</li>
-            <li>Progress saved in your browser as you go</li>
-            <li>Lifetime access and every update</li>
-          </ul>
-          <div class="gate">
-            <label for="code">Already paid? Enter your access code</label>
-            <div class="gatein">
-              <input id="code" type="text" inputmode="numeric" autocomplete="one-time-code"
-                     placeholder="6 digits" maxlength="12" aria-describedby="msg">
-              <button class="btn" id="go">Start</button>
-            </div>
-            <p class="msg" id="msg" role="status"></p>
-            <p class="note">After paying, message <b>9181 7066</b> on WhatsApp or Telegram with the name your PayNow came from. I will reply with your access code.</p>
-          </div>
-        </div>
-        <div class="pay-r">
-          <div class="qr"><img src="assets/img/paynow-50.png" width="460" height="460"
-               alt="PayNow QR code for fifty Singapore dollars"></div>
-          <p class="payline"><b>PayNow</b><code>9181 7066</code></p>
-          <button class="copybtn" data-copy="91817066">Copy number</button>
-          <p class="payline"><b>Reference</b><code>AIBRIEF</code></p>
-        </div>
+    <ul class="incl">
+      <li>All 30 pages: 13 lessons, 15 labs, a capstone and a troubleshooting playbook</li>
+      <li>Seven narrated chapter briefings, each with a full transcript</li>
+      <li>48 quiz questions with explanations</li>
+      <li>112 lab checks to tick off as you work</li>
+      <li>Progress saved in your browser as you go</li>
+      <li>Lifetime access and every update</li>
+    </ul>
+    <div class="paybox">
+      <div class="qr"><img src="assets/img/paynow-50.png" width="460" height="460"
+           alt="PayNow QR code for fifty Singapore dollars"></div>
+      <div class="payinfo">
+        <p class="payline p1"><b>PayNow</b><code>9181 7066</code></p>
+        <button class="copybtn" type="button" data-copy="91817066">Copy number</button>
+        <p class="payline p2"><b>Reference</b><code>AIBRIEF</code></p>
       </div>
     </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<section>
-  <div class="wrap">
-    <p class="sec-k">Questions</p>
-    <h2>Before you pay.</h2>
-    <div class="faq">
-      <details><summary>Do I need to be technical?</summary><div class="a">
-        <p>No. The course assumes no programming background. The one lesson that builds software does it
-        without you writing any code, and every lab works on a free account.</p></div></details>
-      <details><summary>How long does it actually take?</summary><div class="a">
-        <p>About twenty hours if you do every lab. Just over two hours of that is reading. It is built as
-        three days but nothing stops you doing it over three weeks, and it remembers where you got to in the same browser.</p></div></details>
-      <details><summary>Will it be out of date in a month?</summary><div class="a">
-        <p>Parts of it, yes, and the course says so on the page. Prices and model names move constantly,
-        which is why updates are included. The method itself changes far more slowly.</p></div></details>
-      <details><summary>Can I use this for assessed work?</summary><div class="a">
-        <p>Your institution's rules apply and the course tells you to find them. What it does teach is how
-        to research without inventing citations, which is the thing that actually gets people in trouble.</p></div></details>
-      <details><summary>Is any of it classified or official?</summary><div class="a">
-        <p>None of it. I built it on a personal account in my own time, using no official material.
-        Lesson 06 and a dedicated lab cover exactly where that line sits and how to stay on the right side of it.</p></div></details>
-      <details><summary>What if it is not for me?</summary><div class="a">
-        <p>The curriculum is outlined above so you can judge it before you pay. If you still
-        have a question, message <b>9181 7066</b> on WhatsApp or Telegram and ask.</p></div></details>
+    <p class="note">After paying, message <b>9181 7066</b> on <a href="https://wa.me/6591817066" target="_blank" rel="noopener">WhatsApp</a> or Telegram with the name your PayNow came from. I will reply with your access code.</p>
+    <div class="gate">
+      <label for="code">Already paid? Enter your access code</label>
+      <div class="gatein">
+        <input id="code" type="text" inputmode="numeric" autocomplete="one-time-code"
+               placeholder="6 digits" maxlength="12" aria-describedby="msg">
+        <button class="btn" id="go" type="button">Start</button>
+      </div>
+      <p class="msg" id="msg" role="status"></p>
     </div>
   </div>
-</section>
+</aside>
 
+<div class="col col-b">
+<section id="faq" aria-labelledby="faq-h">
+  <p class="eyebrow"><i></i>Questions</p>
+  <h2 id="faq-h">Before you pay.</h2>
+  <div class="faq">
+    <details><summary>Do I need to be technical?</summary><div class="a">
+      <p>No. The course assumes no programming background. The one lesson that builds software does it
+      without you writing any code, and every lab works on a free account.</p></div></details>
+    <details><summary>How long does it actually take?</summary><div class="a">
+      <p>About twenty hours if you do every lab. Just over two hours of that is reading. It is built as
+      three days but nothing stops you doing it over three weeks, and it remembers where you got to in the same browser.</p></div></details>
+    <details><summary>Will it be out of date in a month?</summary><div class="a">
+      <p>Parts of it, yes, and the course says so on the page. Prices and model names move constantly,
+      which is why updates are included. The method itself changes far more slowly.</p></div></details>
+    <details><summary>Can I use this for assessed work?</summary><div class="a">
+      <p>Your institution's rules apply and the course tells you to find them. What it does teach is how
+      to research without inventing citations, which is the thing that actually gets people in trouble.</p></div></details>
+    <details><summary>Is any of it classified or official?</summary><div class="a">
+      <p>None of it. I built it on a personal account in my own time, using no official material.
+      Lesson 06 and a dedicated lab cover exactly where that line sits and how to stay on the right side of it.</p></div></details>
+    <details><summary>What if it is not for me?</summary><div class="a">
+      <p>The curriculum is outlined above so you can judge it before you pay. If you still
+      have a question, message <b>9181 7066</b> on WhatsApp or Telegram and ask.</p></div></details>
+  </div>
+</section>
+</div>
+
+</div>
 </main>
 
 <footer>
-  <div class="wrap">
-    <b>Working With AI</b> &middot; The Disruptive Company &middot; October 2026<br>
-    An independent course with no official affiliation or endorsement. Unclassified, written on a personal account in my own time using no official material.<br>
-    Prices and links verified 7 Oct 2026. All of it moves, so re-check before relying on it.
+  <div class="wrap foot">
+    <div>
+      <p class="foot-copy"><b>Working With AI</b> &middot; The Disruptive Company &middot; October 2026<br>
+      An independent course with no official affiliation or endorsement. Unclassified, written on a personal account in my own time using no official material.<br>
+      Prices and links verified 7 Oct 2026. All of it moves, so re-check before relying on it.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="academy.html">The Disruptive Company Academy</a>
+      <a href="https://wa.me/6591817066" target="_blank" rel="noopener">WhatsApp 9181 7066</a>
+    </nav>
   </div>
 </footer>
 
 <div class="buybar">
-  <div class="bb-p">$50<small>one payment</small></div>
+  <div class="bb-p">SGD 50<small>one payment</small></div>
   <a class="btn sm" href="#access" style="margin-left:auto">Get access</a>
 </div>
 
@@ -480,38 +766,37 @@ footer{border-top:1px solid var(--edge);padding:28px 0 46px;font-family:var(--mo
     });
   });
 
+  /* curriculum: the day blocks are native details elements, so they work without this.
+     The button is a convenience that opens or closes all three at once. */
+  var days=Array.prototype.slice.call(document.querySelectorAll('.day'));
+  var ex=document.getElementById('expand');
+  if(ex && days.length){
+    var allOpen=function(){ return days.every(function(d){ return d.open; }); };
+    var sync=function(){ ex.textContent = allOpen() ? 'Collapse all days' : 'Expand all days'; };
+    ex.hidden=false; sync();
+    ex.addEventListener('click',function(){ var open=!allOpen(); days.forEach(function(d){ d.open=open; }); sync(); });
+    days.forEach(function(d){ d.addEventListener('toggle',sync); });
+  }
+
+  /* free chapter: a large play button over the poster; the native controls stay in place underneath */
+  var pv=document.querySelector('#preview video'), pb=document.querySelector('.vplay');
+  if(pv && pb){
+    pb.hidden=false;
+    pb.addEventListener('click',function(){ var p=pv.play(); if(p && p.catch) p.catch(function(){ pb.hidden=true; }); });
+    pv.addEventListener('play',function(){ pb.hidden=true; });
+    pv.addEventListener('ended',function(){ pb.hidden=false; });
+  }
+
+  /* reveal on scroll: armed here, so a script failure never leaves content hidden */
   var els=Array.prototype.slice.call(document.querySelectorAll('.reveal'));
-  if('IntersectionObserver' in window){
+  var calm=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if('IntersectionObserver' in window && !calm){
+    document.documentElement.classList.add('rv');
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    },{threshold:.12, rootMargin:'0px 0px -50px 0px'});
+    },{threshold:.1, rootMargin:'0px 0px -40px 0px'});
     els.forEach(function(el){ io.observe(el); });
   } else { els.forEach(function(el){ el.classList.add('in'); }); }
-
-  /* hero still upgrades to video only when that is cheap */
-  (function(){
-    var host=document.querySelector('.hero-v'); if(!host) return;
-    var conn=navigator.connection||{};
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if(conn.saveData || /2g/.test(conn.effectiveType||'')) return;
-    var v=document.createElement('video');
-    v.muted=true; v.loop=true; v.playsInline=true; v.autoplay=true;
-    v.setAttribute('poster','assets/img/hero-nodes.jpg');
-    v.innerHTML='<source src="assets/video/hero-nodes.mp4" type="video/mp4">';
-    v.addEventListener('canplay',function(){ host.innerHTML=''; host.appendChild(v);
-      var p=v.play(); if(p&&p.catch) p.catch(function(){}); },{once:true});
-    v.load();
-  })();
-
-  var vids=Array.prototype.slice.call(document.querySelectorAll('.day-v video'));
-  var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!still && 'IntersectionObserver' in window){   /* reduced motion: posters only */
-    var vo=new IntersectionObserver(function(es){
-      es.forEach(function(e){ if(e.isIntersecting){ var p=e.target.play(); if(p&&p.catch) p.catch(function(){}); }
-                              else { e.target.pause(); } });
-    },{threshold:.25});
-    vids.forEach(function(v){ vo.observe(v); });
-  }
 })();
 </script>
 </body>

@@ -18,7 +18,7 @@ Gemini Notebook, which was called NotebookLM until July, only answers from sourc
 
 Gamma builds a first-draft deck from a prompt in about two minutes.
 
-And Higgsfield generates video and images. The clips in this course came from there.
+And Higgsfield generates video and images.
 
 Now, the part worth remembering. The two-hundred-dollar plans from ChatGPT and Claude are both metered, so even those run out. Claude Max mostly buys you headroom, plus Fable inside the plan. If you are not hitting your limits, you do not need it yet.
 
